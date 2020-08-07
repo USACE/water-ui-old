@@ -2,63 +2,6 @@ import React, { useState } from "react";
 import { connect } from "redux-bundler-react";
 import classnames from "classnames";
 
-const LoginDropdown = connect(
-  "selectAuthTokenPayload",
-  "selectAuthIsLoggedIn",
-  "doAuthLogin",
-  ({ authIsLoggedIn, authTokenPayload: user, doAuthLogin }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleIsOpen = () => {
-      setIsOpen(!isOpen);
-    };
-    // Helper function to parse user initials from name
-    const UserInitials = () => {
-      if (authIsLoggedIn) {
-        const parts = user.name.split(".");
-        return `${parts[1][0]}${parts[0][0]}`;
-      }
-      return null;
-    };
-
-    const loginClass = classnames({
-      hidden: !isOpen,
-      "z-50 absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl": true,
-    });
-
-    return (
-      <div className="ml-6 hidden relative sm:block">
-        {authIsLoggedIn ? (
-          <>
-            <button
-              onClick={toggleIsOpen}
-              className="block h-12 w-12 text-gray-200 rounded-full overflow-hidden border-2 border-green-400 focus:outline-none hover:border-green-600"
-            >
-              <UserInitials />
-            </button>
-            <div className={loginClass}>
-              <a
-                href="/logout"
-                className="block px-4 py-2 text-gray-800 hover:bg-green-500 hover:text-white"
-              >
-                <small>{`Currently logged in as ${user.name}`}</small>
-                <br />
-                Logout
-              </a>
-            </div>
-          </>
-        ) : (
-          <button
-            className="bg-transparent text-gray-200 font-semibold hover:text-white py-2 px-4 border border-gray-200 hover:border-transparent hover:bg-green-400 rounded block"
-            onClick={doAuthLogin}
-          >
-            Login
-          </button>
-        )}
-      </div>
-    );
-  }
-);
-
 const NavItem = connect(
   "selectPathnameMinusHomepage",
   ({ pathnameMinusHomepage, href, handler, children }) => {
@@ -89,9 +32,8 @@ const NavItem = connect(
 );
 
 export default connect(
-  "selectAuthIsLoggedIn",
   "selectPathnameMinusHomepage",
-  ({ authIsLoggedIn, pathnameMinusHomepage }) => {
+  ({ pathnameMinusHomepage }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleIsOpen = () => {
       setIsOpen(!isOpen);
@@ -143,12 +85,11 @@ export default connect(
           </div>
         </div>
         <nav className={dropdownClass}>
-          <NavItem href="/#link1">NavLink1</NavItem>
-          <NavItem href="/#link2">NavLink2</NavItem>
-          {authIsLoggedIn ? (
-            <NavItem href="/#admin">LinkWhenLoggedIn</NavItem>
-          ) : null}
-          <LoginDropdown />
+          <NavItem href="/map">Map</NavItem>
+          <NavItem href="/locations">Locations</NavItem>
+          <NavItem href="/data-resources">Data Resources</NavItem>
+          <NavItem href="/reports">Reports</NavItem>
+          <NavItem href="/help">Help</NavItem>
         </nav>
       </header>
     );

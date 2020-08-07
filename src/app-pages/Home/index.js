@@ -1,11 +1,10 @@
 import React from "react";
-import Navbar from "../../app-components/navbar";
 import Card from "../../app-components/cards";
+import TextSection from "../../app-components/TextSection";
 import waterImage from "../../img/water.jpg";
 
 export default () => (
   <main>
-    <Navbar />
     <div className="container mx-auto px-20">
       <div className="mt-12 p-4 rounded flex mx-auto bg-red-200">
         This application is under active development. We're deploying new
@@ -43,7 +42,7 @@ export default () => (
         />
       </div>
       <div className="container mx-auto mt-24">
-        <p className="font-light text-center italic">Tagline</p>
+      <TextSection title={"The Mission of Access to Water"} body={"The United States Army Corps of Engineers (USACE) is responsible for operating and maintaining more than 700 lock and dam projects nationwide. The Access to Water Resources Data - Corps Water Management System (CWMS) Data Dissemination tool supports the USACE water control management mission by utilizing visualizations and reports to provide continuous assessment, awareness, and effective decision support of lock and dam projects, which in turn reduces risks to people, property, and the environment."}/>
       </div>
     </div>
   </main>
