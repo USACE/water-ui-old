@@ -1,24 +1,14 @@
 import React from "react";
-import Card from "../../app-components/cards";
+import Card from "../../app-components/Cards";
 import TextSection from "../../app-components/TextSection";
 import waterImage from "../../img/water.jpg";
 
-export default () => (
+ const HomePage  = () => {
+  return (
   <main>
+    <TextSection containerStyle={'text-center bg-gray-400 bg-opacity-50 px-48 py-8'} title={"find water resources data across the U.S."} body={"Access water resources data such as elevation, precipitation, storage, and flow status of more than 700 USACE reservoir and lock & dam projects."}/>
     <div className="container mx-auto px-20">
-      <div className="mt-12 p-4 rounded flex mx-auto bg-red-200">
-        This application is under active development. We're deploying new
-        progress early and often. Please expect to find buttons that do not go
-        anywhere and incomplete features until this banner is taken down.
-      </div>
-      <div className="text-center mt-12">
-        <h1 className="text-5xl">
-          <span className="font-light">Title</span>
-        </h1>
-        <p className="text-gray-800 mt-2 font-thin text-2xl">Subtitle</p>
-      </div>
-
-      <div className="container mt-24 mx-auto flex justify-around">
+      <div className="container mt-24 mx-auto flex">
         <Card
           title="Card 1"
           text="Card 1 Text"
@@ -46,4 +36,6 @@ export default () => (
       </div>
     </div>
   </main>
-);
+)};
+
+export default HomePage;

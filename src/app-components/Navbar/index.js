@@ -51,7 +51,8 @@ export default connect(
           <div>
             <h3 className="text-white text-2xl">
               <a className="hover:text-green-400" href="/">
-                AppName
+                <div className="text-2xl font-semibold">Access to Water</div>
+                <div className="text-base">WM Data Dissemination</div>
               </a>
               {pathnameMinusHomepage === "" ||
               pathnameMinusHomepage === "/" ? null : (
