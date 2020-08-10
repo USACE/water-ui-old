@@ -1,15 +1,11 @@
 import React from 'react';
 import './css/tailwind.generated.css';
-import Navbar from '../src/app-components/Navbar';
-import Footer from '../src/app-components/Footer';
-import { connect } from 'redux-bundler-react';
+import Layout from '../src/app-pages/Layout';
 
-export default connect('selectRoute', ({ route: Route }) => {
+export default () => {
 	return (
 		<div>
-			<Navbar />
-			<Route />
-			<Footer />
+			<Layout/>
 		</div>
 	);
-});
+};
