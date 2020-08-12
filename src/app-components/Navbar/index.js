@@ -51,8 +51,8 @@ export default connect(
           <div>
             <h3 className="text-white text-2xl">
               <a className="hover:text-green-400" href="/">
-                <div className="text-2xl font-semibold">Access to Water</div>
-                <div className="text-base">WM Data Dissemination</div>
+                <div className="text-2xl font-semibold capitalize">access to water</div>
+                <div className="text-base capitalize">water management data dissemination</div>
               </a>
               {pathnameMinusHomepage === "" ||
               pathnameMinusHomepage === "/" ? null : (
