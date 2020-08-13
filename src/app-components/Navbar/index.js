@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "redux-bundler-react";
 import classnames from "classnames";
+import DropDown from "../DropDown";
+import SearchBox from "../../app-containers/SearchBox";
 
 const NavItem = connect(
   "selectPathnameMinusHomepage",
-  ({ pathnameMinusHomepage, href, handler, children }) => {
+  ({ pathnameMinusHomepage, href, handler, html, children }) => {
     const handleClick = (e) => {
       if (handler && typeof handler === "function") handler(e);
     };
@@ -28,6 +30,13 @@ const NavItem = connect(
         </div>
       );
     }
+    if (html) {
+      return (
+        <div className={cls}>
+          {children}
+        </div>
+      );
+    }
   }
 );
 
@@ -47,20 +56,20 @@ export default connect(
 
     return (
       <header className="h-18 bg-gray-800 sm:flex sm:justify-between sm:items-center sm:px-4 py-1">
-        <div className="px-4 py-3 flex items-center justify-between px-4 py-3 ">
+        <div className="px-4 py-3 flex items-center justify-between">
           <div>
             <h3 className="text-white text-2xl">
               <a className="hover:text-green-400" href="/">
                 <div className="text-2xl font-semibold capitalize">access to water</div>
                 <div className="text-base capitalize">water management data dissemination</div>
               </a>
-              {pathnameMinusHomepage === "" ||
+              {/* {pathnameMinusHomepage === "" ||
               pathnameMinusHomepage === "/" ? null : (
                 <span className="px-2 font-light">|</span>
               )}
               <span className="font-light text-lg">
                 {pathnameMinusHomepage.split("/")[1]}
-              </span>
+              </span> */}
             </h3>
           </div>
           <div className="sm:hidden">
@@ -91,6 +100,7 @@ export default connect(
           <NavItem href="/data-resources">Data Resources</NavItem>
           <NavItem href="/reports">Reports</NavItem>
           <NavItem href="/help">Help</NavItem>
+          <NavItem html><SearchBox text={"Search Access to Water"} theme={'dark'}/></NavItem>
         </nav>
       </header>
     );

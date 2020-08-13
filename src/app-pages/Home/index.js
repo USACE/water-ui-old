@@ -29,7 +29,7 @@ const HomePage = () => {
 				}
 			/>
       <div className="search-box-container py-4 px-6 mx-8 lg:mx-56 relative bg-white" style={{"top":"-30px"}}>
-        <SearchBox/>
+        <SearchBox text={'Search by City, State, ZIP, or Project Names'}/>
       </div>
       </div>
 
