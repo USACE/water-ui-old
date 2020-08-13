@@ -4,19 +4,10 @@ import TextSection from '../../app-components/TextSection';
 import CirclePics from '../../app-components/CirclePics';
 import Map from '../../app-containers/Map';
 import SearchBox from '../../app-containers/SearchBox';
-import waterImage from '../../img/water.jpg';
+import {circlePicObj, cardObj} from './data.js';
 
 const HomePage = () => {
-	const cardObj = [
-		{ title: 'Locations', text: 'Card 1 Text', img: waterImage, imgAlt: 'Card 1 Image', href: '/#link1' },
-		{ title: 'Data Resources', text: 'Card 2 Text', img: waterImage, imgAlt: 'Card 2 Image', href: '/#link2' },
-		{ title: 'Reports', text: 'Card 3 Text', img: waterImage, imgAlt: 'Card 3 Image', href: '/#link3' },
-	];
-	const circlePicObj = [
-		{ title: 'Water Quality Assessment', img: waterImage, imgAlt: 'Card 1 Image', href: '/#link1' },
-		{ title: 'Water Quality Awareness', img: waterImage, imgAlt: 'Card 2 Image', href: '/#link2' },
-		{ title: 'Water Quality Support', img: waterImage, imgAlt: 'Card 3 Image', href: '/#link3' },
-	];
+
 	return (
 		<main>
       <div className="header-section">
@@ -46,6 +37,9 @@ const HomePage = () => {
 						title={'The Mission of Access to Water'}
 						body={
 							'The United States Army Corps of Engineers (USACE) is responsible for operating and maintaining more than 700 lock and dam projects nationwide. The Access to Water Resources Data - Corps Water Management System (CWMS) Data Dissemination tool supports the USACE water control management mission by utilizing visualizations and reports to provide continuous assessment, awareness, and effective decision support of lock and dam projects, which in turn reduces risks to people, property, and the environment.'
+						}
+						bodyStyle={
+							'body-text text-left'
 						}
 					/>
 					<div className="container mt-24 mx-auto lg:flex space-x-32">

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // made default parmeters for TextSection Component
-const TextSection = ({title, body, containerStyle='text-center', titleStyle='text-grey-900 text-2xl', bodyStyle='text-grey-900 text-base font-light'}) => {
+const TextSection = ({title, body, containerStyle='text-center', titleStyle='title-text', bodyStyle='body-text'}) => {
 	return (
 		<div className={`text-section-container ${containerStyle}`}>
 			<div className={`${titleStyle}`}>{title}</div>
