@@ -10,16 +10,16 @@ const HomePage = () => {
 
 	return (
 		<main>
-      <div className="header-section">
+      <div className="header-section bg-gray-400 bg-opacity-50xs">
       <TextSection
-				containerStyle={'text-center bg-gray-400 bg-opacity-50 px-8 lg:px-48 py-8'}
+				containerStyle={'text-center px-8 lg:px-48 pt-8 mx-auto container'}
 				title={'find water resources data across the U.S.'}
 				titleStyle={'capitalize text-grey-900 text-2xl'}
 				body={
 					'Access water resources data such as elevation, precipitation, storage, and flow status of more than 700 USACE reservoir and lock & dam projects.'
 				}
 			/>
-      <div className="search-box-container py-4 px-6 mx-8 lg:mx-56 relative bg-white" style={{"top":"-30px"}}>
+      <div className="search-box-container py-4 px-4 relative bg-white mx-auto container" style={{"top":"35px"}}>
         <SearchBox text={'Search by City, State, ZIP, or Project Names'}/>
       </div>
       </div>
