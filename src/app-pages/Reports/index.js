@@ -1,6 +1,8 @@
 import React from "react";
 import TextSection from '../../app-components/TextSection';
 import SearchBox from '../../app-containers/SearchBox';
+import Tabs from '../../app-components/Tabs';
+import TabsRender from "../../app-components/Tabs";
 
 /*
 export default () => (
@@ -24,6 +26,7 @@ const ReportsPage = () => {
       <div className="search-box-container py-4 px-6 mx-8 lg:mx-56 relative bg-white" style={{"top":"-30px"}}>
         <SearchBox text={'Search Reports'}/>
       </div>
+      <TabsRender/>
       </div>
     </main>
     );
