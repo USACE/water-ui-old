@@ -5,7 +5,7 @@ const CirclePics = (props) => {
 const { title, img, imgAlt, href } = props;
 
   return (
-  <a href={href} className="lg:flex lg:flex-wrap">
+  <a href={href} className="flex flex-wrap flex-col">
       <div className="img-container mx-auto">
       <img className="w-48 h-48 rounded-full" src={img} alt={imgAlt} />
       </div>
