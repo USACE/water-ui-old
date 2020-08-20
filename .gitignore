@@ -18,6 +18,10 @@
 .env.test.local
 .env.production.local
 
-npm-debug.log*
+npm-debug.log*f
 yarn-debug.log*
 yarn-error.log*
+
+//tailwind config
+tailwind.config.js
+/.vscode

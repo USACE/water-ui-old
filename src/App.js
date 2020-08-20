@@ -1,12 +1,11 @@
-import React from "react";
-import "./css/tailwind.generated.css";
+import React from 'react';
+import './css/tailwind.generated.css';
+import Layout from '../src/app-pages/Layout';
 
-import { connect } from "redux-bundler-react";
-
-export default connect("selectRoute", ({ route: Route }) => {
-  return (
-    <div>
-      <Route />
-    </div>
-  );
-});
+export default () => {
+	return (
+		<div>
+			<Layout/>
+		</div>
+	);
+};

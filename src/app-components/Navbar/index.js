@@ -1,67 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "redux-bundler-react";
 import classnames from "classnames";
-
-const LoginDropdown = connect(
-  "selectAuthTokenPayload",
-  "selectAuthIsLoggedIn",
-  "doAuthLogin",
-  ({ authIsLoggedIn, authTokenPayload: user, doAuthLogin }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleIsOpen = () => {
-      setIsOpen(!isOpen);
-    };
-    // Helper function to parse user initials from name
-    const UserInitials = () => {
-      if (authIsLoggedIn) {
-        const parts = user.name.split(".");
-        return `${parts[1][0]}${parts[0][0]}`;
-      }
-      return null;
-    };
-
-    const loginClass = classnames({
-      hidden: !isOpen,
-      "z-50 absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl": true,
-    });
-
-    return (
-      <div className="ml-6 hidden relative sm:block">
-        {authIsLoggedIn ? (
-          <>
-            <button
-              onClick={toggleIsOpen}
-              className="block h-12 w-12 text-gray-200 rounded-full overflow-hidden border-2 border-green-400 focus:outline-none hover:border-green-600"
-            >
-              <UserInitials />
-            </button>
-            <div className={loginClass}>
-              <a
-                href="/logout"
-                className="block px-4 py-2 text-gray-800 hover:bg-green-500 hover:text-white"
-              >
-                <small>{`Currently logged in as ${user.name}`}</small>
-                <br />
-                Logout
-              </a>
-            </div>
-          </>
-        ) : (
-          <button
-            className="bg-transparent text-gray-200 font-semibold hover:text-white py-2 px-4 border border-gray-200 hover:border-transparent hover:bg-green-400 rounded block"
-            onClick={doAuthLogin}
-          >
-            Login
-          </button>
-        )}
-      </div>
-    );
-  }
-);
+import DropDown from "../DropDown";
+import SearchBox from "../../app-containers/SearchBox";
 
 const NavItem = connect(
   "selectPathnameMinusHomepage",
-  ({ pathnameMinusHomepage, href, handler, children }) => {
+  ({ pathnameMinusHomepage, href, handler, html, children }) => {
     const handleClick = (e) => {
       if (handler && typeof handler === "function") handler(e);
     };
@@ -85,13 +30,19 @@ const NavItem = connect(
         </div>
       );
     }
+    if (html) {
+      return (
+        <div className={cls}>
+          {children}
+        </div>
+      );
+    }
   }
 );
 
 export default connect(
-  "selectAuthIsLoggedIn",
   "selectPathnameMinusHomepage",
-  ({ authIsLoggedIn, pathnameMinusHomepage }) => {
+  ({ pathnameMinusHomepage }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleIsOpen = () => {
       setIsOpen(!isOpen);
@@ -105,19 +56,20 @@ export default connect(
 
     return (
       <header className="h-18 bg-gray-800 sm:flex sm:justify-between sm:items-center sm:px-4 py-1">
-        <div className="px-4 py-3 flex items-center justify-between px-4 py-3 ">
+        <div className="px-4 py-3 flex items-center justify-between">
           <div>
             <h3 className="text-white text-2xl">
               <a className="hover:text-green-400" href="/">
-                AppName
+                <div className="text-2xl font-semibold capitalize">access to water</div>
+                <div className="text-base capitalize">water management data dissemination</div>
               </a>
-              {pathnameMinusHomepage === "" ||
+              {/* {pathnameMinusHomepage === "" ||
               pathnameMinusHomepage === "/" ? null : (
                 <span className="px-2 font-light">|</span>
               )}
               <span className="font-light text-lg">
                 {pathnameMinusHomepage.split("/")[1]}
-              </span>
+              </span> */}
             </h3>
           </div>
           <div className="sm:hidden">
@@ -143,12 +95,12 @@ export default connect(
           </div>
         </div>
         <nav className={dropdownClass}>
-          <NavItem href="/#link1">NavLink1</NavItem>
-          <NavItem href="/#link2">NavLink2</NavItem>
-          {authIsLoggedIn ? (
-            <NavItem href="/#admin">LinkWhenLoggedIn</NavItem>
-          ) : null}
-          <LoginDropdown />
+          <NavItem href="/map">Map</NavItem>
+          <NavItem href="/locations">Locations</NavItem>
+          <NavItem href="/data-resources">Data Resources</NavItem>
+          <NavItem href="/reports">Reports</NavItem>
+          <NavItem href="/help">Help</NavItem>
+          <NavItem html><SearchBox text={"Search Access to Water"} theme={'dark'}/></NavItem>
         </nav>
       </header>
     );
