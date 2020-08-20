@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import TextSection from '../TextSection';
 
 const Footer = (props) => {
@@ -24,6 +23,6 @@ const Footer = (props) => {
 	);
 };
 
-Footer.propTypes = {};
+
 
 export default Footer;
