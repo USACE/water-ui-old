@@ -21,7 +21,7 @@ const HomePage = () => {
 				/>
 				<div
 					className="search-box-container py-4 px-4 relative bg-white mx-auto container"
-					style={{ top: '35px', 'z-index': '1' }}
+					style={{ top: '35px', 'zIndex': '1' }}
 				>
 					<SearchBox text={'Search by City, State, ZIP, or Project Names'} />
 				</div>
@@ -30,10 +30,7 @@ const HomePage = () => {
 			<Map mapKey={'home-page-map'} options={options} height={'600px'} />
 			<div className="container mx-auto px-20">
 				<div className="container mt-24 mx-auto lg:flex space-x-6">
-					{cardObj.map((card, i) => {
-						const { title, text, img, imgAlt, href } = card;
-						return <Card key={i} title={title} text={text} img={img} imgAlt={imgAlt} href={href} />;
-					})}
+					{cardObj && <Card cardObj={cardObj}/>}
 				</div>
 				<div className="container mx-auto mt-24">
 					<TextSection
@@ -44,10 +41,7 @@ const HomePage = () => {
 						bodyStyle={'body-text text-left'}
 					/>
 					<div className="container my-24 mx-auto lg:flex lg:space-x-32">
-						{circlePicObj.map((card, i) => {
-							const { title, img, imgAlt, href } = card;
-							return <CirclePics key={i} title={title} img={img} imgAlt={imgAlt} href={href} />;
-						})}
+					{circlePicObj && <CirclePics cardObj={circlePicObj}/>}
 					</div>
 				</div>
 			</div>
