@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 const DropDown = (props) => {
-const { title } = props;
 
   return (
 <div className="dropdown-container">

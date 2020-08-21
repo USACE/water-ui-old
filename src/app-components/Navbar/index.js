@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "redux-bundler-react";
 import classnames from "classnames";
-import DropDown from "../DropDown";
 import SearchBox from "../../app-containers/SearchBox";
 
 const NavItem = connect(
