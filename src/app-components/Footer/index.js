@@ -68,7 +68,7 @@ const Footer = (props) => {
 				</div>
 				<div style={footerTextSectionTwo}>
 					<div className="icon-container"></div>
-					<div className="flex flex-row">
+					<div className="d-flex flex-row">
 						<div style={linkColStyle} className="link-col">
 							contact us
 						</div>

@@ -1,7 +1,4 @@
 /* font */
-.capitalize {
-  text-transform: capitalize;
-}
 
 .font-semibold{
   font-weight: 600;
@@ -27,17 +24,4 @@ font-size: 1.5rem;
 .title-text {
     text-transform: capitalize;
     font-size: 1.5rem;
-}
-
-/* display */
-.overflow-hidden{
-    overflow: hidden;
-}
-
-.flex {
-    display: flex;
-}
-
-.flex-row {
-    flex-direction: row;
 }
