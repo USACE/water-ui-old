@@ -40,9 +40,9 @@ const Cards = (props) => {
 						<a href={href} key={i} style={{ textDecoration: 'none' }}>
 							<div style={cardStyle}>
 								<img style={imgStyle} src={img} alt={imgAlt} />
-								<div style={textContainerStyle}>
-									<div className="font-bold text-xl mb-2">{title}</div>
-									<p className="text-gray-700 text-base">{text}</p>
+								<div style={textContainerStyle} className="p-3">
+									<div className="font-weight-bold mb-2">{title}</div>
+									<p className="text-base">{text}</p>
 								</div>
 							</div>
 						</a>
