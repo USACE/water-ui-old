@@ -31,7 +31,7 @@ const Footer = (props) => {
 	return (
 		<div data-test="component-footer-container" className="footer-container my-5">
 			<div style={footerTextSectionContainer} className="h-auto d-flex flex-lg-row row mw-100 mx-0">
-				<div className="misson-statement col-lg-6 col-sm-12 mb-1 px-5 py-4 mx-sm-auto">
+				<div style={{ paddingLeft: '10rem'}} className="misson-statement col-lg-6 col-sm-12 mb-1 pr-5 py-4 mx-sm-auto">
 					<TextSection
 						title={'our mission'}
 						titleStyle={textSectionTitleStyle}
