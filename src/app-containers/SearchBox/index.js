@@ -11,8 +11,8 @@ const SearchBox = ({text='search',theme='light'}) => {
 	  });
 
 	return (
-		<div className="search-box-container">
-            <input className={searchClass} type="search" placeholder={text}/>
+		<div className="search-box-container" data-test='search-box-container'>
+            <input style={{width:'100%'}} className={searchClass} type="search" placeholder={text}/>
 		</div>
 	);
 };

@@ -1,8 +1,16 @@
-@tailwind base;
+/* font */
 
-@tailwind components;
+.font-semibold{
+  font-weight: 600;
+}
 
-@tailwind utilities;
+.text-2xl{
+font-size: 1.5rem;
+}
+
+.text-base {
+    font-size: 1rem;
+}
 
 .body-text {
     margin-top: 1rem;
@@ -11,7 +19,6 @@
     font-weight: 300;
     --text-opacity: 1;
     color: #1a202c;
-    color: rgba(26, 32, 44, var(--text-opacity));
 }
 
 .title-text {
