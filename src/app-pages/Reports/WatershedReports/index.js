@@ -16,7 +16,7 @@ const headerContainerStyle = {
 }
 
 const TabInfo = {
-  active: 0,
+  active: 2,
   hrefs: [
     '/reports/CorpOfficeReports', 
     '/reports/ProjectReports',
