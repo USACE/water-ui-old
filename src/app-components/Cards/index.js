@@ -19,25 +19,17 @@ const textContainerStyle = {
 	textDecoration: 'none',
 };
 
-const cardContainerStyle = {
-	width: '100%',
-	display: 'flex',
-	justifyContent: 'space-between',
-	margin: '5rem auto',
-	marginLeft: '1.5rem',
-};
-
 const Cards = (props) => {
 	const { cardObj } = props;
 
 	return (
-		<div style={cardContainerStyle}>
+		<div className="row my-5">
 			{cardObj &&
 				isValidArrWithValues(cardObj) &&
 				cardObj.map((card, i) => {
 					const { title, text, img, imgAlt, href } = card;
 					return (
-						<a href={href} key={i} style={{ textDecoration: 'none' }}>
+						<a href={href} key={i} style={{ textDecoration: 'none' }} className="col-lg-4 col-sm-12 d-flex flex-wrap flex-column mb-4">
 							<div style={cardStyle}>
 								<img style={imgStyle} src={img} alt={imgAlt} />
 								<div style={textContainerStyle} className="p-3">
