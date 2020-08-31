@@ -2,22 +2,9 @@ import React from 'react';
 import TextSection from '../TextSection';
 
 const footerTextSectionContainer = {
-	height: 'auto',
 	borderTop: '8px solid #718096',
 	display: 'flex',
 	backgroundColor: '#4a5568',
-};
-
-const footerTextSectionOne = {
-	width: '50%',
-	marginBottom: '0.75rem',
-	padding: '1.25rem 5rem 1.25rem 10rem',
-};
-
-const footerTextSectionTwo = {
-	width: '50%',
-	marginBottom: '0.75rem',
-	padding: '1.25rem 10rem 1.25rem 5rem',
 };
 
 const footerSectionTwo = {
@@ -39,16 +26,12 @@ const textSectionTitleStyle = {
 	color: '#a0aec0',
 };
 
-const linkColStyle = {
-	height: '100%',
-	width: '33%',
-	color: 'white',
-};
+
 const Footer = (props) => {
 	return (
-		<div data-test="component-footer-container" className="footer-container">
-			<div style={footerTextSectionContainer}>
-				<div style={footerTextSectionOne} className="misson-statement">
+		<div data-test="component-footer-container" className="footer-container my-5">
+			<div style={footerTextSectionContainer} className="h-auto d-flex flex-lg-row row mw-100 mx-0">
+				<div style={{ paddingLeft: '10rem'}} className="misson-statement col-lg-6 col-sm-12 mb-1 pr-5 py-4 mx-sm-auto">
 					<TextSection
 						title={'our mission'}
 						titleStyle={textSectionTitleStyle}
@@ -66,16 +49,16 @@ const Footer = (props) => {
 						}
 					/>
 				</div>
-				<div style={footerTextSectionTwo}>
+				<div style={{paddingRight: '10rem', paddingLeft: '5rem'}} className="col-lg-6 col-sm-12 mb-1 py-4 px-5 row mw-100 mx-sm-auto">
 					<div className="icon-container"></div>
 					<div className="d-flex flex-row">
-						<div style={linkColStyle} className="link-col">
+						<div className="link-col h-100 col-4 text-white">
 							contact us
 						</div>
-						<div style={linkColStyle} className="link-col">
+						<div className="link-col h-100 col-4 text-white">
 							contact us
 						</div>
-						<div style={linkColStyle} className="link-col">
+						<div className="link-col h-100 col-4 text-white">
 							contact us
 						</div>
 					</div>
