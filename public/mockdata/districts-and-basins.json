@@ -1,0 +1,50 @@
+[{
+    "OfficeId": "SPA",
+    "OfficeName": "Albuquerque District",
+    "BasinName": "Arkansas River Basin",
+    "BasinLocationCode": "10626043",
+    "BasinLocationId": "ARKANSAS_R_B"
+  }, {
+    "OfficeId": "SPA",
+    "OfficeName": "Albuquerque District",
+    "BasinName": "Canadian River Basin",
+    "BasinLocationCode": "10627043",
+    "BasinLocationId": "CANADIAN_R_B"
+  }, {
+    "OfficeId": "SPA",
+    "OfficeName": "Albuquerque District",
+    "BasinName": "Pecos River Basin",
+    "BasinLocationCode": "10625043",
+    "BasinLocationId": "PECOS_R_B"
+  }, {
+    "OfficeId": "SPA",
+    "OfficeName": "Albuquerque District",
+    "BasinName": "Rio Grande Basin",
+    "BasinLocationCode": "10624043",
+    "BasinLocationId": "RIO_GRANDE_B"
+  }, {
+    "OfficeId": "SPA",
+    "OfficeName": "Albuquerque District",
+    "BasinName": "San Juan River Basin",
+    "BasinLocationCode": "10628043",
+    "BasinLocationId": "SAN_JUAN_R_B"
+  }, {
+    "OfficeId": "NAB",
+    "OfficeName": "Baltimore District",
+    "BasinName": "Chemung River Basin",
+    "BasinLocationCode": "10389020",
+    "BasinLocationId": "Chemung River"
+  }, {
+    "OfficeId": "NAB",
+    "OfficeName": "Baltimore District",
+    "BasinName": "Juniata River Basin",
+    "BasinLocationCode": "10391020",
+    "BasinLocationId": "Juniata River"
+  }, {
+    "OfficeId": "NAB",
+    "OfficeName": "Baltimore District",
+    "BasinName": "MainStem Susquehanna River Basin",
+    "BasinLocationCode": "10388020",
+    "BasinLocationId": "Main Stem Susq"
+  }
+]

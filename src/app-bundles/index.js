@@ -15,8 +15,9 @@ import pkg from "../../package.json";
 
 import routeBundle from "./routes-bundle";
 import mapsBundle from "./maps-bundle";
-
+import districtsAndBasinsBundle from "./districts-and-basins-bundle";
 import cache from "./../cache.js";
+import { isMockMode } from "./bundle-utils";
 
 export default composeBundles(
   createAuthBundle({
@@ -26,7 +27,7 @@ export default composeBundles(
   createJwtApiBundle({
     root:
       process.env.NODE_ENV === "development"
-        ? `http://api.rsgis.dev/development`
+        ? isMockMode() ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`
         : `https://api.rsgis.dev/development`,
     unless: {
       method: "GET",
@@ -46,5 +47,6 @@ export default composeBundles(
     zoom: 5,
   }),
   mapsBundle,
-  routeBundle
+  routeBundle,
+  districtsAndBasinsBundle
 );
