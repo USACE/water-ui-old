@@ -17,11 +17,14 @@ const containerTextSection = {
 const headerContainerStyle = {
 	backgroundColor: '#cbd5e0'
 }
-const HomePage = ( { districtsAndBasinsItems } ) => {
+const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict } ) => {
 	const options = { center: [-77.0364, 38.895], zoom: 4 };
 
 	useEffect(() => {
 		console.log( "mock district and basins data:", districtsAndBasinsItems );
+		console.log( "mock unique districts only:", districts );
+		// TODO: Need to figure out how to pass a local state value like selected basin through to the basinsForDistrict selector?
+		console.log( "mock basins for a district:", basinsForDistrict );
 	});
 
 	return (
@@ -65,5 +68,7 @@ const HomePage = ( { districtsAndBasinsItems } ) => {
 
 export default connect(
 	'selectDistrictsAndBasinsItems',
+	'selectDistricts',
+	'selectBasinsForDistrict',
 	HomePage
 );
