@@ -16,19 +16,13 @@ const headerContainerStyle = {
 }
 
 const TabInfo = {
-  active: 0,
-  hrefs: [
-    '/reports/CorpOfficeReports', 
-    '/reports/ProjectReports',
-    '/reports/WatershedReports',
-    '/reports/DistrictReports'
-  ],
-  titles: [
-    'Corp Office Reports',
-    'Project Reports',
-    'Watershed Reports',
-    'District Reports'
-  ]
+  activeTab: 'Corp Office Reports',
+  hrefs: {
+    '/reports/CorpOfficeReports' : 'Corp Office Reports',
+    '/reports/ProjectReports' : 'Project Reports',
+    '/reports/WatershedReports' : 'Watershed Reports',
+    '/reports/DistrictReports' : 'District Reports'
+  }
 }
 
 const ReportsPage = () => {
