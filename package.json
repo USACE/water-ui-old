@@ -31,7 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "mock": "env-cmd -f .env.mock react-scripts start",
-    "build": "react-scripts build",
+    "build": "env-cmd -f .env.mock react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "aws s3 rm s3://corpsmap-appz/water --recursive && aws s3 cp ./build/ s3://corpsmap-appz/water --recursive"
