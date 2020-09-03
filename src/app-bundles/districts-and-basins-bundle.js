@@ -4,7 +4,7 @@ import { createSelector } from "redux-bundler";
 
 export default createRestBundle({
   name: "districtsAndBasins",
-  uid: "BasinLocationCode",
+  uid: "basin_location_code",
   prefetch: true,
   staleAfter: 10000,
   persist: false,
@@ -22,11 +22,10 @@ export default createRestBundle({
         // TODO: We could add lodash which has array unique function as well as many other utility functions?
         const matchedDistrictIds = {};
         const result = districtsAndBasins.filter(entry => {
-          if (matchedDistrictIds[entry.OfficeId]) return false;
-          matchedDistrictIds[entry.OfficeId] = true;
+          if (matchedDistrictIds[entry.district_office_id]) return false;
+          matchedDistrictIds[entry.district_office_id] = true;
           return true;
         });
-        console.log( "distrincts in selector?", result );
         return result;
       }
     ),
@@ -35,8 +34,7 @@ export default createRestBundle({
       (districtsAndBasins) => {
         const selectedDistrict = "SPA";
         if(!selectedDistrict) return districtsAndBasins;
-        const result = districtsAndBasins.filter(entry => entry.OfficeId === selectedDistrict)
-        console.log( "basins for district in selector?", result );
+        const result = districtsAndBasins.filter(entry => entry.district_office_id === selectedDistrict)
         return result;
       }
     ),
