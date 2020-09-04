@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import SearchBox from '../../../../app-containers/SearchBox';
 import DropDown from '../../../../app-components/DropDown';
 
@@ -47,13 +47,9 @@ const MapNavBar = (props) => (
   </div>
 );
 
-MapNavBar.propTypes = {
-  // bla: PropTypes.string,
-};
-
-MapNavBar.defaultProps = {
-  // bla: 'test',
-};
+// MapNavBar.propTypes = {
+//   // bla: PropTypes.string,
+// };
 
 
 

@@ -38,17 +38,17 @@ const HomePage = () => {
 						<p className="mt-3">Or search by district and basin</p>
 						<div className="district-basin-dd row">
 							<div className="col-md-6">
-								<DropDown label={"Districts Dropdown"} id={"districts-dropdown"} onChange={null} options={["Select District","1","2","3"]}/>
+								<DropDown label={"Districts Dropdown"} id={"districts-dropdown"} options={["Select District","1","2","3"]}/>
 							</div>
 							<div className="col-md-6">
-								<DropDown label={"Basin Dropdown"} id={"basins-dropdown"} onChange={null} options={["Select Basin","1","2","3"]}/>
+								<DropDown label={"Basin Dropdown"} id={"basins-dropdown"} options={["Select Basin","1","2","3"]}/>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<Map mapKey={'home-page-map'} options={options} height={'600px'} />
+			<Map mapKey={'homePageMap'} options={options} height={'600px'}/>
 			<div className="container mx-auto px-5">
 				{cardObj && <Card cardObj={cardObj} />}
 				<div className="container mx-auto my-5">
