@@ -1,0 +1,80 @@
+[{
+    "district_office_id": "SPA",
+    "district_name": "Albuquerque District",
+    "basin_name": "Arkansas River Basin",
+    "basin_location_code": "10626043",
+    "basin_location_id": "ARKANSAS_R_B"
+  }, {
+    "district_office_id": "SPA",
+    "district_name": "Albuquerque District",
+    "basin_name": "Canadian River Basin",
+    "basin_location_code": "10627043",
+    "basin_location_id": "CANADIAN_R_B"
+  }, {
+    "district_office_id": "SPA",
+    "district_name": "Albuquerque District",
+    "basin_name": "Pecos River Basin",
+    "basin_location_code": "10625043",
+    "basin_location_id": "PECOS_R_B"
+  }, {
+    "district_office_id": "SPA",
+    "district_name": "Albuquerque District",
+    "basin_name": "Rio Grande Basin",
+    "basin_location_code": "10624043",
+    "basin_location_id": "RIO_GRANDE_B"
+  }, {
+    "district_office_id": "SPA",
+    "district_name": "Albuquerque District",
+    "basin_name": "San Juan River Basin",
+    "basin_location_code": "10628043",
+    "basin_location_id": "SAN_JUAN_R_B"
+  }, {
+    "district_office_id": "NAB",
+    "district_name": "Baltimore District",
+    "basin_name": "Chemung River Basin",
+    "basin_location_code": "10389020",
+    "basin_location_id": "Chemung River"
+  }, {
+    "district_office_id": "NAB",
+    "district_name": "Baltimore District",
+    "basin_name": "Juniata River Basin",
+    "basin_location_code": "10391020",
+    "basin_location_id": "Juniata River"
+  }, {
+    "district_office_id": "NAB",
+    "district_name": "Baltimore District",
+    "basin_name": "MainStem Susquehanna River Basin",
+    "basin_location_code": "10388020",
+    "basin_location_id": "Main Stem Susq"
+  }, {
+    "district_office_id": "NAB",
+    "district_name": "Baltimore District",
+    "basin_name": "North Branch Potomac River Basin",
+    "basin_location_code": "10392020",
+    "basin_location_id": "NB Potomac"
+  }, {
+    "district_office_id": "NAB",
+    "district_name": "Baltimore District",
+    "basin_name": "Susquehanna River Basin",
+    "basin_location_code": "10487020",
+    "basin_location_id": "Susq"
+  }, {
+    "district_office_id": "NAB",
+    "district_name": "Baltimore District",
+    "basin_name": "Upper Susquehanna River Basin",
+    "basin_location_code": "10390020",
+    "basin_location_id": "Upper Susq"
+  }, {
+    "district_office_id": "NAB",
+    "district_name": "Baltimore District",
+    "basin_name": "West Branch Susquehanna Basin",
+    "basin_location_code": "10387020",
+    "basin_location_id": "West Branch Susq"
+  }, {
+    "district_office_id": "LRB",
+    "district_name": "Buffalo District",
+    "basin_name": "Genesee River Basin",
+    "basin_location_code": "2774006",
+    "basin_location_id": "Genesee_R Basin"
+  }
+]
