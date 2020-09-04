@@ -28,7 +28,7 @@ export default composeBundles(
     root:
       process.env.NODE_ENV === "development"
         ? isMockMode() ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`
-        : `https://api.rsgis.dev/development`,
+        : isMockMode() ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`,
     unless: {
       method: "GET",
     },
