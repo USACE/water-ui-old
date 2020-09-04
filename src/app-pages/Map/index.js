@@ -8,11 +8,11 @@ const MapPage = (props) => {
 	return (
 		<main>
 			<MapNavBar />
-			<div className="row map-and-details-container ">
-				<div className="map-details" style={{width:"3%"}}>
+			<div className=" map-and-details-container " style={{display:"flex",flexDirection:"row"}}>
+				<div className="map-details" style={{padding:"0",flexGrow:"1"}}>
 					<MapDetails/>
 				</div>
-				<div className="map-container" style={{width:"97%"}}>
+				<div className="map-container" style={{padding:"0",flexGrow:"35"}} >
 					<Map height={'900px'} options={opts} mapKey={"mapPageMap"}/>
 				</div>
 			</div>
