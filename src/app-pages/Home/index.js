@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from '../../app-components/Cards';
 import TextSection from '../../app-components/TextSection';
 import CirclePics from '../../app-components/CirclePics';
@@ -6,6 +6,7 @@ import Map from '../../app-containers/Map';
 import SearchBox from '../../app-containers/SearchBox';
 import DropDown from '../../app-components/DropDown';
 import { circlePicObj, cardObj } from './data.js';
+import { connect } from "redux-bundler-react";
 
 const containerTextSection = {
 	textAlign: 'center',
@@ -15,10 +16,24 @@ const containerTextSection = {
 };
 
 const headerContainerStyle = {
+<<<<<<< HEAD
 	backgroundColor: '#cbd5e0',
 };
 const HomePage = () => {
+=======
+	backgroundColor: '#cbd5e0'
+}
+const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict } ) => {
+>>>>>>> 722474a1264ca9d83b8aa8195e1d9e0833df7e7b
 	const options = { center: [-77.0364, 38.895], zoom: 4 };
+
+	useEffect(() => {
+		console.log( "mock district and basins data:", districtsAndBasinsItems );
+		console.log( "mock unique districts only:", districts );
+		// TODO: Need to figure out how to pass a local state value like selected basin through to the basinsForDistrict selector?
+		console.log( "mock basins for a district:", basinsForDistrict );
+	});
+
 	return (
 		<main>
 			<div className="header-section">
@@ -32,6 +47,7 @@ const HomePage = () => {
 					/>
 				</div>
 
+<<<<<<< HEAD
 				<div className="search-box-container py-4 px-4 mx-auto container position-relative">
 					<div style={{ top: '100%', zIndex: '1', textAlign:"center" }}>
 						<SearchBox text={'Search by City, State, ZIP, or Project Names'} />
@@ -49,6 +65,18 @@ const HomePage = () => {
 			</div>
 
 			<Map mapKey={'homePageMap'} options={options} height={'600px'}/>
+=======
+				<div
+					className="search-box-container py-4 px-4 mx-auto container position-relative"
+				>
+					<div style={{ top: '100%', zIndex: '1'}}><SearchBox text={'Search by City, State, ZIP, or Project Names'} /></div>
+					
+				</div>
+			</div>
+
+			<Map mapKey={'home-page-map'} options={options} height={'600px'} />
+
+>>>>>>> 722474a1264ca9d83b8aa8195e1d9e0833df7e7b
 			<div className="container mx-auto px-5">
 				{cardObj && <Card cardObj={cardObj} />}
 				<div className="container mx-auto my-5">
@@ -65,4 +93,9 @@ const HomePage = () => {
 	);
 };
 
-export default HomePage;
+export default connect(
+	'selectDistrictsAndBasinsItems',
+	'selectDistricts',
+	'selectBasinsForDistrict',
+	HomePage
+);

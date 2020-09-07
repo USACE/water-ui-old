@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^7.2.1",
     "autoprefixer": "^9.8.6",
     "classnames": "^2.2.6",
+    "env-cmd": "^10.1.0",
     "internal-nav-helper": "^3.1.0",
     "money-clip": "^3.0.2",
     "npm-run-all": "^4.1.5",
@@ -29,7 +30,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "mock": "env-cmd -f .env.mock react-scripts start",
+    "build": "env-cmd -f .env.mock react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "aws s3 rm s3://corpsmap-appz/water --recursive && aws s3 cp ./build/ s3://corpsmap-appz/water --recursive"
