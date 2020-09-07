@@ -16,15 +16,9 @@ const containerTextSection = {
 };
 
 const headerContainerStyle = {
-<<<<<<< HEAD
-	backgroundColor: '#cbd5e0',
-};
-const HomePage = () => {
-=======
 	backgroundColor: '#cbd5e0'
 }
 const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict } ) => {
->>>>>>> 722474a1264ca9d83b8aa8195e1d9e0833df7e7b
 	const options = { center: [-77.0364, 38.895], zoom: 4 };
 
 	useEffect(() => {
@@ -47,7 +41,6 @@ const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict } ) =
 					/>
 				</div>
 
-<<<<<<< HEAD
 				<div className="search-box-container py-4 px-4 mx-auto container position-relative">
 					<div style={{ top: '100%', zIndex: '1', textAlign:"center" }}>
 						<SearchBox text={'Search by City, State, ZIP, or Project Names'} />
@@ -65,18 +58,6 @@ const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict } ) =
 			</div>
 
 			<Map mapKey={'homePageMap'} options={options} height={'600px'}/>
-=======
-				<div
-					className="search-box-container py-4 px-4 mx-auto container position-relative"
-				>
-					<div style={{ top: '100%', zIndex: '1'}}><SearchBox text={'Search by City, State, ZIP, or Project Names'} /></div>
-					
-				</div>
-			</div>
-
-			<Map mapKey={'home-page-map'} options={options} height={'600px'} />
-
->>>>>>> 722474a1264ca9d83b8aa8195e1d9e0833df7e7b
 			<div className="container mx-auto px-5">
 				{cardObj && <Card cardObj={cardObj} />}
 				<div className="container mx-auto my-5">
