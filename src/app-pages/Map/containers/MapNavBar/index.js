@@ -14,7 +14,6 @@ const MapNavBar = (props) => (
 					<DropDown
 						label={'Districts Dropdown'}
 						id={'districts-dropdown'}
-						onChange={null}
 						options={['Select District', '1', '2', '3']}
 					/>
 				</div>
@@ -22,7 +21,6 @@ const MapNavBar = (props) => (
 					<DropDown
 						label={'Basin Dropdown'}
 						id={'basins-dropdown'}
-						onChange={null}
 						options={['Select Basin', '1', '2', '3']}
 					/>
 				</div>
@@ -30,7 +28,6 @@ const MapNavBar = (props) => (
 					<DropDown
 						label={'Location Type'}
 						id={'location-type-dropdown'}
-						onChange={null}
 						options={['Location Type', '1', '2', '3']}
 					/>
 				</div>
@@ -38,7 +35,6 @@ const MapNavBar = (props) => (
 					<DropDown
 						label={'Organizational Structure'}
 						id={'organizational-structure'}
-						onChange={null}
 						options={['Organizational Structure', '1', '2', '3']}
 					/>
 				</div>
