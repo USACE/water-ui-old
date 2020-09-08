@@ -8,9 +8,9 @@ const Tabs = ({ TabInfo }) => {
           <div className="list-group flex-row" id="list-tab" role="tablist" aria-orientation="horizontal">
 
             <div className="tab-manager">
-              {TabInfo.hrefs.map(({ label, value }) => (
+              {TabInfo.tabList.map(({ name, url }) => (
                 <div class="col-med">
-                <a className={`list-group-item list-group-item-action ${value === TabInfo.activeTab ? ' active' : ''}`} data-toggle="list" role="tab" href={label} >{value}</a> 
+                <a className={`list-group-item list-group-item-action ${name === TabInfo.activeTab ? ' active' : ''}`} data-toggle="list" role="tab" href={url} >{name}</a> 
                 </div>
               ))}
             </div>

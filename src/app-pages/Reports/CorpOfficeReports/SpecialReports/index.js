@@ -16,34 +16,28 @@ const headerContainerStyle = {
 }
 
 const TabInfo = {
-  active: 3,
-  hrefs: [
-    '/reports/CorpOfficeReports', 
-    '/reports/ProjectReports',
-    '/reports/WatershedReports',
-    '/reports/DistrictReports'
-  ],
-  titles: [
-    'Corp Office Reports',
-    'Project Reports',
-    'Watershed Reports',
-    'District Reports'
+  activeTab: 'Corp Office Reports',
+  tabList: [
+    {url:'/reports/CorpOfficeReports', name:'Corp Office Reports'},
+    {url:'/reports/ProjectReports', name:'Project Reports'},
+    {url:'/reports/WatershedReports', name:'Watershed Reports'},
+    {url:'/reports/DistrictReports', name:'District Reports'}
   ]
 }
 
 const ReportsPage = () => {
 
-	return (
-		<main>
+  return (
+    <main>
       <div className="header-section">
       <div style={headerContainerStyle} className="p-5">
       <TextSection
-				containerStyle={containerTextSection}
+        containerStyle={containerTextSection}
         title={'Reports'}
-			/>
+      />
       <div className="search-box-container py-4 px-4 mx-auto container position-relative">
-					<div style={{ top: '100%', zIndex: '1'}}><SearchBox text={'Search Reports'} /></div>
-				</div>
+        <div style={{ top: '100%', zIndex: '1'}}><SearchBox text={'Search Reports'} /></div>
+      </div>
   
       <Tabs TabInfo={TabInfo}></Tabs>
       
