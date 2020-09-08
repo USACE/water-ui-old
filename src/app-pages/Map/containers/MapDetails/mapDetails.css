@@ -1,0 +1,51 @@
+.map-details-wrapper {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	z-index: 2;
+	position: relative;
+}
+
+.drawer-icon-container {
+	display: flex;
+	flex-direction: column;
+	text-align: right;
+    height: 100%;
+    margin-top: 5px;
+}
+.outer-container{
+    flex-grow: 1;
+}
+
+.icons {
+	margin: 5px 10px;
+    padding: 10px;
+    padding-right: 15px;
+    background-color: lightgrey;
+}
+
+.drawer-content-container {
+	height: 100%;
+	background: white;
+	box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 40vw;
+	z-index: 200;
+	transform: translateX(-92%);
+    transition: transform 0.3s ease-out;
+    display: flex;
+    flex-direction: row;
+}
+
+.drawer-content{
+    flex-grow: 100;
+}
+.is-expanded .drawer-content-container {
+	transform: translateX(0);
+}
+
+.is-expanded .drawer-icon-container{
+    display: none;
+}
