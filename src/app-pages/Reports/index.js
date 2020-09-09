@@ -16,7 +16,7 @@ const headerContainerStyle = {
 }
 
 const TabInfo = {
-  activeTab: 'Corp Office Reports',
+  activeTab: 'none', //default tab - none selected
   tabLinks: [
     {url:'/reports/CorpOfficeReports', name:'Corp Office Reports'},
     {url:'/reports/ProjectReports', name:'Project Reports'},

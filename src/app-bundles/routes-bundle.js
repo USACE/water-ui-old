@@ -10,6 +10,7 @@ import DistrictReports from "../app-pages/Reports/DistrictReports";
 import ProjectReports from "../app-pages/Reports/ProjectReports";
 import WatershedReports from "../app-pages/Reports/WatershedReports";
 import SpecialReports from "../app-pages/Reports/CorpOfficeReports/SpecialReports";
+import AllLocations from "../app-pages/Reports/CorpOfficeReports/AllLocations";
 import DataResources from "../app-pages/DataResources";
 import fourOhFour from "../app-pages/fourOhFour";
 
@@ -26,6 +27,7 @@ export default createRouteBundle(
     "/reports/WatershedReports": WatershedReports,
     "/reports/ProjectReports": ProjectReports,
     "/reports/CorpOfficeReports/SpecialReports": SpecialReports,
+    "/reports/CorpOfficeReports/AllLocations": AllLocations,
     "/data-resources": DataResources,
     "*": fourOhFour,
   },

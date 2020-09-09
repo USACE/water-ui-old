@@ -33,7 +33,7 @@ const TabInfo = {
 }
 
 const SubTabs = {
-  activeTab: 'Special Reports',
+  activeTab: 'All Locations',
   tabLinks: [
     {url:'/reports/CorpOfficeReports', name:'Corp Office Reports'},
     {url:'/reports/CorpOfficeReports/AllLocations', name:'All Locations'},
