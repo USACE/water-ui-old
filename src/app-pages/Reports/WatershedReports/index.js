@@ -17,7 +17,7 @@ const headerContainerStyle = {
 
 const TabInfo = {
   activeTab: 'Watershed Reports',
-  tabList: [
+  tabLinks: [
     {url:'/reports/CorpOfficeReports', name:'Corp Office Reports'},
     {url:'/reports/ProjectReports', name:'Project Reports'},
     {url:'/reports/WatershedReports', name:'Watershed Reports'},
