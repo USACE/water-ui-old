@@ -1,0 +1,200 @@
+[
+    {
+        "cluster_name": "Alaska District",
+        "cluster_count": 17,
+        "cluster_latitude": 64.8345,
+        "cluster_longitude": -147.23727
+    },
+    {
+        "cluster_name": "Albuquerque District",
+        "cluster_count": 927,
+        "cluster_latitude": 36.07,
+        "cluster_longitude": -105.5505
+    },
+    {
+        "cluster_name": "All CWMS Offices",
+        "cluster_count": 2,
+        "cluster_latitude": 36.34125,
+        "cluster_longitude": -84.27583
+    },
+    {
+        "cluster_name": "Baltimore District",
+        "cluster_count": 621,
+        "cluster_latitude": 40.77931,
+        "cluster_longitude": -61.78168
+    },
+    {
+        "cluster_name": "Buffalo District",
+        "cluster_count": 46,
+        "cluster_latitude": 42.7485,
+        "cluster_longitude": -77.87154
+    },
+    {
+        "cluster_name": "Detroit District",
+        "cluster_count": 326,
+        "cluster_latitude": 44.16488,
+        "cluster_longitude": -84.22036
+    },
+    {
+        "cluster_name": "Fort Worth District",
+        "cluster_count": 1659,
+        "cluster_latitude": 31.43335,
+        "cluster_longitude": -97.26201
+    },
+    {
+        "cluster_name": "Galveston District",
+        "cluster_count": 823,
+        "cluster_latitude": 31.29875,
+        "cluster_longitude": -96.96845
+    },
+    {
+        "cluster_name": "Great Lakes and Ohio River Division",
+        "cluster_count": 103,
+        "cluster_latitude": 38.95837,
+        "cluster_longitude": -83.48552
+    },
+    {
+        "cluster_name": "Huntington District",
+        "cluster_count": 649,
+        "cluster_latitude": 39.33034,
+        "cluster_longitude": -81.65847
+    },
+    {
+        "cluster_name": "Jacksonville District",
+        "cluster_count": 979,
+        "cluster_latitude": 26.39365,
+        "cluster_longitude": -80.47149
+    },
+    {
+        "cluster_name": "Little Rock District",
+        "cluster_count": 679,
+        "cluster_latitude": 35.44328,
+        "cluster_longitude": -92.56372
+    },
+    {
+        "cluster_name": "Los Angeles District",
+        "cluster_count": 1008,
+        "cluster_latitude": 34.12129,
+        "cluster_longitude": -116.43159
+    },
+    {
+        "cluster_name": "Louisville District",
+        "cluster_count": 234,
+        "cluster_latitude": 38.60758,
+        "cluster_longitude": -85.74557
+    },
+    {
+        "cluster_name": "Memphis District",
+        "cluster_count": 217,
+        "cluster_latitude": 35.66398,
+        "cluster_longitude": -90.07094
+    },
+    {
+        "cluster_name": "Missouri River Region",
+        "cluster_count": 5828,
+        "cluster_latitude": 43.69843,
+        "cluster_longitude": -102.36477
+    },
+    {
+        "cluster_name": "Mobile District",
+        "cluster_count": 707,
+        "cluster_latitude": 33.07684,
+        "cluster_longitude": -86.26423
+    },
+    {
+        "cluster_name": "Nashville District",
+        "cluster_count": 477,
+        "cluster_latitude": 36.73956,
+        "cluster_longitude": -85.46263
+    },
+    {
+        "cluster_name": "New England District",
+        "cluster_count": 297,
+        "cluster_latitude": 42.11393,
+        "cluster_longitude": -70.6179
+    },
+    {
+        "cluster_name": "New Orleans District",
+        "cluster_count": 199,
+        "cluster_latitude": 30.14432,
+        "cluster_longitude": -90.82844
+    },
+    {
+        "cluster_name": "Norfolk District",
+        "cluster_count": 211,
+        "cluster_latitude": 37.65003,
+        "cluster_longitude": -76.64268
+    },
+    {
+        "cluster_name": "Northwestern Division",
+        "cluster_count": 4,
+        "cluster_latitude": 0,
+        "cluster_longitude": 0
+    },
+    {
+        "cluster_name": "Pacific Northwest Region",
+        "cluster_count": 3549,
+        "cluster_latitude": 45.78446,
+        "cluster_longitude": -118.6239
+    },
+    {
+        "cluster_name": "Philadelphia District",
+        "cluster_count": 232,
+        "cluster_latitude": 40.61565,
+        "cluster_longitude": -75.28329
+    },
+    {
+        "cluster_name": "Pittsburgh District",
+        "cluster_count": 782,
+        "cluster_latitude": 40.34918,
+        "cluster_longitude": -80.38792
+    },
+    {
+        "cluster_name": "Rock Island District",
+        "cluster_count": 407,
+        "cluster_latitude": 41.54347,
+        "cluster_longitude": -91.13328
+    },
+    {
+        "cluster_name": "Sacramento District",
+        "cluster_count": 1032,
+        "cluster_latitude": 38.11096,
+        "cluster_longitude": -105.37746
+    },
+    {
+        "cluster_name": "Savannah District",
+        "cluster_count": 1726,
+        "cluster_latitude": 32.87941,
+        "cluster_longitude": -83.07349
+    },
+    {
+        "cluster_name": "St. Louis District",
+        "cluster_count": 411,
+        "cluster_latitude": 38.72817,
+        "cluster_longitude": -88.39817
+    },
+    {
+        "cluster_name": "St. Paul District",
+        "cluster_count": 1430,
+        "cluster_latitude": 46.00327,
+        "cluster_longitude": -92.39898
+    },
+    {
+        "cluster_name": "Tulsa District",
+        "cluster_count": 3172,
+        "cluster_latitude": 35.9013,
+        "cluster_longitude": -96.86948
+    },
+    {
+        "cluster_name": "Vicksburg District",
+        "cluster_count": 389,
+        "cluster_latitude": 32.95062,
+        "cluster_longitude": -90.32293
+    },
+    {
+        "cluster_name": "Wilmington District",
+        "cluster_count": 102,
+        "cluster_latitude": 36.06845,
+        "cluster_longitude": -79.06978
+    }
+]
