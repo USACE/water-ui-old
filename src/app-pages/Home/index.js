@@ -18,16 +18,30 @@ const containerTextSection = {
 const headerContainerStyle = {
 	backgroundColor: '#cbd5e0'
 }
-const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict } ) => {
+const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict,doSelectBasin,doSelectDistrict, districtState } ) => {
 	const options = { center: [-77.0364, 38.895], zoom: 4 };
 
 	useEffect(() => {
+	
 		console.log( "mock district and basins data:", districtsAndBasinsItems );
 		console.log( "mock unique districts only:", districts );
 		// TODO: Need to figure out how to pass a local state value like selected basin through to the basinsForDistrict selector?
 		console.log( "mock basins for a district:", basinsForDistrict );
-	});
 
+	},[districtsAndBasinsItems, districts, basinsForDistrict ]);
+
+	let districtOptions = districts && districts.map((district)=> {
+		return district.district_name
+	})
+
+	let basinOptions = districtsAndBasinsItems && districtsAndBasinsItems.map((basin)=> {
+		return basin.basin_name
+	})
+
+	const districtOnChange = (e) => {
+		doSelectDistrict(e.target.value)	
+	}
+	console.log("selectDistrictState",districtState)
 	return (
 		<main>
 			<div className="header-section">
@@ -47,10 +61,10 @@ const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict } ) =
 						<p className="mt-3">Or search by district and basin</p>
 						<div className="district-basin-dd row">
 							<div className="col-md-6">
-								<DropDown label={"Districts Dropdown"} id={"districts-dropdown"} options={["Select District","1","2","3"]}/>
+								<DropDown label={"Districts Dropdown"} id={"districts-dropdown"} onChange={districtOnChange} placeHolder={"Select District"} options={districtOptions}/>
 							</div>
 							<div className="col-md-6">
-								<DropDown label={"Basin Dropdown"} id={"basins-dropdown"} options={["Select Basin","1","2","3"]}/>
+								<DropDown label={"Basin Dropdown"} id={"basins-dropdown"} placeHolder={"Select Basin"} options={basinOptions}/>
 							</div>
 						</div>
 					</div>
@@ -78,5 +92,8 @@ export default connect(
 	'selectDistrictsAndBasinsItems',
 	'selectDistricts',
 	'selectBasinsForDistrict',
+	'doSelectDistrict',
+	'doSelectBasin',
+	'selectDistrictState',
 	HomePage
 );
