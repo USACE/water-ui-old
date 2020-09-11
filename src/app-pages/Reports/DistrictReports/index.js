@@ -5,10 +5,14 @@ import SearchBox from '../../../app-containers/SearchBox';
 import Tabs from '../../../app-components/Tabs';
 
 const containerTextSection = {
-	textAlign: 'center',
-	margin:'1rem 0',
-	padding: 'auto 12rem',
-	width: '100%'
+	textAlign: 'left',
+  margin:'1rem 0',
+	padding:'auto 12rem',
+	width:'50%'
+}
+
+const titleStyle = {
+  fontSize: '3rem'
 }
 
 const headerContainerStyle = {
@@ -31,12 +35,15 @@ const ReportsPage = () => {
     <main>
       <div className="header-section">
       <div style={headerContainerStyle} className="p-5">
-      <TextSection
-        containerStyle={containerTextSection}
-        title={'Reports'}
-      />
-      <div className="search-box-container py-4 px-4 mx-auto container position-relative">
-        <div style={{ top: '100%', zIndex: '1'}}><SearchBox text={'Search Reports'} /></div>
+      <div class="d-flex w-100 justify-content-between">
+        <TextSection
+          containerStyle={containerTextSection}
+          title={'Reports'}
+          titleStyle={titleStyle}
+        />
+        <div className="search-box-container w-50 py-4 px-4 mx-auto container position-relative">
+          <div style={{ top: '100%', zIndex: '1'}}><SearchBox text={'Search Reports'} /></div>
+        </div>
       </div>
   
       <Tabs TabInfo={TabInfo}></Tabs>

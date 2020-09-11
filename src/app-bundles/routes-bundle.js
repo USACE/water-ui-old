@@ -9,8 +9,9 @@ import CorpOfficeReports from "../app-pages/Reports/CorpOfficeReports";
 import DistrictReports from "../app-pages/Reports/DistrictReports";
 import ProjectReports from "../app-pages/Reports/ProjectReports";
 import WatershedReports from "../app-pages/Reports/WatershedReports";
-import SpecialReports from "../app-pages/Reports/CorpOfficeReports/SpecialReports";
-import AllLocations from "../app-pages/Reports/CorpOfficeReports/AllLocations";
+import CERL from "../app-pages/Reports/CorpOfficeReports/CERL";
+import SpecialReports from "../app-pages/Reports/CorpOfficeReports/CERL/SpecialReports";
+import AllLocations from "../app-pages/Reports/CorpOfficeReports/CERL/AllLocations";
 import DataResources from "../app-pages/DataResources";
 import fourOhFour from "../app-pages/fourOhFour";
 
@@ -26,8 +27,9 @@ export default createRouteBundle(
     "/reports/DistrictReports": DistrictReports,
     "/reports/WatershedReports": WatershedReports,
     "/reports/ProjectReports": ProjectReports,
-    "/reports/CorpOfficeReports/SpecialReports": SpecialReports,
-    "/reports/CorpOfficeReports/AllLocations": AllLocations,
+    "/reports/CorpOfficeReports/CERL": CERL,
+    "/reports/CorpOfficeReports/CERL/SpecialReports": SpecialReports,
+    "/reports/CorpOfficeReports/CERL/AllLocations": AllLocations,
     "/data-resources": DataResources,
     "*": fourOhFour,
   },

@@ -1,8 +1,8 @@
 import React from "react";
 //import classnames from "classnames";
-import TextSection from '../../../app-components/TextSection';
-import SearchBox from '../../../app-containers/SearchBox';
-import Tabs from '../../../app-components/Tabs';
+import TextSection from '../../../../../app-components/TextSection';
+import SearchBox from '../../../../../app-containers/SearchBox';
+import Tabs from '../../../../../app-components/Tabs';
 
 const containerTextSection = {
 	textAlign: 'left',
@@ -20,7 +20,7 @@ const headerContainerStyle = {
 }
 
 const TabInfo = {
-  activeTab: 'Watershed Reports',
+  activeTab: 'Corp Office Reports',
   tabLinks: [
     {url:'/reports/CorpOfficeReports', name:'Corp Office Reports'},
     {url:'/reports/ProjectReports', name:'Project Reports'},
@@ -29,9 +29,18 @@ const TabInfo = {
   ]
 }
 
+const SubTabs = {
+  activeTab: 'Special Reports',
+  tabLinks: [
+    {url:'/reports/CorpOfficeReports/CERL', name:'Corp Office Reports'},
+    {url:'/reports/CorpOfficeReports/CERL/AllLocations', name:'All Locations'},
+    {url:'/reports/CorpOfficeReports/CERL/SpecialReports', name:'Special Reports'}
+  ]
+}
+
 const ReportsPage = () => {
 
-	return (
+  return (
     <main>
       <div className="header-section">
       <div style={headerContainerStyle} className="p-5">
@@ -47,6 +56,8 @@ const ReportsPage = () => {
       </div>
   
       <Tabs TabInfo={TabInfo}></Tabs>
+
+      <Tabs TabInfo={SubTabs}></Tabs>
       
       </div>
       </div>

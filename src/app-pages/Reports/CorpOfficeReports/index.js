@@ -5,17 +5,25 @@ import SearchBox from '../../../app-containers/SearchBox';
 import Tabs from '../../../app-components/Tabs';
 
 const containerTextSection = {
-	textAlign: 'center',
-	margin:'1rem 0',
-	padding: 'auto 12rem',
-	width: '100%'
-}
-
-const TextSubSection = {
 	textAlign: 'left',
-  margin:'0rem 0',
+  margin:'1rem 0',
+	padding:'auto 12rem',
+	width:'50%'
+}
+/*
+const TextSubSection = {
+  textAlign: 'left',
+    margin:'0rem 0',
 	padding: '2rem 5rem',
 	width: '100%'
+}*/
+
+const titleStyle = {
+  fontSize: '3rem'
+}
+
+const bodyStyle = {
+  textAlign: 'right'
 }
 
 const headerContainerStyle = {
@@ -32,62 +40,74 @@ const TabInfo = {
   ]
 }
 
-const SubTabs = {
-  activeTab: 'Corp Office Reports',
-  tabLinks: [
-    {url:'/reports/CorpOfficeReports', name:'Corp Office Reports'},
-    {url:'/reports/CorpOfficeReports/AllLocations', name:'All Locations'},
-    {url:'/reports/CorpOfficeReports/SpecialReports', name:'Special Reports'}
-  ]
-}
-
 const ReportsPage = () => {
 
 	return (
     <main>
       <div className="header-section">
       <div style={headerContainerStyle} className="p-5">
-      <TextSection
-        containerStyle={containerTextSection}
-        title={'Reports'}
-      />
-      <div className="search-box-container py-4 px-4 mx-auto container position-relative">
-        <div style={{ top: '100%', zIndex: '1'}}><SearchBox text={'Search Reports'} /></div>
+
+      <div class="d-flex w-100 justify-content-between">
+        <TextSection
+          containerStyle={containerTextSection}
+          title={'Reports'}
+          titleStyle={titleStyle}
+        />
+        <div className="search-box-container w-50 py-4 px-4 mx-auto container position-relative">
+          <div style={{ top: '100%', zIndex: '1'}}><SearchBox text={'Search Reports'} /></div>
+        </div>
       </div>
-  
+
       <Tabs TabInfo={TabInfo}></Tabs>
-      <Tabs TabInfo={SubTabs}></Tabs>
 
       <TextSection 
-        containerStyle={TextSubSection}
+        containerStyle={containerTextSection}
         title={'Corp Office Reports'}
+        body={'68 Offices'}
+        bodyStyle={bodyStyle}
       />
-      <div class="dropdown-divider"></div>
+        
+      <div class="dropdown-divider w-50"></div>
 
-      <div class="list-group">
-        <div class="list-group-item flex-column ">
+      <div class="list-group w-50">
+        <div class="list-group-item flex-column">
           <div class="d-flex w-100 justify-content-between">
-            <a href="/" class="h5 text-info">Missouri River Basin Water Management Bulletin (PDF)</a>
-              <small>30 days ago</small>
+            <a href="/reports/CorpOfficeReports/CERL" class="mb-1">Construction Engineering Research Labratory</a>
+              <small>CREL</small>
           </div>
-          <p class="mb-1">Summary report for all reservoirs in the Missouri River Region area of responsibility. Produced on a daily basis</p>
         </div>
-        <div class="list-group-item flex-column ">
+        <div class="list-group-item flex-column">
           <div class="d-flex w-100 justify-content-between">
-            <a href="/" class="h5 text-info">Missouri River Basin Water Management Bulletin (PDF)</a>
-              <small>30 days ago</small>
+            <a href="/reports/CorpOfficeReports/CERL" class="mb-1">Construction Engineering Research Labratory</a>
+              <small>CREL</small>
           </div>
-          <p class="mb-1">Summary report for all reservoirs in the Missouri River Region area of responsibility. Produced on a daily basis</p>
         </div>
-        <div class="list-group-item flex-column ">
+        <div class="list-group-item flex-column">
           <div class="d-flex w-100 justify-content-between">
-            <a href="/" class="h5 text-info">Missouri River Basin Water Management Bulletin (PDF)</a>
-              <small>30 days ago</small>
+            <a href="/reports/CorpOfficeReports/CERL" class="mb-1">Construction Engineering Research Labratory</a>
+              <small>CREL</small>
           </div>
-          <p class="mb-1">Summary report for all reservoirs in the Missouri River Region area of responsibility. Produced on a daily basis</p>
+        </div>
+        <div class="list-group-item flex-column">
+          <div class="d-flex w-100 justify-content-between">
+            <a href="/reports/CorpOfficeReports/CERL" class="mb-1">Construction Engineering Research Labratory</a>
+              <small>CREL</small>
+          </div>
+        </div>
+        <div class="list-group-item flex-column">
+          <div class="d-flex w-100 justify-content-between">
+            <a href="/reports/CorpOfficeReports/CERL" class="mb-1">Construction Engineering Research Labratory</a>
+              <small>CREL</small>
+          </div>
+        </div>
+        <div class="list-group-item flex-column">
+          <div class="d-flex w-100 justify-content-between">
+            <a href="/reports/CorpOfficeReports/CERL" class="mb-1">Construction Engineering Research Labratory</a>
+              <small>CREL</small>
+          </div>
         </div>
       </div>
-
+      
       </div>
       </div>
     </main>
