@@ -6,24 +6,20 @@ import Tabs from '../../../app-components/Tabs';
 
 const containerTextSection = {
 	textAlign: 'left',
-  margin:'1rem 0',
+  margin:'1rem 0rem',
 	padding:'auto 12rem',
 	width:'50%'
 }
-/*
+
 const TextSubSection = {
   textAlign: 'left',
     margin:'0rem 0',
-	padding: '2rem 5rem',
-	width: '100%'
-}*/
+	padding: 'auto 0rem',
+	width: '50%'
+}
 
 const titleStyle = {
   fontSize: '3rem'
-}
-
-const bodyStyle = {
-  textAlign: 'right'
 }
 
 const headerContainerStyle = {
@@ -60,12 +56,13 @@ const ReportsPage = () => {
 
       <Tabs TabInfo={TabInfo}></Tabs>
 
-      <TextSection 
-        containerStyle={containerTextSection}
-        title={'Corp Office Reports'}
-        body={'68 Offices'}
-        bodyStyle={bodyStyle}
-      />
+      <div class="d-flex w-50 justify-content-between mt-5">
+        <TextSection 
+          containerStyle={TextSubSection}
+          title={'Corp Office Reports'}
+        />
+        <p class="mt-2">68 Offices</p>
+      </div>
         
       <div class="dropdown-divider w-50"></div>
 

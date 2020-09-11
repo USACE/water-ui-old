@@ -14,7 +14,7 @@ const containerTextSection = {
 const TextSubSection = {
 	textAlign: 'left',
     margin:'0rem 0',
-	padding: '2rem 5rem',
+	padding: '0rem 5rem',
 	width: '100%'
 }
 
@@ -63,12 +63,18 @@ const ReportsPage = () => {
       </div>
   
       <Tabs TabInfo={TabInfo}></Tabs>
+
+      <div class="d-flex w-100 justify-content-between mt-5">
+        <TextSection 
+            containerStyle={TextSubSection}
+            title={'Construction Engineering Research Labratory Reports'}
+        />
+        <p class="mt-2">CERL</p>
+      </div>
+
       <Tabs TabInfo={SubTabs}></Tabs>
 
-      <TextSection 
-        containerStyle={TextSubSection}
-        title={'Construction Engineering Research Labratory Reports'}
-      />
+      
       <div class="dropdown-divider"></div>
 
       <div class="list-group mx-auto">

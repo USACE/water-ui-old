@@ -11,6 +11,13 @@ const containerTextSection = {
 	width:'50%'
 }
 
+const TextSubSection = {
+	textAlign: 'left',
+    margin:'0rem 0',
+	padding: '0rem 5rem',
+	width: '100%'
+}
+
 const titleStyle = {
   fontSize: '3rem'
 }
@@ -54,8 +61,16 @@ const ReportsPage = () => {
           <div style={{ top: '100%', zIndex: '1'}}><SearchBox text={'Search Reports'} /></div>
         </div>
       </div>
-      
+
       <Tabs TabInfo={TabInfo}></Tabs>
+
+      <div class="d-flex w-100 justify-content-between mt-5">
+        <TextSection 
+            containerStyle={TextSubSection}
+            title={'Construction Engineering Research Labratory Reports'}
+        />
+        <p class="mt-2">CERL</p>
+      </div>
 
       <Tabs TabInfo={SubTabs}></Tabs>
       
