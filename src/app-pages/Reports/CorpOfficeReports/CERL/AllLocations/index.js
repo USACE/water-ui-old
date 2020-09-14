@@ -74,6 +74,39 @@ const ReportsPage = () => {
 
       <Tabs TabInfo={SubTabs}></Tabs>
       
+      <div class="dropdown-divider"></div>
+
+      <div class="list-group mx-auto">
+        <div class="list-group-item flex-column ">
+          <div class="d-flex w-100 justify-content-between">
+            <a href="/" class="h5 text-info">Missouri River Basin Water Management Bulletin (PDF)</a>
+              <small>30 days ago</small>
+          </div>
+          <p class="mb-1">Summary report for all reservoirs in the Missouri River Region area of responsibility. Produced on a daily basis</p>
+        </div>
+        <div class="list-group-item flex-column ">
+          <div class="d-flex w-100 justify-content-between">
+            <a href="/" class="h5 text-info">Missouri River Basin Water Management Bulletin (PDF)</a>
+              <small>30 days ago</small>
+          </div>
+          <p class="mb-1">Summary report for all reservoirs in the Missouri River Region area of responsibility. Produced on a daily basis</p>
+        </div>
+        <div class="list-group-item flex-column ">
+          <div class="d-flex w-100 justify-content-between">
+            <a href="/" class="h5 text-info">Missouri River Basin Water Management Bulletin (PDF)</a>
+              <small>30 days ago</small>
+          </div>
+          <p class="mb-1">Summary report for all reservoirs in the Missouri River Region area of responsibility. Produced on a daily basis</p>
+        </div>
+        <div class="list-group-item flex-column ">
+          <div class="d-flex w-100 justify-content-between">
+            <a href="/" class="h5 text-info">Missouri River Basin Water Management Bulletin (PDF)</a>
+              <small>30 days ago</small>
+          </div>
+          <p class="mb-1">Summary report for all reservoirs in the Missouri River Region area of responsibility. Produced on a daily basis</p>
+        </div>
+      </div>
+
       </div>
       </div>
     </main>
