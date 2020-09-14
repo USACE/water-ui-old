@@ -1,59 +1,27 @@
 import React from "react";
-//import classnames from "classnames";
-import TextSection from '../../../app-components/TextSection';
-import SearchBox from '../../../app-containers/SearchBox';
-import Tabs from '../../../app-components/Tabs';
-
-const containerTextSection = {
-  textAlign: 'left',
-  margin: '1rem 0',
-  padding: 'auto 12rem',
-  width: '50%'
-}
-
-const titleStyle = {
-  fontSize: '3rem'
-}
-
-const headerContainerStyle = {
-  backgroundColor: '#cbd5e0'
-}
-
-const TabInfo = {
-  activeTab: 'District Reports',
-  tabLinks: [
-    { url: '/reports/CorpOfficeReports', name: 'Corp Office Reports' },
-    { url: '/reports/ProjectReports', name: 'Project Reports' },
-    { url: '/reports/WatershedReports', name: 'Watershed Reports' },
-    { url: '/reports/DistrictReports', name: 'District Reports' }
-  ]
-}
+import ReportsContainer from "../../../app-components/Reports";
 
 const ReportsPage = () => {
 
   return (
-    <main>
-      <div className="header-section">
-        <div style={ headerContainerStyle } className="p-5">
+    <ReportsContainer activeTab="District Reports" sectionTitle="District Reports">
+      <div className="list-group mx-auto">
+        <div className="list-group-item flex-column ">
           <div className="d-flex w-100 justify-content-between">
-            <TextSection
-              containerStyle={ containerTextSection }
-              title={ 'Reports' }
-              titleStyle={ titleStyle }
-            />
-            <div className="search-box-container w-50 py-4 px-4 mx-auto container position-relative">
-              <div style={ { top: '100%', zIndex: '1' } }><SearchBox text={ 'Search Reports' }/></div>
-            </div>
+            <a href="/" className="h5 text-info">District Report 1 (PDF)</a>
+            <small>30 days ago</small>
           </div>
-
-          <Tabs TabInfo={ TabInfo }></Tabs>
-
-          <h4 style={ { margin: '3rem 0rem', padding: '1rem', backgroundColor: 'white' } }>District Reports will go
-            here.</h4>
-
+          <p className="mb-1">District report 1</p>
+        </div>
+        <div className="list-group-item flex-column ">
+          <div className="d-flex w-100 justify-content-between">
+            <a href="/" className="h5 text-info">District Report 2 (PDF)</a>
+            <small>33 days ago</small>
+          </div>
+          <p className="mb-1">District report 2</p>
         </div>
       </div>
-    </main>
+    </ReportsContainer>
   );
 };
 
