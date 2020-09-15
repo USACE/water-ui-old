@@ -16,12 +16,12 @@ const MapDetails = (props) => {
       </div>
 <div className="outer-container">
         <div className="drawer-icon-container">
-				<div className="icons mdi-chart-arc"></div>
-				<div className="icons mdi-chart-arc"></div>
-				<div className="icons mdi-chart-arc"></div>
-				<div className="icons mdi-chart-arc"></div>
-				<div className="icons mdi-chart-arc"></div>
-				<div className="icons mdi-chart-arc"></div>
+				<div className="icons mdi mdi-water-pump" title="Dam Profile"></div>
+				<div className="icons mdi mdi-chart-line" title="Time Series"></div>
+				<div className="icons mdi mdi-map-marker" title="Location"></div>
+				<div className="icons mdi mdi-layers" title="Sedimentation"></div>
+				<div className="icons mdi mdi-blur-linear" title="Grab Samples"></div>
+				<div className="icons mdi mdi-crop-square" title="Box Plots"></div>
 			</div>
       </div>
 			</div>

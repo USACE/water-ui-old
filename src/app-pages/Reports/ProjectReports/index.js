@@ -1,50 +1,28 @@
 import React from "react";
-//import classnames from "classnames";
-import TextSection from '../../../app-components/TextSection';
-import SearchBox from '../../../app-containers/SearchBox';
-import Tabs from '../../../app-components/Tabs';
-
-const containerTextSection = {
-	textAlign: 'center',
-	margin:'1rem 0',
-	padding: 'auto 12rem',
-	width: '100%'
-}
-
-const headerContainerStyle = {
-	backgroundColor: '#cbd5e0'
-}
-
-const TabInfo = {
-  activeTab: 'Project Reports',
-  tabList: [
-    {url:'/reports/CorpOfficeReports', name:'Corp Office Reports'},
-    {url:'/reports/ProjectReports', name:'Project Reports'},
-    {url:'/reports/WatershedReports', name:'Watershed Reports'},
-    {url:'/reports/DistrictReports', name:'District Reports'}
-  ]
-}
+import ReportsContainer from "../../../app-components/Reports";
 
 const ReportsPage = () => {
 
-	return (
-    <main>
-      <div className="header-section">
-      <div style={headerContainerStyle} className="p-5">
-      <TextSection
-        containerStyle={containerTextSection}
-        title={'Reports'}
-      />
-      <div className="search-box-container py-4 px-4 mx-auto container position-relative">
-        <div style={{ top: '100%', zIndex: '1'}}><SearchBox text={'Search Reports'} /></div>
+  return (
+    <ReportsContainer activeTab="Project Reports" sectionTitle="Project Reports">
+      <div className="list-group mx-auto">
+        <div className="list-group-item flex-column ">
+          <div className="d-flex w-100 justify-content-between">
+            <a href="/" className="h5 text-info">Project Report 1 (PDF)</a>
+            <small>30 days ago</small>
+          </div>
+          <p className="mb-1">Project report 1</p>
+        </div>
+        <div className="list-group-item flex-column ">
+          <div className="d-flex w-100 justify-content-between">
+            <a href="/" className="h5 text-info">Project Report 2 (PDF)</a>
+            <small>33 days ago</small>
+          </div>
+          <p className="mb-1">Project report 2</p>
+        </div>
       </div>
-  
-      <Tabs TabInfo={TabInfo}></Tabs>
-      
-      </div>
-      </div>
-    </main>
-    );
-  };
-  
-  export default ReportsPage;
+    </ReportsContainer>
+  );
+};
+
+export default ReportsPage;
