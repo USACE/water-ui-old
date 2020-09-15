@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Card from '../../app-components/Cards';
 import TextSection from '../../app-components/TextSection';
 import CirclePics from '../../app-components/CirclePics';
@@ -18,15 +18,22 @@ const containerTextSection = {
 const headerContainerStyle = {
 	backgroundColor: '#cbd5e0'
 }
-const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict } ) => {
-	const options = { center: [-77.0364, 38.895], zoom: 4 };
 
-	useEffect(() => {
-		console.log( "mock district and basins data:", districtsAndBasinsItems );
-		console.log( "mock unique districts only:", districts );
-		// TODO: Need to figure out how to pass a local state value like selected basin through to the basinsForDistrict selector?
-		console.log( "mock basins for a district:", basinsForDistrict );
-	});
+const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, selectedDistrict } ) => {
+	const mapOptions = { center: [-77.0364, 38.895], zoom: 4 };
+
+	const districtOptions = districts.map( val => {
+	  return { id: val.district_office_id, value: val.district_name }
+  } );
+
+  const basinOptions = basinsForDistrict.map( val => {
+    return { id: val.basin_location_id, value: val.basin_name }
+  } );
+
+  const onDistrictChange = ( e, doUpdateUrl ) => {
+    console.log( "onDistrictChange()", e.target.value );
+    doSetSelectedDistrict(e.target.value);
+  }
 
 	return (
 		<main>
@@ -47,17 +54,19 @@ const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict } ) =
 						<p className="mt-3">Or search by district and basin</p>
 						<div className="district-basin-dd row">
 							<div className="col-md-6">
-								<DropDown label={"Districts Dropdown"} id={"districts-dropdown"} options={["Select District","1","2","3"]}/>
+								<DropDown label={"Districts Dropdown"} id={"districts-dropdown"} options={districtOptions} value={selectedDistrict}
+                          title={"District"} onChange={onDistrictChange}/>
 							</div>
 							<div className="col-md-6">
-								<DropDown label={"Basin Dropdown"} id={"basins-dropdown"} options={["Select Basin","1","2","3"]}/>
+								<DropDown label={"Basin Dropdown"} id={"basins-dropdown"} options={basinOptions} title={"Basin"} />
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<Map mapKey={'homePageMap'} options={options} height={'600px'}/>
+			<Map mapKey={'homePageMap'} options={mapOptions} height={'600px'}/>
+
 			<div className="container mx-auto px-5">
 				{cardObj && <Card cardObj={cardObj} />}
 				<div className="container mx-auto my-5">
@@ -75,8 +84,9 @@ const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict } ) =
 };
 
 export default connect(
-	'selectDistrictsAndBasinsItems',
 	'selectDistricts',
 	'selectBasinsForDistrict',
+	'doSetSelectedDistrict',
+	'selectSelectedDistrict',
 	HomePage
 );
