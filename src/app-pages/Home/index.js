@@ -18,7 +18,7 @@ const containerTextSection = {
 const headerContainerStyle = {
 	backgroundColor: '#cbd5e0'
 }
-const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict,doSelectBasin,doSelectDistrict, districtState } ) => {
+const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict,doSelectBasin,doSelectDistrict, districtState,doUpdateUrl } ) => {
 	const options = { center: [-77.0364, 38.895], zoom: 4 };
 
 	useEffect(() => {
@@ -31,17 +31,24 @@ const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict,doSel
 	},[districtsAndBasinsItems, districts, basinsForDistrict ]);
 
 	let districtOptions = districts && districts.map((district)=> {
-		return district.district_name
+		return district;
 	})
 
 	let basinOptions = districtsAndBasinsItems && districtsAndBasinsItems.map((basin)=> {
-		return basin.basin_name
+		return basin;
 	})
 
 	const districtOnChange = (e) => {
-		doSelectDistrict(e.target.value)	
+		doSelectDistrict(e.target.value)
+		//reset basin state
+		doSelectBasin(undefined)	
 	}
-	console.log("selectDistrictState",districtState)
+	const basinOnChange = (e) => {
+		doSelectBasin(e.target.value)
+		//reroute to map page
+		doUpdateUrl("/map");
+	}
+
 	return (
 		<main>
 			<div className="header-section">
@@ -61,10 +68,10 @@ const HomePage = ( { districtsAndBasinsItems, districts, basinsForDistrict,doSel
 						<p className="mt-3">Or search by district and basin</p>
 						<div className="district-basin-dd row">
 							<div className="col-md-6">
-								<DropDown label={"Districts Dropdown"} id={"districts-dropdown"} onChange={districtOnChange} placeHolder={"Select District"} options={districtOptions}/>
+								<DropDown label={"Districts Dropdown"} id={"districts-dropdown"} onChange={districtOnChange} placeHolder={"Select District"} optName={"district_name"} optId={"district_office_id"} options={districtOptions}/>
 							</div>
 							<div className="col-md-6">
-								<DropDown label={"Basin Dropdown"} id={"basins-dropdown"} placeHolder={"Select Basin"} options={basinOptions}/>
+								<DropDown label={"Basin Dropdown"} id={"basins-dropdown"} onChange={basinOnChange} placeHolder={"Select Basin"} optName={"basin_name"} optId={"basin_location_id"} options={basinsForDistrict.length > 0 ? basinsForDistrict:basinOptions}/>
 							</div>
 						</div>
 					</div>
@@ -94,6 +101,7 @@ export default connect(
 	'selectBasinsForDistrict',
 	'doSelectDistrict',
 	'doSelectBasin',
+	'doUpdateUrl',
 	'selectDistrictState',
 	HomePage
 );

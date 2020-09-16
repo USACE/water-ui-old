@@ -6,8 +6,8 @@ export default {
 
   getReducer: () => {
     const initialData = {
-      districtState: "",
-      basinState: "",
+      districtState: undefined,
+      basinState: undefined,
     };
 
     return (state = initialData, { type, payload }) => {

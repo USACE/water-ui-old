@@ -9,18 +9,19 @@ const defaultOnChange = (e, doUpdateUrl) => {
 };
 //replace with custom dd with lis if we need custom design or tabbing
 const DropDown = (props) => {
-  const { label, id, options, doUpdateUrl, placeHolder, onChange } = props;
+  const { label, id, options, doUpdateUrl, placeHolder, onChange, optName,optId} = props;
   return (
     <div className="dropdown-container form-group">
       <select
         className="form-control"
         id={id}
         aria-labelledby={label}
-        onChange={(e) => onChange(e, doUpdateUrl)}
+        onChange={(e) => onChange(e)}
       >
         <option>{placeHolder}</option>
-        {options.map((item, i) => (
-          <option key={i}>{item}</option>
+        {
+        options.map((item, i) => (
+          <option key={i} value={item[optId]}>{item[optName]}</option>
         ))}
       </select>
     </div>

@@ -31,10 +31,11 @@ export default createRestBundle({
     ),
     selectBasinsForDistrict: createSelector(
       "selectDistrictsAndBasinsItems",
-      (districtsAndBasins) => {
-        const selectedDistrict = "SPA";
-        if(!selectedDistrict) return districtsAndBasins;
-        const result = districtsAndBasins.filter(entry => entry.district_office_id === selectedDistrict)
+      "selectDistrictState",
+      (districtsAndBasins,districtState) => {
+        const selectedDistrictId = districtState
+        if(!selectedDistrictId) return districtsAndBasins;
+        const result = districtsAndBasins.filter(entry => entry.district_office_id === selectedDistrictId)
         return result;
       }
     ),
