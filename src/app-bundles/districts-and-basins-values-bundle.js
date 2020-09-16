@@ -13,12 +13,10 @@ export default {
     return (state = initialData, { type, payload }) => {
       switch (type) {
         case "SELECT_DISTRICT":
-          console.log("return state;", payload);
           return Object.assign({}, state, {
             districtState: payload
           });
         case "SELECT_BASIN":
-          console.log("return state2;", payload);
           return Object.assign({}, state, {
             basinState: payload,
           });
@@ -36,11 +34,9 @@ export default {
     payload: payload,
   }),
   selectDistrictState: (state) => {
-    console.log(state)
     return state.districtsAndBasinsValues.districtState;
   },
   selectBasinState: (state) => {
-    console.log("basin",state)
     return state.districtsAndBasinsValues.basinState;
   },
 };
