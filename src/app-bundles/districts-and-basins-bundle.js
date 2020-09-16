@@ -39,8 +39,6 @@ export default createRestBundle({
       "selectDistrictsAndBasinsItems",
       "selectSelectedDistrict",
       (districtsAndBasins, selectedDistrict) => {
-        //const selectedDistrict = "SPA";
-        console.log( "in selector:", districtsAndBasins, selectedDistrict );
         if(!selectedDistrict) return districtsAndBasins;
         const result = districtsAndBasins.filter(entry => entry.district_office_id === selectedDistrict)
         return result;
