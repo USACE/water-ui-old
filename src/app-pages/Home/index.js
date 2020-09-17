@@ -31,7 +31,6 @@ const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, select
   } );
 
   const onDistrictChange = ( e, doUpdateUrl ) => {
-    console.log( "onDistrictChange()", e.target.value );
     doSetSelectedDistrict(e.target.value);
   }
 

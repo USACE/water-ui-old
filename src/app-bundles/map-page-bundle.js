@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-operators */
 import { createSelector } from "redux-bundler";
 import { isMockMode } from "./bundle-utils";
-import {  isValidArrWithValues } from "../functions";
+import { isValidArrWithValues } from "../functions";
 import olMap from "ol/Map.js";
 import View from "ol/View";
 
@@ -10,7 +10,14 @@ import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
 import Feature from "ol/Feature";
 import Map from "ol/Map";
 import Point from "ol/geom/Point";
-import { Circle as CircleStyle, Fill, Stroke, Style, Text, Icon } from "ol/style";
+import {
+  Circle as CircleStyle,
+  Fill,
+  Stroke,
+  Style,
+  Text,
+  Icon,
+} from "ol/style";
 import { Cluster, OSM, Vector as VectorSource } from "ol/source";
 import { get, transform, fromLonLat } from "ol/proj";
 import BasemapPicker from "../ol-controls/basemap-picker";
@@ -46,13 +53,10 @@ export default {
     };
   },
 
-  doMapsInitialize: (key, el, options) => async ({
-    dispatch,
-    store,
-  }) => {
+  doMapsInitialize: (key, el, options) => async ({ dispatch, store }) => {
     // fetch url
     const getClusterData = async (url) => {
-      let payload ={data:[]}
+      let payload = { data: [] };
       //adjust to fit actual api later
       try {
         const res = await fetch(url);
@@ -61,7 +65,6 @@ export default {
         // Add Status and ok to the payload
         payload.status = res.status;
         payload.ok = res.ok;
-
       } catch (err) {
         console.error(err);
         return undefined;
@@ -72,7 +75,6 @@ export default {
     const fetchClusterData = async () => {
       const data = await getClusterData(store.getState().maps.url);
       // if (data && data.ok && data.response) {
-      //   console.log(data.response)
       //   return data.response;
       // }
       if (data && data.ok) {
@@ -86,13 +88,13 @@ export default {
 
     function createStyle(src, img) {
       return new Style({
-        image: new Icon(({
+        image: new Icon({
           anchor: [0.5, 0.96],
-          crossOrigin: 'anonymous',
+          crossOrigin: "anonymous",
           src: src,
           img: img,
-          imgSize: img ? [img.width, img.height] : undefined
-        }))
+          imgSize: img ? [img.width, img.height] : undefined,
+        }),
       });
     }
 
@@ -101,108 +103,71 @@ export default {
     setIconFeatures();
 
     function setIconFeatures() {
-      for(var key in data) {
+      for (var key in data) {
         var jsonItem = data[key];
-console.log("key",key,jsonItem)
-        var iconFeature = new Feature(new Point(fromLonLat([jsonItem.cluster_longitude, jsonItem.cluster_latitude])));
+        var iconFeature = new Feature(
+          new Point(
+            fromLonLat([jsonItem.cluster_longitude, jsonItem.cluster_latitude])
+          )
+        );
         iconFeature.setId(key);
-        iconFeature.set('style', createStyle('https://openlayers.org/en/latest/examples/data/icon.png', undefined));
+        iconFeature.set(
+          "style",
+          createStyle(
+            "https://openlayers.org/en/latest/examples/data/icon.png",
+            undefined
+          )
+        );
         iconFeatures.push(iconFeature);
       }
     }
 
-    var source = new VectorSource({features: iconFeatures});
+    var source = new VectorSource({ features: iconFeatures });
 
     var unclusteredLayer = new VectorSource({
       source: source,
-      style: function(feature) {
-        return feature.get('style');
+      style: function (feature) {
+        return feature.get("style");
       },
-      maxResolution: 2000
+      maxResolution: 2000,
     });
 
     var clusterSource = new Cluster({
       distance: 10,
-      source: source
+      source: source,
     });
 
     var styleCache = {};
 
     var clusters = new VectorLayer({
       source: clusterSource,
-      style: function(feature) {
-        var size = feature.get('features').length;
+      style: function (feature) {
+        var size = feature.get("features").length;
         var style = styleCache[size];
         if (!style) {
           style = new Style({
             image: new CircleStyle({
               radius: 10,
               stroke: new Stroke({
-                color: '#fff'
+                color: "#fff",
               }),
               fill: new Fill({
-                color: '#3399CC'
-              })
+                color: "#3399CC",
+              }),
             }),
             text: new Text({
               text: size.toString(),
               fill: new Fill({
-                color: '#fff'
-              })
-            })
+                color: "#fff",
+              }),
+            }),
           });
           styleCache[size] = style;
         }
         return style;
       },
-      minResolution: 2001
+      minResolution: 2001,
     });
-//     const features = [];
-
-// console.log(data,data.length)
-//     for (let i = 0; i < data.length; i++) {
-//       let coordinates = [data[i].cluster_latitude, data[i].cluster_longitude];
-
-//       features[i] = new Feature(new Point(coordinates));
-//     }
-// console.log("features: ",features)
-//     var source = new VectorSource({
-//       features: features,
-//     });
-
-//     var clusterSource = new Cluster({
-//       source: source,
-//     });
-
-//     var styleCache = {};
-//     var clusters = new VectorLayer({
-//       source: clusterSource,
-//       style: function (feature) {
-//         var size = feature.get("features").length;
-//         var style = styleCache[size];
-//         if (!style) {
-//           style = new Style({
-//             image: new CircleStyle({
-//               radius: 10,
-//               stroke: new Stroke({
-//                 color: "#fff",
-//               }),
-//               fill: new Fill({
-//                 color: "#3399CC",
-//               }),
-//             }),
-//             text: new Text({
-//               text: size.toString(),
-//               fill: new Fill({
-//                 color: "#fff",
-//               }),
-//             }),
-//           });
-//           styleCache[size] = style;
-//         }
-//         return style;
-//       },
-//     });
 
     const raster = new TileLayer({
       source: new OSM(),
@@ -227,7 +192,7 @@ console.log("key",key,jsonItem)
       type: actions.MAPS_INITIALIZED,
       payload: {
         [key]: map,
-        data: data
+        data: data,
       },
     });
   },

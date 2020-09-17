@@ -65,7 +65,6 @@ doAddDataToMap: () => ({ dispatch })=> {
   },
 
   selectMapsState: (state) => {
-    console.log('map',state.maps)
     return state.maps;
   },
 

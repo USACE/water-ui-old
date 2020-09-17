@@ -17,7 +17,6 @@ import routeBundle from "./routes-bundle";
 import mapsBundle from "./maps-bundle";
 import mapsPageBundle from "./map-page-bundle";
 import districtsAndBasinsBundle from "./districts-and-basins-bundle";
-import clustersBundle from "./clusters-bundle";
 import cache from "./../cache.js";
 import { isMockMode } from "./bundle-utils";
 
@@ -51,6 +50,5 @@ export default composeBundles(
   mapsBundle,
   routeBundle,
   mapsPageBundle,
-  districtsAndBasinsBundle,
-  // clustersBundle
+  districtsAndBasinsBundle
 );
