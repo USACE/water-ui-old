@@ -15,6 +15,12 @@ export default createRestBundle({
   deleteTemplate: null,
   fetchActions: [],
   forceFetchActions: [],
+  reduceFurther: (state, { type, payload }) => {
+    if (type === "SET_SELECTED_DISTRICT_ID" || type === "SET_SELECTED_BASIN_ID") {
+      return Object.assign({}, state, payload);
+    }
+    else return state;
+  },
   addons: {
     selectDistricts: createSelector(
       "selectDistrictsAndBasinsItems",
@@ -31,12 +37,35 @@ export default createRestBundle({
     ),
     selectBasinsForDistrict: createSelector(
       "selectDistrictsAndBasinsItems",
-      (districtsAndBasins) => {
-        const selectedDistrict = "SPA";
+      "selectSelectedDistrict",
+      (districtsAndBasins, selectedDistrict) => {
         if(!selectedDistrict) return districtsAndBasins;
         const result = districtsAndBasins.filter(entry => entry.district_office_id === selectedDistrict)
         return result;
       }
     ),
+    doSetSelectedDistrict: (id) => ({ dispatch }) => {
+      dispatch({
+        type: "SET_SELECTED_DISTRICT_ID",
+        payload: {
+          _district_office_id: id,
+          _basin_location_id: null
+        },
+      });
+    },
+    doSetSelectedBasin: (id) => ({ dispatch }) => {
+      dispatch({
+        type: "SET_SELECTED_BASIN_ID",
+        payload: {
+          _basin_location_id: id,
+        },
+      });
+    },
+    selectSelectedDistrict: (state) => {
+      return state.districtsAndBasins._district_office_id;
+    },
+    selectSelectedBasin: (state) => {
+      return state.districtsAndBasins._basin_location_id;
+    },
   },
 });
