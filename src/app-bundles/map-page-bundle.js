@@ -1,14 +1,12 @@
 /* eslint-disable no-mixed-operators */
-import { createSelector } from "redux-bundler";
+// import { createSelector } from "redux-bundler";
 import { isMockMode } from "./bundle-utils";
-import { isValidArrWithValues } from "../functions";
+// import { isValidArrWithValues } from "../functions";
 import olMap from "ol/Map.js";
 import View from "ol/View";
-
 import ScaleBar from "ol/control/ScaleLine";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
 import Feature from "ol/Feature";
-import Map from "ol/Map";
 import Point from "ol/geom/Point";
 import {
   Circle as CircleStyle,
@@ -19,7 +17,7 @@ import {
   Icon,
 } from "ol/style";
 import { Cluster, OSM, Vector as VectorSource } from "ol/source";
-import { get, transform, fromLonLat } from "ol/proj";
+import { fromLonLat } from "ol/proj";
 import BasemapPicker from "../ol-controls/basemap-picker";
 
 const actions = {
@@ -35,11 +33,11 @@ export default {
       url: isMockMode()
         ? "http://localhost:3000/water/mockdata/location-clusters.json"
         : "/api/location-clusters",
-      shouldFetch: false,
-      error: null,
-      hasLoaded: false,
-      data: null,
-      icon: null,
+      // shouldFetch: false,
+      // error: null,
+      // hasLoaded: false,
+      // data: null,
+      // icon: null,
     };
 
     return (state = initialData, { type, payload }) => {
@@ -122,9 +120,9 @@ export default {
       }
     }
 
-    var source = new VectorSource({ features: iconFeatures });
+    const source = new VectorSource({ features: iconFeatures });
 
-    var unclusteredLayer = new VectorSource({
+    const unclusteredLayer = new VectorLayer({
       source: source,
       style: function (feature) {
         return feature.get("style");
@@ -132,18 +130,18 @@ export default {
       maxResolution: 2000,
     });
 
-    var clusterSource = new Cluster({
+    const clusterSource = new Cluster({
       distance: 10,
       source: source,
     });
 
-    var styleCache = {};
+    const styleCache = {};
 
-    var clusters = new VectorLayer({
+    const clusters = new VectorLayer({
       source: clusterSource,
       style: function (feature) {
-        var size = feature.get("features").length;
-        var style = styleCache[size];
+        const size = feature.get("features").length;
+        let style = styleCache[size];
         if (!style) {
           style = new Style({
             image: new CircleStyle({
@@ -182,11 +180,16 @@ export default {
             center: (options && options.center) || [-11000000, 4600000],
             zoom: (options && options.zoom) || 4,
           }),
-          layers: [raster, clusters],
+          layers: [raster, clusters, unclusteredLayer],
         },
         options
       )
     );
+
+    map.on('pointermove', function(evt) {
+      map.getTargetElement().style.cursor =
+        map.hasFeatureAtPixel(evt.pixel) ? 'pointer' : '';
+    });
 
     dispatch({
       type: actions.MAPS_INITIALIZED,

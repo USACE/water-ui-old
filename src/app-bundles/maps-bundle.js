@@ -4,8 +4,8 @@ import olMap from "ol/Map.js";
 import View from "ol/View";
 
 import ScaleBar from "ol/control/ScaleLine";
-import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
-import { OSM, Vector as VectorSource } from "ol/source";
+// import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
+// import { OSM, Vector as VectorSource } from "ol/source";
 import BasemapPicker from "../ol-controls/basemap-picker";
 
 const actions = {
