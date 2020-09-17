@@ -1,149 +1,266 @@
-// import Layer from "ol/layer/Vector";
-// import Source from "ol/source/Vector";
-// import GeoJSON from "ol/format/GeoJSON";
-// // import { createSelector } from "redux-bundler";
-// import Style from "ol/style/Style";
-// import Text from "ol/style/Text";
-// import Fill from "ol/style/Fill";
-// import Stroke from "ol/style/Stroke";
-// import Circle from "ol/geom/Circle";
+/* eslint-disable no-mixed-operators */
+import { createSelector } from "redux-bundler";
+import { isMockMode } from "./bundle-utils";
+import {  isValidArrWithValues } from "../functions";
+import olMap from "ol/Map.js";
+import View from "ol/View";
 
-// const geoJSON = new GeoJSON();
+import ScaleBar from "ol/control/ScaleLine";
+import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
+import Feature from "ol/Feature";
+import Map from "ol/Map";
+import Point from "ol/geom/Point";
+import { Circle as CircleStyle, Fill, Stroke, Style, Text, Icon } from "ol/style";
+import { Cluster, OSM, Vector as VectorSource } from "ol/source";
+import { get, transform, fromLonLat } from "ol/proj";
+import BasemapPicker from "../ol-controls/basemap-picker";
 
-// export default {
-//   name: "instrumentMap",
-//   getReducer: () => {
-//     const initialData = {
-//       layer: null,
-//       _shouldInitialize: true,
-//       _shouldAddData: false,
-//       _mapLoaded: false,
-//     };
+const actions = {
+  MAPS_INITIALIZED: `MAPS_INITIALIZED`,
+  MAPS_SHUTDOWN: `MAPS_SHUTDOWN`,
+};
 
-//     return (state = initialData, { type, payload }) => {
-//       switch (type) {
-//         case "INSTRUMENTS_FETCH_FINISHED":
-//           return Object.assign({}, state, {
-//             _shouldAddData: true,
+export default {
+  name: "maps",
+
+  getReducer: () => {
+    const initialData = {
+      url: isMockMode()
+        ? "http://localhost:3000/water/mockdata/location-clusters.json"
+        : "/api/location-clusters",
+      shouldFetch: false,
+      error: null,
+      hasLoaded: false,
+      data: null,
+      icon: null,
+    };
+
+    return (state = initialData, { type, payload }) => {
+      switch (type) {
+        case actions.MAPS_INITIALIZED:
+        case actions.MAPS_SHUTDOWN:
+          return Object.assign({}, state, payload);
+        default:
+          return state;
+      }
+    };
+  },
+
+  doMapsInitialize: (key, el, options) => async ({
+    dispatch,
+    store,
+  }) => {
+    // fetch url
+    const getClusterData = async (url) => {
+      let payload ={data:[]}
+      //adjust to fit actual api later
+      try {
+        const res = await fetch(url);
+        payload.data = await res.json();
+        // payload = await res.json();
+        // Add Status and ok to the payload
+        payload.status = res.status;
+        payload.ok = res.ok;
+
+      } catch (err) {
+        console.error(err);
+        return undefined;
+      }
+      return payload;
+    };
+
+    const fetchClusterData = async () => {
+      const data = await getClusterData(store.getState().maps.url);
+      // if (data && data.ok && data.response) {
+      //   console.log(data.response)
+      //   return data.response;
+      // }
+      if (data && data.ok) {
+        return data.data;
+      }
+      console.error("Could not fetch Cluster Data", data);
+      return undefined;
+    };
+
+    const data = await fetchClusterData();
+
+    function createStyle(src, img) {
+      return new Style({
+        image: new Icon(({
+          anchor: [0.5, 0.96],
+          crossOrigin: 'anonymous',
+          src: src,
+          img: img,
+          imgSize: img ? [img.width, img.height] : undefined
+        }))
+      });
+    }
+
+    var iconFeatures = [];
+
+    setIconFeatures();
+
+    function setIconFeatures() {
+      for(var key in data) {
+        var jsonItem = data[key];
+console.log("key",key,jsonItem)
+        var iconFeature = new Feature(new Point(fromLonLat([jsonItem.cluster_longitude, jsonItem.cluster_latitude])));
+        iconFeature.setId(key);
+        iconFeature.set('style', createStyle('https://openlayers.org/en/latest/examples/data/icon.png', undefined));
+        iconFeatures.push(iconFeature);
+      }
+    }
+
+    var source = new VectorSource({features: iconFeatures});
+
+    var unclusteredLayer = new VectorSource({
+      source: source,
+      style: function(feature) {
+        return feature.get('style');
+      },
+      maxResolution: 2000
+    });
+
+    var clusterSource = new Cluster({
+      distance: 10,
+      source: source
+    });
+
+    var styleCache = {};
+
+    var clusters = new VectorLayer({
+      source: clusterSource,
+      style: function(feature) {
+        var size = feature.get('features').length;
+        var style = styleCache[size];
+        if (!style) {
+          style = new Style({
+            image: new CircleStyle({
+              radius: 10,
+              stroke: new Stroke({
+                color: '#fff'
+              }),
+              fill: new Fill({
+                color: '#3399CC'
+              })
+            }),
+            text: new Text({
+              text: size.toString(),
+              fill: new Fill({
+                color: '#fff'
+              })
+            })
+          });
+          styleCache[size] = style;
+        }
+        return style;
+      },
+      minResolution: 2001
+    });
+//     const features = [];
+
+// console.log(data,data.length)
+//     for (let i = 0; i < data.length; i++) {
+//       let coordinates = [data[i].cluster_latitude, data[i].cluster_longitude];
+
+//       features[i] = new Feature(new Point(coordinates));
+//     }
+// console.log("features: ",features)
+//     var source = new VectorSource({
+//       features: features,
+//     });
+
+//     var clusterSource = new Cluster({
+//       source: source,
+//     });
+
+//     var styleCache = {};
+//     var clusters = new VectorLayer({
+//       source: clusterSource,
+//       style: function (feature) {
+//         var size = feature.get("features").length;
+//         var style = styleCache[size];
+//         if (!style) {
+//           style = new Style({
+//             image: new CircleStyle({
+//               radius: 10,
+//               stroke: new Stroke({
+//                 color: "#fff",
+//               }),
+//               fill: new Fill({
+//                 color: "#3399CC",
+//               }),
+//             }),
+//             text: new Text({
+//               text: size.toString(),
+//               fill: new Fill({
+//                 color: "#fff",
+//               }),
+//             }),
 //           });
-//         case "MAPS_INITIALIZED":
-//           if (payload.hasOwnProperty("instrumentMap")) {
-//             return Object.assign({}, state, {
-//               _mapLoaded: true,
-//               _shouldAddData: true,
-//             });
-//           } else {
-//             return state;
-//           }
-//         case "MAPS_SHUTDOWN":
-//           if (payload.hasOwnProperty("instrumentMap")) {
-//             return Object.assign({}, state, {
-//               _mapLoaded: false,
-//             });
-//           } else {
-//             return state;
-//           }
-//         case "INSTRUMENTMAP_INITIALIZE_START":
-//         case "INSTRUMENTMAP_INITIALIZE_FINISH":
-//         case "INSTRUMENTMAP_ADD_DATA_START":
-//         case "INSTRUMENTMAP_ADD_DATA_FINISH":
-//           return Object.assign({}, state, payload);
-//         default:
-//           return state;
-//       }
-//     };
-//   },
-//   doInstrumentMapInitialize: () => ({ dispatch, store }) => {
-//     dispatch({
-//       type: "INSTRUMENTMAP_INITIALIZE_START",
-//       payload: {
-//         _shouldInitialize: false,
+//           styleCache[size] = style;
+//         }
+//         return style;
 //       },
 //     });
 
-//     const lyr = new Layer({
-//       source: new Source(),
-//       declutter: true,
-//       style: (f, r) => {
-//         return new Style({
-//           geometry: new Circle(f.getGeometry().getCoordinates(), 5 * r),
-//           fill: new Fill({
-//             color: "#000000",
-//           }),
-//           stroke: new Stroke({
-//             color: "#ffffff",
-//             width: 1,
-//           }),
-//           text: new Text({
-//             fill: new Fill({
-//               color: "#000000",
-//             }),
-//             font: "16px sans-serif",
-//             offsetX: 12,
-//             offsetY: -12,
-//             padding: [2, 2, 2, 2],
-//             stroke: new Stroke({
-//               color: "#ffffff",
-//               width: 2,
-//             }),
-//             text: f.get("name"),
-//             textAlign: "left",
-//           }),
-//         });
-//       },
-//     });
+    const raster = new TileLayer({
+      source: new OSM(),
+    });
 
-//     dispatch({
-//       type: "INSTRUMENTMAP_INITIALIZE_FINISH",
-//       payload: {
-//         layer: lyr,
-//       },
-//     });
-//   },
+    const map = new olMap(
+      Object.assign(
+        {
+          controls: [new ScaleBar({ units: "us" }), new BasemapPicker()],
+          target: el,
+          view: new View({
+            center: (options && options.center) || [-11000000, 4600000],
+            zoom: (options && options.zoom) || 4,
+          }),
+          layers: [raster, clusters],
+        },
+        options
+      )
+    );
 
-//   doInstrumentMapAddData: () => ({ dispatch, store }) => {
-//     dispatch({
-//       type: "INSTRUMENTMAP_ADD_DATA_START",
-//       payload: {
-//         _shouldAddData: false,
-//       },
-//     });
-//     const geoProjection = store.selectMapGeoProjection();
-//     const webProjection = store.selectMapWebProjection();
-//     const map = store.selectMapsObject()["instrumentMap"];
-//     const lyr = store.selectInstrumentMapLayer();
-//     const src = lyr.getSource();
-//     const data = store.selectInstrumentsByRouteGeoJSON();
-//     map.removeLayer(lyr);
-//     src.clear();
-//     src.addFeatures(
-//       geoJSON.readFeatures(data, {
-//         featureProjection: webProjection,
-//         dataProjection: geoProjection,
-//       })
-//     );
-//     map.addLayer(lyr);
-//     const view = map.getView();
-//     view.fit(src.getExtent(), {
-//       padding: [50, 50, 50, 50],
-//       maxZoom: 16,
-//     });
-//     dispatch({
-//       type: "INSTRUMENTMAP_ADD_DATA_FINISH",
-//     });
-//   },
+    dispatch({
+      type: actions.MAPS_INITIALIZED,
+      payload: {
+        [key]: map,
+        data: data
+      },
+    });
+  },
 
-//   selectInstrumentMapLayer: (state) => {
-//     return state.instrumentMap.layer;
-//   },
+  doMapsShutdown: (key) => ({ dispatch }) => {
+    dispatch({
+      type: actions.MAPS_SHUTDOWN,
+      payload: {
+        [key]: null,
+      },
+    });
+  },
+  // reactMapsShouldInitialize: (state) => {
+  //   if (state.maps._shouldInitialize)
+  //     return { actionCreator: "doMapsInitialize" };
+  // },
+  // selectMapsState: (state) => {
+  //   return state.maps;
+  // },
 
-//   reactInstrumentMapShouldInitialize: (state) => {
-//     if (state.instrumentMap._shouldInitialize)
-//       return { actionCreator: "doInstrumentMapInitialize" };
-//   },
+  // selectMapsObject: createSelector("selectMapsState", (state) => {
+  //   const items = {};
+  //   Object.keys(state).forEach((key) => {
+  //     if (key[0] !== "_") items[key] = state[key];
+  //   });
+  //   return items;
+  // }),
 
-//   reactInstrumentMapShouldAddData: (state) => {
-//     if (state.instrumentMap._mapLoaded && state.instrumentMap._shouldAddData)
-//       return { actionCreator: "doInstrumentMapAddData" };
-//   },
-// };
+  // selectMapsFlags: createSelector("selectMapsState", (state) => {
+  //   const flags = {};
+  //   Object.keys(state).forEach((key) => {
+  //     if (key[0] === "_") flags[key] = state[key];
+  //   });
+  //   return flags;
+  // }),
+};

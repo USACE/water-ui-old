@@ -4,7 +4,8 @@ import MapDetails from './containers/MapDetails';
 import Map from '../../app-containers/Map';
 
 const MapPage = (props) => {
-	const opts = { center: [-95, 38.895], zoom: 5 };
+  const opts = { center: [-95, 38.895], zoom: 5 };
+
 	return (
 		<main>
 			<MapNavBar />
@@ -13,7 +14,7 @@ const MapPage = (props) => {
 					<MapDetails/>
 				</div>
 				<div className="map-container" style={{padding:"0",flexGrow:"35"}} >
-					<Map height={'900px'} options={opts} mapKey={"mapPageMap"}/>
+					<Map height={'900px'} options={opts} mapKey={"maps"}/>
 				</div>
 			</div>
 		</main>

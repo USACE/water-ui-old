@@ -65,7 +65,7 @@ const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, select
 				</div>
 			</div>
 
-			<Map mapKey={'homePageMap'} options={mapOptions} height={'600px'}/>
+			{/* <Map mapKey={'homePageMap'} options={mapOptions} height={'600px'}/> */}
 
 			<div className="container mx-auto px-5">
 				{cardObj && <Card cardObj={cardObj} />}
