@@ -1,0 +1,44 @@
+{
+  "reports": [{
+      "title": "CERL Report 1",
+      "url": "http://www.google.com",
+      "date": "2020-09-17T20:16:02.947Z"
+    }, {
+      "title": "CERL Report 2",
+      "url": "http://www.google.com",
+      "date": "2020-09-17T20:16:02.947Z"
+    }, {
+      "title": "CERL Report 3",
+      "url": "http://www.google.com",
+      "date": "2020-09-17T20:16:02.947Z"
+    }
+  ],
+  "locationReports": [{
+      "title": "CERL Location Report 1",
+      "url": "http://www.google.com",
+      "date": "2020-09-17T20:16:02.947Z"
+    }, {
+      "title": "CERL Location Report 2",
+      "url": "http://www.google.com",
+      "date": "2020-09-17T20:16:02.947Z"
+    }, {
+      "title": "CERL Location Report 3",
+      "url": "http://www.google.com",
+      "date": "2020-09-17T20:16:02.947Z"
+    }
+  ],
+  "specialReports": [{
+      "title": "CERL Special Report 1",
+      "url": "http://www.google.com",
+      "date": "2020-09-17T20:16:02.947Z"
+    }, {
+      "title": "CERL Special Report 2",
+      "url": "http://www.google.com",
+      "date": "2020-09-17T20:16:02.948Z"
+    }, {
+      "title": "CERL Special Report 3",
+      "url": "http://www.google.com",
+      "date": "2020-09-17T20:16:02.948Z"
+    }
+  ]
+}
