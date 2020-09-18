@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "redux-bundler-react";
 import { fromLonLat } from "ol/proj";
+import "./map.css";
 
 class Map extends React.Component {
   componentDidMount() {
@@ -18,12 +19,18 @@ class Map extends React.Component {
   render() {
     const { height } = this.props;
     return (
+      <>
       <div
         style={{ height: height }}
         ref={(el) => {
           this.el = el;
         }}
       />
+      <div id="popup" className="ol-popup">
+      <a id="popup-closer" className="ol-popup-closer"></a>
+      <div id="popup-content"/>
+    </div>
+    </>
     );
   }
 }

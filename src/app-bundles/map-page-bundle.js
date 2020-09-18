@@ -8,6 +8,8 @@ import ScaleBar from "ol/control/ScaleLine";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
 import Feature from "ol/Feature";
 import Point from "ol/geom/Point";
+import Overlay from "ol/Overlay";
+
 import {
   Circle as CircleStyle,
   Fill,
@@ -52,7 +54,7 @@ export default {
   },
 
   doMapsInitialize: (key, el, options) => async ({ dispatch, store }) => {
-    // fetch url
+    // fetch url, will replace with global fetch function later
     const getClusterData = async (url) => {
       let payload = { data: [] };
       //adjust to fit actual api later
@@ -96,18 +98,20 @@ export default {
       });
     }
 
-    var iconFeatures = [];
+    const iconFeatures = [];
 
     setIconFeatures();
 
     function setIconFeatures() {
-      for (var key in data) {
-        var jsonItem = data[key];
-        var iconFeature = new Feature(
+      for (let key in data) {
+        const jsonItem = data[key];
+        const iconFeature = new Feature(
           new Point(
             fromLonLat([jsonItem.cluster_longitude, jsonItem.cluster_latitude])
           )
         );
+        iconFeature.description = jsonItem.cluster_name;
+        iconFeature.longLat = [jsonItem.cluster_longitude, jsonItem.cluster_latitude];
         iconFeature.setId(key);
         iconFeature.set(
           "style",
@@ -171,6 +175,18 @@ export default {
       source: new OSM(),
     });
 
+    const container = document.getElementById("popup"),
+    contentContainer = document.getElementById("popup-content"),
+    closer = document.getElementById('popup-closer');
+
+    const overlay = new Overlay({
+      element: container,
+      positioning: "bottom-center",
+      stopEvent: false,
+      autoPan: true,
+      offset: [0, -10],
+    });
+
     const map = new olMap(
       Object.assign(
         {
@@ -180,15 +196,41 @@ export default {
             center: (options && options.center) || [-11000000, 4600000],
             zoom: (options && options.zoom) || 4,
           }),
+          overlays: [overlay],
           layers: [raster, clusters, unclusteredLayer],
         },
         options
       )
     );
+    map.addOverlay(overlay);
+    closer.onclick = function() {
+      overlay.setPosition(undefined);
+      closer.blur();
+      return false;
+  };
+    map.on("pointermove", function (e) {
+      const feature = map.forEachFeatureAtPixel(e.pixel, function (
+        feature
+      ) {
+        return feature;
+      });
+      //need to adjust to add properties at base level and popup blurs on mouse exit
+      if (feature) {
+        const geometry = feature.getGeometry();
+        const coord = geometry.getCoordinates();
+        const featureProp = feature.getProperties().features && feature.getProperties().features[0] && feature.getProperties().features[0].description;
 
-    map.on('pointermove', function(evt) {
-      map.getTargetElement().style.cursor =
-        map.hasFeatureAtPixel(evt.pixel) ? 'pointer' : '';
+        let content =  featureProp &&
+          "<h5>" + feature.getProperties().features[0].description + "</h5>";
+        content += featureProp && '<p>' + feature.getProperties().features[0].longLat + '</p>';
+        contentContainer.innerHTML = content;
+        overlay.setPosition(coord);
+      }
+      if (e.dragging) return;
+      const pixel = map.getEventPixel(e.originalEvent);
+      const hit = map.hasFeatureAtPixel(pixel);
+
+      map.getTarget().style.cursor = hit ? "pointer" : "";
     });
 
     dispatch({
