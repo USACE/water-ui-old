@@ -131,7 +131,7 @@ export default {
       style: function (feature) {
         return feature.get("style");
       },
-      maxResolution: 2000,
+      maxResolution: 200,
     });
 
     const clusterSource = new Cluster({
@@ -168,7 +168,7 @@ export default {
         }
         return style;
       },
-      minResolution: 2001,
+      minResolution: 201,
     });
 
     const raster = new TileLayer({
@@ -196,7 +196,7 @@ export default {
             center: (options && options.center) || [-11000000, 4600000],
             zoom: (options && options.zoom) || 4,
           }),
-          overlays: [overlay],
+          // overlays: [overlay],
           layers: [raster, clusters, unclusteredLayer],
         },
         options
