@@ -232,6 +232,12 @@ export default {
 
       map.getTarget().style.cursor = hit ? "pointer" : "";
     });
+    // closes pop up on click
+    map.on("click", function (e) {
+      overlay.setPosition(undefined);
+      closer.blur();
+      return false;
+    });
 
     dispatch({
       type: actions.MAPS_INITIALIZED,
