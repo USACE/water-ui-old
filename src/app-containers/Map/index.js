@@ -27,7 +27,7 @@ class Map extends React.Component {
         }}
       />
       <div id="popup" className="ol-popup">
-      <a id="popup-closer" className="ol-popup-closer"></a>
+      <button id="popup-closer" className="ol-popup-closer"/>
       <div id="popup-content"/>
     </div>
     </>
