@@ -33,8 +33,8 @@ export default {
   getReducer: () => {
     const initialData = {
       url: isMockMode()
-        ? "http://localhost:3000/water/mockdata/location-clusters.json"
-        : "/api/location-clusters",
+        ? "http://localhost:3000/water/mockdata/location-list.json"
+        : "/api/location-list",
       // shouldFetch: false,
       // error: null,
       // hasLoaded: false,
@@ -107,11 +107,11 @@ export default {
         const jsonItem = data[key];
         const iconFeature = new Feature(
           new Point(
-            fromLonLat([jsonItem.cluster_longitude, jsonItem.cluster_latitude])
+            fromLonLat([jsonItem.longitude, jsonItem.latitude])
           )
         );
-        iconFeature.description = jsonItem.cluster_name;
-        iconFeature.longLat = [jsonItem.cluster_longitude, jsonItem.cluster_latitude];
+        iconFeature.description = jsonItem.public_name;
+        iconFeature.longLat = [jsonItem.longitude, jsonItem.latitude];
         iconFeature.setId(key);
         iconFeature.set(
           "style",
@@ -135,7 +135,7 @@ export default {
     });
 
     const clusterSource = new Cluster({
-      distance: 10,
+      distance: 50,
       source: source,
     });
 
