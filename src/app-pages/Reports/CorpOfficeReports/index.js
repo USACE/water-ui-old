@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextSection from '../../../app-components/TextSection';
 import ReportsContainer from "../../../app-components/Reports";
+import { connect } from "redux-bundler-react";
 
 const TextSubSection = {
   textAlign: 'left',
@@ -16,7 +17,7 @@ const pageSectionDivider = {
   borderTop: '2px solid #333',
 }
 
-const ReportsPage = () => {
+const ReportsPage = ( { corporateOffices, corporateOfficeIsLoading } ) => {
 
   return (
     <ReportsContainer activeTab="Corp Office Reports">
@@ -26,52 +27,28 @@ const ReportsPage = () => {
           containerStyle={ TextSubSection }
           title={ 'Corp Office Reports' }
         />
-        <p className="mt-2">68 Offices</p>
+        <p className="mt-2">{ corporateOffices.length } Offices</p>
       </div>
 
       <div style={ pageSectionDivider }></div>
 
       <div className="list-group w-50">
-        <div className="list-group-item flex-column">
-          <div className="d-flex w-100 justify-content-between">
-            <a href="/reports/CorpOfficeReports/CERL" className="mb-1">Construction Engineering Research Labratory</a>
-            <small>CREL</small>
+        {corporateOffices.map((item, i) => (
+          <div className="list-group-item flex-column" key={i}>
+            <div className="d-flex w-100 justify-content-between">
+              <a href={ `/reports/CorpOfficeReports/${ item.office_id }` } className="mb-1">{ item.office_name }</a>
+              <small>CREL</small>
+            </div>
           </div>
-        </div>
-        <div className="list-group-item flex-column">
-          <div className="d-flex w-100 justify-content-between">
-            <a href="/reports/CorpOfficeReports/CERL" className="mb-1">Construction Engineering Research Labratory</a>
-            <small>CREL</small>
-          </div>
-        </div>
-        <div className="list-group-item flex-column">
-          <div className="d-flex w-100 justify-content-between">
-            <a href="/reports/CorpOfficeReports/CERL" className="mb-1">Construction Engineering Research Labratory</a>
-            <small>CREL</small>
-          </div>
-        </div>
-        <div className="list-group-item flex-column">
-          <div className="d-flex w-100 justify-content-between">
-            <a href="/reports/CorpOfficeReports/CERL" className="mb-1">Construction Engineering Research Labratory</a>
-            <small>CREL</small>
-          </div>
-        </div>
-        <div className="list-group-item flex-column">
-          <div className="d-flex w-100 justify-content-between">
-            <a href="/reports/CorpOfficeReports/CERL" className="mb-1">Construction Engineering Research Labratory</a>
-            <small>CREL</small>
-          </div>
-        </div>
-        <div className="list-group-item flex-column">
-          <div className="d-flex w-100 justify-content-between">
-            <a href="/reports/CorpOfficeReports/CERL" className="mb-1">Construction Engineering Research Labratory</a>
-            <small>CREL</small>
-          </div>
-        </div>
+        ))}
       </div>
 
     </ReportsContainer>
   );
 };
 
-export default ReportsPage;
+export default connect(
+  "selectCorporateOffices",
+  "selectCorporateOfficeIsLoading",
+  ReportsPage
+);
