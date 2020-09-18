@@ -1,0 +1,337 @@
+[
+    {
+        "office_id": "HQ",
+        "office_code": 1,
+        "office_name": "Headquarters, U.S. Army Corps of Engineers"
+    },
+    {
+        "office_id": "LRD",
+        "office_code": 2,
+        "office_name": "Great Lakes and Ohio River Division"
+    },
+    {
+        "office_id": "LRDG",
+        "office_code": 3,
+        "office_name": "Great Lakes Region"
+    },
+    {
+        "office_id": "LRC",
+        "office_code": 4,
+        "office_name": "Chicago District"
+    },
+    {
+        "office_id": "LRE",
+        "office_code": 5,
+        "office_name": "Detroit District"
+    },
+    {
+        "office_id": "LRB",
+        "office_code": 6,
+        "office_name": "Buffalo District"
+    },
+    {
+        "office_id": "LRDO",
+        "office_code": 7,
+        "office_name": "Ohio River Region"
+    },
+    {
+        "office_id": "LRH",
+        "office_code": 8,
+        "office_name": "Huntington District"
+    },
+    {
+        "office_id": "LRL",
+        "office_code": 9,
+        "office_name": "Louisville District"
+    },
+    {
+        "office_id": "LRN",
+        "office_code": 10,
+        "office_name": "Nashville District"
+    },
+    {
+        "office_id": "LRP",
+        "office_code": 11,
+        "office_name": "Pittsburgh District"
+    },
+    {
+        "office_id": "MVD",
+        "office_code": 12,
+        "office_name": "Mississippi Valley Division"
+    },
+    {
+        "office_id": "MVK",
+        "office_code": 13,
+        "office_name": "Vicksburg District"
+    },
+    {
+        "office_id": "MVM",
+        "office_code": 14,
+        "office_name": "Memphis District"
+    },
+    {
+        "office_id": "MVN",
+        "office_code": 15,
+        "office_name": "New Orleans District"
+    },
+    {
+        "office_id": "MVP",
+        "office_code": 16,
+        "office_name": "St. Paul District"
+    },
+    {
+        "office_id": "MVR",
+        "office_code": 17,
+        "office_name": "Rock Island District"
+    },
+    {
+        "office_id": "MVS",
+        "office_code": 18,
+        "office_name": "St. Louis District"
+    },
+    {
+        "office_id": "NAD",
+        "office_code": 19,
+        "office_name": "North Atlantic Division"
+    },
+    {
+        "office_id": "NAB",
+        "office_code": 20,
+        "office_name": "Baltimore District"
+    },
+    {
+        "office_id": "NAE",
+        "office_code": 21,
+        "office_name": "New England District"
+    },
+    {
+        "office_id": "NAN",
+        "office_code": 22,
+        "office_name": "New York District"
+    },
+    {
+        "office_id": "NAO",
+        "office_code": 23,
+        "office_name": "Norfolk District"
+    },
+    {
+        "office_id": "NAP",
+        "office_code": 24,
+        "office_name": "Philadelphia District"
+    },
+    {
+        "office_id": "NWD",
+        "office_code": 25,
+        "office_name": "Northwestern Division"
+    },
+    {
+        "office_id": "NWDP",
+        "office_code": 26,
+        "office_name": "Pacific Northwest Region"
+    },
+    {
+        "office_id": "NWP",
+        "office_code": 27,
+        "office_name": "Portland District"
+    },
+    {
+        "office_id": "NWS",
+        "office_code": 28,
+        "office_name": "Seattle District"
+    },
+    {
+        "office_id": "NWW",
+        "office_code": 29,
+        "office_name": "Walla Walla District"
+    },
+    {
+        "office_id": "NWDM",
+        "office_code": 30,
+        "office_name": "Missouri River Region"
+    },
+    {
+        "office_id": "NWK",
+        "office_code": 31,
+        "office_name": "Kansas City District"
+    },
+    {
+        "office_id": "NWO",
+        "office_code": 32,
+        "office_name": "Omaha District"
+    },
+    {
+        "office_id": "POD",
+        "office_code": 33,
+        "office_name": "Pacific Ocean Division"
+    },
+    {
+        "office_id": "POA",
+        "office_code": 34,
+        "office_name": "Alaska District"
+    },
+    {
+        "office_id": "POH",
+        "office_code": 35,
+        "office_name": "Hawaii District"
+    },
+    {
+        "office_id": "SAD",
+        "office_code": 36,
+        "office_name": "South Atlantic Division"
+    },
+    {
+        "office_id": "SAC",
+        "office_code": 37,
+        "office_name": "Charleston District"
+    },
+    {
+        "office_id": "SAJ",
+        "office_code": 38,
+        "office_name": "Jacksonville District"
+    },
+    {
+        "office_id": "SAM",
+        "office_code": 39,
+        "office_name": "Mobile District"
+    },
+    {
+        "office_id": "SAS",
+        "office_code": 40,
+        "office_name": "Savannah District"
+    },
+    {
+        "office_id": "SAW",
+        "office_code": 41,
+        "office_name": "Wilmington District"
+    },
+    {
+        "office_id": "SPD",
+        "office_code": 42,
+        "office_name": "South Pacific Division"
+    },
+    {
+        "office_id": "SPA",
+        "office_code": 43,
+        "office_name": "Albuquerque District"
+    },
+    {
+        "office_id": "SPK",
+        "office_code": 44,
+        "office_name": "Sacramento District"
+    },
+    {
+        "office_id": "SPL",
+        "office_code": 45,
+        "office_name": "Los Angeles District"
+    },
+    {
+        "office_id": "SPN",
+        "office_code": 46,
+        "office_name": "San Francisco District"
+    },
+    {
+        "office_id": "SWD",
+        "office_code": 47,
+        "office_name": "Southwestern Division"
+    },
+    {
+        "office_id": "SWF",
+        "office_code": 48,
+        "office_name": "Fort Worth District"
+    },
+    {
+        "office_id": "SWG",
+        "office_code": 49,
+        "office_name": "Galveston District"
+    },
+    {
+        "office_id": "SWL",
+        "office_code": 50,
+        "office_name": "Little Rock District"
+    },
+    {
+        "office_id": "SWT",
+        "office_code": 51,
+        "office_name": "Tulsa District"
+    },
+    {
+        "office_id": "LCRA",
+        "office_code": 52,
+        "office_name": "Lower Colorado River Authority"
+    },
+    {
+        "office_id": "CWMS",
+        "office_code": 53,
+        "office_name": "All CWMS Offices"
+    },
+    {
+        "office_id": "ERD",
+        "office_code": 54,
+        "office_name": "Engineer Research and Development Center"
+    },
+    {
+        "office_id": "CRREL",
+        "office_code": 55,
+        "office_name": "Cold Regions Research and Engineering Lab"
+    },
+    {
+        "office_id": "CHL",
+        "office_code": 56,
+        "office_name": "Coastal and Hydraulics Laboratory"
+    },
+    {
+        "office_id": "CERL",
+        "office_code": 57,
+        "office_name": "Construction Engineering Research Laboratory"
+    },
+    {
+        "office_id": "EL",
+        "office_code": 58,
+        "office_name": "Environmental Laboratory"
+    },
+    {
+        "office_id": "GSL",
+        "office_code": 59,
+        "office_name": "Geotechnical and Structures Laboratory"
+    },
+    {
+        "office_id": "ITL",
+        "office_code": 60,
+        "office_name": "Information Technology Laboratory"
+    },
+    {
+        "office_id": "TEC",
+        "office_code": 61,
+        "office_name": "Topographic Engineering Center"
+    },
+    {
+        "office_id": "IWR",
+        "office_code": 62,
+        "office_name": "Institute for Water Resources"
+    },
+    {
+        "office_id": "NDC",
+        "office_code": 63,
+        "office_name": "Navigation Data Center"
+    },
+    {
+        "office_id": "HEC",
+        "office_code": 64,
+        "office_name": "Hydrologic Engineering Cennter"
+    },
+    {
+        "office_id": "WCSC",
+        "office_code": 65,
+        "office_name": "Waterborne Commerce Statistics Center"
+    },
+    {
+        "office_id": "CPC",
+        "office_code": 66,
+        "office_name": "Central Processing Center"
+    },
+    {
+        "office_id": "WPC",
+        "office_code": 67,
+        "office_name": "Western Processing Center"
+    }
+]

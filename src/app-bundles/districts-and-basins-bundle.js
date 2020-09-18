@@ -16,7 +16,7 @@ export default createRestBundle({
   fetchActions: [],
   forceFetchActions: [],
   reduceFurther: (state, { type, payload }) => {
-    if (type === "SET_SELECTED_DISTRICT_ID") {
+    if (type === "SET_SELECTED_DISTRICT_ID" || type === "SET_SELECTED_BASIN_ID") {
       return Object.assign({}, state, payload);
     }
     else return state;
@@ -39,8 +39,6 @@ export default createRestBundle({
       "selectDistrictsAndBasinsItems",
       "selectSelectedDistrict",
       (districtsAndBasins, selectedDistrict) => {
-        //const selectedDistrict = "SPA";
-        console.log( "in selector:", districtsAndBasins, selectedDistrict );
         if(!selectedDistrict) return districtsAndBasins;
         const result = districtsAndBasins.filter(entry => entry.district_office_id === selectedDistrict)
         return result;
@@ -50,12 +48,24 @@ export default createRestBundle({
       dispatch({
         type: "SET_SELECTED_DISTRICT_ID",
         payload: {
-          _districtOfficeId: id,
+          _district_office_id: id,
+          _basin_location_id: null
+        },
+      });
+    },
+    doSetSelectedBasin: (id) => ({ dispatch }) => {
+      dispatch({
+        type: "SET_SELECTED_BASIN_ID",
+        payload: {
+          _basin_location_id: id,
         },
       });
     },
     selectSelectedDistrict: (state) => {
-      return state.districtsAndBasins._districtOfficeId;
+      return state.districtsAndBasins._district_office_id;
+    },
+    selectSelectedBasin: (state) => {
+      return state.districtsAndBasins._basin_location_id;
     },
   },
 });
