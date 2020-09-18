@@ -175,9 +175,9 @@ export default {
       source: new OSM(),
     });
 
-    const container = document.getElementById("popup"),
-    contentContainer = document.getElementById("popup-content"),
-    closer = document.getElementById('popup-closer');
+    const container = document.getElementById("map-popup"),
+    contentContainer = document.getElementById("map-popup-content"),
+    closer = document.getElementById('map-popup-closer');
 
     const overlay = new Overlay({
       element: container,
