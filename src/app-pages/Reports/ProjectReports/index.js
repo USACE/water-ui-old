@@ -15,7 +15,7 @@ const ReportsPage = ( { projectReports, projectReportsIsLoading } ) => {
               <a href={item.url} className="h5 text-info">{item.title}</a>
               <small>30 days ago</small>
             </div>
-            <p className="mb-1">Project report 1</p>
+            <p className="mb-1">Report info </p>
           </div>
         ))}
       </div>

@@ -1,28 +1,30 @@
 import React from "react";
 import ReportsContainer from "../../../app-components/Reports";
+import { connect } from "redux-bundler-react";
 
-const ReportsPage = () => {
+const ReportsPage = ( { districtReports, districtReportsIsLoading } ) => {
 
   return (
     <ReportsContainer activeTab="District Reports" sectionTitle="District Reports">
       <div className="list-group mx-auto">
-        <div className="list-group-item flex-column ">
-          <div className="d-flex w-100 justify-content-between">
-            <a href="/" className="h5 text-info">District Report 1 (PDF)</a>
-            <small>30 days ago</small>
+        {districtReports.map((item, i) => (
+          <div className="list-group-item flex-column" key={i}>
+            <div className="d-flex w-100 justify-content-between">
+              <h5>{item.districtName}</h5>
+                {item.reports.map((value, j) => (
+                  <a href={value.url} className="text-info">{value.title}</a>
+                ))}
+              <small>30 days ago</small>
+            </div>
           </div>
-          <p className="mb-1">District report 1</p>
-        </div>
-        <div className="list-group-item flex-column ">
-          <div className="d-flex w-100 justify-content-between">
-            <a href="/" className="h5 text-info">District Report 2 (PDF)</a>
-            <small>33 days ago</small>
-          </div>
-          <p className="mb-1">District report 2</p>
-        </div>
+        ))}
       </div>
     </ReportsContainer>
   );
 };
 
-export default ReportsPage;
+export default connect(
+  "selectDistrictReports",
+  "selectDistrictReportsIsLoading",
+  ReportsPage
+);
