@@ -11,10 +11,14 @@ const ReportsPage = ( { districtReports, districtReportsIsLoading } ) => {
           <div className="list-group-item flex-column" key={i}>
             <div className="d-flex w-100 justify-content-between">
               <h5>{item.districtName}</h5>
+              <div className="flex-column">
                 {item.reports.map((value, j) => (
-                  <a href={value.url} className="text-info">{value.title}</a>
+                  <div className="d-flex justify-content-center">
+                    <a href={value.url} className="text-center text-info">{value.title}</a>
+                    <small>{ new Date( value.date ).toLocaleDateString() }</small>
+                    </div>
                 ))}
-              <small>30 days ago</small>
+              </div>
             </div>
           </div>
         ))}

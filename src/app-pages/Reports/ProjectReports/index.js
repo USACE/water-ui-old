@@ -13,7 +13,7 @@ const ReportsPage = ( { projectReports, projectReportsIsLoading } ) => {
           <div className="list-group-item flex-column" key={i}>
             <div className="d-flex w-100 justify-content-between">
               <a href={item.url} className="h5 text-info">{item.title}</a>
-              <small>30 days ago</small>
+              <small>{ new Date( item.date ).toLocaleDateString() }</small>
             </div>
             <p className="mb-1">Report info </p>
           </div>
