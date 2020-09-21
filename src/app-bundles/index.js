@@ -21,6 +21,7 @@ import corporateOfficeBundle from "./corporate-office-bundle";
 import corporateOfficeReportBundle from "./corporate-office-report-bundle";
 import corporateOfficeSpecialReportBundle from "./corporate-office-special-report-bundle";
 import corporateOfficeLocationReportBundle from "./corporate-office-location-report-bundle";
+import projectReportBundle from "./project-reports-bundle";
 import cache from "./../cache.js";
 
 
@@ -57,5 +58,6 @@ export default composeBundles(
   corporateOfficeBundle,
   corporateOfficeReportBundle,
   corporateOfficeSpecialReportBundle,
-  corporateOfficeLocationReportBundle
+  corporateOfficeLocationReportBundle,
+  projectReportBundle
 );
