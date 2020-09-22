@@ -9,14 +9,14 @@ const ReportsPage = ( { districtReports, districtReportsIsLoading } ) => {
       <div className="list-group mx-auto">
         {districtReports.map((item, i) => (
           <div className="list-group-item flex-column" key={i}>
-            <div className="d-flex w-100 justify-content-between">
+            <div className="d-flex w-100">
               <h5>{item.districtName}</h5>
-              <div className="flex-column">
+              <div className="flex-column w-100">
                 {item.reports.map((value, j) => (
-                  <div className="d-flex justify-content-center">
-                    <a href={value.url} className="text-center text-info">{value.title}</a>
-                    <small>{ new Date( value.date ).toLocaleDateString() }</small>
-                    </div>
+                  <div className="d-flex w-100 justify-content-between justify-content-center">
+                    <a href={value.url} className="d-flex w-100 justify-content-center text-info">{value.title}</a>
+                    <small><div className="d-flex justify-content-end">{ new Date( value.date ).toLocaleDateString() }</div></small>
+                  </div>
                 ))}
               </div>
             </div>
