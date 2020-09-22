@@ -33,7 +33,7 @@ export default {
   getReducer: () => {
     const initialData = {
       url: isMockMode()
-        ? "http://localhost:3000/water/mockdata/location-list.json"
+        ? "/location-list.json"
         : "/api/location-list",
       // shouldFetch: false,
       // error: null,
