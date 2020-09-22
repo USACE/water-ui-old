@@ -584,7 +584,7 @@ export default (opts) => {
         "selectAppTime",
         selectLastFetch,
         (now, lastFetch) => {
-          return now - new Date(lastFetch) > config.staleAfter;
+          return now - new Date(lastFetch).getTime() > config.staleAfter;
         }
       ),
 
@@ -698,6 +698,7 @@ export default (opts) => {
         (template, params, ...args) => {
           const availableParams = Object.assign({}, params, ...args);
           let url = template;
+          if( url === null ) return url;
           Object.keys(availableParams).forEach((key) => {
             url = url.replace(`:${key}`, availableParams[key]);
           });
@@ -712,6 +713,7 @@ export default (opts) => {
         (template, params, ...args) => {
           const availableParams = Object.assign({}, params, ...args);
           let url = template;
+          if( url === null ) return url;
           Object.keys(availableParams).forEach((key) => {
             url = url.replace(`:${key}`, availableParams[key]);
           });
@@ -726,6 +728,7 @@ export default (opts) => {
         (template, params, ...args) => {
           const availableParams = Object.assign({}, params, ...args);
           let url = template;
+          if( url === null ) return url;
           Object.keys(availableParams).forEach((key) => {
             url = url.replace(`:${key}`, availableParams[key]);
           });
