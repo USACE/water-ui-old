@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import TextSection from '../../../app-components/TextSection';
 import ReportsContainer from "../../../app-components/Reports";
 import { connect } from "redux-bundler-react";

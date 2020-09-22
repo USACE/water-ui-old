@@ -50,7 +50,7 @@ const ReportsContainer = ( props ) => {
               titleStyle={ titleStyle }
             />
             <div className="search-box-container w-50 py-4 px-4 mx-auto container position-relative">
-              <div style={ { top: '100%', zIndex: '1' } }><SearchBox text={ 'Search Reports' }/></div>
+              <div style={ { top: '100%', zIndex: 1 } }><SearchBox text={ 'Search Reports' }/></div>
             </div>
           </div>
 
