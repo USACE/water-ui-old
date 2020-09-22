@@ -9,10 +9,10 @@ const MapPage = (props) => {
 		<main>
 			<MapNavBar />
 			<div className=" map-and-details-container " style={{display:"flex",flexDirection:"row"}}>
-				<div className="map-details" style={{padding:"0",flexGrow:"1"}}>
+				<div className="map-details" style={{padding:"0",flexGrow: 1}}>
 					<MapDetails/>
 				</div>
-				<div className="map-container" style={{padding:"0",flexGrow:"35"}} >
+				<div className="map-container" style={{padding:"0",flexGrow: 35}} >
 					<Map height={'900px'} options={opts} mapKey={"mapPageMap"}/>
 				</div>
 			</div>

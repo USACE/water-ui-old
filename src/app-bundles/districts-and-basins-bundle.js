@@ -9,17 +9,20 @@ export default createRestBundle({
   staleAfter: 10000,
   persist: false,
   //routeParam: "districtsAndBasinsSlug",
-  getTemplate: isMockMode() ? "/districts-and-basins.json" : "/api/districts-and-basins",
+  getTemplate: isMockMode() ? "/districts-and-basins.json" : "/water/locations/basins",
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
   fetchActions: [],
   forceFetchActions: [],
   reduceFurther: (state, { type, payload }) => {
-    if (type === "SET_SELECTED_DISTRICT_ID" || type === "SET_SELECTED_BASIN_ID") {
-      return Object.assign({}, state, payload);
+    switch (type) {
+      case "SET_SELECTED_DISTRICT_ID":
+      case "SET_SELECTED_BASIN_ID":
+        return Object.assign({}, state, payload);
+      default:
+        return state;
     }
-    else return state;
   },
   addons: {
     selectDistricts: createSelector(

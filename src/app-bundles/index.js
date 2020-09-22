@@ -13,11 +13,19 @@ import createAuthBundle from "@corpsmap/create-auth-bundle";
 import createJwtApiBundle from "@corpsmap/create-jwt-api-bundle";
 import pkg from "../../package.json";
 
+import { isMockMode } from "./bundle-utils";
 import routeBundle from "./routes-bundle";
 import mapsBundle from "./maps-bundle";
 import districtsAndBasinsBundle from "./districts-and-basins-bundle";
+import corporateOfficeBundle from "./corporate-office-bundle";
+import corporateOfficeReportBundle from "./corporate-office-report-bundle";
+import corporateOfficeSpecialReportBundle from "./corporate-office-special-report-bundle";
+import corporateOfficeLocationReportBundle from "./corporate-office-location-report-bundle";
+import projectReportBundle from "./project-reports-bundle";
+import watershedReportBundle from "./watershed-reports-bundle";
+import districtReportBundle from "./district-reports-bundle";
 import cache from "./../cache.js";
-import { isMockMode } from "./bundle-utils";
+
 
 export default composeBundles(
   createAuthBundle({
@@ -48,5 +56,12 @@ export default composeBundles(
   }),
   mapsBundle,
   routeBundle,
-  districtsAndBasinsBundle
+  districtsAndBasinsBundle,
+  corporateOfficeBundle,
+  corporateOfficeReportBundle,
+  corporateOfficeSpecialReportBundle,
+  corporateOfficeLocationReportBundle,
+  projectReportBundle,
+  watershedReportBundle,
+  districtReportBundle
 );
