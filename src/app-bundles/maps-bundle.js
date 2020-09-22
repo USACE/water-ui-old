@@ -52,7 +52,9 @@ export default {
       },
     });
   },
+doAddDataToMap: () => ({ dispatch })=> {
 
+},
   doMapsShutdown: (key) => ({ dispatch }) => {
     dispatch({
       type: actions.MAPS_SHUTDOWN,

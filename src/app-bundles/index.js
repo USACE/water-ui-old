@@ -16,6 +16,7 @@ import pkg from "../../package.json";
 import { isMockMode } from "./bundle-utils";
 import routeBundle from "./routes-bundle";
 import mapsBundle from "./maps-bundle";
+import mapsPageBundle from "./map-page-bundle";
 import districtsAndBasinsBundle from "./districts-and-basins-bundle";
 import corporateOfficeBundle from "./corporate-office-bundle";
 import corporateOfficeReportBundle from "./corporate-office-report-bundle";
@@ -56,6 +57,7 @@ export default composeBundles(
   }),
   mapsBundle,
   routeBundle,
+  mapsPageBundle,
   districtsAndBasinsBundle,
   corporateOfficeBundle,
   corporateOfficeReportBundle,
@@ -63,5 +65,5 @@ export default composeBundles(
   corporateOfficeLocationReportBundle,
   projectReportBundle,
   watershedReportBundle,
-  districtReportBundle
+  districtReportBundle,
 );

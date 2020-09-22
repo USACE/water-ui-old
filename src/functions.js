@@ -4,9 +4,28 @@ export const isValidArrWithValues = arr => {
     }
     return false;
   };
-  
+
   export const isValidObjWithValues = obj => {
     if (obj && Object.keys(obj).length > 0) {
       return true;
     } else {return false;}
+  };
+
+  export const fetch_request = async (url,params) => {
+
+    let payload;
+    try {
+      const res = await fetch(url);
+
+      payload = await res.json();
+
+      // Add Status and ok to the payload
+      payload.status = res.status;
+      payload.ok = res.ok;
+    } catch (err) {
+      console.error(err);
+      // Any Fetch error, return undefined to handle on the front end
+      return undefined;
+    }
+    return payload;
   };
