@@ -5,6 +5,14 @@ import './searchbox.css';
 
 const SearchBox = ({text='search',theme='light'}) => {
 
+	const handleKeyDown = (event) => {
+		var searchString = event.target.value;
+		if (event.key === 'Enter') {
+		  //console.log(searchString);
+		  //do any action
+		}
+	  }
+
 	const searchClass = classnames({
 		'bg-white focus:outline-none focus:shadow-outline border border-gray-500 py-2 px-4 block w-full appearance-none leading-normal': theme === 'light',
 		'bg-gray-700 focus:outline-none focus:shadow-outline py-2 px-4 block w-full appearance-none leading-normal': theme === 'dark'
@@ -12,9 +20,10 @@ const SearchBox = ({text='search',theme='light'}) => {
 
 	return (
 		<div className="search-box-container" data-test='search-box-container'>
-            <input style={{width:'100%'}} className={searchClass} type="search" placeholder={text}/>
+            <input style={{width:'100%'}} className={searchClass} type="search" placeholder={text} onKeyDown={handleKeyDown}/>
 		</div>
 	);
+
 };
 
 SearchBox.propTypes = {
