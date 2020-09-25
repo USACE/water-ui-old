@@ -6,15 +6,16 @@ export default createRestBundle({
   name: "corporateOfficeReports",
   uid: "title",
   prefetch: true, // Need to figure out how to set this to false and only fetch when route matches
-  staleAfter: 0,
+  staleAfter: 10000,
   persist: false,
   routeParam: "corpOfficeSlug",
   getTemplate: isMockMode() ? "/corporate-office-reports.json?:corpOfficeSlug" : "/water/locations/offices/:corpOfficeSlug/reports",
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: [],
+  fetchActions: ["URL_UPDATED", "AUTH_LOGGED_IN"],
   forceFetchActions: [],
+  urlParamSelectors: [],
   addons: {
     selectCorporateOfficeReports: createSelector(
       "selectCorporateOfficeReportsItems",

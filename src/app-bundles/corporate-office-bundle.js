@@ -23,5 +23,14 @@ export default createRestBundle({
         return offices;
       }
     ),
+    selectCorporateOfficeIdByRoute: createSelector(
+      "selectCorporateOfficeByRoute",
+      (office) => {
+        if (!office) return {};
+        return {
+          officeId: office.office_id,
+        };
+      }
+    ),
   },
 });
