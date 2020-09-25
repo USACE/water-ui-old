@@ -15,7 +15,7 @@ test( "builds REST URL correctly", () => {
   expect( url ).toBe( "http://localhost:3030/water/locations" );
 
   url = getRestUrlTest( true, false, "/water/locations", "/location-list.json", true );
-  expect( url ).toBe( "/water/mockdata/location-list.json" );
+  expect( url ).toBe( `${ process.env.PUBLIC_URL }/mockdata/location-list.json` );
 
   url = getRestUrlTest( true, false, "/water/locations", "/location-list.json", false );
   expect( url ).toBe( "http://localhost:3030/water/locations" );
@@ -24,26 +24,26 @@ test( "builds REST URL correctly", () => {
   expect( url ).toBe( "https://api.rsgis.dev/development/water/locations" );
 
   url = getRestUrlTest( false, false, "/water/locations", "/location-list.json", true );
-  expect( url).toBe( "/water/mockdata/location-list.json" );
+  expect( url).toBe( `${ process.env.PUBLIC_URL }/mockdata/location-list.json` );
 
   url = getRestUrlTest( false, false, "/water/locations", "/location-list.json", false );
   expect( url ).toBe( "https://api.rsgis.dev/development/water/locations" );
 
 
   url = getRestUrlTest( true, true, "/water/locations", "/location-list.json" );
-  expect( url ).toBe( "/water/mockdata/location-list.json" );
+  expect( url ).toBe( `${ process.env.PUBLIC_URL }/mockdata/location-list.json` );
 
   url = getRestUrlTest( true, true, "/water/locations", "/location-list.json", true );
-  expect( url ).toBe( "/water/mockdata/location-list.json" );
+  expect( url ).toBe( `${ process.env.PUBLIC_URL }/mockdata/location-list.json` );
 
   url = getRestUrlTest( true, true, "/water/locations", "/location-list.json", false );
   expect( url ).toBe( "http://localhost:3030/water/locations" );
 
   url = getRestUrlTest( false, true, "/water/locations", "/location-list.json" );
-  expect( url ).toBe( "/water/mockdata/location-list.json" );
+  expect( url ).toBe( `${ process.env.PUBLIC_URL }/mockdata/location-list.json` );
 
   url = getRestUrlTest( false, true, "/water/locations", "/location-list.json", true );
-  expect( url ).toBe( "/water/mockdata/location-list.json" );
+  expect( url ).toBe( `${ process.env.PUBLIC_URL }/mockdata/location-list.json` );
 
   url = getRestUrlTest( false, true, "/water/locations", "/location-list.json", false );
   expect( url ).toBe( "https://api.rsgis.dev/development/water/locations" );
