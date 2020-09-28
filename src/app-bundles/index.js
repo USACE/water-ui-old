@@ -33,7 +33,9 @@ export default composeBundles(
     redirectOnLogout: "/",
   }),
   createJwtApiBundle({
-    root: "", // We use the getRestUrl() utility method to build the REST URLs.
+    // `root` will force the use of the URL root across all bundles. Our bundles use the getRestUrl() utility method
+    // to build the REST URLs on a per-bundle basis. This way individual bundles can use either mock or live URLs.
+    root: "",
     unless: {
       method: "GET",
     },
