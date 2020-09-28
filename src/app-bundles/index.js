@@ -13,7 +13,6 @@ import createAuthBundle from "@corpsmap/create-auth-bundle";
 import createJwtApiBundle from "@corpsmap/create-jwt-api-bundle";
 import pkg from "../../package.json";
 
-import { isMockMode } from "./bundle-utils";
 import routeBundle from "./routes-bundle";
 import mapsBundle from "./maps-bundle";
 import mapsPageBundle from "./map-page-bundle";
@@ -34,10 +33,9 @@ export default composeBundles(
     redirectOnLogout: "/",
   }),
   createJwtApiBundle({
-    root:
-      process.env.NODE_ENV === "development"
-        ? isMockMode() ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`
-        : isMockMode() ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`,
+    // `root` will force the use of the URL root across all bundles. Our bundles use the getRestUrl() utility method
+    // to build the REST URLs on a per-bundle basis. This way individual bundles can use either mock or live URLs.
+    root: "",
     unless: {
       method: "GET",
     },
