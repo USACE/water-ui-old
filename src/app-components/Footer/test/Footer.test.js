@@ -8,7 +8,7 @@ import Footer from "../index";
 import { findByTestAttr } from "../../../testUtils";
 
 // Set up the component with props:
-const initialSetup = (children) => {
+const initialSetup = (props) => {
   const wrapper = shallow(
     <Footer {...props} />
   );

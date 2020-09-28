@@ -1,5 +1,5 @@
 import createRestBundle from "./create-rest-bundle";
-import { isMockMode } from "./bundle-utils";
+import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
 
 export default createRestBundle({
@@ -9,7 +9,10 @@ export default createRestBundle({
   staleAfter: 0,
   persist: false,
   //routeParam: "",
-  getTemplate: isMockMode() ? "/project-reports.json" : "/water/reports/ProjectReports",
+  getTemplate: getRestUrl(
+    "/water/reports/ProjectReports",
+    "/project-reports.json",
+    true ),
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,

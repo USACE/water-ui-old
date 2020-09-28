@@ -1,6 +1,6 @@
 /* eslint-disable no-mixed-operators */
 // import { createSelector } from "redux-bundler";
-import { isMockMode } from "./bundle-utils";
+import { getRestUrl } from "./bundle-utils";
 // import { isValidArrWithValues } from "../functions";
 import olMap from "ol/Map.js";
 import View from "ol/View";
@@ -32,9 +32,7 @@ export default {
 
   getReducer: () => {
     const initialData = {
-      url: isMockMode()
-        ? `${ process.env.PUBLIC_URL }/mockdata/location-list.json`
-        : "/api/location-list",
+      url: getRestUrl( "/water/locations", "/location-list.json" )
       // shouldFetch: false,
       // error: null,
       // hasLoaded: false,
@@ -218,11 +216,19 @@ export default {
       if (feature) {
         const geometry = feature.getGeometry();
         const coord = geometry.getCoordinates();
-        const featureProp = feature.getProperties().features && feature.getProperties().features[0] && feature.getProperties().features[0].description;
+        const featureProperties = feature.getProperties();
+        let displayedFeature = feature;
 
-        let content =  featureProp &&
-          "<h5>" + feature.getProperties().features[0].description + "</h5>";
-        content += featureProp && '<p>' + feature.getProperties().features[0].longLat + '</p>';
+        // Feature can already be a specific location, or a cluster of features.
+        if( Array.isArray( featureProperties.features ) ) {
+          if( featureProperties.features.length > 0 ) displayedFeature = featureProperties.features[ 0 ]
+          else return;
+        }
+
+        //const featureProp = featureProperties.features && featureProperties.features[0] && featureProperties.features[0].description;
+
+        let content =  "<h5>" + displayedFeature.description + "</h5>";
+        content += '<p>' + displayedFeature.longLat + '</p>';
         contentContainer.innerHTML = content;
         overlay.setPosition(coord);
       }
