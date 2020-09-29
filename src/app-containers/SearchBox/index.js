@@ -26,6 +26,13 @@ const SearchBox = ({text='search',theme='light'}) => {
 
 };
 
+SearchBox.defaultProps = {
+  text: "Enter search text",
+  value: "",
+  onChange: ( event ) => null,
+  onKeyDown: ( event ) => null,
+};
+
 SearchBox.propTypes = {
 	title: PropTypes.string,
 };
