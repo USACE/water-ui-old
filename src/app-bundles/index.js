@@ -13,6 +13,7 @@ import createAuthBundle from "@corpsmap/create-auth-bundle";
 import createJwtApiBundle from "@corpsmap/create-jwt-api-bundle";
 import pkg from "../../package.json";
 
+import appBundle from "./app-bundle";
 import routeBundle from "./routes-bundle";
 import mapsBundle from "./maps-bundle";
 import mapsPageBundle from "./map-page-bundle";
@@ -53,6 +54,7 @@ export default composeBundles(
     center: [-80.79, 26.94],
     zoom: 5,
   }),
+  appBundle,
   mapsBundle,
   routeBundle,
   mapsPageBundle,
