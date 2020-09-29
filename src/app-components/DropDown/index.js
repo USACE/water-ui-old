@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'redux-bundler-react';
+import { RoutePaths } from "../../app-bundles/routes-bundle";
 
 const defaultOnChange = (e, doUpdateUrl) => {
 	//just routing to map page for now
 	//will pass in onChange prop later to make function more reusable and push selection to redux
-	doUpdateUrl('/map');
+	doUpdateUrl(RoutePaths.Map);
 };
 
 // replace with custom dd with list if we need custom design or tabbing

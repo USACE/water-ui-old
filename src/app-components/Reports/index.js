@@ -2,6 +2,7 @@ import React from "react";
 import TextSection from '../../app-components/TextSection';
 import SearchBox from '../../app-containers/SearchBox';
 import Tabs from '../../app-components/Tabs';
+import { RoutePaths } from "../../app-bundles/routes-bundle";
 
 const containerTextSection = {
   textAlign: 'left',
@@ -22,17 +23,16 @@ const sectionTitleStyle = {
   margin: "2rem 0rem"
 }
 
-const TabInfo = {
-  activeTab: 'none', //default tab - none selected
-  tabLinks: [
-    { url: '/reports/CorpOfficeReports', name: 'Corp Office Reports' },
-    { url: '/reports/ProjectReports', name: 'Project Reports' },
-    { url: '/reports/WatershedReports', name: 'Watershed Reports' },
-    { url: '/reports/DistrictReports', name: 'District Reports' }
-  ]
-}
-
 const ReportsContainer = ( props ) => {
+  const TabInfo = {
+    activeTab: 'none', //default tab - none selected
+    tabLinks: [
+      { url: RoutePaths.CorpOfficeList, name: 'Corp Office Reports' },
+      { url: RoutePaths.ProjectReports, name: 'Project Reports' },
+      { url: RoutePaths.WatershedReports, name: 'Watershed Reports' },
+      { url: RoutePaths.DistrictReports, name: 'District Reports' }
+    ]
+  }
 
   if( props.activeTab ) TabInfo.activeTab = props.activeTab;
 

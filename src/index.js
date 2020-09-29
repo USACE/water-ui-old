@@ -10,6 +10,7 @@ import App from "./App";
 cache.getAll().then((initialData) => {
   const store = getStore(initialData);
 
+  // @ts-ignore
   if (process.env.NODE_ENV === "development") window.store = store;
 
   ReactDOM.render(

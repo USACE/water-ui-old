@@ -15,22 +15,38 @@ import AllLocations from "../app-pages/Reports/CorpOfficeReports/CERL/AllLocatio
 import DataResources from "../app-pages/DataResources";
 import fourOhFour from "../app-pages/fourOhFour";
 
+export const RoutePaths = {
+  Home: `/`,
+  Help: `/help`,
+  Locations: `/locations`,
+  Map: `/map`,
+  ReportsHome: `/reports`,
+  DataResources: `/data-resources`,
+  CorpOfficeList: `/reports/corporate`,
+  DistrictReports: `/reports/district`,
+  WatershedReports: `/reports/watershed`,
+  ProjectReports: `/reports/project`,
+  CorpOfficeReports: `/reports/corporate/:corpOfficeSlug`,
+  CorpOfficeSpecialReports: `/reports/corporate/:corpOfficeSlug/special`,
+  CorpOfficeLocationReports: `/reports/corporate/:corpOfficeSlug/locations`,
+};
+
 export default createRouteBundle(
   {
     "": Home,
-    "/": Home,
-    "/help": Help,
-    "/locations": Locations,
-    "/map": MapPage,
-    "/reports": Reports,
-    "/reports/CorpOfficeReports": CorpOfficeReports,
-    "/reports/DistrictReports": DistrictReports,
-    "/reports/WatershedReports": WatershedReports,
-    "/reports/ProjectReports": ProjectReports,
-    "/reports/CorpOfficeReports/:corpOfficeSlug": CERL,
-    "/reports/CorpOfficeReports/:corpOfficeSlug/SpecialReports": SpecialReports,
-    "/reports/CorpOfficeReports/:corpOfficeSlug/AllLocations": AllLocations,
-    "/data-resources": DataResources,
+    [RoutePaths.Home]: Home,
+    [RoutePaths.Help]: Help,
+    [RoutePaths.Locations]: Locations,
+    [RoutePaths.Map]: MapPage,
+    [RoutePaths.ReportsHome]: Reports,
+    [RoutePaths.CorpOfficeList]: CorpOfficeReports,
+    [RoutePaths.DistrictReports]: DistrictReports,
+    [RoutePaths.WatershedReports]: WatershedReports,
+    [RoutePaths.ProjectReports]: ProjectReports,
+    [RoutePaths.CorpOfficeReports]: CERL,
+    [RoutePaths.CorpOfficeSpecialReports]: SpecialReports,
+    [RoutePaths.CorpOfficeLocationReports]: AllLocations,
+    [RoutePaths.DataResources]: DataResources,
     "*": fourOhFour,
   },
   {

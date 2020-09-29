@@ -2,6 +2,7 @@ import React from "react";
 import TextSection from '../../../app-components/TextSection';
 import ReportsContainer from "../../../app-components/Reports";
 import { connect } from "redux-bundler-react";
+import { RoutePaths } from "../../../app-bundles/routes-bundle";
 
 const TextSubSection = {
   textAlign: 'left',
@@ -33,14 +34,15 @@ const ReportsPage = ( { corporateOffices, corporateOfficeIsLoading } ) => {
       <div style={ pageSectionDivider }></div>
 
       <div className="list-group w-50">
-        {corporateOffices.map((item, i) => (
-          <div className="list-group-item flex-column" key={i}>
+        { corporateOffices.map( ( item, i ) => (
+          <div className="list-group-item flex-column" key={ i }>
             <div className="d-flex w-100 justify-content-between">
-              <a href={ `/reports/CorpOfficeReports/${ item.office_id }` } className="mb-1">{ item.office_name }</a>
+              <a href={ `${ RoutePaths.CorpOfficeReports.replace( ":corpOfficeSlug", item.office_id ) }` }
+                 className="mb-1">{ item.office_name }</a>
               <small>CREL</small>
             </div>
           </div>
-        ))}
+        ) ) }
       </div>
 
     </ReportsContainer>
