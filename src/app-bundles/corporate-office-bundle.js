@@ -1,19 +1,21 @@
 import createRestBundle from "./create-rest-bundle";
 import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
+import { RoutePaths } from "./routes-bundle";
 
 export default createRestBundle({
   name: "corporateOffice",
   uid: "office_id",
-  prefetch: true,
+  prefetch: false,
   staleAfter: 10000,
-  persist: false,
+  persist: true,
   routeParam: "corpOfficeSlug",
   getTemplate: getRestUrl( "/water/locations/offices", "/offices.json" ),
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: [],
+  activeRoutes: [ RoutePaths.CorpOfficeList ],
+  fetchActions: ["APP_INITIALIZED","URL_UPDATED"],
   forceFetchActions: [],
   addons: {
     selectCorporateOffices: createSelector(

@@ -113,6 +113,11 @@ export default (opts) => {
     sortAsc: true,
     mergeItems: false,
     clearItemsOnAbort: true,
+
+    /**
+     * If set, data fetching will only occur if the current URL path equals one of the specified `activeRoutes`.
+     */
+    activeRoutes: []
   };
 
   const config = Object.assign({}, defaults, opts);
@@ -176,6 +181,9 @@ export default (opts) => {
   const selectPageSize = `select${uCaseName}PageSize`;
   const selectSortBy = `select${uCaseName}SortBy`;
   const selectSortAsc = `select${uCaseName}SortAsc`;
+  const selectActiveRoutes = `select${uCaseName}ActiveRoutes`;
+  const selectIsActiveRoute = `selectIs${uCaseName}ActiveRoute`;
+  const selectIsGetUrlPopulated = `selectIs${uCaseName}GetUrlPopulated`;
 
   // reactors
   const reactShouldFetch = `react${uCaseName}ShouldFetch`;
@@ -661,6 +669,23 @@ export default (opts) => {
         }
       ),
 
+      [selectActiveRoutes]: () => {
+        return config.activeRoutes;
+      },
+
+      [selectIsActiveRoute]: createSelector(
+        "selectRouteInfo",
+        (routeInfo) => {
+          if(config.activeRoutes.length === 0) return true;
+          return config.activeRoutes.find( path => path === routeInfo.pattern) !== undefined;
+        }
+      ),
+
+      [selectIsGetUrlPopulated]: createSelector(
+        selectGetUrl,
+        (url) => url.indexOf("/:") === -1
+      ),
+
       [selectGetTemplate]: () => {
         return config.getTemplate;
       },
@@ -764,9 +789,13 @@ export default (opts) => {
         return state[config.name]._sortAsc;
       },
 
-      [reactShouldFetch]: (state) => {
-        if (state[config.name]._shouldFetch) return { actionCreator: doFetch };
-      },
+      [reactShouldFetch]: createSelector(
+        (state) => state,
+        selectIsActiveRoute,
+        selectIsGetUrlPopulated,
+        (state, isActiveRoute, isGetUrlPopulated) => {
+          if (state[config.name]._shouldFetch && isActiveRoute && isGetUrlPopulated) return { actionCreator: doFetch };
+        }),
     },
     config.addons
   );
