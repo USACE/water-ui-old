@@ -26,9 +26,9 @@ export const RoutePaths = {
   DistrictReports: `/reports/district`,
   WatershedReports: `/reports/watershed`,
   ProjectReports: `/reports/project`,
-  CorpOfficeReports: `/reports/corporate/:corpOfficeSlug`,
-  CorpOfficeSpecialReports: `/reports/corporate/:corpOfficeSlug/special`,
-  CorpOfficeLocationReports: `/reports/corporate/:corpOfficeSlug/locations`,
+  CorpOfficeReports: `/reports/corporate/:corpOfficeId`,
+  CorpOfficeSpecialReports: `/reports/corporate/:corpOfficeId/special`,
+  CorpOfficeLocationReports: `/reports/corporate/:corpOfficeId/locations`,
 };
 
 export default createRouteBundle(

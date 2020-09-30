@@ -23,9 +23,9 @@ const CorpOfficeReportsContainer = ( props ) => {
   const TabInfo = {
     activeTab: 'Corp Office Reports',
     tabLinks: [
-      { url: RoutePaths.CorpOfficeReports.replace( ":corpOfficeSlug", props.officeId ), name: 'Corp Office Reports' },
-      { url: RoutePaths.CorpOfficeLocationReports.replace( ":corpOfficeSlug", props.officeId ), name: 'All Locations' },
-      { url: RoutePaths.CorpOfficeSpecialReports.replace( ":corpOfficeSlug", props.officeId ), name: 'Special Reports' }
+      { url: RoutePaths.CorpOfficeReports.replace( ":corpOfficeId", props.officeId ), name: 'Corp Office Reports' },
+      { url: RoutePaths.CorpOfficeLocationReports.replace( ":corpOfficeId", props.officeId ), name: 'All Locations' },
+      { url: RoutePaths.CorpOfficeSpecialReports.replace( ":corpOfficeId", props.officeId ), name: 'Special Reports' }
     ]
   }
 

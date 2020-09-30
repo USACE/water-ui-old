@@ -37,7 +37,7 @@ const ReportsPage = ( { corporateOffices, corporateOfficeIsLoading } ) => {
         { corporateOffices.map( ( item, i ) => (
           <div className="list-group-item flex-column" key={ i }>
             <div className="d-flex w-100 justify-content-between">
-              <a href={ `${ RoutePaths.CorpOfficeReports.replace( ":corpOfficeSlug", item.office_id ) }` }
+              <a href={ `${ RoutePaths.CorpOfficeReports.replace( ":corpOfficeId", item.office_id ) }` }
                  className="mb-1">{ item.office_name }</a>
               <small>CREL</small>
             </div>

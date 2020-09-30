@@ -8,10 +8,10 @@ export default createRestBundle({
   prefetch: false,
   staleAfter: 0,
   persist: false,
-  routeParam: "corpOfficeSlug",
+  routeParam: "corpOfficeId",
   getTemplate: getRestUrl(
-    "/water/locations/offices/:corpOfficeSlug/reports",
-    "/corporate-office-reports.json?/:corpOfficeSlug",
+    "/water/locations/offices/:corpOfficeId/reports",
+    "/corporate-office-reports.json?/:corpOfficeId",
     true ),
   putTemplate: null,
   postTemplate: null,
