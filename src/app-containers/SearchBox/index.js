@@ -7,15 +7,22 @@ const SearchBox = ({value,onChange,onEnterKey,text='search'}) => {
 
 
 	const handleKeyDown = (event) => {
-    var searchString = event.target.value;
-    onChange(); //call onChange method - saves new input?
+    value = event.target.value;
 		if (event.key === 'Enter') { //if key pressed Enter, call onEnterKey
-		  console.log(searchString);
+		  console.log(value+" Enter pressed");
       //does any submit action
-      onEnterKey();
-		}
+      onEnterKey;
+    }
+    return true;
   }
 
+
+  const onChangeHandler = (event) => {
+    value = event.target.value;
+    console.log("onChange: "+value);
+    onChange;
+    return true;
+  }
 
 	const searchClass = classnames( //removed :theme
 		'bg-white focus:outline-none focus:shadow-outline border border-gray-500 py-2 px-4 block w-full appearance-none leading-normal'
@@ -23,7 +30,7 @@ const SearchBox = ({value,onChange,onEnterKey,text='search'}) => {
 
 	return (
 		<div className="search-box-container" data-test='search-box-container'>
-      <input style={{width:'100%'}} className={searchClass} type="search" placeholder={text} onKeyDown={handleKeyDown} defaultValue={value}/>
+      <input style={{width:'100%'}} role="input" className={searchClass} type="search" placeholder={text} onKeyDown={handleKeyDown} onChange={onChangeHandler} value={value}/>
 		</div>
 	);
 
@@ -31,7 +38,7 @@ const SearchBox = ({value,onChange,onEnterKey,text='search'}) => {
 
 SearchBox.defaultProps = {
   text: "Enter search text",
-  value: "",
+  value: undefined,
   onChange: ( event ) => null,
   onEnterKey: ( event ) => null,
 };
