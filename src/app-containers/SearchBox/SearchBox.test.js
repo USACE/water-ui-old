@@ -18,7 +18,7 @@ const initialSetup = (props) => {
 };
 
 const typeSetup = (props) => {
-  props = {value:"Hello World!", onChange:true, onEnterKey:true};
+  props = {value:"Hello World!", onChange:console.log("onchanged"), onEnterKey:true};
   const wrapper = shallow(
     <SearchBox {...props}/>
   );
@@ -40,5 +40,5 @@ test('type', () => {
 
   userEvent.type(screen.getByRole('input'), 'Hello World!,{enter}')
   expect(screen.getByRole('input')).toContain('Hello World!')
-
+  //expect(screen.getByRole('input')).toHaveValue('Hello World!') //cant find toHaveValue function
 })

@@ -13,7 +13,7 @@ const SearchBox = ({value,onChange,onEnterKey,text='search'}) => {
       //does any submit action
       onEnterKey;
     }
-    return true;
+    //return true;
   }
 
 
@@ -21,7 +21,7 @@ const SearchBox = ({value,onChange,onEnterKey,text='search'}) => {
     value = event.target.value;
     console.log("onChange: "+value);
     onChange;
-    return true;
+    //return true;
   }
 
 	const searchClass = classnames( //removed :theme
