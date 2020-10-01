@@ -16,17 +16,18 @@ const textSubSection = {
   width: '100%'
 }
 
-const TabInfo = {
-  activeTab: 'Corp Office Reports',
-  tabLinks: [
-    { url: '/reports/CorpOfficeReports/CERL', name: 'Corp Office Reports' },
-    { url: '/reports/CorpOfficeReports/CERL/AllLocations', name: 'All Locations' },
-    { url: '/reports/CorpOfficeReports/CERL/SpecialReports', name: 'Special Reports' }
-  ]
-}
-
 const CorpOfficeReportsContainer = ( props ) => {
   const { subSectionTitle, subSectionCode } = props;
+
+  const TabInfo = {
+    activeTab: 'Corp Office Reports',
+    tabLinks: [
+      { url: `/reports/CorpOfficeReports/${ props.officeId }`, name: 'Corp Office Reports' },
+      { url: `/reports/CorpOfficeReports/${ props.officeId }/AllLocations`, name: 'All Locations' },
+      { url: `/reports/CorpOfficeReports/${ props.officeId }/SpecialReports`, name: 'Special Reports' }
+    ]
+  }
+
   if( props.activeTab ) TabInfo.activeTab = props.activeTab;
 
   return (

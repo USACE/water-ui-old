@@ -1,41 +1,34 @@
 import React from "react";
 import ReportsContainer from "../../../../app-components/Reports";
 import CorpOfficeReportsContainer from "../../../../app-components/Reports/CorpOfficeReports";
+import { connect } from "redux-bundler-react";
 
-const ReportsPage = () => {
+const ReportsPage = ( { corporateOfficeReports, corporateOfficeByRoute: office } ) => {
 
   return (
     <ReportsContainer activeTab="Corp Office Reports">
-      <CorpOfficeReportsContainer subSectionTitle="Corp Office Reports" activeTab="Corp Office Reports" subSectionCode="CRREL">
+      <CorpOfficeReportsContainer
+        officeId={ office ? office.office_id : null } subSectionTitle={ office ? office.office_name : "" }
+        activeTab="Corp Office Reports" subSectionCode="CRREL">
         <div className="list-group mx-auto">
-          <div className="list-group-item flex-column ">
-            <div className="d-flex w-100 justify-content-between">
-              <a href="/" className="h5 text-info">Missouri River Basin Water Management Bulletin (PDF)</a>
-              <small>30 days ago</small>
+
+          {corporateOfficeReports.map((item, i) => (
+            <div className="list-group-item flex-column" key={i}>
+              <div className="d-flex w-100 justify-content-between">
+                <a href={ item.url } className="mb-1">{ item.title }</a>
+                <small>{ new Date( item.date ).toLocaleDateString() }</small>
+              </div>
             </div>
-            <p className="mb-1">Summary report for all reservoirs in the Missouri River Region area of responsibility.
-              Produced on a daily basis</p>
-          </div>
-          <div className="list-group-item flex-column ">
-            <div className="d-flex w-100 justify-content-between">
-              <a href="/" className="h5 text-info">Missouri River Basin Water Management Bulletin (PDF)</a>
-              <small>30 days ago</small>
-            </div>
-            <p className="mb-1">Summary report for all reservoirs in the Missouri River Region area of responsibility.
-              Produced on a daily basis</p>
-          </div>
-          <div className="list-group-item flex-column ">
-            <div className="d-flex w-100 justify-content-between">
-              <a href="/" className="h5 text-info">Missouri River Basin Water Management Bulletin (PDF)</a>
-              <small>30 days ago</small>
-            </div>
-            <p className="mb-1">Summary report for all reservoirs in the Missouri River Region area of responsibility.
-              Produced on a daily basis</p>
-          </div>
+          ))}
+
         </div>
       </CorpOfficeReportsContainer>
     </ReportsContainer>
   );
 };
 
-export default ReportsPage;
+export default connect(
+  "selectCorporateOfficeReports",
+  "selectCorporateOfficeByRoute",
+  ReportsPage
+);

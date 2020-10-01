@@ -15,10 +15,17 @@ import pkg from "../../package.json";
 
 import routeBundle from "./routes-bundle";
 import mapsBundle from "./maps-bundle";
+import mapsPageBundle from "./map-page-bundle";
 import districtsAndBasinsBundle from "./districts-and-basins-bundle";
-import districtsAndBasinsValuesBundle from "./districts-and-basins-values-bundle";
+import corporateOfficeBundle from "./corporate-office-bundle";
+import corporateOfficeReportBundle from "./corporate-office-report-bundle";
+import corporateOfficeSpecialReportBundle from "./corporate-office-special-report-bundle";
+import corporateOfficeLocationReportBundle from "./corporate-office-location-report-bundle";
+import projectReportBundle from "./project-reports-bundle";
+import watershedReportBundle from "./watershed-reports-bundle";
+import districtReportBundle from "./district-reports-bundle";
 import cache from "./../cache.js";
-import { isMockMode } from "./bundle-utils";
+
 
 export default composeBundles(
   createAuthBundle({
@@ -26,10 +33,9 @@ export default composeBundles(
     redirectOnLogout: "/",
   }),
   createJwtApiBundle({
-    root:
-      process.env.NODE_ENV === "development"
-        ? isMockMode() ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`
-        : isMockMode() ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`,
+    // `root` will force the use of the URL root across all bundles. Our bundles use the getRestUrl() utility method
+    // to build the REST URLs on a per-bundle basis. This way individual bundles can use either mock or live URLs.
+    root: "",
     unless: {
       method: "GET",
     },
@@ -49,6 +55,13 @@ export default composeBundles(
   }),
   mapsBundle,
   routeBundle,
+  mapsPageBundle,
   districtsAndBasinsBundle,
-  districtsAndBasinsValuesBundle
+  corporateOfficeBundle,
+  corporateOfficeReportBundle,
+  corporateOfficeSpecialReportBundle,
+  corporateOfficeLocationReportBundle,
+  projectReportBundle,
+  watershedReportBundle,
+  districtReportBundle
 );

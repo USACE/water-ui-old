@@ -7,34 +7,37 @@ const defaultOnChange = (e, doUpdateUrl) => {
   //will pass in onChange prop later to make function more reusable and push selection to redux
   doUpdateUrl("/map");
 };
-//replace with custom dd with lis if we need custom design or tabbing
-const DropDown = (props) => {
-  const { label, id, options, doUpdateUrl, placeHolder, onChange, optName,optId} = props;
-  return (
-    <div className="dropdown-container form-group">
-      <select
-        className="form-control"
-        id={id}
-        aria-labelledby={label}
-        onChange={(e) => onChange(e)}
-      >
-        <option>{placeHolder}</option>
-        {
-        options.map((item, i) => (
-          <option key={i} value={item[optId]}>{item[optName]}</option>
-        ))}
-      </select>
-    </div>
-  );
+
+// replace with custom dd with list if we need custom design or tabbing
+
+const DropDown = ( { label, id, options, doUpdateUrl, onChange, value, title } ) => {
+	return (
+		<div className="dropdown-container form-group">
+			<select className="form-control" id={id} aria-labelledby={label}
+              value={value}
+              onChange={(e) => onChange(e, doUpdateUrl)}>
+        {value ? null : <option value="">Select {title}...</option>}
+				{options.map((item, i) => (
+					<option key={i} value={item.id !== null ? item.id : item}>{item.value !== null ? item.value : item}</option>
+				))}
+			</select>
+		</div>
+	);
 };
 
 DropDown.propTypes = {
-  title: PropTypes.string,
+	title: PropTypes.string,
+  label: PropTypes.string,
+  id: PropTypes.any,
+  options: PropTypes.array,
+  doUpdateUrl: PropTypes.func,
+  onChange: PropTypes.func,
+  value: PropTypes.any
 };
 
 DropDown.defaultProps = {
-  onChange: defaultOnChange,
-  placeHolder: "Select"
+	onChange: defaultOnChange,
+  title: "One"
 };
 
 export default connect("doUpdateUrl",DropDown);
