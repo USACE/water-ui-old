@@ -3,25 +3,22 @@ import PropTypes from 'prop-types';
 import classnames from "classnames";
 import './searchbox.css';
 
-const SearchBox = ({value,onChange,onEnterKey,text='search'}) => {
+const SearchBox = ({value,onChange,onEnterKey,text}) => {
 
 
 	const handleKeyDown = (event) => {
     value = event.target.value;
 		if (event.key === 'Enter') { //if key pressed Enter, call onEnterKey
-		  console.log(value+" Enter pressed");
+		  //console.log(value+" Enter pressed");
       //does any submit action
-      onEnterKey;
+      onEnterKey();
     }
-    //return true;
   }
-
 
   const onChangeHandler = (event) => {
     value = event.target.value;
-    console.log("onChange: "+value);
-    onChange;
-    //return true;
+    //console.log("onChange: "+value);
+    onChange();
   }
 
 	const searchClass = classnames( //removed :theme
