@@ -11,7 +11,6 @@ import { findByTestAttr } from "../../testUtils";
 
 // Set up the component with props:
 const initialSetup = (props) => {
-  props = {value:"valuetest", onChange: () => console.log("onChanged"), onEnterKey: () => console.log("Enter Pressed"), text:"placeholdertext"};
   const wrapper = shallow(
     <SearchBox {...props}/>
   );
@@ -25,33 +24,47 @@ test("component renders without error", () => {
 });
 
 test("value test", () => {
-  const wrapper = initialSetup();
+  const wrapper = initialSetup( { value: "Hello World" } );
   const component = findByTestAttr(wrapper, "search-box-container");
   render(component)
-  let inputEl = screen.getByDisplayValue('valuetest');
-  expect(inputEl).not.toBe(null)
+  let inputEl = screen.getByRole('searchbox');
+  expect(inputEl.value).toBe("Hello World");
 })
 
 test("placeholder text test", () => {
-  const wrapper = initialSetup();
+  const wrapper = initialSetup( { text: "Test says Enter some text" } );
   const component = findByTestAttr(wrapper, "search-box-container");
   render(component)
-  let placeholderTextEl = screen.getByPlaceholderText('placeholdertext');
-  expect(placeholderTextEl).not.toBe(null)
+  let inputEl = screen.getByRole('searchbox');
+  expect(inputEl.placeholder).toBe("Test says Enter some text");
 })
 
 test("onChange test", () => { //in progress
-  const wrapper = initialSetup();
+  let inputValue = null;
+  const onChangeFn = ( event ) => inputValue = event.target.value;
+
+  const wrapper = initialSetup( { onChange: onChangeFn } );
   const component = findByTestAttr(wrapper, "search-box-container");
-  render(component)
-  let inputEl = screen.getByRole('input')
+  render(component);
+  let inputEl = screen.getByRole('searchbox')
   userEvent.type(inputEl, 'Hello World!') //onChange triggered
+
+  expect( inputValue ).toBe( inputEl.value );
+  expect( inputValue ).toBe( "Hello World!" );
 })
 
 test("onEnter test", () => { //in progress
-  const wrapper = initialSetup();
+  let inputValue = null;
+  const onEnterKeyFn = ( event ) => inputValue = event.target.value;
+
+  const wrapper = initialSetup( { onEnterKey: onEnterKeyFn } );
   const component = findByTestAttr(wrapper, "search-box-container");
   render(component)
-  let inputEl = screen.getByRole('input')
+  let inputEl = screen.getByRole('searchbox')
+  userEvent.type(inputEl, 'Hello World!') //onChange triggered
+
   fireEvent.keyDown( inputEl, { key: "Enter" } ) //onEnter triggered
+
+  expect( inputValue ).toBe( inputEl.value );
+  expect( inputValue ).toBe( "Hello World!" );
 })

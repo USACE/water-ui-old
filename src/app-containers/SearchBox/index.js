@@ -7,18 +7,11 @@ const SearchBox = ({value,onChange,onEnterKey,text}) => {
 
 
 	const handleKeyDown = (event) => {
-    value = event.target.value;
-		if (event.key === 'Enter') { //if key pressed Enter, call onEnterKey
-		  //console.log(value+" Enter pressed");
-      //does any submit action
-      onEnterKey();
-    }
+		if (event.key === 'Enter') onEnterKey( event );
   }
 
   const onChangeHandler = (event) => {
-    value = event.target.value;
-    //console.log("onChange: "+value);
-    onChange();
+    onChange( event );
   }
 
 	const searchClass = classnames( //removed :theme
@@ -27,7 +20,7 @@ const SearchBox = ({value,onChange,onEnterKey,text}) => {
 
 	return (
 		<div className="search-box-container" data-test='search-box-container'>
-      <input style={{width:'100%'}} role="input" className={searchClass} type="search" placeholder={text} onKeyDown={handleKeyDown} onChange={onChangeHandler} value={value}/>
+      <input style={{width:'100%'}} role="searchbox" className={searchClass} type="search" placeholder={text} onKeyDown={handleKeyDown} onChange={onChangeHandler} value={value}/>
 		</div>
 	);
 
@@ -41,7 +34,10 @@ SearchBox.defaultProps = {
 };
 
 SearchBox.propTypes = {
-	title: PropTypes.string,
+	text: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onEnterKey: PropTypes.func
 };
 
 export default SearchBox;
