@@ -54,7 +54,7 @@ const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, select
 
         <div className="search-box-container py-4 px-4 mx-auto container position-relative">
           <div style={ { top: '100%', zIndex: 1, textAlign: "center" } }>
-            <SearchBox text={ 'Search by City, State, ZIP, or Project Names' }/>
+            <SearchBox text={ 'Search by City, State, ZIP, or Project Names' } />
             <p className="mt-3">Or search by district and basin</p>
             <div className="district-basin-dd row">
               <div className="col-md-6">

@@ -1,5 +1,5 @@
 import React from "react";
-import Tabs from "../../Tabs";
+import TabLinks from "../../TabLinks";
 import TextSection from "../../TextSection";
 
 const pageSectionDivider = {
@@ -40,7 +40,7 @@ const CorpOfficeReportsContainer = ( props ) => {
         <p className="mt-2">{ subSectionCode }</p>
       </div>
 
-      <Tabs TabInfo={ TabInfo }></Tabs>
+      <TabLinks TabInfo={ TabInfo }></TabLinks>
       <div style={ pageSectionDivider }></div>
       {props.children}
     </>
