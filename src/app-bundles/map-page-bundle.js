@@ -54,36 +54,39 @@ export default {
 
   doMapsInitialize: (key, el, options) => async ({ dispatch, store }) => {
     // fetch url, will replace with global fetch function later
-    const getClusterData = async (url) => {
-      let payload = { data: [] };
-      //adjust to fit actual api later
-      try {
-        const res = await fetch(url);
-        payload.data = await res.json();
-        // payload = await res.json();
-        // Add Status and ok to the payload
-        payload.status = res.status;
-        payload.ok = res.ok;
-      } catch (err) {
-        console.error(err);
-        return undefined;
-      }
-      return payload;
-    };
 
-    const fetchClusterData = async () => {
-      const data = await getClusterData(store.getState().maps.url);
-      // if (data && data.ok && data.response) {
-      //   return data.response;
-      // }
-      if (data && data.ok) {
-        return data.data;
-      }
-      console.error("Could not fetch Cluster Data", data);
-      return undefined;
-    };
+    const data = await store.selectMapLocations();
+    console.log("data: ",data);
+    // const getClusterData = async (url) => {
+    //   let payload = { data: [] };
+    //   //adjust to fit actual api later
+    //   try {
+    //     const res = await fetch(url);
+    //     payload.data = await res.json();
+    //     // payload = await res.json();
+    //     // Add Status and ok to the payload
+    //     payload.status = res.status;
+    //     payload.ok = res.ok;
+    //   } catch (err) {
+    //     console.error(err);
+    //     return undefined;
+    //   }
+    //   return payload;
+    // };
 
-    const data = await fetchClusterData();
+    // const fetchClusterData = async () => {
+    //   const data = await getClusterData(store.getState().maps.url);
+    //   // if (data && data.ok && data.response) {
+    //   //   return data.response;
+    //   // }
+    //   if (data && data.ok) {
+    //     return data.data;
+    //   }
+    //   console.error("Could not fetch Cluster Data", data);
+    //   return undefined;
+    // };
+
+    // const data = await fetchClusterData();
 
     function createStyle(src, img) {
       return new Style({

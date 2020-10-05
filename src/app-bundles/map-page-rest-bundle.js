@@ -27,9 +27,8 @@ export default createRestBundle( {
      selectMapLocations: createSelector(
       "selectMapLocationsItems",
      (mapLocations) => {
-
-        const data = [...mapLocations]
-        console.log("map data: ",data)
+        // const data =  [...mapLocations]
+        // console.log("map data: ",data);
         return mapLocations;
       }
     ),
