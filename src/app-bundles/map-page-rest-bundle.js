@@ -9,7 +9,7 @@ export default createRestBundle( {
   staleAfter: 10000,
   persist: false,
   //routeParam: "",
-  getTemplate: getRestUrl( "/water/map", "/location-list.json",true ),
+  getTemplate: getRestUrl( "/water/locations", "/location-list.json" ),
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,

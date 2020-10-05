@@ -234,12 +234,15 @@ export default {
       return false;
     });
 
+    /*
+    Took this out because we don't want to set initialized back to false unless the map is actually destroyed.
+
     dispatch({
       type: actions.MAPS_INITIALIZED,
       payload: {
         isLocationsMapInitialized: false,
       },
-    });
+    });*/
   },
 
   doMapsShutdown: (key) => ({ dispatch }) => {
