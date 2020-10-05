@@ -32,7 +32,8 @@ export default {
 
   getReducer: () => {
     const initialData = {
-      url: getRestUrl( "/water/locations", "/location-list.json" )
+      url: getRestUrl( "/water/locations", "/location-list.json" ),
+      data:[]
       // shouldFetch: false,
       // error: null,
       // hasLoaded: false,
@@ -262,6 +263,13 @@ export default {
       },
     });
   },
+  //   reactDataChange: (state) => {
+  //   if (state.maps._shouldInitialize)
+  //     return { actionCreator: "doMapsInitialize" };
+  // },
+  // selectMapsState: (state) => {
+  //   return state.maps;
+  // },
   // reactMapsShouldInitialize: (state) => {
   //   if (state.maps._shouldInitialize)
   //     return { actionCreator: "doMapsInitialize" };

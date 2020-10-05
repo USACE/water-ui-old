@@ -35,4 +35,4 @@ class Map extends React.Component {
   }
 }
 
-export default connect("doMapsInitialize", "doMapsShutdown", Map);
+export default connect("doMapsInitialize", "doMapsShutdown","selectMapLocations", Map);
