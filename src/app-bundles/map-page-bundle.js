@@ -38,6 +38,7 @@ export default {
       key: undefined,
       el: undefined,
       options: undefined,
+      map: undefined,
       // shouldFetch: false,
       // error: null,
       // hasLoaded: false,
@@ -58,12 +59,29 @@ export default {
   },
 
   doMapsInitialize: (key, el, options) => async ({ dispatch, store }) => {
+    const map = new olMap(
+      Object.assign(
+        {
+          controls: [new ScaleBar({ units: "us" }), new BasemapPicker()],
+          target: el,
+          view: new View({
+            center: (options && options.center) || [-11000000, 4600000],
+            zoom: (options && options.zoom) || 4,
+          }),
+          overlays: [],
+          layers: [],
+        },
+        options
+      )
+    );
+
     dispatch({
       type: actions.MAPS_INITIALIZED,
       payload: {
         key: key,
         el: el,
         options: options,
+        map: map,
         isLocationsMapInitialized: true,
       },
     });
@@ -171,23 +189,13 @@ export default {
       offset: [0, -10],
     });
 
-    const el = store.getState().maps.el;
-    const options = store.getState().maps.options;
-    const map = new olMap(
-      Object.assign(
-        {
-          controls: [new ScaleBar({ units: "us" }), new BasemapPicker()],
-          target: el,
-          view: new View({
-            center: (options && options.center) || [-11000000, 4600000],
-            zoom: (options && options.zoom) || 4,
-          }),
-          overlays: [overlay],
-          layers: [raster,clusters,unclusteredLayer],
-        },
-        options
-      )
-    );
+  // get map obj from state
+  const map = store.getState().maps.map;
+  //add data points to map obj
+    map.addOverlay(overlay);
+    map.addLayer(raster);
+    map.addLayer(clusters);
+    map.addLayer(unclusteredLayer);
 
     closer.onclick = function () {
       overlay.setPosition(undefined);
