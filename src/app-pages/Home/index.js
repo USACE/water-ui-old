@@ -32,12 +32,12 @@ const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, select
 
   const onDistrictChange = ( e, doUpdateUrl ) => {
     doSetSelectedDistrict( e.target.value );
-  }
+  };
 
   const onBasinChange = ( e, doUpdateUrl ) => {
     doSetSelectedBasin( e.target.value );
     doUpdateUrl( '/map' );
-  }
+  };
 
   return (
     <main>

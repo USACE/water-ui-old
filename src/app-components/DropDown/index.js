@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'redux-bundler-react';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "redux-bundler-react";
 
 const defaultOnChange = (e, doUpdateUrl) => {
-	//just routing to map page for now
-	//will pass in onChange prop later to make function more reusable and push selection to redux
-	doUpdateUrl('/map');
+  //just routing to map page for now
+  //will pass in onChange prop later to make function more reusable and push selection to redux
+  doUpdateUrl("/map");
 };
 
 // replace with custom dd with list if we need custom design or tabbing
@@ -40,4 +40,4 @@ DropDown.defaultProps = {
   title: "One"
 };
 
-export default connect('doUpdateUrl', DropDown);
+export default connect("doUpdateUrl",DropDown);

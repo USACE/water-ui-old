@@ -32,17 +32,19 @@ export default {
 
   getReducer: () => {
     const initialData = {
-      url: getRestUrl( "/water/locations", "/location-list.json" )
+      url: getRestUrl("/water/locations", "/location-list.json"),
+      data: [],
+      isLocationsMapInitialized: false,
+      map: undefined,
       // shouldFetch: false,
       // error: null,
-      // hasLoaded: false,
-      // data: null,
       // icon: null,
     };
 
     return (state = initialData, { type, payload }) => {
       switch (type) {
         case actions.MAPS_INITIALIZED:
+          return Object.assign({}, state, payload);
         case actions.MAPS_SHUTDOWN:
           return Object.assign({}, state, payload);
         default:
@@ -52,37 +54,32 @@ export default {
   },
 
   doMapsInitialize: (key, el, options) => async ({ dispatch, store }) => {
-    // fetch url, will replace with global fetch function later
-    const getClusterData = async (url) => {
-      let payload = { data: [] };
-      //adjust to fit actual api later
-      try {
-        const res = await fetch(url);
-        payload.data = await res.json();
-        // payload = await res.json();
-        // Add Status and ok to the payload
-        payload.status = res.status;
-        payload.ok = res.ok;
-      } catch (err) {
-        console.error(err);
-        return undefined;
-      }
-      return payload;
-    };
+    const map = new olMap(
+      Object.assign(
+        {
+          controls: [new ScaleBar({ units: "us" }), new BasemapPicker()],
+          target: el,
+          view: new View({
+            center: (options && options.center) || [-11000000, 4600000],
+            zoom: (options && options.zoom) || 4,
+          }),
+          overlays: [],
+          layers: [],
+        },
+        options
+      )
+    );
 
-    const fetchClusterData = async () => {
-      const data = await getClusterData(store.getState().maps.url);
-      // if (data && data.ok && data.response) {
-      //   return data.response;
-      // }
-      if (data && data.ok) {
-        return data.data;
-      }
-      console.error("Could not fetch Cluster Data", data);
-      return undefined;
-    };
-
-    const data = await fetchClusterData();
+    dispatch({
+      type: actions.MAPS_INITIALIZED,
+      payload: {
+        map: map,
+        isLocationsMapInitialized: true,
+      },
+    });
+  },
+  doAddDataToMap: (map) => async ({ dispatch, store }) => {
+    const data = store.selectMapLocations();
 
     function createStyle(src, img) {
       return new Style({
@@ -104,9 +101,7 @@ export default {
       for (let key in data) {
         const jsonItem = data[key];
         const iconFeature = new Feature(
-          new Point(
-            fromLonLat([jsonItem.longitude, jsonItem.latitude])
-          )
+          new Point(fromLonLat([jsonItem.longitude, jsonItem.latitude]))
         );
         iconFeature.description = jsonItem.public_name;
         iconFeature.longLat = [jsonItem.longitude, jsonItem.latitude];
@@ -174,8 +169,8 @@ export default {
     });
 
     const container = document.getElementById("map-popup"),
-    contentContainer = document.getElementById("map-popup-content"),
-    closer = document.getElementById('map-popup-closer');
+      contentContainer = document.getElementById("map-popup-content"),
+      closer = document.getElementById("map-popup-closer");
 
     const overlay = new Overlay({
       element: container,
@@ -185,31 +180,22 @@ export default {
       offset: [0, -10],
     });
 
-    const map = new olMap(
-      Object.assign(
-        {
-          controls: [new ScaleBar({ units: "us" }), new BasemapPicker()],
-          target: el,
-          view: new View({
-            center: (options && options.center) || [-11000000, 4600000],
-            zoom: (options && options.zoom) || 4,
-          }),
-          // overlays: [overlay],
-          layers: [raster, clusters, unclusteredLayer],
-        },
-        options
-      )
-    );
+    // get map obj from state
+    const map = store.getState().maps.map;
+
+    //add data points to map obj
     map.addOverlay(overlay);
-    closer.onclick = function() {
+    map.addLayer(raster);
+    map.addLayer(clusters);
+    map.addLayer(unclusteredLayer);
+
+    closer.onclick = function () {
       overlay.setPosition(undefined);
       closer.blur();
       return false;
-  };
+    };
     map.on("pointermove", function (e) {
-      const feature = map.forEachFeatureAtPixel(e.pixel, function (
-        feature
-      ) {
+      const feature = map.forEachFeatureAtPixel(e.pixel, function (feature) {
         return feature;
       });
       //need to adjust to add properties at base level and popup blurs on mouse exit
@@ -220,15 +206,14 @@ export default {
         let displayedFeature = feature;
 
         // Feature can already be a specific location, or a cluster of features.
-        if( Array.isArray( featureProperties.features ) ) {
-          if( featureProperties.features.length > 0 ) displayedFeature = featureProperties.features[ 0 ]
+        if (Array.isArray(featureProperties.features)) {
+          if (featureProperties.features.length > 0)
+            displayedFeature = featureProperties.features[0];
           else return;
         }
 
-        //const featureProp = featureProperties.features && featureProperties.features[0] && featureProperties.features[0].description;
-
-        let content =  "<h5>" + displayedFeature.description + "</h5>";
-        content += '<p>' + displayedFeature.longLat + '</p>';
+        let content = "<h5>" + displayedFeature.description + "</h5>";
+        content += "<p>" + displayedFeature.longLat + "</p>";
         contentContainer.innerHTML = content;
         overlay.setPosition(coord);
       }
@@ -244,14 +229,6 @@ export default {
       closer.blur();
       return false;
     });
-
-    dispatch({
-      type: actions.MAPS_INITIALIZED,
-      payload: {
-        [key]: map,
-        data: data,
-      },
-    });
   },
 
   doMapsShutdown: (key) => ({ dispatch }) => {
@@ -259,9 +236,17 @@ export default {
       type: actions.MAPS_SHUTDOWN,
       payload: {
         [key]: null,
+        isLocationsMapInitialized: false,
       },
     });
   },
+  //   reactDataChange: (state) => {
+  //   if (state.maps._shouldInitialize)
+  //     return { actionCreator: "doMapsInitialize" };
+  // },
+  // selectMapsState: (state) => {
+  //   return state.maps;
+  // },
   // reactMapsShouldInitialize: (state) => {
   //   if (state.maps._shouldInitialize)
   //     return { actionCreator: "doMapsInitialize" };

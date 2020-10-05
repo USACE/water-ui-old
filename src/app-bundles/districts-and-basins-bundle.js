@@ -44,7 +44,7 @@ export default createRestBundle( {
       ( districtsAndBasins, selectedDistrict ) => {
         if( !selectedDistrict ) return districtsAndBasins;
         const result = districtsAndBasins.filter( entry => entry.district_office_id === selectedDistrict )
-        return result.sort( ( a, b ) => ( a.basin_name > b.basin_name ) ? 1 : -1 );;
+        return result.sort( ( a, b ) => ( a.basin_name > b.basin_name ) ? 1 : -1 );
       }
     ),
     doSetSelectedDistrict: ( id ) => ( { dispatch } ) => {
