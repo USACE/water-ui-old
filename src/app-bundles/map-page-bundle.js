@@ -35,9 +35,6 @@ export default {
       url: getRestUrl("/water/locations", "/location-list.json"),
       data: [],
       isLocationsMapInitialized: false,
-      key: undefined,
-      el: undefined,
-      options: undefined,
       map: undefined,
       // shouldFetch: false,
       // error: null,
@@ -78,9 +75,6 @@ export default {
     dispatch({
       type: actions.MAPS_INITIALIZED,
       payload: {
-        key: key,
-        el: el,
-        options: options,
         map: map,
         isLocationsMapInitialized: true,
       },
