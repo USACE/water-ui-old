@@ -24,6 +24,7 @@ import corporateOfficeLocationReportBundle from "./corporate-office-location-rep
 import projectReportBundle from "./project-reports-bundle";
 import watershedReportBundle from "./watershed-reports-bundle";
 import districtReportBundle from "./district-reports-bundle";
+import locationDetailBundle from "./location-detail-bundle";
 import cache from "./../cache.js";
 
 
@@ -64,4 +65,5 @@ export default composeBundles(
   projectReportBundle,
   watershedReportBundle,
   districtReportBundle,
+  locationDetailBundle,
 );
