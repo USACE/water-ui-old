@@ -182,12 +182,12 @@ export default {
             center: (options && options.center) || [-11000000, 4600000],
             zoom: (options && options.zoom) || 4,
           }),
+          overlays: [overlay],
           layers: [raster,clusters,unclusteredLayer],
         },
         options
       )
     );
-    map.addOverlay(overlay);
 
     closer.onclick = function () {
       overlay.setPosition(undefined);
