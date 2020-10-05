@@ -38,8 +38,6 @@ export default {
       map: undefined,
       // shouldFetch: false,
       // error: null,
-      // hasLoaded: false,
-      // data: null,
       // icon: null,
     };
 
@@ -82,7 +80,6 @@ export default {
   },
   doAddDataToMap: (map) => async ({ dispatch, store }) => {
     const data = store.selectMapLocations();
-    // console.log("data: ",data,el, options,map);
 
     function createStyle(src, img) {
       return new Style({
@@ -183,9 +180,10 @@ export default {
       offset: [0, -10],
     });
 
-  // get map obj from state
-  const map = store.getState().maps.map;
-  //add data points to map obj
+    // get map obj from state
+    const map = store.getState().maps.map;
+
+    //add data points to map obj
     map.addOverlay(overlay);
     map.addLayer(raster);
     map.addLayer(clusters);
@@ -214,8 +212,6 @@ export default {
           else return;
         }
 
-        //const featureProp = featureProperties.features && featureProperties.features[0] && featureProperties.features[0].description;
-
         let content = "<h5>" + displayedFeature.description + "</h5>";
         content += "<p>" + displayedFeature.longLat + "</p>";
         contentContainer.innerHTML = content;
@@ -233,20 +229,9 @@ export default {
       closer.blur();
       return false;
     });
-
-    /*
-    Took this out because we don't want to set initialized back to false unless the map is actually destroyed.
-
-    dispatch({
-      type: actions.MAPS_INITIALIZED,
-      payload: {
-        isLocationsMapInitialized: false,
-      },
-    });*/
   },
 
   doMapsShutdown: (key) => ({ dispatch }) => {
-    console.log("maps shut off");
     dispatch({
       type: actions.MAPS_SHUTDOWN,
       payload: {
