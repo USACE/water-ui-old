@@ -2,9 +2,10 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import SearchBox from '../../../../app-containers/SearchBox';
 import DropDown from '../../../../app-components/DropDown';
+import { connect } from "redux-bundler-react";
 
-const MapNavBar = (props) => (
-  <div className="MapNavBarWrapper">
+const MapNavBar = ( { doSetSelectedLocationCode } ) => (
+  <div className="MapNavBarWrapper" onClick={ () => doSetSelectedLocationCode( '12345' ) }>
    	<div className="h-100 px-5 py-4 bg-secondary">
 			<div className="row">
 				<div className="col-md-4">
@@ -47,6 +48,7 @@ const MapNavBar = (props) => (
 //   // bla: PropTypes.string,
 // };
 
-
-
-export default MapNavBar;
+export default connect(
+  "doSetSelectedLocationCode",
+  MapNavBar
+);

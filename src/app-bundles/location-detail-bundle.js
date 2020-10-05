@@ -1,34 +1,52 @@
 import createRestBundle from "./create-rest-bundle";
 import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
-import { match } from "assert";
 
 export default createRestBundle( {
-  name: "locationDetails",
-  uid: "location_id",
-  //prefetch: true, //cant be fetched until location_id loaded in state
+  name: "locationDetail",
+  uid: "location_code",
   staleAfter: 10000,
   persist: false,
-  //routeParam: "districtsAndBasinsSlug",
-  getTemplate: getRestUrl( "/water/locations", "/location-detail.json" ),
+  getTemplate: getRestUrl( "/water/locations/:location_code", "/location-detail.json?/:location_code", true ),
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
   fetchActions: [],
-  forceFetchActions: [],
+  forceFetchActions: [ "LOCATION_CODE_SELECTED" ],
+  urlParamSelectors: [ "selectLocationAsGetTemplateParam" ],
+  reduceFurther: ( state, { type, payload } ) => {
+    switch( type ) {
+      case "SET_SELECTED_LOCATION_CODE":
+        return Object.assign( {}, state, payload );
+      default:
+        return state;
+    }
+  },
   addons: {
-    selectLocation: createSelector(
-      "selectLocationDetails",
-      ( locationDetails ) => {
-        const matchedLocationId = "";
-        const result = locationDetails.filter( entry => {
-          if( matchedLocationId.equals(entry.location_id)) return false;
-          matchedLocationId = entry.location_id;
-          return true;
-        });
-        return result;
+    doSetSelectedLocationCode: ( id ) => ( { dispatch } ) => {
+      dispatch( {
+        type: "SET_SELECTED_LOCATION_CODE",
+        payload: {
+          _location_code: id,
+        },
+      } );
+      dispatch( {
+        type: "LOCATION_CODE_SELECTED",
+        payload: {}
+      } );
+    },
+    selectSelectedLocationCode: ( { locationDetail } ) => {
+      return locationDetail._location_code;
+    },
+    selectLocationAsGetTemplateParam: createSelector(
+      "selectSelectedLocationCode",
+      ( selectedLocationCode ) => {
+        if( !selectedLocationCode ) return {};
+        return {
+          location_code: selectedLocationCode,
+        };
       }
     ),
 
   }
-})
+} )
