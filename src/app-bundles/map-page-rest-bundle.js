@@ -32,6 +32,19 @@ export default createRestBundle( {
         return mapLocations;
       }
     ),
+    selectIsLocationsMapInitialized: ( state ) => {
+      return state.maps.isLocationsMapInitialized;
+    },
+    reactShouldCreateMap: createSelector(
+      "selectIsLocationsMapInitialized",
+      "selectMapLocationsItems",
+      ( isMapInitialized, mapLocationItems) => {
+        console.log("in reactor","isMapInitialized: ",isMapInitialized,"mapLocationItems: ",mapLocationItems.length > 0)
+        if( isMapInitialized && mapLocationItems.length > 0 ){
+          console.log("do is dispatched")
+          return { actionCreator: "doAddDataToMap" };
+        }
+      }),
     // selectMapLocations: createSelector(
     //   "selectMapLocationsItem",
     //   "mapLocations",
