@@ -189,11 +189,13 @@ export default {
     map.addLayer(clusters);
     map.addLayer(unclusteredLayer);
 
-    closer.onclick = function () {
-      overlay.setPosition(undefined);
-      closer.blur();
-      return false;
-    };
+    if(closer){
+      closer.onclick = function () {
+        overlay.setPosition(undefined);
+        closer.blur();
+        return false;
+      };
+    }
     map.on("pointermove", function (e) {
       const feature = map.forEachFeatureAtPixel(e.pixel, function (feature) {
         return feature;
