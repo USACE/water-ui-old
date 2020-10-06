@@ -1,19 +1,20 @@
 import { createRouteBundle } from "redux-bundler";
 
-import Home from "../app-pages/Home";
-import Locations from "../app-pages/Locations";
-import MapPage from "../app-pages/Map";
-import Help from "../app-pages/Help";
-import Reports from "../app-pages/Reports";
-import CorpOfficeReports from "../app-pages/Reports/CorpOfficeReports";
-import DistrictReports from "../app-pages/Reports/DistrictReports";
-import ProjectReports from "../app-pages/Reports/ProjectReports";
-import WatershedReports from "../app-pages/Reports/WatershedReports";
-import CERL from "../app-pages/Reports/CorpOfficeReports/CERL";
-import SpecialReports from "../app-pages/Reports/CorpOfficeReports/CERL/SpecialReports";
-import AllLocations from "../app-pages/Reports/CorpOfficeReports/CERL/AllLocations";
-import DataResources from "../app-pages/DataResources";
+import HomePage from "../app-pages/home/home";
+import HelpPage from "../app-pages/help/help";
+import DataResourcesPage from "../app-pages/data-resources/data-resources";
+import Locations from "../app-pages/locations/locations";
+import MapPage from "../app-pages/map/map-page";
+import Reports from "../app-pages/reports";
+import CorpOfficeReports from "../app-pages/reports/corp-office-reports/corp-office-list";
+import DistrictReports from "../app-pages/reports/district-reports/district-reports";
+import ProjectReports from "../app-pages/reports/project-reports/project-reports";
+import WatershedReports from "../app-pages/reports/watershed-reports/watershed-reports";
+import OfficeLocationReportsPage from "../app-pages/reports/corp-office-reports/office-location-reports/office-location-reports";
+import SpecialReports from "../app-pages/reports/corp-office-reports/office-location-reports/special-reports/special-reports";
+import AllLocations from "../app-pages/reports/corp-office-reports/office-location-reports/all-locations/all-locations-reports";
 import fourOhFour from "../app-pages/fourOhFour";
+
 
 export const RoutePaths = {
   Home: `/`,
@@ -33,9 +34,9 @@ export const RoutePaths = {
 
 export default createRouteBundle(
   {
-    "": Home,
-    [RoutePaths.Home]: Home,
-    [RoutePaths.Help]: Help,
+    "": HomePage,
+    [RoutePaths.Home]: HomePage,
+    [RoutePaths.Help]: HelpPage,
     [RoutePaths.Locations]: Locations,
     [RoutePaths.Map]: MapPage,
     [RoutePaths.ReportsHome]: Reports,
@@ -43,10 +44,10 @@ export default createRouteBundle(
     [RoutePaths.DistrictReports]: DistrictReports,
     [RoutePaths.WatershedReports]: WatershedReports,
     [RoutePaths.ProjectReports]: ProjectReports,
-    [RoutePaths.CorpOfficeReports]: CERL,
+    [RoutePaths.CorpOfficeReports]: OfficeLocationReportsPage,
     [RoutePaths.CorpOfficeSpecialReports]: SpecialReports,
     [RoutePaths.CorpOfficeLocationReports]: AllLocations,
-    [RoutePaths.DataResources]: DataResources,
+    [RoutePaths.DataResources]: DataResourcesPage,
     "*": fourOhFour,
   },
   {

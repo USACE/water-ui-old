@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Layout from '../src/app-pages/Layout';
+import Layout from './app-pages/layout/layout';
 
 // CSS
 import "./css/bootstrap/css/bootswatch.min.css";
