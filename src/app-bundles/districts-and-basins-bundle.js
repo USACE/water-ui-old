@@ -8,7 +8,6 @@ export default createRestBundle( {
   prefetch: true,
   staleAfter: 10000,
   persist: false,
-  //routeParam: "districtsAndBasinsSlug",
   getTemplate: getRestUrl( "/water/locations/basins", "/districts-and-basins.json" ),
   putTemplate: null,
   postTemplate: null,

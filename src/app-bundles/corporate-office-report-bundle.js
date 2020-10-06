@@ -5,19 +5,20 @@ import { createSelector } from "redux-bundler";
 export default createRestBundle({
   name: "corporateOfficeReports",
   uid: "title",
-  prefetch: true, // Need to figure out how to set this to false and only fetch when route matches
+  prefetch: false,
   staleAfter: 0,
   persist: false,
-  routeParam: "corpOfficeSlug",
+  routeParam: "corpOfficeId",
   getTemplate: getRestUrl(
-    "/water/locations/offices/:corpOfficeSlug/reports",
-    "/corporate-office-reports.json?:corpOfficeSlug",
+    "/water/locations/offices/:corpOfficeId/reports",
+    "/corporate-office-reports.json?/:corpOfficeId",
     true ),
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: [],
+  fetchActions: ["APP_INITIALIZED","URL_UPDATED"],
   forceFetchActions: [],
+  urlParamSelectors: [],
   addons: {
     selectCorporateOfficeReports: createSelector(
       "selectCorporateOfficeReportsItems",

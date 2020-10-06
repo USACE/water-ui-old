@@ -1,6 +1,7 @@
 import React from "react";
 import TabLinks from "../../TabLinks";
 import TextSection from "../../TextSection";
+import { RoutePaths } from "../../../app-bundles/routes-bundle";
 
 const pageSectionDivider = {
   height: 0,
@@ -22,9 +23,9 @@ const CorpOfficeReportsContainer = ( props ) => {
   const TabInfo = {
     activeTab: 'Corp Office Reports',
     tabLinks: [
-      { url: `/reports/CorpOfficeReports/${ props.officeId }`, name: 'Corp Office Reports' },
-      { url: `/reports/CorpOfficeReports/${ props.officeId }/AllLocations`, name: 'All Locations' },
-      { url: `/reports/CorpOfficeReports/${ props.officeId }/SpecialReports`, name: 'Special Reports' }
+      { url: RoutePaths.CorpOfficeReports.replace( ":corpOfficeId", props.officeId ), name: 'Corp Office Reports' },
+      { url: RoutePaths.CorpOfficeLocationReports.replace( ":corpOfficeId", props.officeId ), name: 'All Locations' },
+      { url: RoutePaths.CorpOfficeSpecialReports.replace( ":corpOfficeId", props.officeId ), name: 'Special Reports' }
     ]
   }
 
