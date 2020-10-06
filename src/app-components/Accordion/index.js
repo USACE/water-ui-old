@@ -53,7 +53,7 @@ const Accordion = (props) => {
             key={`accordion-content-${i}`}
             id={`accordion-content-${i}`}
           >
-            {content}
+            <p className="content-paragraph">{content}</p>
           </div>
         </div>
       );
