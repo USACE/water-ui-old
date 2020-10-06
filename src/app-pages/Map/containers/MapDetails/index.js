@@ -21,6 +21,18 @@ const MapDetails = (props) => {
         "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
       iconClass: "mdi mdi-map-marker"
     },
+    {
+      title: "Time Series",
+      content:
+        "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
+      iconClass: "mdi mdi-map-marker"
+    },
+    {
+      title: "Sedimentation",
+      content:
+        "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
+      iconClass: "mdi mdi-map-marker"
+    },
   ];
   return (
     <div

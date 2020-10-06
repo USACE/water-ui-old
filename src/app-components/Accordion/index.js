@@ -6,14 +6,14 @@ import "./accordion.css";
 
 const Accordion = (props) => {
   const { data } = props;
-  const [activeAcc, setActiveAcc] = useState("");
+  const [activeAcc, setActiveAcc] = useState(-1);
 
   const toggleAccordion = (i, e) => {
     e.stopPropagation();
 
     // if active then close
     if (activeAcc === i) {
-      setActiveAcc("");
+      setActiveAcc(-1);
     } else {
       // else set that as active element
       setActiveAcc(i);
