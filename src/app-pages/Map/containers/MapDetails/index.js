@@ -1,18 +1,36 @@
-import React, { useState } from 'react';
-import './mapDetails.css';
+import React, { useState } from "react";
+import "./mapDetails.css";
 import LocationDetailHeader from "../../../../app-components/LocationDetail/Header";
+import Accordion from "../../../../app-components/Accordion";
 // import PropTypes from 'prop-types';
 
-const MapDetails = ( props ) => {
-  const [ isOpen, setIsOpen ] = useState( false );
-  const toggleDrawer = () => setIsOpen( !isOpen );
-
+const MapDetails = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = () => setIsOpen(!isOpen);
+  // Accodion dummy date
+  const accordionArrObjs = [
+    {
+      title: "Dam Profolio",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
+      iconClass: "mdi mdi-water-pump"
+    },
+    {
+      title: "Location Data",
+      content:
+        "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
+      iconClass: "mdi mdi-map-marker"
+    },
+  ];
   return (
-    <div className={ `map-details-wrapper ${ isOpen ? 'is-expanded' : '' }` } onClick={ toggleDrawer }>
+    <div
+      className={`map-details-wrapper ${isOpen ? "is-expanded" : ""}`}
+      onClick={toggleDrawer}
+    >
       <div className="drawer-content-container">
-
         <div className="drawer-content">
           <LocationDetailHeader></LocationDetailHeader>
+          <Accordion data={accordionArrObjs} />
         </div>
 
         <div className="outer-container">

@@ -1,0 +1,58 @@
+.accordion-section {
+  margin: 1rem 0;
+}
+.accordion-btn {
+  width: 100%;
+  border: none;
+  background-color: lightgrey;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 10px 10px 0 10px;
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  height: 3.5rem;
+  justify-content: space-between;
+}
+.accordion-title {
+  margin: 0;
+  color: black;
+}
+.accordion-content {
+  display: none;
+}
+.active-accordion {
+  display: block;
+  padding: 1rem;
+}
+
+.accordion-title:before{
+  margin-right: 10px;
+}
+.chevron::before {
+  border-style: solid;
+  border-width: 0.25em 0.25em 0 0;
+  content: "";
+  display: inline-block;
+  height: 1rem;
+  right: .5rem;
+  position: relative;
+  top: 0.5rem;
+  transform: rotate(-45deg);
+  vertical-align: top;
+  width: 1rem;
+}
+.chevron.right {
+  transform: rotate(90deg);
+  transition: transform .2s linear;
+}
+.chevron.right:before {
+  transform: rotate(45deg);
+}
+
+.chevron.right.open {
+  transform: rotate(0deg);
+  transition: transform .2s linear;
+}
