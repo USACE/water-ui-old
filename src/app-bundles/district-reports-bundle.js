@@ -1,11 +1,12 @@
 import createRestBundle from "./create-rest-bundle";
 import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
+import { RoutePaths } from "./routes-bundle";
 
 export default createRestBundle({
   name: "DistrictReports",
   uid: "districtId",
-  prefetch: true, // Need to figure out how to set this to false and only fetch when route matches
+  prefetch: false,
   staleAfter: 0,
   persist: false,
   //routeParam: "",
@@ -16,7 +17,8 @@ export default createRestBundle({
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: [],
+  activeRoutes: [ RoutePaths.DistrictReports ],
+  fetchActions: ["APP_INITIALIZED","URL_UPDATED"],
   forceFetchActions: [],
   addons: {
     selectDistrictReports: createSelector(

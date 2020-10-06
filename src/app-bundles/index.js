@@ -13,9 +13,11 @@ import createAuthBundle from "@corpsmap/create-auth-bundle";
 import createJwtApiBundle from "@corpsmap/create-jwt-api-bundle";
 import pkg from "../../package.json";
 
+import appBundle from "./app-bundle";
 import routeBundle from "./routes-bundle";
 import mapsBundle from "./maps-bundle";
 import mapsPageBundle from "./map-page-bundle";
+import mapPageRestBundle from "./map-page-rest-bundle";
 import districtsAndBasinsBundle from "./districts-and-basins-bundle";
 import corporateOfficeBundle from "./corporate-office-bundle";
 import corporateOfficeReportBundle from "./corporate-office-report-bundle";
@@ -54,6 +56,8 @@ export default composeBundles(
     center: [-80.79, 26.94],
     zoom: 5,
   }),
+  appBundle,
+  mapPageRestBundle,
   mapsBundle,
   routeBundle,
   mapsPageBundle,
@@ -64,6 +68,6 @@ export default composeBundles(
   corporateOfficeLocationReportBundle,
   projectReportBundle,
   watershedReportBundle,
-  districtReportBundle,
+  districtReportBundle
   locationDetailBundle,
 );

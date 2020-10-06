@@ -7,6 +7,7 @@ import SearchBox from '../../app-containers/SearchBox';
 import DropDown from '../../app-components/DropDown';
 import { cardObj, circlePicObj } from './data.js';
 import { connect } from "redux-bundler-react";
+import { RoutePaths } from "../../app-bundles/routes-bundle";
 
 const containerTextSection = {
   textAlign: 'center',
@@ -32,12 +33,12 @@ const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, select
 
   const onDistrictChange = ( e, doUpdateUrl ) => {
     doSetSelectedDistrict( e.target.value );
-  }
+  };
 
   const onBasinChange = ( e, doUpdateUrl ) => {
     doSetSelectedBasin( e.target.value );
-    doUpdateUrl( '/map' );
-  }
+    doUpdateUrl( RoutePaths.Map );
+  };
 
   return (
     <main>

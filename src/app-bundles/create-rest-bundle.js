@@ -113,6 +113,11 @@ export default (opts) => {
     sortAsc: true,
     mergeItems: false,
     clearItemsOnAbort: true,
+
+    /**
+     * If set, data fetching will only occur if the current URL path equals one of the specified `activeRoutes`.
+     */
+    activeRoutes: []
   };
 
   const config = Object.assign({}, defaults, opts);
@@ -126,6 +131,7 @@ export default (opts) => {
     FETCH_STARTED: `${baseType}_FETCH_STARTED`,
     FETCH_FINISHED: `${baseType}_FETCH_FINISHED`,
     FETCH_ABORT: `${baseType}_FETCH_ABORT`,
+    FETCH_SKIP: `${baseType}_FETCH_SKIP`,
     SAVE_STARTED: `${baseType}_SAVE_STARTED`,
     SAVE_FINISHED: `${baseType}_SAVE_FINISHED`,
     DELETE_STARTED: `${baseType}_DELETE_STARTED`,
@@ -139,6 +145,7 @@ export default (opts) => {
 
   // action creators
   const doFetch = `do${uCaseName}Fetch`;
+  const doSkipFetch = `do${uCaseName}SkipFetch`;
   const doSave = `do${uCaseName}Save`;
   const doDelete = `do${uCaseName}Delete`;
   const doUpdatePageSize = `do${uCaseName}UpdatePageSize`;
@@ -176,6 +183,9 @@ export default (opts) => {
   const selectPageSize = `select${uCaseName}PageSize`;
   const selectSortBy = `select${uCaseName}SortBy`;
   const selectSortAsc = `select${uCaseName}SortAsc`;
+  const selectActiveRoutes = `select${uCaseName}ActiveRoutes`;
+  const selectIsActiveRoute = `selectIs${uCaseName}ActiveRoute`;
+  const selectIsGetUrlPopulated = `selectIs${uCaseName}GetUrlPopulated`;
 
   // reactors
   const reactShouldFetch = `react${uCaseName}ShouldFetch`;
@@ -229,6 +239,7 @@ export default (opts) => {
             case actions.SAVE_FINISHED:
             case actions.FETCH_STARTED:
             case actions.FETCH_ABORT:
+            case actions.FETCH_SKIP:
             case actions.DELETE_STARTED:
             case actions.DELETE_FINISHED:
             case actions.PAGE_SIZE_UPDATED:
@@ -250,6 +261,25 @@ export default (opts) => {
               }
           }
         };
+      },
+
+      [doSkipFetch]: () => ({ dispatch, store, apiGet }) => {
+        let reason = "";
+        const isActiveRoute = store[selectIsActiveRoute]();
+        const isGetUrlPopulated = store[selectIsGetUrlPopulated]();
+
+        if( !isActiveRoute ) reason += "current route does not match bundle activeRoutes";
+        else if( !isGetUrlPopulated ) reason += "get URL depends on route params that are not populated";
+        else reason = null;
+
+        dispatch( {
+          type: actions.FETCH_SKIP,
+          payload: {
+            _shouldFetch: false,
+            _isLoading: false,
+            _abortReason: reason,
+          },
+        } );
       },
 
       [doFetch]: () => ({ dispatch, store, apiGet }) => {
@@ -661,6 +691,23 @@ export default (opts) => {
         }
       ),
 
+      [selectActiveRoutes]: () => {
+        return config.activeRoutes;
+      },
+
+      [selectIsActiveRoute]: createSelector(
+        "selectRouteInfo",
+        (routeInfo) => {
+          if(config.activeRoutes.length === 0) return true;
+          return config.activeRoutes.find( path => path === routeInfo.pattern) !== undefined;
+        }
+      ),
+
+      [selectIsGetUrlPopulated]: createSelector(
+        selectGetUrl,
+        (url) => url.indexOf("/:") === -1
+      ),
+
       [selectGetTemplate]: () => {
         return config.getTemplate;
       },
@@ -764,9 +811,16 @@ export default (opts) => {
         return state[config.name]._sortAsc;
       },
 
-      [reactShouldFetch]: (state) => {
-        if (state[config.name]._shouldFetch) return { actionCreator: doFetch };
-      },
+      [reactShouldFetch]: createSelector(
+        (state) => state,
+        selectIsActiveRoute,
+        selectIsGetUrlPopulated,
+        (state, isActiveRoute, isGetUrlPopulated) => {
+          if (state[config.name]._shouldFetch ) {
+            if( isActiveRoute && isGetUrlPopulated ) return { actionCreator: doFetch };
+            else return { actionCreator: doSkipFetch }
+          }
+        }),
     },
     config.addons
   );

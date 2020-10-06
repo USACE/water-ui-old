@@ -29,7 +29,7 @@ const MapNavBar = ( { doSetSelectedLocationCode } ) => (
 					<DropDown
 						label={'Location Type'}
 						id={'location-type-dropdown'}
-						options={['Location Type', '1', '2', '3']}
+						options={['Location Type', 'Divisions', 'Districts', 'Projects','Stream Gages','Sites','WQ']}
 					/>
 				</div>
 				<div className="col-md-4">
