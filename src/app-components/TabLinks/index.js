@@ -4,7 +4,7 @@ const inlinePill = {
   marginLeft: '0.5rem'
 }
 
-const Tabs = ({ TabInfo }) => {
+const TabLinks = ({ TabInfo }) => {
   return (
     <>
       <div className="container-fluid">
@@ -23,4 +23,4 @@ const Tabs = ({ TabInfo }) => {
     </>
   );
 };
-export default Tabs;
+export default TabLinks;

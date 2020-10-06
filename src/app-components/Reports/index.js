@@ -1,7 +1,7 @@
 import React from "react";
 import TextSection from '../../app-components/TextSection';
 import SearchBox from '../../app-containers/SearchBox';
-import Tabs from '../../app-components/Tabs';
+import TabLinks from '../../app-components/TabLinks';
 import { RoutePaths } from "../../app-bundles/routes-bundle";
 
 const containerTextSection = {
@@ -54,7 +54,7 @@ const ReportsContainer = ( props ) => {
             </div>
           </div>
 
-          <Tabs TabInfo={ TabInfo }></Tabs>
+          <TabLinks TabInfo={ TabInfo }></TabLinks>
           { sectionTitleBlock ? sectionTitleBlock : '' }
           {props.children}
 
