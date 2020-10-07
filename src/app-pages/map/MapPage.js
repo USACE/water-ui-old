@@ -1,6 +1,6 @@
 import React from 'react';
 import MapNavBar from './components/MapNavBar';
-import MapDetails from './components/mapDetails/MapDetails';
+import MapDetails from './components/map-details/MapDetails';
 import Map from '../../app-common/map/Map';
 
 const MapPage = (props) => {
