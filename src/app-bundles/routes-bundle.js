@@ -1,9 +1,9 @@
 import { createRouteBundle } from "redux-bundler";
 
-import Home from "../app-pages/Home";
-import Locations from "../app-pages/Locations";
-import MapPage from "../app-pages/Map";
-import Help from "../app-pages/Help";
+import Home from "../app-pages/home/HomePage";
+import Locations from "../app-pages/locations/LocationsPage";
+import MapPage from "../app-pages/map/MapPage";
+import Help from "../app-pages/help/HelpPage";
 import Reports from "../app-pages/reports/ReportsPage";
 import CorpOfficeReports from "../app-pages/reports/corpOffice/CorpOfficeReportsPage";
 import DistrictReports from "../app-pages/reports/district/DistrictReportsPage";
@@ -12,7 +12,7 @@ import WatershedReports from "../app-pages/reports/watershed/WatershedReportsPag
 import CERL from "../app-pages/reports/corpOffice/cerl/CERLContainer";
 import SpecialReports from "../app-pages/reports/corpOffice/cerl/special/SpecialReportsContainer";
 import AllLocations from "../app-pages/reports/corpOffice/cerl/location/AllLocationsReportsContainer";
-import DataResources from "../app-pages/DataResources";
+import DataResources from "../app-pages/dataResources/DataResourcesPage";
 import NotFound from "../app-pages/NotFound";
 
 export const RoutePaths = {
