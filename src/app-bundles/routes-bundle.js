@@ -13,7 +13,7 @@ import CERL from "../app-pages/Reports/CorpOfficeReports/CERL";
 import SpecialReports from "../app-pages/Reports/CorpOfficeReports/CERL/SpecialReports";
 import AllLocations from "../app-pages/Reports/CorpOfficeReports/CERL/AllLocations";
 import DataResources from "../app-pages/DataResources";
-import fourOhFour from "../app-pages/fourOhFour";
+import NotFound from "../app-pages/NotFound";
 
 export const RoutePaths = {
   Home: `/`,
@@ -47,7 +47,7 @@ export default createRouteBundle(
     [RoutePaths.CorpOfficeSpecialReports]: SpecialReports,
     [RoutePaths.CorpOfficeLocationReports]: AllLocations,
     [RoutePaths.DataResources]: DataResources,
-    "*": fourOhFour,
+    "*": NotFound,
   },
   {
     routeInfoSelector: "selectPathnameMinusHomepage",
