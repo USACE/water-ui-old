@@ -1,5 +1,5 @@
 import React from "react";
-import TextSection from '../../../app-components/TextSection';
+import TextSection from '../../../app-common/TextSection';
 import ReportsContainer from "../ReportsContainer";
 import { connect } from "redux-bundler-react";
 import { RoutePaths } from "../../../app-bundles/routes-bundle";

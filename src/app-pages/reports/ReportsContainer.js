@@ -1,7 +1,7 @@
 import React from "react";
-import TextSection from '../../app-components/TextSection';
-import SearchBox from '../../app-components/SearchBox';
-import TabLinks from '../../app-components/TabLinks';
+import TextSection from '../../app-common/TextSection';
+import SearchBox from '../../app-common/SearchBox';
+import TabLinks from '../../app-common/TabLinks';
 import { RoutePaths } from "../../app-bundles/routes-bundle";
 
 const containerTextSection = {

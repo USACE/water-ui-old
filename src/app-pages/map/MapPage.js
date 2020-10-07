@@ -1,7 +1,7 @@
 import React from 'react';
 import MapNavBar from './components/MapNavBar';
 import MapDetails from './components/mapDetails/MapDetails';
-import Map from '../../app-components/map/Map';
+import Map from '../../app-common/map/Map';
 
 const MapPage = (props) => {
   const opts = { center: [-95, 38.895], zoom: 5 };

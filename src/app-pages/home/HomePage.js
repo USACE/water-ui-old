@@ -1,10 +1,10 @@
 import React from 'react';
-import Card from '../../app-components/Cards';
-import TextSection from '../../app-components/TextSection';
-import CirclePics from '../../app-components/CirclePics';
-import Map from '../../app-components/map/Map';
-import SearchBox from '../../app-components/SearchBox';
-import DropDown from '../../app-components/Dropdown';
+import Card from '../../app-common/Cards';
+import TextSection from '../../app-common/TextSection';
+import CirclePics from '../../app-common/CirclePics';
+import Map from '../../app-common/map/Map';
+import SearchBox from '../../app-common/SearchBox';
+import DropDown from '../../app-common/Dropdown';
 import { cardObj, circlePicObj } from './data.js';
 import { connect } from "redux-bundler-react";
 import { RoutePaths } from "../../app-bundles/routes-bundle";

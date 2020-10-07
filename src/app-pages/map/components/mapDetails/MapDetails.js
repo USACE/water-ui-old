@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./mapDetails.css";
-import LocationDetailHeader from "../../../../app-components/locationDetail/Header";
-import Accordion from "../../../../app-components/accordion/Accordion";
+import LocationDetailHeader from "../../../../app-common/locationDetail/Header";
+import Accordion from "../../../../app-common/accordion/Accordion";
 // import PropTypes from 'prop-types';
 
 const MapDetails = (props) => {

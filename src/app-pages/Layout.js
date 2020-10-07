@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'redux-bundler-react';
-import Navbar from '../app-components/Navbar';
-import Footer from '../app-components/Footer';
+import Navbar from '../app-common/Navbar';
+import Footer from '../app-common/Footer';
 
 
 
