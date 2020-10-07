@@ -1,22 +1,24 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
-// Component import:
 import CirclePics from '../CirclePics';
 
-const CirclePicArray = [
-	{ title: 'Water Quality Assessment', imgAlt: 'Card 1 Image', href: '/#link1' },
-	{ title: 'Water Quality Awareness', imgAlt: 'Card 2 Image', href: '/#link2' },
-	{ title: 'Water Quality Support', imgAlt: 'Card 3 Image', href: '/#link3' },
-];
+describe( '<CirclePics />', () => {
+  const renderOptions = { disableLifecycleMethods: true };
 
-// Set up the component with props:
-const initialSetup = () => {
-	const wrapper = shallow(<CirclePics cardObj={CirclePicArray} />);
-	return wrapper;
-};
+  const CirclePicArray = [
+    { title: 'Water Quality Assessment', imgAlt: 'Card 1 Image', href: '/#link1' },
+    { title: 'Water Quality Awareness', imgAlt: 'Card 2 Image', href: '/#link2' },
+    { title: 'Water Quality Support', imgAlt: 'Card 3 Image', href: '/#link3' },
+  ];
 
-test('component renders correct number of children', () => {
-	const wrapper = initialSetup();
-	expect(wrapper.find('a').length).toBe(CirclePicArray.length);
-});
+  let wrapper;
+  beforeEach( () => {
+    wrapper = shallow( <CirclePics cardObj={ CirclePicArray }/>, renderOptions );
+  } );
+
+  it( 'should render component', () => {
+    expect( wrapper.length ).toBe( 1 );
+    expect( wrapper.find( 'a' ).length ).toBe( CirclePicArray.length );
+  } );
+
+} );

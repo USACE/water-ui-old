@@ -1,80 +1,58 @@
 import React from "react";
 import { shallow } from "enzyme";
-import {render, screen, fireEvent} from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-
-// Component import:
 import SearchBox from "../SearchBox";
 
-// Utils:
-import { findByTestAttr } from "../../testUtils";
+describe( '<SearchBox />', () => {
+  const renderOptions = { disableLifecycleMethods: true };
 
-// Set up the component with props:
-const initialSetup = (props) => {
-  const wrapper = shallow(
-    <SearchBox {...props}/>
-  );
-  return wrapper;
-};
+  let wrapper;
+  beforeEach( () => {
+    wrapper = shallow( <SearchBox/>, renderOptions );
+  } );
 
-test("component renders without error", () => {
-  const wrapper = initialSetup();
-  const component = findByTestAttr(wrapper, "search-box-container");
-  expect(component.length).toBe(1);
-});
+  it( 'should render component', () => {
+    expect( wrapper.length ).toBe( 1 );
+  } );
 
-test("value test", () => {
-  const wrapper = initialSetup( { value: "Hello World", key: 1 } );
-  const component = findByTestAttr(wrapper, "search-box-container");
-  render(component)
+  it( 'should pass value and text props to input', () => {
+    wrapper.setProps( {
+      value: 'Hello World',
+      text: 'Some random text',
+    } );
+    expect( wrapper.find( 'input' ).prop( 'value' ) ).toBe( 'Hello World' );
+    expect( wrapper.find( 'input' ).prop( 'placeholder' ) ).toBe( 'Some random text' );
+  } );
 
-  /** @type {HTMLInputElement} */
-  let inputEl = ( /** @type {HTMLInputElement} */ ( screen.getByRole('searchbox' ) ) );
-  expect(inputEl.value).toBe("Hello World");
-})
+  it( 'should handle onChange() passed to props', () => {
+    const onChange = jest.fn();
+    wrapper.setProps( { onChange } )
 
-test("placeholder text test", () => {
-  const wrapper = initialSetup( { text: "Test says Enter some text" } );
-  const component = findByTestAttr(wrapper, "search-box-container");
-  render(component)
+    // simulate clicking onChange on the input
+    wrapper.find( 'input' ).prop( 'onChange' )( 'testudo' );
 
-  /** @type {HTMLInputElement} */
-  let inputEl = ( /** @type {HTMLInputElement} */ ( screen.getByRole('searchbox' ) ) );
+    expect( onChange ).toHaveBeenCalledWith( 'testudo' );
+  } );
 
-  expect(inputEl.placeholder).toBe("Test says Enter some text");
-})
+  it( 'should handle onEnterKey() passed to props', () => {
+    const onEnterKey = jest.fn();
+    wrapper.setProps( { onEnterKey } )
 
-test("onChange test", () => { //in progress
-  let inputValue = null;
-  const onChangeFn = ( event ) => inputValue = event.target.value;
+    // simulate clicking onKeyDown with 'Enter' key
+    let event = { key: 'Enter' };
+    wrapper.find( 'input' ).prop( 'onKeyDown' )( event );
 
-  const wrapper = initialSetup( { onChange: onChangeFn } );
-  const component = findByTestAttr(wrapper, "search-box-container");
-  render(component);
+    // should call onEnter if the key is 'Enter'
+    expect( onEnterKey ).toHaveBeenCalledTimes( 1 );
+    expect( onEnterKey ).toHaveBeenCalledWith( event );
 
-  /** @type {HTMLInputElement} */
-  let inputEl = ( /** @type {HTMLInputElement} */ ( screen.getByRole('searchbox' ) ) );
+    // simulate clicking onKeyDown with 'Tab' key
+    event = { key: 'Tab' };
+    wrapper.find( 'input' ).prop( 'onKeyDown' )( event );
+    expect( onEnterKey ).toHaveBeenCalledTimes( 1 );
+  } );
 
-  userEvent.type(inputEl, 'Hello World!') //onChange triggered
-
-  expect( inputValue ).toBe( inputEl.value );
-  expect( inputValue ).toBe( "Hello World!" );
-})
-
-test("onEnter test", () => { //in progress
-  let inputValue = null;
-  const onEnterKeyFn = ( event ) => inputValue = event.target.value;
-
-  const wrapper = initialSetup( { onEnterKey: onEnterKeyFn } );
-  const component = findByTestAttr(wrapper, "search-box-container");
-  render(component)
-
-  /** @type {HTMLInputElement} */
-  let inputEl = ( /** @type {HTMLInputElement} */ ( screen.getByRole('searchbox' ) ) );
-
-  userEvent.type(inputEl, 'Hello World!') //onChange triggered
-  fireEvent.keyDown( inputEl, { key: "Enter" } ) //onEnter triggered
-
-  expect( inputValue ).toBe( inputEl.value );
-  expect( inputValue ).toBe( "Hello World!" );
-})
+  it( 'should handle if onChange and onEnterKey are not passed as props', () => {
+    wrapper.find( 'input' ).prop( 'onChange' )( 'testudo' );
+    wrapper.find( 'input' ).prop( 'onKeyDown' )( { key: 'Enter ' } );
+  } );
+} );
