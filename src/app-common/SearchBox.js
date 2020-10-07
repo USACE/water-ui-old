@@ -4,7 +4,6 @@ import classnames from "classnames";
 
 const SearchBox = ({value,onChange,onEnterKey,text}) => {
 
-
 	const handleKeyDown = (event) => {
 		if (event.key === 'Enter') onEnterKey( event );
   }
@@ -18,7 +17,7 @@ const SearchBox = ({value,onChange,onEnterKey,text}) => {
 	);
 
 	return (
-		<div className="search-box-container" data-test='search-box-container'>
+		<div key="searchbox" className="search-box-container" data-test='search-box-container'>
       <input style={{width:'100%'}} role="searchbox" className={searchClass} type="search" placeholder={text} onKeyDown={handleKeyDown} onChange={onChangeHandler} value={value}/>
 		</div>
 	);

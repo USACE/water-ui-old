@@ -137,7 +137,7 @@ class BasemapControl extends Control {
     var select = document.createElement("select");
     basemaps.forEach((b, i) => {
       const opt = document.createElement("option");
-      opt.value = i;
+      opt.value = i.toString();
       opt.text = b.name;
       select.appendChild(opt);
     });
@@ -157,7 +157,7 @@ class BasemapControl extends Control {
     this.setBasemap = this.setBasemap.bind(this);
 
     select.addEventListener("change", (e) => {
-      this.setBasemap(Number(e.target.value));
+      this.setBasemap(Number( ( /** @type {HTMLSelectElement} */ ( e.target ) ).value));
     });
   }
 
@@ -167,7 +167,7 @@ class BasemapControl extends Control {
   }
 
   setBasemap(idx) {
-    const map = this.getMap();
+    const map = ( /** @type {Control} */ ( this ) ).getMap();
     map.removeLayer(this.layer);
     this.layer.setSource(this.options.basemaps[idx]);
     map.getLayers().insertAt(0, this.layer);

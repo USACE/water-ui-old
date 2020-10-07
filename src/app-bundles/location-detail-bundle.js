@@ -37,7 +37,6 @@ export default createRestBundle( {
       } );
     },
     selectSelectedLocationCode: ( state ) => {
-      console.log( "state?", state );
       return state.locationDetail._location_code;
     },
     selectSelectedLocationDetail: createSelector(

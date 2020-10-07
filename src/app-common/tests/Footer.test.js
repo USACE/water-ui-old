@@ -3,9 +3,9 @@ import { shallow } from "enzyme";
 
 // Component import:
 import Footer from "../Footer";
+import { findByTestAttr } from "../../testUtils";
 
 // Utils:
-import { findByTestAttr } from "../../../testUtils";
 
 // Set up the component with props:
 const initialSetup = (props) => {

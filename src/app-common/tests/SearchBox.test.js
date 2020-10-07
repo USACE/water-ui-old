@@ -24,10 +24,12 @@ test("component renders without error", () => {
 });
 
 test("value test", () => {
-  const wrapper = initialSetup( { value: "Hello World" } );
+  const wrapper = initialSetup( { value: "Hello World", key: 1 } );
   const component = findByTestAttr(wrapper, "search-box-container");
   render(component)
-  let inputEl = screen.getByRole('searchbox');
+
+  /** @type {HTMLInputElement} */
+  let inputEl = ( /** @type {HTMLInputElement} */ ( screen.getByRole('searchbox' ) ) );
   expect(inputEl.value).toBe("Hello World");
 })
 
@@ -35,7 +37,10 @@ test("placeholder text test", () => {
   const wrapper = initialSetup( { text: "Test says Enter some text" } );
   const component = findByTestAttr(wrapper, "search-box-container");
   render(component)
-  let inputEl = screen.getByRole('searchbox');
+
+  /** @type {HTMLInputElement} */
+  let inputEl = ( /** @type {HTMLInputElement} */ ( screen.getByRole('searchbox' ) ) );
+
   expect(inputEl.placeholder).toBe("Test says Enter some text");
 })
 
@@ -46,7 +51,10 @@ test("onChange test", () => { //in progress
   const wrapper = initialSetup( { onChange: onChangeFn } );
   const component = findByTestAttr(wrapper, "search-box-container");
   render(component);
-  let inputEl = screen.getByRole('searchbox')
+
+  /** @type {HTMLInputElement} */
+  let inputEl = ( /** @type {HTMLInputElement} */ ( screen.getByRole('searchbox' ) ) );
+
   userEvent.type(inputEl, 'Hello World!') //onChange triggered
 
   expect( inputValue ).toBe( inputEl.value );
@@ -60,9 +68,11 @@ test("onEnter test", () => { //in progress
   const wrapper = initialSetup( { onEnterKey: onEnterKeyFn } );
   const component = findByTestAttr(wrapper, "search-box-container");
   render(component)
-  let inputEl = screen.getByRole('searchbox')
-  userEvent.type(inputEl, 'Hello World!') //onChange triggered
 
+  /** @type {HTMLInputElement} */
+  let inputEl = ( /** @type {HTMLInputElement} */ ( screen.getByRole('searchbox' ) ) );
+
+  userEvent.type(inputEl, 'Hello World!') //onChange triggered
   fireEvent.keyDown( inputEl, { key: "Enter" } ) //onEnter triggered
 
   expect( inputValue ).toBe( inputEl.value );
