@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../../app-components/Cards';
 import TextSection from '../../app-components/TextSection';
 import CirclePics from '../../app-components/CirclePics';
-import Map from '../../app-components/Map';
+import Map from '../../app-components/map/Map';
 import SearchBox from '../../app-components/SearchBox';
 import DropDown from '../../app-components/DropDown';
 import { cardObj, circlePicObj } from './data.js';
