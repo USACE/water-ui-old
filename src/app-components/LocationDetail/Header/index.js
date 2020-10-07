@@ -2,26 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import "../location-detail.css";
 
-const LocationDetailHeader = ( { onExpand } ) => {
-
-  // Temporary until we add the rest bundle to load location detail
-  const locationDetail = {
-    office_id: "MVP",
-    office_name: "St. Paul District",
-    public_name: "Mississippi R Lock and Dam 03",
-    long_name: "Mississippi River Lock and Dam 03",
-    location_code: "4572016",
-    location_id: "LockDam_03",
-    location_kind_id: "PROJECT",
-    latitude: 44.61,
-    longitude: -92.61,
-    elevation: 600,
-    unit_id: "ft",
-    time_zone_name: "US/Central",
-    county_name: "Goodhue",
-    state: "MN",
-    nearest_city: "Red Wing"
-  };
+const LocationDetailHeader = ( { onExpand, locationDetail } ) => {
 
   const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${ locationDetail.nearest_city }&state=${ locationDetail.state }`
 
@@ -45,9 +26,11 @@ const LocationDetailHeader = ( { onExpand } ) => {
 export default LocationDetailHeader;
 
 LocationDetailHeader.defaultProps = {
-  onExpand: () => null
+  onExpand: () => null,
+  locationDetail: {},
 }
 
 LocationDetailHeader.propTypes = {
-  onExpand: PropTypes.func
+  onExpand: PropTypes.func,
+  locationDetail: PropTypes.object,
 }

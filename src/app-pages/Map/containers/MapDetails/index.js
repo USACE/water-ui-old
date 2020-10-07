@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./mapDetails.css";
 import LocationDetailHeader from "../../../../app-components/LocationDetail/Header";
 import Accordion from "../../../../app-components/Accordion";
+import { connect } from "redux-bundler-react";
 // import PropTypes from 'prop-types';
 
-const MapDetails = (props) => {
+const MapDetails = ( { doSetSelectedLocationCode, selectedLocationCode, selectedLocationDetail } ) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleDrawer = () => setIsOpen(!isOpen);
-  // Accodion dummy date
+
+  const toggleDrawer = () => {
+    let wasOpen = isOpen;
+    setIsOpen(!isOpen);
+    if( wasOpen ) doSetSelectedLocationCode( null );
+  }
+
+  useEffect( () => {
+    if( !isOpen && selectedLocationCode ) toggleDrawer();
+  });
+
+  // Accordion dummy date
   const accordionArrObjs = [
     {
       title: "Dam Profolio",
@@ -34,6 +45,7 @@ const MapDetails = (props) => {
       iconClass: "mdi mdi-map-marker"
     },
   ];
+
   return (
     <div
       className={`map-details-wrapper ${isOpen ? "is-expanded" : ""}`}
@@ -41,7 +53,7 @@ const MapDetails = (props) => {
     >
       <div className="drawer-content-container">
         <div className="drawer-content">
-          <LocationDetailHeader></LocationDetailHeader>
+          <LocationDetailHeader locationDetail={ selectedLocationDetail }></LocationDetailHeader>
           <Accordion data={accordionArrObjs} />
         </div>
 
@@ -64,4 +76,9 @@ const MapDetails = (props) => {
 //   // bla: PropTypes.string,
 // };
 
-export default MapDetails;
+export default connect(
+  "doSetSelectedLocationCode",
+  "selectSelectedLocationCode",
+  "selectSelectedLocationDetail",
+  MapDetails
+);
