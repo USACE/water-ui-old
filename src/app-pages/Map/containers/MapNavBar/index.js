@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import SearchBox from '../../../../app-containers/SearchBox';
+import SearchBox from '../../../../app-components/SearchBox';
 import DropDown from '../../../../app-components/DropDown';
 
 const MapNavBar = (props) => (
