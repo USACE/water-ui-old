@@ -1,19 +1,19 @@
 import { createRouteBundle } from "redux-bundler";
 
-import Home from "../app-pages/Home";
-import Locations from "../app-pages/Locations";
-import MapPage from "../app-pages/Map";
-import Help from "../app-pages/Help";
-import Reports from "../app-pages/Reports";
-import CorpOfficeReports from "../app-pages/Reports/CorpOfficeReports";
-import DistrictReports from "../app-pages/Reports/DistrictReports";
-import ProjectReports from "../app-pages/Reports/ProjectReports";
-import WatershedReports from "../app-pages/Reports/WatershedReports";
-import CERL from "../app-pages/Reports/CorpOfficeReports/CERL";
-import SpecialReports from "../app-pages/Reports/CorpOfficeReports/CERL/SpecialReports";
-import AllLocations from "../app-pages/Reports/CorpOfficeReports/CERL/AllLocations";
-import DataResources from "../app-pages/DataResources";
-import fourOhFour from "../app-pages/fourOhFour";
+import Home from "../app-pages/home/HomePage";
+import Locations from "../app-pages/locations/LocationsPage";
+import MapPage from "../app-pages/map/MapPage";
+import Help from "../app-pages/help/HelpPage";
+import Reports from "../app-pages/reports/ReportsPage";
+import CorpOfficeReports from "../app-pages/reports/corp-office/CorpOfficeReportsPage";
+import DistrictReports from "../app-pages/reports/district/DistrictReportsPage";
+import ProjectReports from "../app-pages/reports/project/ProjectReportsPage";
+import WatershedReports from "../app-pages/reports/watershed/WatershedReportsPage";
+import OfficeLocationReport from "../app-pages/reports/corp-office/office-location/OfficeLocationReport";
+import SpecialReports from "../app-pages/reports/corp-office/office-location/special/SpecialReportsContainer";
+import AllLocations from "../app-pages/reports/corp-office/office-location/all-locations/AllLocationsReportsContainer";
+import DataResources from "../app-pages/data-resources/DataResourcesPage";
+import NotFound from "../app-pages/NotFound";
 
 export const RoutePaths = {
   Home: `/`,
@@ -43,11 +43,11 @@ export default createRouteBundle(
     [RoutePaths.DistrictReports]: DistrictReports,
     [RoutePaths.WatershedReports]: WatershedReports,
     [RoutePaths.ProjectReports]: ProjectReports,
-    [RoutePaths.CorpOfficeReports]: CERL,
+    [RoutePaths.CorpOfficeReports]: OfficeLocationReport,
     [RoutePaths.CorpOfficeSpecialReports]: SpecialReports,
     [RoutePaths.CorpOfficeLocationReports]: AllLocations,
     [RoutePaths.DataResources]: DataResources,
-    "*": fourOhFour,
+    "*": NotFound,
   },
   {
     routeInfoSelector: "selectPathnameMinusHomepage",
