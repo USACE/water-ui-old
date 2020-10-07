@@ -17,10 +17,10 @@ class Map extends React.Component {
   }
 
   render() {
-    const { height, isLocationsMapInitialized, mapLocationsIsLoading } = this.props;
+    const { height, isLocationsMapInitialized, locationSummariesIsLoading } = this.props;
     return (
       <>
-        <div style={{ display: isLocationsMapInitialized && !mapLocationsIsLoading ? "none" : "block" }} className="overlay">
+        <div style={{ display: isLocationsMapInitialized && !locationSummariesIsLoading ? "none" : "block" }} className="overlay">
           <div className="d-flex justify-content-center">
             <div className="spinner-border" role="status">
               <span className="sr-only">Loading...</span>
@@ -46,8 +46,8 @@ class Map extends React.Component {
 export default connect(
   "doMapsInitialize",
   "doMapsShutdown",
-  "selectMapLocations",
+  "selectLocationSummaries",
   "selectIsLocationsMapInitialized",
-  "selectMapLocationsIsLoading",
+  "selectLocationSummariesIsLoading",
   Map
 );
