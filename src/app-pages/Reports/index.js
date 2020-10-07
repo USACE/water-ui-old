@@ -1,5 +1,5 @@
 import React from "react";
-import ReportsContainer from "../../app-components/Reports";
+import ReportsContainer from "./ReportsContainer";
 
 const ReportsPage = () => {
 

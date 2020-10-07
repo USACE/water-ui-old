@@ -1,5 +1,5 @@
 import React from "react";
-import ReportsContainer from "../../../app-components/Reports";
+import ReportsContainer from "../ReportsContainer";
 import { connect } from "redux-bundler-react";
 
 const ReportsPage = ( { districtReports, districtReportsIsLoading } ) => {
