@@ -1,5 +1,7 @@
 describe( 'bundle-utils', () => {
 
+  // TODO: Try to figure out if we can mock the bundle utils isMockMode() and isDevelopmentMode() that are used by original getRestUrl().
+  // Mock method with same logic as original, but allows for forcing dev vs. prod mode detection
   const getRestUrlTest = ( isDev, isMockEnv, liveUrl, mockUrl, mockOverrideFlag ) => {
     let useMockUrl = isMockEnv; // Real function uses isMockMode() and mock NODE_ENV flag
     if( mockOverrideFlag === true || mockOverrideFlag === false ) useMockUrl = mockOverrideFlag;
