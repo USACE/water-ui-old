@@ -4,7 +4,7 @@ import Home from "../app-pages/Home";
 import Locations from "../app-pages/Locations";
 import MapPage from "../app-pages/Map";
 import Help from "../app-pages/Help";
-import Reports from "../app-pages/Reports";
+import Reports from "../app-pages/Reports/ReportsPage";
 import CorpOfficeReports from "../app-pages/Reports/CorpOfficeReports";
 import DistrictReports from "../app-pages/Reports/DistrictReports";
 import ProjectReports from "../app-pages/Reports/ProjectReports";

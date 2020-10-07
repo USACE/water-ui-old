@@ -4,7 +4,7 @@ import ReportsContainer from "./ReportsContainer";
 const ReportsPage = () => {
 
   return (
-    <ReportsContainer></ReportsContainer>
+    <ReportsContainer />
   );
 };
 
