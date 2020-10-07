@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import SearchBox from '../../../app-components/SearchBox';
-import DropDown from '../../../app-components/DropDown';
+import DropDown from '../../../app-components/Dropdown';
 
 const MapNavBar = (props) => (
   <div className="MapNavBarWrapper">

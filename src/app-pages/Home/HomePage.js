@@ -4,7 +4,7 @@ import TextSection from '../../app-components/TextSection';
 import CirclePics from '../../app-components/CirclePics';
 import Map from '../../app-components/map/Map';
 import SearchBox from '../../app-components/SearchBox';
-import DropDown from '../../app-components/DropDown';
+import DropDown from '../../app-components/Dropdown';
 import { cardObj, circlePicObj } from './data.js';
 import { connect } from "redux-bundler-react";
 import { RoutePaths } from "../../app-bundles/routes-bundle";

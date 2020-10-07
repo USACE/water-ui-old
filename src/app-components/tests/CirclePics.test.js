@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 // Component import:
-import CirclePics from './index';
+import CirclePics from '../CirclePics';
 
 const CirclePicArray = [
 	{ title: 'Water Quality Assessment', imgAlt: 'Card 1 Image', href: '/#link1' },

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 // Component import:
-import Cards from './index';
+import Cards from '../Cards';
 
 const CardsArray = [
 	{ title: 'Locations', text: 'Card 1 Text', imgAlt: 'Card 1 Image', href: '/locations' },

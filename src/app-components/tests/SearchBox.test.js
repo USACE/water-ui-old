@@ -4,7 +4,7 @@ import {render, screen, fireEvent} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 // Component import:
-import SearchBox from "./index";
+import SearchBox from "../SearchBox";
 
 // Utils:
 import { findByTestAttr } from "../../testUtils";

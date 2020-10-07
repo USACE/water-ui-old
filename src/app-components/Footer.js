@@ -1,5 +1,5 @@
 import React from 'react';
-import TextSection from '../TextSection';
+import TextSection from './TextSection';
 
 const footerTextSectionContainer = {
 	borderTop: '8px solid #718096',

@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 
 // Component import:
-import Footer from "../index";
+import Footer from "../Footer";
 
 // Utils:
 import { findByTestAttr } from "../../../testUtils";

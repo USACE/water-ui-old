@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
-import { RoutePaths } from "../../app-bundles/routes-bundle";
+import { RoutePaths } from "../app-bundles/routes-bundle";
 
 const defaultOnChange = ( e, doUpdateUrl ) => {
   //just routing to map page for now
