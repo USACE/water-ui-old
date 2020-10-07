@@ -1,6 +1,6 @@
 import React from "react";
 import ReportsContainer from "../../../../../app-components/Reports";
-import CorpOfficeReportsContainer from "../../../../../app-components/Reports/CorpOfficeReports";
+import CorpOfficeReportsContainer from "../../CorpOfficeReportsContainer";
 import { connect } from "redux-bundler-react";
 
 const ReportsPage = ( { corporateOfficeLocationReports, corporateOfficeByRoute: office } ) => {
