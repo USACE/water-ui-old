@@ -2,7 +2,7 @@ import React from "react";
 import ReportsContainer from "../ReportsContainer";
 import { connect } from "redux-bundler-react";
 
-const ReportsPage = ( { districtReports, districtReportsIsLoading } ) => {
+const DistrictReportsPage = ( { districtReports, districtReportsIsLoading } ) => {
 
   return (
     <ReportsContainer activeTab="District Reports" sectionTitle="District Reports">
@@ -30,5 +30,5 @@ const ReportsPage = ( { districtReports, districtReportsIsLoading } ) => {
 export default connect(
   "selectDistrictReports",
   "selectDistrictReportsIsLoading",
-  ReportsPage
+  DistrictReportsPage
 );

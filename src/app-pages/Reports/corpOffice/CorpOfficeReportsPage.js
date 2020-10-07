@@ -18,7 +18,7 @@ const pageSectionDivider = {
   borderTop: '2px solid #333',
 }
 
-const ReportsPage = ( { corporateOffices, corporateOfficeIsLoading } ) => {
+const CorpOfficeReportsPage = ( { corporateOffices, corporateOfficeIsLoading } ) => {
 
   return (
     <ReportsContainer activeTab="Corp Office Reports">
@@ -52,5 +52,5 @@ const ReportsPage = ( { corporateOffices, corporateOfficeIsLoading } ) => {
 export default connect(
   "selectCorporateOffices",
   "selectCorporateOfficeIsLoading",
-  ReportsPage
+  CorpOfficeReportsPage
 );
