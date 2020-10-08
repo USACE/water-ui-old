@@ -1,22 +1,17 @@
 import React from "react";
 import { shallow } from "enzyme";
-
-// Component import:
 import Footer from "../Footer";
 
-// Utils:
-import { findByTestAttr } from "../../../testUtils";
+describe( '<Footer />', () => {
+  const renderOptions = { disableLifecycleMethods: true };
 
-// Set up the component with props:
-const initialSetup = (props) => {
-  const wrapper = shallow(
-    <Footer {...props} />
-  );
-  return wrapper;
-};
+  let wrapper;
+  beforeEach( () => {
+    wrapper = shallow( <Footer />, renderOptions );
+  } );
 
-test("component renders without error", () => {
-  const wrapper = initialSetup();
-  const component = findByTestAttr(wrapper, "component-footer-container");
-  expect(component.length).toBe(1);
-});
+  it( 'should render component', () => {
+    expect( wrapper.length ).toBe( 1 );
+  } );
+
+} );
