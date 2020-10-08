@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 // CSS
-import "./accordion.css";
+import "./accordion.scss";
 
 const Accordion = (props) => {
   const { data } = props;

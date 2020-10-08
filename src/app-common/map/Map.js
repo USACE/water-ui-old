@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "redux-bundler-react";
 import { fromLonLat } from "ol/proj";
-import "./map.css";
+import "./map.scss";
 
 class Map extends React.Component {
   componentDidMount() {
@@ -17,10 +17,22 @@ class Map extends React.Component {
   }
 
   render() {
-    const { height, isLocationsMapInitialized, mapLocationsIsLoading } = this.props;
+    const {
+      height,
+      isLocationsMapInitialized,
+      mapLocationsIsLoading,
+    } = this.props;
     return (
-      <>
-        <div style={{ display: isLocationsMapInitialized && !mapLocationsIsLoading ? "none" : "block" }} className="overlay">
+      <div className="map-container">
+        <div
+          style={{
+            display:
+              isLocationsMapInitialized && !mapLocationsIsLoading
+                ? "none"
+                : "block",
+          }}
+          className="overlay"
+        >
           <div className="d-flex justify-content-center">
             <div className="spinner-border" role="status">
               <span className="sr-only">Loading...</span>
@@ -28,17 +40,17 @@ class Map extends React.Component {
           </div>
         </div>
 
-      <div
-        style={{ height: height }}
-        ref={(el) => {
-          this.el = el;
-        }}
-      />
-      <div id="map-popup" className="ol-popup">
-      <button id="map-popup-closer" className="ol-popup-closer"/>
-      <div id="map-popup-content"/>
-    </div>
-    </>
+        <div
+          style={{ height: height }}
+          ref={(el) => {
+            this.el = el;
+          }}
+        />
+        <div id="map-popup" className="ol-popup">
+          <button id="map-popup-closer" className="ol-popup-closer" />
+          <div id="map-popup-content" />
+        </div>
+      </div>
     );
   }
 }

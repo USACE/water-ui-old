@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import "./location-detail.css";
+import "./location-detail.scss";
 
 const LocationDetailHeader = ( { onExpand } ) => {
 

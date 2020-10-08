@@ -1,0 +1,65 @@
+h1 {
+  font-family: $base-font;
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+h2 {
+  font-family: $base-font;
+  font-weight: 600;
+  font-size: 2.125rem;
+}
+h3 {
+  font-family: $base-font;
+  font-weight: 400;
+  font-size: 2.125rem;
+}
+h4 {
+  font-family: $base-font;
+  font-weight: 500;
+  font-size: 1.75rem;
+}
+h5 {
+  font-family: $base-font;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+h6 {
+  font-family: $base-font;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+p {
+  font-family: $base-font;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+/* font */
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.text-base {
+  font-size: 1rem;
+}
+
+.body-text {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 300;
+  --text-opacity: 1;
+  color: #1a202c;
+}
+
+.title-text {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+}
