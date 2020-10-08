@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./loader.css";
+import "./loader.scss";
 
 export default ({ opt, color }) => {
   const customStyle = {};

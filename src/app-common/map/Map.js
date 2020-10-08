@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "redux-bundler-react";
 import { fromLonLat } from "ol/proj";
-import "./map.css";
+import "./map.scss";
 
 class Map extends React.Component {
   componentDidMount() {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./mapDetails.css";
+import "./mapDetails.scss";
 import LocationDetailHeader from "../../../../app-common/location-detail/Header";
 import Accordion from "../../../../app-common/accordion/Accordion";
 import { connect } from "redux-bundler-react";
@@ -47,8 +47,9 @@ const MapDetails = ( { doSetSelectedLocationCode, selectedLocationCode, selected
   ];
 
   return (
+    <div className="map-details-wrapper">
     <div
-      className={`map-details-wrapper ${isOpen ? "is-expanded" : ""}`}
+      className={`${isOpen ? "is-expanded" : ""}`}
       onClick={toggleDrawer}
     >
       <div className="drawer-content-container">
@@ -68,6 +69,7 @@ const MapDetails = ( { doSetSelectedLocationCode, selectedLocationCode, selected
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
