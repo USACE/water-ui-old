@@ -1,8 +1,11 @@
+@import "../../style/sass/abstracts/variables";
 .location-detail-header {
   width: 100%;
   padding: 1em;
+  background-color: $base-light-gray;
+  .location-expand {
+    float:right;
+  }
 }
 
-.location-expand {
-  float:right;
-}
+

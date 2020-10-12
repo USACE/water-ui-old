@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import "./location-detail.scss";
-
+import LocationStreamControls from "../../app-pages/map/components/location-stream-controls/LocationStreamControls"
 const LocationDetailHeader = ( { onExpand, locationDetail } ) => {
 
   const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${ locationDetail.nearest_city }&state=${ locationDetail.state }`
@@ -19,6 +19,7 @@ const LocationDetailHeader = ( { onExpand, locationDetail } ) => {
       <div className="location-detail-subheading">
         { locationDetail.office_name } | <a href={ weatherUrl } target="_blank" rel="noopener noreferrer">Local Forecast</a>
       </div>
+      <LocationStreamControls/>
     </div>
   );
 };
