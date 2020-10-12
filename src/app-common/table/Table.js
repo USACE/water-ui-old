@@ -5,36 +5,41 @@ import PropTypes from "prop-types";
 import "./table.scss";
 
 const Table = (props) => {
-  const { headerRowArr, rowsArr} = props;
+  const { headerRowArr, rowsArr } = props;
 
   return (
-    <div className="table-container" data-test="table-container">
-      <table>
-        <thead>
-          <tr className="table-header-row">
-            {headerRowArr &&
-              headerRowArr.map((item, i) => {
-                return <th key={`header-${i}`}>{item}</th>;
-              })}
-          </tr>
-        </thead>
-        <tbody>
-          {rowsArr && rowsArr.map((row, i) => (
-            <tr key={`row-${i}`} className="table-body-row">
-              {row.map((item, i) => {
-                return <td key={`td-${i}`}>{item}</td>;
-              })}
+    <div className="table-container">
+      <table data-test="table-container">
+        {headerRowArr && (
+          <thead>
+            <tr className="table-header-row">
+              {headerRowArr &&
+                headerRowArr.map((item, i) => {
+                  return <th key={`header-${i}`}>{item}</th>;
+                })}
             </tr>
-          ))}
-        </tbody>
+          </thead>
+        )}
+        {rowsArr && (
+          <tbody>
+            {rowsArr &&
+              rowsArr.map((row, i) => (
+                <tr key={`row-${i}`} className="table-body-row">
+                  {row.map((item, i) => {
+                    return <td key={`td-${i}`}>{item}</td>;
+                  })}
+                </tr>
+              ))}
+          </tbody>
+        )}
       </table>
     </div>
   );
 };
 
 Table.propTypes = {
-  rowsArr:PropTypes.array,
-  headerRowArr:PropTypes.array
+  rowsArr: PropTypes.array,
+  headerRowArr: PropTypes.array,
 };
 
 export default Table;
