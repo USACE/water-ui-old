@@ -7,6 +7,7 @@
 
   .is-expanded {
     .drawer-content-container {
+      overflow-y: auto;
       transform: translateX(0);
       .outer-container {
         .drawer-icon-container {
@@ -30,10 +31,6 @@
     display: flex;
     flex-direction: row;
     overflow-y: hidden;
-    &:hover {
-      overflow-y: auto;
-    }
-
 
     .drawer-content {
       flex-grow: 100;
