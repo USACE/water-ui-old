@@ -5,47 +5,49 @@ import { shallow } from "enzyme";
 import Table from "../table/Table";
 
 // utils:
-import { findByTestAttr, findByElementType } from "../../testUtils";
+import { findByElementType } from "../../testUtils";
 
-// Set up the component with props:
-const initialSetup = (props = {}) => {
-  const wrapper = shallow(<Table {...props} />);
+describe("<Table />", () => {
+  const renderOptions = { disableLifecycleMethods: true };
 
-  return wrapper;
-};
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<Table />, renderOptions);
+  });
 
-test("component renders without error", () => {
-  const wrapper = initialSetup();
-  const component = findByTestAttr(wrapper, "table-container");
-  expect(component.length).toBe(1);
-});
+  it("component renders without error", () => {
+    expect(wrapper.length).toBe(1);
+  });
 
-test("number of headers match number of column", () => {
-  const props = {
-    headerRowArr: ["header1", "header2", "header3"],
-    rowsArr: [
-      ["tableBody1", "tableBody2", "tableBody3"],
-      ["tableBody1", "tableBody2", "tableBody3"],
-      ["tableBody1", "tableBody2", "tableBody3"],
-      ["tableBody1", "tableBody2", "tableBody3"],
-    ],
-  };
-  const wrapper = initialSetup(props);
-
-  const th = findByElementType(wrapper, "th");
-  const td = findByElementType(wrapper, "td");
-  const tr = findByElementType(wrapper, "tr");
-
-  const numberOfColumns = td.length / (tr.length - 1);
-  expect(numberOfColumns).toBe(th.length);
-});
-
-describe("table headers renders conditionally", () => {
-  test("table headers RENDER when headerRowArr props exist", () => {
-    const props = {
+  it("number of headers match number of column", () => {
+    wrapper.setProps({
       headerRowArr: ["header1", "header2", "header3"],
-    };
-    const wrapper = initialSetup(props);
+      rowsArr: [
+        ["tableBody1", "tableBody2", "tableBody3"],
+        ["tableBody1", "tableBody2", "tableBody3"],
+        ["tableBody1", "tableBody2", "tableBody3"],
+        ["tableBody1", "tableBody2", "tableBody3"],
+      ],
+    });
+    const th = findByElementType(wrapper, "th");
+    const td = findByElementType(wrapper, "td");
+    const tr = findByElementType(wrapper, "tr");
+
+    const numberOfColumns = td.length / (tr.length - 1);
+    expect(numberOfColumns).toBe(th.length);
+  });
+
+  it("table headers renders conditionally", () => {
+    wrapper.setProps({
+      headerRowArr: ["header1", "header2", "header3"],
+      rowsArr: [
+        ["tableBody1", "tableBody2", "tableBody3"],
+        ["tableBody1", "tableBody2", "tableBody3"],
+        ["tableBody1", "tableBody2", "tableBody3"],
+        ["tableBody1", "tableBody2", "tableBody3"],
+      ],
+    });
+
     const tHeadTag = findByElementType(wrapper, "thead");
     const th = findByElementType(wrapper, "th");
     const tr = findByElementType(wrapper, "tr");
@@ -53,13 +55,12 @@ describe("table headers renders conditionally", () => {
     // Check for <thead>
     expect(tHeadTag.length).toBe(1);
     // Check for <tr>
-    expect(tr.length).toBe(1);
+    expect(tr.length).toBe(5);
     // Check for <th>
     expect(th.length).toBe(3);
   });
-  test("table headers DON'T RENDER when no headerRowArr props exist", () => {
-    const props = {};
-    const wrapper = initialSetup(props);
+
+  it("table headers DON'T RENDER when no headerRowArr props exist", () => {
     const thead = findByElementType(wrapper, "thead");
     const th = findByElementType(wrapper, "th");
     const tr = findByElementType(wrapper, "tr");
@@ -71,15 +72,18 @@ describe("table headers renders conditionally", () => {
     // Check for <th>
     expect(th.length).toBe(0);
   });
-});
 
-describe("table body renders conditionally", () => {
-  test("table body renders when rowsArr props exists", () => {
-    const props = {
-      rowsArr: [["tableBody1", "tableBody2", "tableBody3"]],
+  it("table body renders when rowsArr props exists", () => {
+    wrapper.setProps({
       headerRowArr: ["header1", "header2", "header3"],
-    };
-    const wrapper = initialSetup(props);
+      rowsArr: [
+        ["tableBody1", "tableBody2", "tableBody3"],
+        ["tableBody1", "tableBody2", "tableBody3"],
+        ["tableBody1", "tableBody2", "tableBody3"],
+        ["tableBody1", "tableBody2", "tableBody3"],
+      ],
+    });
+
     const tbody = findByElementType(wrapper, "tbody");
     const tr = findByElementType(wrapper, "tr");
     const td = findByElementType(wrapper, "td");
@@ -87,13 +91,12 @@ describe("table body renders conditionally", () => {
     // Check for <tbody>
     expect(tbody.length).toBe(1);
     // Check for <tr>
-    expect(tr.length).toBe(2);
+    expect(tr.length).toBe(5);
     // Check for <td>
-    expect(td.length).toBe(3);
+    expect(td.length).toBe(12);
   });
-  test("table body DOES NOT render when no rowsArr props exists", () => {
-    const props = {};
-    const wrapper = initialSetup(props);
+
+  it("table body DOES NOT render when no rowsArr props exists", () => {
     const tBody = findByElementType(wrapper, "tbody");
     const tr = findByElementType(wrapper, "tr");
     const td = findByElementType(wrapper, "td");

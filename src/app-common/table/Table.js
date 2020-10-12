@@ -9,7 +9,7 @@ const Table = (props) => {
 
   return (
     <div className="table-container">
-      <table data-test="table-container">
+      <table>
         {headerRowArr && (
           <thead>
             <tr className="table-header-row">
