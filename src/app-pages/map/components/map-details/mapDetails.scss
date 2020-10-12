@@ -1,3 +1,6 @@
+@import "../../../../style/sass/abstracts/mixins";
+@import "../../../../style/sass/abstracts/variables";
+
 .map-details-wrapper {
   width: 100%;
   height: 100%;
@@ -16,20 +19,25 @@
 
   .drawer-content-container {
     height: 100%;
-    background: white;
+    background: $white;
     box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;
     left: 0;
-    width: 40vw;
     z-index: 200;
     transform: translateX(-92%);
     transition: transform 0.3s ease-out;
     display: flex;
     flex-direction: row;
+    @include mq($breakpoint: "desktop", $direction: "up") {
+      width: 40vw;
+    }
 
     .drawer-content {
       flex-grow: 100;
+      .location-detail-content-container{
+        margin: 1.5rem;
+      }
     }
     .outer-container {
        flex-grow: 3;
@@ -43,7 +51,7 @@
           margin: 5px 10px;
           padding: 10px;
           padding-right: 15px;
-          background-color: lightgrey;
+          background-color: $base-lighter-gray;
         }
       }
     }

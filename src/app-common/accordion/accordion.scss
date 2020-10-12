@@ -1,10 +1,12 @@
+@import "../../style/sass/abstracts/variables";
+
 .accordion-section {
   margin: 1rem 0;
 
   .accordion-btn {
     width: 100%;
     border: none;
-    background-color: lightgrey;
+    background-color: $base-lighter-gray;
     text-align: left;
     font-size: 1rem;
     cursor: pointer;

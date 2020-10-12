@@ -4,7 +4,7 @@ import SearchBox from '../../../app-common/SearchBox';
 import DropDown from '../../../app-common/Dropdown';
 
 const MapNavBar = (props) => (
-  <div className="MapNavBarWrapper">
+  <div className="map-nav-bar-wrapper">
    	<div className="h-100 px-5 py-4 bg-secondary">
 			<div className="row">
 				<div className="col-md-4">
