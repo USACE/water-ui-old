@@ -6,9 +6,10 @@ import { connect } from "redux-bundler-react";
 const metaDataHeaderArr = ["name", "value"];
 let metaDataRowsArr;
 
-const LocationInfo = ({ selectedLocationDetail }) => {
-  const [metaDataState, setmetaDataState] = useState();
-  useEffect(() => {
+const LocationInfo = ({selectedLocationDetail}) => {
+
+const [metaDataState, setmetaDataState] = useState( null );
+  useEffect (() => {
     const metaDataJsonObj = selectedLocationDetail;
     delete metaDataJsonObj.dam_profile;
     metaDataRowsArr = Object.entries(metaDataJsonObj);
