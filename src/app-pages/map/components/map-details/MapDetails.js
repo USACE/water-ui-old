@@ -55,7 +55,9 @@ const MapDetails = ( { doSetSelectedLocationCode, selectedLocationCode, selected
       <div className="drawer-content-container">
         <div className="drawer-content">
           <LocationDetailHeader locationDetail={ selectedLocationDetail }></LocationDetailHeader>
-          <Accordion data={accordionArrObjs} />
+          <div className="location-detail-content-container">
+            <Accordion data={accordionArrObjs} />
+          </div>
         </div>
 
         <div className="outer-container">
