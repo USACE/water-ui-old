@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://apps.rsgis.dev/water",
+  "proxy": "https://api.rsgis.dev/development",
   "dependencies": {
     "@corpsmap/corpsmap-bundles": "^2.0.2",
     "@corpsmap/create-auth-bundle": "^0.3.0",

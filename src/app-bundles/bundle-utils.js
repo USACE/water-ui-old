@@ -11,6 +11,8 @@ export function isDevelopmentMode() {
   return process.env.NODE_ENV !== "production";
 }
 
+export const prodUrl = "https://api.rsgis.dev/development";
+
 /**
  * Builds a REST URL. When not in mock mode, it uses the `liveUrl`. In mock mode, uses the `mockUrl`. If the
  * optional `mockOverrideFlag` is set to true, forces use of the `mockUrl`. If set to false, forces use of the `liveUrl`.

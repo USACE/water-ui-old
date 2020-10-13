@@ -1,5 +1,5 @@
 import createRestBundle from "./create-rest-bundle";
-import { getRestUrl } from "./bundle-utils";
+import { prodUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
 
 export default createRestBundle( {
@@ -8,7 +8,7 @@ export default createRestBundle( {
   prefetch: true,
   staleAfter: 10000,
   persist: false,
-  getTemplate: getRestUrl( "/water/locations/basins", "/districts-and-basins.json" ),
+  getTemplate: `${ prodUrl }/water/locations/basins`,
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
