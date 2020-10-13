@@ -40,7 +40,7 @@ const LocationStreamControls = ({ selectedLocationDetail }) => {
 };
 
 LocationStreamControls.propTypes = {
-  selectedLocationDetail: PropTypes.array,
+  selectedLocationDetail: PropTypes.object,
 };
 
 export default connect("selectSelectedLocationDetail", LocationStreamControls);

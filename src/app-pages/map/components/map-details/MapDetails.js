@@ -3,6 +3,7 @@ import "./mapDetails.scss";
 import LocationDetailHeader from "../../../../app-common/location-detail/Header";
 import Accordion from "../../../../app-common/accordion/Accordion";
 import LocationInfo from "../LocationInfo";
+import DamProfile from "../DamProfile";
 import { connect } from "redux-bundler-react";
 // import PropTypes from 'prop-types';
 
@@ -13,7 +14,7 @@ const MapDetails = ( { doSetSelectedLocationCode, selectedLocationCode, selected
     let wasOpen = isOpen;
     setIsOpen(!isOpen);
     if( wasOpen ) doSetSelectedLocationCode( null );
-  }
+  };
 
   useEffect( () => {
     if( !isOpen && selectedLocationCode ) toggleDrawer();
@@ -23,13 +24,12 @@ const MapDetails = ( { doSetSelectedLocationCode, selectedLocationCode, selected
   const accordionArrObjs = [
     {
       title: "Dam Profolio",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
+      content: <DamProfile/>,
       iconClass: "mdi mdi-water-pump"
     },
     {
       title: "Location Information",
-      content: <LocationInfo />,
+      content: <LocationInfo/>,
       iconClass: "mdi mdi-map-marker"
     },
     {
