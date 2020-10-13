@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./mapDetails.scss";
 import LocationDetailHeader from "../../../../app-common/location-detail/Header";
 import Accordion from "../../../../app-common/accordion/Accordion";
+import LocationInfo from "../LocationInfo";
 import { connect } from "redux-bundler-react";
 // import PropTypes from 'prop-types';
 
@@ -18,7 +19,7 @@ const MapDetails = ( { doSetSelectedLocationCode, selectedLocationCode, selected
     if( !isOpen && selectedLocationCode ) toggleDrawer();
   });
 
-  // Accordion dummy date
+  // Accordion dummy data
   const accordionArrObjs = [
     {
       title: "Dam Profolio",
@@ -27,9 +28,8 @@ const MapDetails = ( { doSetSelectedLocationCode, selectedLocationCode, selected
       iconClass: "mdi mdi-water-pump"
     },
     {
-      title: "Location Data",
-      content:
-        "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
+      title: "Location Information",
+      content: <LocationInfo />,
       iconClass: "mdi mdi-map-marker"
     },
     {
