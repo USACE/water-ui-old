@@ -9,7 +9,7 @@ let metaDataRowsArr;
 
 const LocationInfo = ({selectedLocationDetail}) => {
 
-const [metaDataState, setmetaDataState] = useState();
+const [metaDataState, setmetaDataState] = useState( null );
   useEffect (() => {
   const metaDataJsonObj = selectedLocationDetail;
   delete metaDataJsonObj.dam_profile;

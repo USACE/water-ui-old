@@ -4,7 +4,9 @@ import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 
 const LocationStreamControls = ({ selectedLocationDetail }) => {
+  // For now, mock this array. Later, we'll add a mock array of stream locations to the location data.
   const options = ["jump to station", "station 1", "station 2", "station 3"];
+
   const changeStation = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -40,7 +42,7 @@ const LocationStreamControls = ({ selectedLocationDetail }) => {
 };
 
 LocationStreamControls.propTypes = {
-  selectedLocationDetail: PropTypes.array,
+  selectedLocationDetail: PropTypes.object,
 };
 
 export default connect("selectSelectedLocationDetail", LocationStreamControls);
