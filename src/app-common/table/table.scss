@@ -1,0 +1,17 @@
+table {
+  width: 600px;
+  margin: 1rem 0;
+  th {
+    border-bottom: 1px solid black;
+  }
+  td {
+    border-bottom: 1px solid gray;
+  }
+  td,
+  th {
+    padding: 10px;
+    text-transform: capitalize;
+  }
+  .table-body-row {
+  }
+}

@@ -34,9 +34,9 @@ const Accordion = (props) => {
             key={`button-${i}`}
             type="button"
           >
-            <p className={`accordion-title text--bold ${iconClass}`}>
+            <div className={`accordion-title text--bold ${iconClass}`}>
               {ele.title}
-            </p>
+            </div>
             <div
               className={
                 i === activeAcc ? "chevron right" : "chevron right open"
@@ -53,7 +53,7 @@ const Accordion = (props) => {
             key={`accordion-content-${i}`}
             id={`accordion-content-${i}`}
           >
-            <p className="content-paragraph">{content}</p>
+            <div className="content-paragraph">{content}</div>
           </div>
         </div>
       );
