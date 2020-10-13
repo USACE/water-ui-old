@@ -4,25 +4,23 @@ import Table from "../../../app-common/table/Table";
 import { connect } from "redux-bundler-react";
 
 
-const metaDataHeaderArr = ["name", "value"];
-let metaDataRowsArr;
+const damProfileHeaderArr = ["name", "value"];
+let damProfileRowsArr;
 
 const DamProfile = ({selectedLocationDetail}) => {
 
-const [metaDataState, setmetaDataState] = useState();
+const [damProfileState, setDamProfileState] = useState();
 
   useEffect (() => {
-    if(Object.keys(selectedLocationDetail).length !== 0){
-      const metaDataJsonObj = selectedLocationDetail.dam_profile.history[0];
-      metaDataRowsArr = Object.entries(metaDataJsonObj);
-      setmetaDataState(metaDataRowsArr);
-    }
+      const damProfileJsonObj = selectedLocationDetail.dam_profile.history[0];
+      damProfileRowsArr = Object.entries(damProfileJsonObj);
+      setDamProfileState(damProfileRowsArr);
   },[selectedLocationDetail]);
 
   return (
     <div className="dam-profile-wrapper">
       <h5>Dam Profile Data</h5>
-    {metaDataState ? <Table rowsArr={metaDataState} headerRowArr={metaDataHeaderArr} /> :null}
+    {damProfileState ? <Table rowsArr={damProfileState} headerRowArr={damProfileHeaderArr} /> :null}
     </div>
   );
 };
