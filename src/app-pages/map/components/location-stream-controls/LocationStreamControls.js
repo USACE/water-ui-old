@@ -28,7 +28,7 @@ const LocationStreamControls = ({ selectedLocationDetail }) => {
         onChange={jumpStation}
         onClick={jumpStation}
       >
-        {options.map((item, i) => (
+        {options && options.map((item, i) => (
           <option key={i} value={item}>
             {item}
           </option>

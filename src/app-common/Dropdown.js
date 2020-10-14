@@ -18,7 +18,7 @@ const DropDown = ( { label, id, options, doUpdateUrl, onChange, value, title } )
               value={ value }
               onChange={ ( e ) => onChange( e, doUpdateUrl ) }>
         { value ? null : <option value="">Select { title }...</option> }
-        { options.map( ( item, i ) => (
+        { options && options.map( ( item, i ) => (
           <option key={ i }
                   value={ item.id !== null ? item.id : item }>{ item.value !== null ? item.value : item }</option>
         ) ) }

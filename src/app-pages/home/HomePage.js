@@ -23,11 +23,11 @@ const headerContainerStyle = {
 const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, selectedDistrict, doSetSelectedBasin } ) => {
   const mapOptions = { center: [ -77.0364, 38.895 ], zoom: 4 };
 
-  const districtOptions = districts.map( val => {
+  const districtOptions = districts && districts.map( val => {
     return { id: val.district_office_id, value: val.district_name }
   } );
 
-  const basinOptions = basinsForDistrict.map( val => {
+  const basinOptions = basinsForDistrict && basinsForDistrict.map( val => {
     return { id: val.basin_location_id, value: val.basin_name }
   } );
 
