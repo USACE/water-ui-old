@@ -27,7 +27,7 @@ const Accordion = (props) => {
           <div key={ i }>
             <button
               className={ `accordion-btn` }
-              id={i}
+              id={`accordion-control-${i}`}
               onClick={ (e) => toggleAccordion(i, e) }
               aria-controls={ ele.title }
               aria-expanded={ activeAcc.includes(i) ? "true" : "false" }
@@ -51,7 +51,8 @@ const Accordion = (props) => {
               }
               aria-labelledby={ title }
               key={ `accordion-content-${i}` }
-              id={ `accordion-content-${i}` }
+              id={ `accordion-control-${i}` }
+              aria-hidden={ !activeAcc.includes(i) ? "true" : "false" }
             >
               <div className="content-paragraph">{ content }</div>
             </div>
