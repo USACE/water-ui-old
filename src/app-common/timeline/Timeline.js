@@ -15,7 +15,6 @@ const TimelineItem = ({ data }) => (
 );
 
 const Timeline = ({ timelineData, align }) => {
-  console.log(timelineData);
   return (
     timelineData.length > 0 && (
       <div className={`outter-container ${align}`}>

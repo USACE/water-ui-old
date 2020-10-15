@@ -41,7 +41,7 @@ export const accordionArrObjs = [
   },
   {
     title: "Time Series",
-    content: <Timeline timelineData={timelineData} align={"horizontal"} />,
+    content: <Timeline timelineData={timelineData} align={"vertical"} />,
     iconClass: "mdi mdi-map-marker",
   },
   {

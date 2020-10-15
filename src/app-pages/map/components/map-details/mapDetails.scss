@@ -12,6 +12,7 @@
     .drawer-content-container {
       overflow-y: auto;
       transform: translateX(0);
+      max-width: max-content;
       .outer-container {
         display: none;
       }
