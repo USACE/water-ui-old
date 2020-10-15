@@ -1,0 +1,205 @@
+@import "../../style/sass/abstracts/variables";
+
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+.outter-container {
+  overflow-x: scroll;
+}
+
+.horizontal {
+  .timeline-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin: 20px 0 250px 0;
+    border-bottom: 4px solid green;
+    min-width: max-content;
+    overflow: visible;
+
+    .timeline-item {
+      padding-right: 30px;
+      position: relative;
+      margin: 25px 0;
+      width: 50%;
+    }
+
+    .timeline-item:nth-child(even) {
+      top: 198px;
+      padding-left: 30px;
+      padding-right: 0;
+    }
+
+    .timeline-item:nth-child(odd) {
+      align-self: flex-end;
+      justify-content: flex-start;
+      padding-left: 30px;
+      padding-right: 0;
+    }
+
+    //general pointer for all childs
+    .timeline-item-content::after {
+      content: " ";
+      background-color: #fff;
+      box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.2);
+      position: absolute;
+      top: -7.5px;
+      left: calc(50% - 7.5px);
+      transform: rotate(-45deg);
+      width: 15px;
+      height: 15px;
+    }
+
+    // pointer for odd childs
+    .timeline-item:nth-child(odd) .timeline-item-content::after {
+      top: calc(100% - 7.5px);
+      bottom: 7.5px;
+      box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    //circles
+    .timeline-item-content .circle {
+      background-color: #fff;
+      border: 3px solid green;
+      border-radius: 50%;
+      position: absolute;
+      bottom: calc(100% + 17.5px);
+      left: calc(50% - 7.5px);
+      width: 20px;
+      height: 20px;
+      z-index: 100;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-item-content .circle {
+      top: 113%;
+    }
+
+    // content formatting
+    .timeline-item-content {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 15px;
+      position: relative;
+      width: 200px;
+      max-width: 100%;
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .timeline-item-content time {
+      color: #777;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .timeline-item-content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0.5rem 0;
+      max-width: 250px;
+    }
+  }
+}
+
+.vertical {
+  .timeline-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 40px 0;
+    &:after {
+      background-color: green;
+      content: "";
+      position: absolute;
+      left: calc(50% - 2px);
+      width: 4px;
+      height: 100%;
+    }
+
+    .timeline-item {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 30px;
+      position: relative;
+      margin: 10px 0;
+      width: 50%;
+    }
+
+    .timeline-item:nth-child(odd) {
+      align-self: flex-end;
+      justify-content: flex-start;
+      padding-left: 30px;
+      padding-right: 0;
+    }
+
+    .timeline-item-content {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 15px;
+      position: relative;
+      width: 200px;
+      max-width: 100%;
+      text-align: right;
+    }
+
+    .timeline-item-content::after {
+      content: " ";
+      background-color: #fff;
+      box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.2);
+      position: absolute;
+      right: -7.5px;
+      top: calc(50% - 7.5px);
+      transform: rotate(45deg);
+      width: 15px;
+      height: 15px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-item-content {
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-item-content::after {
+      right: auto;
+      left: -7.5px;
+      box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .timeline-item-content time {
+      color: #777;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .timeline-item-content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0.5rem 0;
+      max-width: 250px;
+    }
+
+    .timeline-item-content .circle {
+      background-color: #fff;
+      border: 3px solid green;
+      border-radius: 50%;
+      position: absolute;
+      top: calc(50% - 10px);
+      right: -40px;
+      width: 20px;
+      height: 20px;
+      z-index: 100;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-item-content .circle {
+      right: auto;
+      left: -40px;
+    }
+  }
+}

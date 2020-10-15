@@ -37,12 +37,13 @@
 
     .drawer-content {
       flex-grow: 100;
-      .location-detail-content-container{
+      max-width: 100%;
+      .location-detail-content-container {
         margin: 1.5rem;
       }
     }
     .outer-container {
-       flex-grow: 3;
+      flex-grow: 3;
       .drawer-icon-container {
         display: flex;
         flex-direction: column;
@@ -59,5 +60,3 @@
     }
   }
 }
-
-
