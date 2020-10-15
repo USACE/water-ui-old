@@ -27,7 +27,7 @@ const MapDetails = ({
     <div className="map-details-wrapper">
       <div className={`${isOpen ? "is-expanded" : ""}`} onClick={toggleDrawer}>
         <div className="drawer-content-container">
-          <div className="drawer-content">
+          <div className={`${isOpen ? "drawer-content" : "display-none"}`}>
             <LocationDetailHeader
               locationDetail={selectedLocationDetail}
             ></LocationDetailHeader>

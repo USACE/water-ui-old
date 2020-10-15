@@ -17,7 +17,9 @@
       }
     }
   }
-
+  .display-none{
+    display: none;
+  }
   .drawer-content-container {
     height: 100%;
     background: $white;
@@ -36,25 +38,26 @@
     overflow-y: hidden;
 
     .drawer-content {
-      flex-grow: 100;
       max-width: 100%;
       .location-detail-content-container {
         margin: 1.5rem;
       }
     }
     .outer-container {
-      flex-grow: 3;
+      width: 100%;
       .drawer-icon-container {
         display: flex;
         flex-direction: column;
         text-align: right;
         height: 100%;
         margin-top: 5px;
+        float: right;
         .icons {
           margin: 5px 10px;
           padding: 10px;
           padding-right: 15px;
           background-color: $base-lighter-gray;
+          width: 50px;
         }
       }
     }
