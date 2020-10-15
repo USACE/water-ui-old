@@ -27,7 +27,7 @@ class Map extends React.Component {
             this.el = el;
           }}
         >
-          {!isLocationsMapDataSet && <Loader type={loaderTypes.FOLDING_CUBE} />}
+          {!isLocationsMapDataSet && <Loader type={loaderTypes.SPINNER} />}
         </div>
         <div id="map-popup" className="ol-popup">
           <button id="map-popup-closer" className="ol-popup-closer"/>

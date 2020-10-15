@@ -117,7 +117,12 @@ export default (opts) => {
     /**
      * If set, data fetching will only occur if the current URL path equals one of the specified `activeRoutes`.
      */
-    activeRoutes: []
+    activeRoutes: [],
+
+    /**
+     * If set, delays Fetch response by specified ms. Useful to simulate async delay when using mock JSON data.
+     */
+    delayMs: 0
   };
 
   const config = Object.assign({}, defaults, opts);
@@ -379,7 +384,8 @@ export default (opts) => {
               data.forEach((item) => {
                 itemsById[item[config.uid]] = item;
               });
-              dispatch({
+
+              const action = {
                 type: actions.FETCH_FINISHED,
                 payload: {
                   ...itemsById,
@@ -393,7 +399,10 @@ export default (opts) => {
                     _abortReason: null,
                   },
                 },
-              });
+              };
+
+              if( !( config.delayMs > 0 ) ) dispatch( action );
+              else setTimeout( () => dispatch( action ), config.delayMs );
             }
           });
         }
