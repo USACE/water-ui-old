@@ -278,3 +278,15 @@
     transform: scale3D(0, 0, 1);
   }
 }
+
+.loader-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 5000;
+  background: #ffffff;
+  opacity: .80;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
