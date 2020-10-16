@@ -3,7 +3,7 @@ import React from "react";
 import Timeline from "../../../app-common/timeline/Timeline";
 
 //Timeline Dummy Data
-export const timelineData = [
+ const timelineData = [
   {
     text: "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit",
     date: "January 1 2020",
