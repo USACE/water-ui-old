@@ -12,7 +12,7 @@ describe("<Accordion />", () => {
 
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<Timeline />, renderOptions);
+    wrapper = shallow(<Timeline timelineData={[]} />, renderOptions);
     wrapper.setProps({
       timelineData:[
         {

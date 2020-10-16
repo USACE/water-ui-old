@@ -1,7 +1,7 @@
 @import "../../style/sass/abstracts/variables";
 
-.outter-container {
-  overflow-x: scroll;
+.outer-timeline-container {
+  overflow: auto;
 }
 
 .horizontal {
@@ -101,7 +101,6 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: 40px 0;
     &:after {
       background-color: green;
       content: "";
@@ -186,6 +185,33 @@
           }
         }
       }
+    }
+  }
+}
+
+.vertical {
+  .timeline-container.compact {
+    .timeline-item {
+      margin: -20px 0px;
+
+      &:first-child {
+        margin-top: 10px;
+      }
+
+      &:last-child {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.horizontal {
+  .timeline-container.compact {
+    .timeline-item:nth-child(even) {
+      margin: 25px -75px;
+    }
+    .timeline-item:last-child {
+      margin-right: 25px;
     }
   }
 }

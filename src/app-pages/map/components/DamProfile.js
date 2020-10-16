@@ -9,7 +9,7 @@ let damProfileRowsArr;
 
 const DamProfile = ({selectedLocationDetail}) => {
 
-const [damProfileState, setDamProfileState] = useState();
+const [damProfileState, setDamProfileState] = useState( [] );
 
   useEffect (() => {
     if(Object.keys(selectedLocationDetail).length > 0){

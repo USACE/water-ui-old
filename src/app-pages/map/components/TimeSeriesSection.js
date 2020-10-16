@@ -32,7 +32,7 @@ const TimeSeriesSection = () => {
     <div className="time-series-section-wrapper">
       <h5>Time Series</h5>
       {timelineData ? (
-        <Timeline timelineData={timelineData} align={"vertical"} />
+        <Timeline timelineData={timelineData} align={"vertical"} maxHeight={"400px"} compact={true} />
       ) : null}
     </div>
   );
