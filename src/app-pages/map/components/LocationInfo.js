@@ -17,7 +17,7 @@ const [metaDataState, setmetaDataState] = useState( null );
   }, [selectedLocationDetail]);
 
   return (
-    <div className="LocationInfoWrapper">
+    <div className="location-info-wrapper">
       <h5>Metadata</h5>
       {metaDataState ? (
         <Table rowsArr={metaDataState} headerRowArr={metaDataHeaderArr} />
