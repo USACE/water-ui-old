@@ -15,6 +15,7 @@ import pkg from "../../package.json";
 
 import appBundle from "./app-bundle";
 import routeBundle from "./routes-bundle";
+import mapsBundle from './maps-bundle';
 import locationsMapBundle from "./locations-map-bundle";
 import locationSummariesBundle from "./location-summaries-bundle";
 import districtsAndBasinsBundle from "./districts-and-basins-bundle";
@@ -55,6 +56,7 @@ export default composeBundles(
     zoom: 5,
   }),
   appBundle,
+  mapsBundle,
   locationSummariesBundle,
   routeBundle,
   locationsMapBundle,

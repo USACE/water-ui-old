@@ -18,7 +18,7 @@ class Map extends React.Component {
   }
 
   render() {
-    const { height, isLocationsMapDataSet } = this.props;
+    const { height, isMapsLoaded } = this.props;
     return (
       <>
         <div
@@ -27,7 +27,7 @@ class Map extends React.Component {
             this.el = el;
           }}
         >
-          {!isLocationsMapDataSet && <Loader type={loaderTypes.SPINNER} />}
+          {!isMapsLoaded && <Loader type={loaderTypes.SPINNER} />}
         </div>
         <div id="map-popup" className="ol-popup">
           <button id="map-popup-closer" className="ol-popup-closer"/>
@@ -41,6 +41,6 @@ class Map extends React.Component {
 export default connect(
   "doMapsInitialize",
   "doMapsShutdown",
-  "selectIsLocationsMapDataSet",
+  "selectIsMapsLoaded",
   Map
 );

@@ -1,10 +1,6 @@
 /* eslint-disable no-mixed-operators */
 // import { createSelector } from "redux-bundler";
-import { getRestUrl } from "./bundle-utils";
 // import { isValidArrWithValues } from "../functions";
-import olMap from "ol/Map.js";
-import View from "ol/View";
-import ScaleBar from "ol/control/ScaleLine";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
 import Feature from "ol/Feature";
 import Point from "ol/geom/Point";
@@ -19,18 +15,17 @@ import {
 } from "ol/style";
 import { Cluster, OSM, Vector as VectorSource } from "ol/source";
 import { fromLonLat } from "ol/proj";
-import BasemapPicker from "../ol-controls/basemap-picker";
 import { createSelector } from "redux-bundler";
 
 const actions = {
-  LOCATION_MAP_INITIALIZED: `LOCATION_MAP_INITIALIZED`,
-  LOCATION_MAP_SHUTDOWN: `LOCATION_MAP_SHUTDOWN`,
+  LOCATION_MAP_INITIALIZED: "LOCATION_MAP_INITIALIZED",
+  LOCATION_MAP_SHUTDOWN: "LOCATION_MAP_SHUTDOWN",
   LOCATION_MAP_DATA_SET: "LOCATION_MAP_DATA_SET"
 };
 
 export default ( () => {
   const internalState = {
-    map: undefined
+    layer: null,
   };
 
   const result = {
@@ -38,12 +33,6 @@ export default ( () => {
 
     getReducer: () => {
       const initialData = {
-        url: getRestUrl("/water/locations", "/location-list.json"),
-        isLocationsMapInitialized: false,
-        isLocationsMapDataSet: false,
-        // shouldFetch: false,
-        // error: null,
-        // icon: null,
       };
 
       return (state = initialData, { type, payload }) => {
@@ -56,41 +45,6 @@ export default ( () => {
             return state;
         }
       };
-    },
-
-    doMapsInitialize: (key, el, options) => async ({ dispatch, store }) => {
-      const map = new olMap(
-        Object.assign(
-          {
-            controls: [new ScaleBar({ units: "us" }), new BasemapPicker()],
-            target: el,
-            view: new View({
-              center: (options && options.center) || [-11000000, 4600000],
-              zoom: (options && options.zoom) || 4,
-            }),
-            overlays: [],
-            layers: [],
-          },
-          options
-        )
-      );
-
-      internalState.map = map;
-
-      dispatch({
-        type: actions.LOCATION_MAP_INITIALIZED,
-        payload: {
-          isLocationsMapInitialized: true,
-        },
-      });
-    },
-
-    selectIsLocationsMapInitialized: ( { locationsMap } ) => {
-      return locationsMap.isLocationsMapInitialized;
-    },
-
-    selectIsLocationsMapDataSet: ( { locationsMap } ) => {
-      return locationsMap.isLocationsMapDataSet;
     },
 
     doAddDataToMap: (map) => async ({ dispatch, store }) => {
@@ -195,7 +149,7 @@ export default ( () => {
       });
 
       // get map obj from state
-      const map = internalState.map;
+      const map = store.selectOlMap();
 
       //add data points to map obj
       map.addOverlay(overlay);
@@ -255,35 +209,17 @@ export default ( () => {
         return false;
       });
 
-      dispatch({
-        type: actions.LOCATION_MAP_DATA_SET,
-        payload: {
-          isLocationsMapInitialized: true,
-          isLocationsMapDataSet: true
-        },
-      });
+      store.doSetMapsLoaded(true);
     },
 
-    doMapsShutdown: (key) => ({ dispatch }) => {
-      dispatch({
-        type: actions.LOCATION_MAP_SHUTDOWN,
-        payload: {
-          [key]: null,
-          isLocationsMapInitialized: false,
-          isLocationsMapDataSet: false
-        },
-      });
-    },
-
-    reactShouldCreateMap: createSelector(
-      "selectIsLocationsMapInitialized",
-      "selectIsLocationsMapDataSet",
+    reactShouldCreateLocationsMap: createSelector(
+      "selectMapsFlags",
       "selectLocationSummariesItems",
-      (isLocationsMapInitialized, isLocationsMapDataSet, mapLocationItems) => {
-        if (isLocationsMapInitialized && mapLocationItems.length > 0 && !isLocationsMapDataSet ) {
+      ({ _initializedMap, _mapLoaded }, locationSummariesItems) => {
+        if (_initializedMap === "locationsMap" && !_mapLoaded && locationSummariesItems.length > 0) {
           return { actionCreator: "doAddDataToMap" };
         }
-      }
+      },
     ),
 
     //   reactDataChange: (state) => {
