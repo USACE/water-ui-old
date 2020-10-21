@@ -16,7 +16,7 @@ export default {
     return ( state = initialData, { type, payload } ) => {
       switch( type ) {
         case "LOCATIONSUMMARIES_FETCH_STARTED":
-          return Object.assign( {}, state, { data: null } )
+          return Object.assign( {}, state, { treeData: null } )
         case LocationTreeActions.LOCATION_TREE_CREATED:
           return Object.assign( {}, state, payload );
         default:
@@ -38,14 +38,16 @@ export default {
     "selectLocationTree",
     "selectLocationSummaries",
     ( locationTree, locationSummaries ) => {
-      if( locationTree === null && locationSummaries ) return { actionCreator: "doCreateLocationTree", args: [ locationSummaries ] }
+      if( locationTree === null && locationSummaries && locationSummaries.length > 0 ) {
+        return { actionCreator: "doCreateLocationTree", args: [ locationSummaries ] };
+      }
     }
   ),
 
 };
 
 // Not sure if this is a good way to keep things clean when a bundle needs to run more complex logic? I'm just leery of
-// stuffing it in doCreateLocationTree() or the reducer switch/case.
+// stuffing all this logic directly inside doCreateLocationTree() or the reducer switch/case.
 function listToTree( sourceList ) {
   let locationIdToListIndex = {}, currentNode, tree = [], i;
 

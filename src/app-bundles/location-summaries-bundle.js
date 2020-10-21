@@ -15,8 +15,9 @@ export default createRestBundle( {
   deleteTemplate: null,
   fetchActions: [],
   forceFetchActions: [],
-  reduceFurther: ( state, { type, payload } ) => {
-    switch( type ) {
+  delayMs: isMockMode() ? 2000 : 0,
+  reduceFurther: (state, { type, payload }) => {
+    switch (type) {
       default:
         return state;
     }
