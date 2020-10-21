@@ -17,20 +17,9 @@ const MapNavBar = ({
 }) => {
   const [orgDivToggleState, setOrgDivToggleState] = useState(false);
 
-  const filtered =
-    locationTree &&
-    locationTree.map((val) => {
-      return {
-        label: val.label,
-        location_id: val.location_id,
-        is_leaf: val.is_leaf,
-        nodes: val.nodes,
-      };
-    });
-
   const handleNodeClick = (e) => {
     //if node is a leaf then toggle the drawer
-    if (e.is_leaf) {
+    if (!e.hasNodes) {
       doSetSelectedLocationCode(e.location_id);
     }
   };
@@ -83,9 +72,9 @@ const MapNavBar = ({
             >
               Organizational Structure
             </div>
-            {orgDivToggleState && (
+            {orgDivToggleState && locationTree  && (
               <MenuTree
-                data={filtered}
+                data={ locationTree }
                 onClickItem={(e) => handleNodeClick(e)}
               />
             )}

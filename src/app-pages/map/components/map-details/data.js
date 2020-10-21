@@ -6,7 +6,7 @@ import TimesSeriesSection from "../TimeSeriesSection"
 // Accordion dummy data
 export const accordionArrObjs = [
   {
-    title: "Dam Profolio",
+    title: "Dam Profile",
     content: <DamProfile />,
     iconClass: "mdi mdi-water-pump",
   },

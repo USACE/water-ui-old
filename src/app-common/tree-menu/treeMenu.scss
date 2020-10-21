@@ -14,7 +14,7 @@ $ICON_SIZE: 1.5rem;
   padding-left: 0;
   border-top: 1px solid #ccc;
   text-align: left;
-  width: 100%;
+  width: calc(100% - 30px);
   background-color: white;
   z-index: 1000;
   position: absolute;

@@ -1,5 +1,5 @@
-const validateData = (data) => !!data;
-// const validateData = (data) => !!data && !isEmpty(data);
+const validateData = (data) => !!data && data.length > 0;
+
 const getValidatedData = (data) => (validateData(data) ? data : []);
 
 const walk = ({ data, ...props }) => {
