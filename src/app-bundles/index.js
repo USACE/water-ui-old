@@ -25,6 +25,7 @@ import projectReportBundle from "./project-reports-bundle";
 import watershedReportBundle from "./watershed-reports-bundle";
 import districtReportBundle from "./district-reports-bundle";
 import locationDetailBundle from "./location-detail-bundle";
+import locationTreeBundle from "./location-tree-bundle";
 import cache from "./../cache.js";
 
 export default composeBundles(
@@ -61,4 +62,5 @@ export default composeBundles(
   watershedReportBundle,
   districtReportBundle,
   locationDetailBundle,
+  locationTreeBundle,
 );

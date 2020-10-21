@@ -235,7 +235,7 @@ export default {
 
         // TODO: Probably need to think about how to attach the listener, to ensure that it is removed
         //  when the overlay element is removed, to prevent memory leaks?
-        contentContainer.onclick = () => store.doSetSelectedLocationCode( featureProperties.model.location_code );
+        contentContainer.onclick = () => store.doSetSelectedLocationCode( featureProperties.model.location_id );
 
         overlay.setPosition(coord);
       }

@@ -2,14 +2,14 @@ import createRestBundle from "./create-rest-bundle";
 import { getRestUrl, isMockMode } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
 
-export default createRestBundle({
+export default createRestBundle( {
   name: "locationSummaries",
-  uid: "location_code",
+  uid: "location_id",
   prefetch: true,
   staleAfter: 10000,
   persist: false,
   //routeParam: "",
-  getTemplate: getRestUrl("/water/locations", "/location-list.json"),
+  getTemplate: getRestUrl( "/water/locations", "/location-list.json" ),
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
@@ -25,9 +25,9 @@ export default createRestBundle({
   addons: {
     selectLocationSummaries: createSelector(
       "selectLocationSummariesItems",
-      (locationSummaries) => {
+      ( locationSummaries ) => {
         return locationSummaries;
       }
     ),
   },
-});
+} );
