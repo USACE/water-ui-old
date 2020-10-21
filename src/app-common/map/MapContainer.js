@@ -9,6 +9,7 @@ import { fromLonLat } from "ol/proj";
 import Loader, { loaderTypes } from "../loader/Loader";
 import "./map.scss";
 
+// renders ol map
 const MapContainer = (props) => {
   const {
     mapKey,
@@ -16,9 +17,9 @@ const MapContainer = (props) => {
     options,
     doMapsInitialize,
     doMapsShutdown,
-    doMapsAddData,
     isMapsDataLoaded,
     isMapsLoaded,
+    addDataToMap,
   } = props;
 
   const [map, setMap] = useState()
@@ -55,25 +56,20 @@ const MapContainer = (props) => {
     doMapsShutdown(mapKey);
   }, [mapKey, doMapsShutdown])
 
+  // add any vector data to the map
   useEffect(() => {
     if (isMapsDataLoaded && !isMapsLoaded) {
-      doMapsAddData(mapKey, map);
+      addDataToMap(map, mapKey);
     }
-  }, [mapKey, map, isMapsDataLoaded, isMapsLoaded, doMapsAddData]);
+  }, [mapKey, map, isMapsDataLoaded, isMapsLoaded, addDataToMap]);
 
   return (
-    <>
-      <div
-        ref={mapRef}
-        style={{ height, position: "relative" }}
-      >
-        {!isMapsLoaded && <Loader type={loaderTypes.SPINNER} />}
-      </div>
-      <div id="map-popup" className="ol-popup">
-        <button id="map-popup-closer" className="ol-popup-closer"/>
-        <div id="map-popup-content"/>
-      </div>
-    </>
+    <div
+      ref={mapRef}
+      style={{ height, position: "relative" }}
+    >
+      {!isMapsLoaded && <Loader type={loaderTypes.SPINNER} />}
+    </div>
   );
 };
 
@@ -83,9 +79,9 @@ MapContainer.propTypes = {
   options: PropTypes.object,
   doMapsInitialize: PropTypes.func.isRequired,
   doMapsShutdown: PropTypes.func.isRequired,
-  doMapsAddData: PropTypes.func.isRequired,
   isMapsDataLoaded: PropTypes.bool.isRequired,
   isMapsLoaded: PropTypes.bool.isRequired,
+  addDataToMap: PropTypes.func.isRequired,
 };
 
 MapContainer.defaultProps = {
@@ -95,8 +91,5 @@ MapContainer.defaultProps = {
 export default connect(
   "doMapsInitialize",
   "doMapsShutdown",
-  "doMapsAddData",
-  "selectIsMapsDataLoaded",
-  "selectIsMapsLoaded",
   MapContainer
 );

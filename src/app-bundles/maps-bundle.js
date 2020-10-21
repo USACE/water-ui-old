@@ -11,19 +11,13 @@ export default {
 
   getReducer: () => {
     const initialData = {
-      mapKey: null, // the current map that's being displayed
       zoom: null,
     };
 
     return (state = initialData, { type, payload }) => {
       switch (type) {
-        case mapsBundleActions.MAPS_SHUTDOWN:
-          return {
-            ...state,
-            mapKey: null,
-          };
         case mapsBundleActions.MAPS_INITIALIZED:
-          return Object.assign({}, state, payload);
+        case mapsBundleActions.MAPS_SHUTDOWN:
         default:
           return state;
       }
@@ -37,12 +31,6 @@ export default {
     },
   }),
 
-  doMapsAddData: (mapKey, map) => ({ store }) => {
-    const uCase = mapKey.charAt(0).toUpperCase() + mapKey.slice(1);
-    const fnName = `do${uCase}AddData`
-    store[fnName](map);
-  },
-
   doMapsShutdown: mapKey => ({
     type: mapsBundleActions.MAPS_SHUTDOWN,
     payload: {
@@ -52,22 +40,6 @@ export default {
 
   selectMapsState: (state) => {
     return state.maps;
-  },
-
-  selectIsMapsDataLoaded: state => {
-    const mapKey = state.maps.mapKey;
-    if (!mapKey) {
-      return false;
-    }
-    return state[mapKey]._isDataLoaded;
-  },
-
-  selectIsMapsLoaded: state => {
-    const mapKey = state.maps.mapKey;
-    if (!mapKey) {
-      return false;
-    }
-    return state[mapKey]._isMapLoaded;
   },
 
   selectMapsObject: createSelector("selectMapsState", (state) => {
