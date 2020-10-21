@@ -29,7 +29,6 @@ import locationDetailBundle from "./location-detail-bundle";
 import locationTreeBundle from "./location-tree-bundle";
 import cache from "./../cache.js";
 
-
 export default composeBundles(
   createAuthBundle({
     appId: "ff3437e4-f2fc-432f-8175-7dd70f9bda44",
