@@ -1,7 +1,7 @@
 import React from "react";
 import MapNavBar from "./components/MapNavBar";
 import MapDetails from "./components/map-details/MapDetails";
-import Map from "../../app-common/map/Map";
+import MapContainer from '../../app-common/map/MapContainer';
 import { connect } from "redux-bundler-react";
 
 const MapPage = ({ selectedLocationDetail }) => {
@@ -20,7 +20,7 @@ const MapPage = ({ selectedLocationDetail }) => {
           <MapDetails />
         </div>
         <div className="map-container" style={{ padding: "0", flexGrow: 35 }}>
-          <Map
+          <MapContainer
             mapKey="locationsMap"
             height="900px"
             options={opts}

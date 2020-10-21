@@ -5,8 +5,6 @@ import {
 } from "redux-bundler";
 
 import {
-  createOlBasemapBundle,
-  createOlMapBundle,
   createNestedUrlBundle,
 } from "@corpsmap/corpsmap-bundles";
 import createAuthBundle from "@corpsmap/create-auth-bundle";
@@ -48,12 +46,6 @@ export default composeBundles(
   createUrlBundle(),
   createNestedUrlBundle({
     pkg: pkg,
-  }),
-  createOlBasemapBundle(),
-  createOlMapBundle({
-    name: "map",
-    center: [-80.79, 26.94],
-    zoom: 5,
   }),
   appBundle,
   mapsBundle,

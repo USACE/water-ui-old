@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../../app-common/Cards';
 import TextSection from '../../app-common/TextSection';
 import CirclePics from '../../app-common/CirclePics';
-import Map from '../../app-common/map/Map';
+import MapContainer from '../../app-common/map/MapContainer';
 import SearchBox from '../../app-common/SearchBox';
 import DropDown from '../../app-common/Dropdown';
 import { cardObj, circlePicObj } from './data.js';
@@ -39,7 +39,7 @@ const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, select
     doSetSelectedBasin( e.target.value );
     doUpdateUrl( RoutePaths.Map );
   };
-
+  console.log("homePage")
   return (
     <main>
       <div className="header-section">
@@ -72,10 +72,10 @@ const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, select
         </div>
       </div>
 
-      <Map
+      <MapContainer
         mapKey="locationsMap"
         height="600px"
-        options={ mapOptions }
+        options={mapOptions}
       />
 
       <div className="container mx-auto px-5">
