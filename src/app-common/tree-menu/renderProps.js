@@ -12,7 +12,7 @@ const ToggleIcon = ({ on, openedIcon, closedIcon }) => (
 );
 
 export const ItemComponent = ({
-  hasNodes = false,
+  is_leaf  = false,
   isOpen = false,
   level = 0,
   onClick,
@@ -33,7 +33,7 @@ export const ItemComponent = ({
     )}
     style={{
       paddingLeft: `${
-        DEFAULT_PADDING + ICON_SIZE * (hasNodes ? 0 : 1) + level * LEVEL_SPACE
+        DEFAULT_PADDING + ICON_SIZE * (!is_leaf ? 0 : 1) + level * LEVEL_SPACE
       }rem`,
       ...style,
     }}
@@ -41,11 +41,11 @@ export const ItemComponent = ({
     aria-pressed={active}
     onClick={onClick}
   >
-    {hasNodes && (
+    {!is_leaf && (
       <div
         className="rstm-toggle-icon"
         onClick={(e) => {
-          hasNodes && toggleNode && toggleNode();
+          !is_leaf  && toggleNode && toggleNode();
           e.stopPropagation();
         }}
       >

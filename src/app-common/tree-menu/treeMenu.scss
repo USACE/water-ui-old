@@ -1,11 +1,11 @@
-
+$ICON_SIZE: 1.5rem;
 .rstm-toggle-icon {
   display: inline-block;
   &-symbol {
-    width: 2rem;
-    height: 2rem;
+    width: $ICON_SIZE;
+    height: $ICON_SIZE;
     text-align: center;
-    line-height: 2rem;
+    line-height: $ICON_SIZE;
   }
 }
 
@@ -18,6 +18,8 @@
   background-color: white;
   z-index: 1000;
   position: absolute;
+  overflow: auto;
+  max-height: 900px;
 }
 
 .rstm-tree-item {
@@ -31,8 +33,8 @@
   position: relative;
 
   &--active {
-    color: white;
-    background: #179ed3;
+    color: #333;
+    background: #ededed;
     border-bottom: none;
   }
 
