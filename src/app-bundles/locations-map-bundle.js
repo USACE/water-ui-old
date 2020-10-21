@@ -1,6 +1,5 @@
 /* eslint-disable no-mixed-operators */
 // import { createSelector } from "redux-bundler";
-import { getRestUrl } from "./bundle-utils";
 // import { isValidArrWithValues } from "../functions";
 import olMap from "ol/Map.js";
 import View from "ol/View";
@@ -38,7 +37,6 @@ export default ( () => {
 
     getReducer: () => {
       const initialData = {
-        url: getRestUrl("/water/locations", "/location-list.json"),
         isLocationsMapInitialized: false,
         isLocationsMapDataSet: false,
         // shouldFetch: false,
@@ -238,7 +236,7 @@ export default ( () => {
 
           // TODO: Probably need to think about how to attach the listener, to ensure that it is removed
           //  when the overlay element is removed, to prevent memory leaks?
-          contentContainer.onclick = () => store.doSetSelectedLocationCode( featureProperties.model.location_code );
+          contentContainer.onclick = () => store.doSetSelectedLocationCode( featureProperties.model.location_id );
 
           overlay.setPosition(coord);
         }
