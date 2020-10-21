@@ -1,13 +1,11 @@
-$ICON_SIZE: 2rem;
-$DEFAULT_PADDING: 0.75rem;
 
 .rstm-toggle-icon {
   display: inline-block;
   &-symbol {
-    width: $ICON_SIZE;
-    height: $ICON_SIZE;
+    width: 2rem;
+    height: 2rem;
     text-align: center;
-    line-height: $ICON_SIZE;
+    line-height: 2rem;
   }
 }
 
@@ -18,6 +16,8 @@ $DEFAULT_PADDING: 0.75rem;
   text-align: left;
   width: 100%;
   background-color: white;
+  z-index: 1000;
+  position: absolute;
 }
 
 .rstm-tree-item {
