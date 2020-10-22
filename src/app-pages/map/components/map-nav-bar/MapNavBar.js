@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-// import PropTypes from 'prop-types';
-import SearchBox from "../../../app-common/SearchBox";
-import DropDown from "../../../app-common/Dropdown";
-import MenuTree from "../../../app-common/tree-menu/TreeMenu";
+import PropTypes from 'prop-types';
+import SearchBox from "../../../../app-common/SearchBox";
+import DropDown from "../../../../app-common/Dropdown";
+import MenuTree from "../../../../app-common/tree-menu/TreeMenu";
+import "./mapNavBar.scss";
 import { connect } from "redux-bundler-react";
-
-const organizationalDiv = {
-  backgroundColor: "white",
-  padding: "10px",
-};
 
 const MapNavBar = ({
   locationTree,
@@ -31,7 +27,7 @@ const MapNavBar = ({
   return (
     <div className="map-nav-bar-wrapper">
       <div className="h-100 px-5 py-4 bg-secondary">
-        <div className="row">
+        <div className="row map-nav-row">
           <div className="col-md-4">
             <SearchBox />
           </div>
@@ -67,7 +63,6 @@ const MapNavBar = ({
           <div className="col-md-4">
             <div
               className="organizational-structure-div"
-              style={organizationalDiv}
               onClick={handleOrgDivClick}
             >
               Organizational Structure
@@ -85,9 +80,9 @@ const MapNavBar = ({
   );
 };
 
-// MapNavBar.propTypes = {
-//   // bla: PropTypes.string,
-// };
+MapNavBar.propTypes = {
+  locationTree: PropTypes.array,
+};
 
 export default connect(
   "selectLocationTree",

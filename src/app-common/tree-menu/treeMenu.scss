@@ -1,11 +1,12 @@
-$ICON_SIZE: 1.5rem;
+@import "../../style/sass/abstracts/variables";
+
 .rstm-toggle-icon {
   display: inline-block;
   &-symbol {
-    width: $ICON_SIZE;
-    height: $ICON_SIZE;
+    width: $icon-size;
+    height: $icon-size;
     text-align: center;
-    line-height: $ICON_SIZE;
+    line-height: $icon-size;
   }
 }
 
@@ -27,7 +28,7 @@ $ICON_SIZE: 1.5rem;
   cursor: pointer;
   color: #333;
   background: none;
-  border-bottom: 1px solid #ccc;
+  height: $default-input-height;
   box-shadow: none;
   z-index: unset;
   position: relative;

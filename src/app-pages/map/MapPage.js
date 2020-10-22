@@ -1,5 +1,5 @@
 import React from "react";
-import MapNavBar from "./components/MapNavBar";
+import MapNavBar from "./components/map-nav-bar/MapNavBar";
 import MapDetails from "./components/map-details/MapDetails";
 import Map from "../../app-common/map/Map";
 import { connect } from "redux-bundler-react";
