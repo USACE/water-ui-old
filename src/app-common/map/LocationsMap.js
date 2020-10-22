@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
@@ -14,7 +14,7 @@ import {
   Icon,
 } from "ol/style";
 import { Cluster, OSM, Vector as VectorSource } from "ol/source";
-import { fromLonLat } from "ol/proj";
+import { fromLonLat, toLonLat } from "ol/proj";
 import MapContainer from "./MapContainer";
 
 const createStyle = (src, img) => (
@@ -34,11 +34,18 @@ const LocationsMap = (props) => {
   const {
     locationsMapIsDataLoaded,
     locationsMapIsLoaded,
+    locationsMapMapState,
     locationSummaries,
     doSetSelectedLocationCode,
     doLocationsMapLoaded,
+    doLocationsMapSaveMapState,
+    options,
     ...rest
   } = props;
+
+  const popupContainer = useRef();
+  const popupContent = useRef();
+  const popupCloser = useRef();
 
   const addDataToMap = (map) => {
     const iconFeatures = locationSummaries.map((item, index) => {
@@ -108,12 +115,8 @@ const LocationsMap = (props) => {
       source: new OSM(),
     });
 
-    const container = document.getElementById("map-popup");
-    const contentContainer = document.getElementById("map-popup-content");
-    const closer = document.getElementById("map-popup-closer");
-
     const overlay = new Overlay({
-      element: container,
+      element: popupContainer.current,
       positioning: "bottom-center",
       stopEvent: false,
       autoPan: true,
@@ -126,9 +129,9 @@ const LocationsMap = (props) => {
     map.addLayer(clusters);
     map.addLayer(unclusteredLayer);
 
-    closer.onclick = function () {
+    popupCloser.current.onclick = () => {
       overlay.setPosition(undefined);
-      closer.blur();
+      popupCloser.current.blur();
       return false;
     };
 
@@ -152,14 +155,11 @@ const LocationsMap = (props) => {
           else return;
         }
 
-        let content = `<h5>${ featureProperties.model.public_name }</h5>`;
-        content += `<p>${ featureProperties.model.longitude }, ${ featureProperties.model.latitude }</p>`;
-        contentContainer.innerHTML = content;
-        contentContainer.style.cursor = "pointer";
+        const innerHTML = `<h5>${ featureProperties.model.public_name }</h5><p>${ featureProperties.model.longitude }, ${ featureProperties.model.latitude }</p>`;
+        popupContent.current.innerHTML = innerHTML;
+        popupContent.current.style.cursor = "pointer";
 
-        // TODO: Probably need to think about how to attach the listener, to ensure that it is removed
-        //  when the overlay element is removed, to prevent memory leaks?
-        contentContainer.onclick = () => doSetSelectedLocationCode( featureProperties.model.location_id );
+        popupContent.current.onclick = () => doSetSelectedLocationCode( featureProperties.model.location_id );
 
         overlay.setPosition(coord);
       }
@@ -173,11 +173,29 @@ const LocationsMap = (props) => {
     // closes pop up on click
     map.on("click", function (e) {
       overlay.setPosition(undefined);
-      closer.blur();
+      popupCloser.current.blur();
       return false;
     });
 
     doLocationsMapLoaded();
+  };
+
+  const saveMapState = (map) => {
+    // reset attached listeners
+    popupContent.current.onclick = null;
+
+    // save the map state
+    const view = map.getView();
+    const mapState = {
+      zoom: view.getZoom(),
+      center: toLonLat( view.getCenter() ),
+    };
+    doLocationsMapSaveMapState(mapState);
+  };
+  
+  const newOptions = {
+    zoom: locationsMapMapState.zoom || options.zoom,
+    center: locationsMapMapState.center || options.center,
   };
 
   return (
@@ -187,10 +205,12 @@ const LocationsMap = (props) => {
         isMapsDataLoaded={locationsMapIsDataLoaded}
         isMapsLoaded={locationsMapIsLoaded}
         addDataToMap={addDataToMap}
+        saveMapState={saveMapState}
+        options={newOptions}
       />
-      <div id="map-popup" className="ol-popup">
-        <button id="map-popup-closer" className="ol-popup-closer"/>
-        <div id="map-popup-content"/>
+      <div ref={popupContainer} className="ol-popup">
+        <button ref={popupCloser} className="ol-popup-closer" />
+        <div ref={popupContent} />
       </div>
     </>
   );
@@ -199,16 +219,20 @@ const LocationsMap = (props) => {
 LocationsMap.propTypes = {
   locationsMapIsDataLoaded: PropTypes.bool.isRequired,
   locationsMapIsLoaded: PropTypes.bool.isRequired,
+  locationsMapMapState: PropTypes.object,
   locationSummaries: PropTypes.array,
   doSetSelectedLocationCode: PropTypes.func.isRequired,
   doLocationsMapLoaded: PropTypes.func.isRequired,
+  doLocationsMapSaveMapState: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationsMapIsDataLoaded",
   "selectLocationsMapIsLoaded",
+  "selectLocationsMapMapState",
   "selectLocationSummaries",
   "doSetSelectedLocationCode",
   "doLocationsMapLoaded",
+  "doLocationsMapSaveMapState",
   LocationsMap,
 );

@@ -10,10 +10,7 @@ export default {
   name: "maps",
 
   getReducer: () => {
-    const initialData = {
-      zoom: null,
-    };
-
+    const initialData = {};
     return (state = initialData, { type, payload }) => {
       switch (type) {
         case mapsBundleActions.MAPS_INITIALIZED:

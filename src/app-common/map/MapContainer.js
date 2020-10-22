@@ -20,6 +20,7 @@ const MapContainer = (props) => {
     isMapsDataLoaded,
     isMapsLoaded,
     addDataToMap,
+    saveMapState,
   } = props;
 
   const [map, setMap] = useState()
@@ -56,12 +57,19 @@ const MapContainer = (props) => {
     doMapsShutdown(mapKey);
   }, [mapKey, doMapsShutdown])
 
-  // add any vector data to the map
   useEffect(() => {
+    // add data and attach event listeners to the map
     if (isMapsDataLoaded && !isMapsLoaded) {
       addDataToMap(map, mapKey);
     }
-  }, [mapKey, map, isMapsDataLoaded, isMapsLoaded, addDataToMap]);
+
+    // save map data and remove any attached event listeners
+    return () => {
+      if (map && isMapsDataLoaded && isMapsLoaded) {
+        saveMapState(map);
+      }
+    };
+  }, [map, mapKey, isMapsDataLoaded, isMapsLoaded, addDataToMap, saveMapState]);
 
   return (
     <div
@@ -81,11 +89,14 @@ MapContainer.propTypes = {
   doMapsShutdown: PropTypes.func.isRequired,
   isMapsDataLoaded: PropTypes.bool.isRequired,
   isMapsLoaded: PropTypes.bool.isRequired,
-  addDataToMap: PropTypes.func.isRequired,
+  addDataToMap: PropTypes.func,
+  saveMapState: PropTypes.func,
 };
 
 MapContainer.defaultProps = {
   options: {},
+  addDataToMap: () => {},
+  saveMapState: () => {},
 };
 
 export default connect(

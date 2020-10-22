@@ -4,6 +4,7 @@ import { mapsBundleActions } from "./maps-bundle";
 const actions = {
   LOCATIONS_MAP_DATA_LOADED: "LOCATIONS_MAP_DATA_LOADED",
   LOCATIONS_MAP_LOADED: "LOCATIONS_MAP_LOADED",
+  LOCATIONS_MAP_SAVE_MAP_STATE: "LOCATIONS_MAP_SAVE_MAP_STATE",
 };
 
 const name = "locationsMap";
@@ -13,6 +14,7 @@ export default {
 
   getReducer: () => {
     const initialData = {
+      mapState: {},
       _isInitialized: false,
       _isDataLoaded: false,
       _isMapLoaded: false,
@@ -42,6 +44,7 @@ export default {
         }
         case actions.LOCATIONS_MAP_DATA_LOADED:
         case actions.LOCATIONS_MAP_LOADED:
+        case actions.LOCATIONS_MAP_SAVE_MAP_STATE:
           return Object.assign({}, state, payload);
         default:
           return state;
@@ -55,6 +58,8 @@ export default {
 
   selectLocationsMapIsLoaded: state => state.locationsMap._isMapLoaded,
 
+  selectLocationsMapMapState: state => state.locationsMap.mapState,
+
   doLocationsMapDataLoaded: () => ({
     type: actions.LOCATIONS_MAP_DATA_LOADED,
     payload: {
@@ -66,6 +71,13 @@ export default {
     type: actions.LOCATIONS_MAP_LOADED,
     payload: {
       _isMapLoaded: true,
+    },
+  }),
+
+  doLocationsMapSaveMapState: mapState => ({
+    type: actions.LOCATIONS_MAP_SAVE_MAP_STATE,
+    payload: {
+      mapState,
     },
   }),
 
