@@ -13,10 +13,10 @@
 .rstm-tree-item-group {
   list-style-type: none;
   padding-left: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid $base-light-gray;
   text-align: left;
   width: calc(100% - 30px);
-  background-color: white;
+  background-color: $white;
   z-index: 1000;
   position: absolute;
   overflow: auto;
@@ -26,7 +26,7 @@
 .rstm-tree-item {
   padding: 0.75rem 1rem;
   cursor: pointer;
-  color: #333;
+  color: $base-dark-gray;
   background: none;
   height: $default-input-height;
   box-shadow: none;
@@ -34,13 +34,22 @@
   position: relative;
 
   &--active {
-    color: #333;
-    background: #ededed;
+    color: $base-dark-gray;
+    background: $base-lighter-gray;
     border-bottom: none;
   }
 
   &--focused {
-    box-shadow: 0 0 5px 0 #222;
+    box-shadow: 0 0 5px 0 $base-dark-gray;
     z-index: 999;
+  }
+  &--is-leaf {
+    color: $primary-blue-light;
+  }
+  .rstm-tree-label {
+    &:before {
+      margin-right: 0.5rem;
+      color: $black;
+    }
   }
 }

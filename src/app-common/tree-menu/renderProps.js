@@ -5,31 +5,41 @@ const DEFAULT_PADDING = 0.75;
 const ICON_SIZE = 2;
 const LEVEL_SPACE = 1.75;
 
-const ToggleIcon = ({ on, openedIcon, closedIcon }) => (
-  <div role="img" aria-label="Toggle" className="rstm-toggle-icon-symbol">
-    {on ? openedIcon : closedIcon}
-  </div>
-);
+
+const iconLibrary = (type) => {
+
+  const iconMap = {
+    HQ: "mdi mdi-quality-high",
+    DIVISION: "mdi mdi-image-filter-hdr",
+    DISTRICT: "mdi mdi-chess-rook",
+    OPERATING_BASIN: "mdi mdi-water-pump",
+    BASIN: "mdi mdi-water-pump",
+    CWMS: "mdi mdi-waves",
+    STREAM: "mdi mdi-map-marker",
+    WQ: "mdi mdi-waves",
+  };
+  console.log("type: ",type, "return: ",iconMap[type])
+  return iconMap[type];
+};
 
 export const ItemComponent = ({
-  hasNodes  = false,
-  isOpen = false,
+  hasNodes = false,
   level = 0,
   onClick,
   toggleNode,
   active,
   focused,
-  openedIcon = "-",
-  closedIcon = "+",
   label = "unknown",
   style = {},
+  location_type = "STREAM"
 }) => (
   <li
     className={classNames(
       "rstm-tree-item",
       `rstm-tree-item-level${level}`,
       { "rstm-tree-item--active": active },
-      { "rstm-tree-item--focused": focused }
+      { "rstm-tree-item--focused": focused },
+      {"rstm-tree-item--is-leaf": hasNodes}
     )}
     style={{
       paddingLeft: `${
@@ -41,22 +51,15 @@ export const ItemComponent = ({
     aria-pressed={active}
     onClick={onClick}
   >
-    {hasNodes && (
-      <div
-        className="rstm-toggle-icon"
-        onClick={(e) => {
-          hasNodes  && toggleNode && toggleNode();
-          e.stopPropagation();
-        }}
-      >
-        <ToggleIcon
-          on={isOpen}
-          openedIcon={openedIcon}
-          closedIcon={closedIcon}
-        />
-      </div>
-    )}
-    {label}
+    <div
+    className={`rstm-tree-label ${iconLibrary(location_type)}`}
+    style={{display:"inline-block"}}
+      onClick={(e) => {
+        hasNodes && toggleNode && toggleNode();
+      }}
+    >
+      {label}
+    </div>
   </li>
 );
 

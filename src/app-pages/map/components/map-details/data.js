@@ -18,7 +18,7 @@ export const accordionArrObjs = [
   {
     title: "Time Series",
     content: <TimesSeriesSection/>,
-    iconClass: "mdi mdi-map-marker",
+    iconClass: "mdi mdi-chart-timeline",
   },
   {
     title: "Sedimentation",

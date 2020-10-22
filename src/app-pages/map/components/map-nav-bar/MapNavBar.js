@@ -8,7 +8,6 @@ import { connect } from "redux-bundler-react";
 
 const MapNavBar = ({
   locationTree,
-  doCreateLocationTree,
   doSetSelectedLocationCode,
 }) => {
   const [orgDivToggleState, setOrgDivToggleState] = useState(false);
@@ -86,7 +85,6 @@ MapNavBar.propTypes = {
 
 export default connect(
   "selectLocationTree",
-  "doCreateLocationTree",
   "doSetSelectedLocationCode",
   MapNavBar
 );
