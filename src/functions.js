@@ -33,11 +33,12 @@ export const fetch_request = async (url, params) => {
   return payload;
 };
 
-export const KeyDown = ({ children, up, down, left, right, enter }) => {
+export const KeyDown = ({ children, up, down, left, right, enter, preventDefault }) => {
   return (
     <div
       tabIndex={0}
       onKeyDown={(e) => {
+        if( preventDefault === true ) e.preventDefault()
         switch (e.key) {
           case "ArrowUp": {
             up();

@@ -43,7 +43,7 @@ export const ItemComponent = ({
     )}
     style={{
       paddingLeft: `${
-        DEFAULT_PADDING + ICON_SIZE * (hasNodes ? 0 : 1) + level * LEVEL_SPACE
+        DEFAULT_PADDING + ICON_SIZE * (hasNodes ? 0 : 0) + level * LEVEL_SPACE
       }rem`,
       ...style,
     }}
