@@ -1,14 +1,13 @@
 .ol-popup {
-  position: absolute;
+  position: static;
   background-color: white;
   -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
   filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-  padding: 15px;
+  padding: .5rem 1.25rem .5rem 1rem;
   border-radius: 10px;
   border: 1px solid #cccccc;
   bottom: 12px;
   left: -50px;
-  min-width: 280px;
   &:after, &:before {
     top: 100%;
     border: solid transparent;
@@ -21,20 +20,30 @@
   &:after {
     border-top-color: white;
     border-width: 10px;
-    left: 48px;
+    left: 50%;
     margin-left: -10px;
   }
   .ol-popup-closer {
     text-decoration: none;
     position: absolute;
     top: 2px;
-    right: 8px;
+    right: 2px;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
+    font-size: .8rem;
     &:after {
       content: "✖";
     }
   }
+  .ol-popup-content {
+    margin: .25rem 0;
+    max-width: 220px;
+    .name {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+  }
+
 }

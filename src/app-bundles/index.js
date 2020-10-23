@@ -5,8 +5,6 @@ import {
 } from "redux-bundler";
 
 import {
-  createOlBasemapBundle,
-  createOlMapBundle,
   createNestedUrlBundle,
 } from "@corpsmap/corpsmap-bundles";
 import createAuthBundle from "@corpsmap/create-auth-bundle";
@@ -15,6 +13,7 @@ import pkg from "../../package.json";
 
 import appBundle from "./app-bundle";
 import routeBundle from "./routes-bundle";
+import mapsBundle from './maps-bundle';
 import locationsMapBundle from "./locations-map-bundle";
 import locationSummariesBundle from "./location-summaries-bundle";
 import districtsAndBasinsBundle from "./districts-and-basins-bundle";
@@ -49,13 +48,8 @@ export default composeBundles(
   createNestedUrlBundle({
     pkg: pkg,
   }),
-  createOlBasemapBundle(),
-  createOlMapBundle({
-    name: "map",
-    center: [-80.79, 26.94],
-    zoom: 5,
-  }),
   appBundle,
+  mapsBundle,
   locationSummariesBundle,
   routeBundle,
   locationsMapBundle,

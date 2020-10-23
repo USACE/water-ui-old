@@ -1,16 +1,9 @@
 /* eslint-disable no-mixed-operators */
 import { createSelector } from "redux-bundler";
-import olMap from "ol/Map.js";
-import View from "ol/View";
 
-import ScaleBar from "ol/control/ScaleLine";
-// import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
-// import { OSM, Vector as VectorSource } from "ol/source";
-import BasemapPicker from "../ol-controls/basemap-picker";
-
-const actions = {
-  MAPS_INITIALIZED: `MAPS_INITIALIZED`,
-  MAPS_SHUTDOWN: `MAPS_SHUTDOWN`,
+export const mapsBundleActions = {
+  MAPS_INITIALIZED: "MAPS_INITIALIZED",
+  MAPS_SHUTDOWN: "MAPS_SHUTDOWN",
 };
 
 export default {
@@ -18,52 +11,29 @@ export default {
 
   getReducer: () => {
     const initialData = {};
-
     return (state = initialData, { type, payload }) => {
       switch (type) {
-        case actions.MAPS_INITIALIZED:
-        case actions.MAPS_SHUTDOWN:
-          return Object.assign({}, state, payload);
+        case mapsBundleActions.MAPS_INITIALIZED:
+        case mapsBundleActions.MAPS_SHUTDOWN:
         default:
           return state;
       }
     };
   },
 
-  doMapsInitialize: (key, el, options) => ({ dispatch, store }) => {
-    const map = new olMap(
-      Object.assign(
-        {
-          controls: [new ScaleBar({ units: "us" }), new BasemapPicker()],
-          target: el,
-          view: new View({
-            center: (options && options.center) || [-11000000, 4600000],
-            zoom: (options && options.zoom) || 4,
-          }),
-          layers: [],
-        },
-        options
-      )
-    );
-    dispatch({
-      type: actions.MAPS_INITIALIZED,
-      payload: {
-        [key]: map,
-      },
-    });
-  },
+  doMapsInitialize: mapKey => ({
+    type: mapsBundleActions.MAPS_INITIALIZED,
+    payload: {
+      mapKey,
+    },
+  }),
 
-  doAddDataToMap: () => ({ dispatch })=> {
-  },
-
-  doMapsShutdown: (key) => ({ dispatch }) => {
-    dispatch({
-      type: actions.MAPS_SHUTDOWN,
-      payload: {
-        [key]: null,
-      },
-    });
-  },
+  doMapsShutdown: mapKey => ({
+    type: mapsBundleActions.MAPS_SHUTDOWN,
+    payload: {
+      mapKey,
+    },
+  }),
 
   selectMapsState: (state) => {
     return state.maps;

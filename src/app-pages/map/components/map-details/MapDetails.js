@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./mapDetails.scss";
+import { connect } from "redux-bundler-react";
 import LocationDetailHeader from "../../../../app-common/location-detail/Header";
 import Accordion from "../../../../app-common/accordion/Accordion";
 import { accordionArrObjs } from "./data";
-import { connect } from "redux-bundler-react";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import "./mapDetails.scss";
 
 const MapDetails = ({
   doSetSelectedLocationCode,
@@ -23,39 +23,46 @@ const MapDetails = ({
     if (!isOpen && selectedLocationCode) toggleDrawer();
   });
 
-  return (
-    <div className="map-details-wrapper">
-      <div className={`${isOpen ? "is-expanded" : ""}`} onClick={toggleDrawer}>
-        <div className="drawer-content-container">
-          <div className={`${isOpen ? "drawer-content" : "display-none"}`}>
-            <LocationDetailHeader
-              locationDetail={selectedLocationDetail}
-            ></LocationDetailHeader>
-            <div className="location-detail-content-container">
-              <Accordion data={accordionArrObjs} />
-            </div>
-          </div>
+  /** @type {React.CSSProperties} */
+  const mapDetailsStyle = Object.keys(selectedLocationDetail) && Object.keys(selectedLocationDetail).length > 0
+    ? { padding: 0, flexGrow: 1 }
+    : { visibility: "hidden" };
 
-          <div className="outer-container">
-            <div className="drawer-icon-container">
-              <div
-                className="icons mdi mdi-water-pump"
-                title="Dam Profile"
-              ></div>
-              <div
-                className="icons mdi mdi-chart-line"
-                title="Time Series"
-              ></div>
-              <div className="icons mdi mdi-map-marker" title="Location"></div>
-              <div className="icons mdi mdi-layers" title="Sedimentation"></div>
-              <div
-                className="icons mdi mdi-blur-linear"
-                title="Grab Samples"
-              ></div>
-              <div
-                className="icons mdi mdi-crop-square"
-                title="Box Plots"
-              ></div>
+  return (
+    <div className="map-details" style={mapDetailsStyle}>
+      <div className="map-details-wrapper">
+        <div className={`${isOpen ? "is-expanded" : ""}`} onClick={toggleDrawer}>
+          <div className="drawer-content-container">
+            <div className={`${isOpen ? "drawer-content" : "display-none"}`}>
+              <LocationDetailHeader
+                locationDetail={selectedLocationDetail}
+              ></LocationDetailHeader>
+              <div className="location-detail-content-container">
+                <Accordion data={accordionArrObjs} />
+              </div>
+            </div>
+
+            <div className="outer-container">
+              <div className="drawer-icon-container">
+                <div
+                  className="icons mdi mdi-water-pump"
+                  title="Dam Profile"
+                ></div>
+                <div
+                  className="icons mdi mdi-chart-line"
+                  title="Time Series"
+                ></div>
+                <div className="icons mdi mdi-map-marker" title="Location"></div>
+                <div className="icons mdi mdi-layers" title="Sedimentation"></div>
+                <div
+                  className="icons mdi mdi-blur-linear"
+                  title="Grab Samples"
+                ></div>
+                <div
+                  className="icons mdi mdi-crop-square"
+                  title="Box Plots"
+                ></div>
+              </div>
             </div>
           </div>
         </div>
@@ -64,9 +71,11 @@ const MapDetails = ({
   );
 };
 
-// MapDetails.propTypes = {
-//   // bla: PropTypes.string,
-// };
+MapDetails.propTypes = {
+  doSetSelectedLocationCode: PropTypes.func.isRequired,
+  selectedLocationCode: PropTypes.string,
+  selectedLocationDetail: PropTypes.object,
+};
 
 export default connect(
   "doSetSelectedLocationCode",

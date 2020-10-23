@@ -1,12 +1,10 @@
 import React from "react";
 import MapNavBar from "./components/MapNavBar";
 import MapDetails from "./components/map-details/MapDetails";
-import Map from "../../app-common/map/Map";
-import { connect } from "redux-bundler-react";
+import LocationsMap from '../../app-common/map/LocationsMap';
 
-const MapPage = ({ selectedLocationDetail }) => {
+const MapPage = () => {
   const opts = { center: [-95, 38.895], zoom: 5 };
-
   return (
     <main>
       <MapNavBar />
@@ -14,20 +12,17 @@ const MapPage = ({ selectedLocationDetail }) => {
         className=" map-and-details-container "
         style={{ display: "flex", flexDirection: "row" }}
       >
-        {Object.keys(selectedLocationDetail) && Object.keys(selectedLocationDetail).length > 0 ? (
-          <div className="map-details" style={{ padding: 0, flexGrow: 1 }}>
-            <MapDetails />
-          </div>
-        ) : (
-          <div className="map-details" style={{ visibility: "hidden" }}>
-            <MapDetails />
-          </div>
-        )}
+        <MapDetails />
         <div className="map-container" style={{ padding: "0", flexGrow: 35 }}>
-          <Map height={"900px"} options={opts} mapKey={"maps"} />
+          <LocationsMap
+            mapKey="locationsMap"
+            height="900px"
+            options={opts}
+          />
         </div>
       </div>
     </main>
   );
 };
-export default connect("selectSelectedLocationDetail", MapPage);
+
+export default MapPage;
