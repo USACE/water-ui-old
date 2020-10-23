@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 //grays
 $white: white;
+$black: black;
 $base-lightest-gray: #fafafa;
 $base-lighter-gray: #ededed;
 $base-light-gray: #d1d1d1;
@@ -28,3 +29,7 @@ $primary-red-darkest: #170305;
 
 //typography
 $base-font:'Roboto', sans-serif;
+
+//sizing
+$default-input-height: 40.9766px;
+$icon-size: 1.5rem;

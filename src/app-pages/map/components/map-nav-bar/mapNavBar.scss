@@ -1,0 +1,33 @@
+@import "../../../../style/sass/abstracts/variables";
+
+.map-nav-bar-wrapper {
+  .form-control{
+    height: $default-input-height;
+    color: $base-gray;
+  }
+  .organizational-structure-div {
+    background-color: $white;
+    padding: 10px;
+    height: $default-input-height;
+    width: 100%;
+    text-align: left;
+    border: none;
+    color: $base-gray;
+    border-radius: 0.25rem;
+    &:after {
+      border-style: solid;
+      border-width: 0 0 0.2rem 0.2rem ;
+      content: "";
+      height: .55rem;
+      width: .55rem;
+      float: right;
+      position: relative;
+      transform: rotate(-45deg);
+      top: 3px;
+      color: $base-gray;
+    }
+  }
+  .map-nav-row {
+    align-items: baseline;
+  }
+}

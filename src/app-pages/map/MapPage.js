@@ -1,5 +1,5 @@
 import React from "react";
-import MapNavBar from "./components/MapNavBar";
+import MapNavBar from "./components/map-nav-bar/MapNavBar";
 import MapDetails from "./components/map-details/MapDetails";
 import LocationsMap from '../../app-common/map/LocationsMap';
 

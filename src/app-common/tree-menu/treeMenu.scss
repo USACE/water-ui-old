@@ -1,0 +1,55 @@
+@import "../../style/sass/abstracts/variables";
+
+.rstm-toggle-icon {
+  display: inline-block;
+  &-symbol {
+    width: $icon-size;
+    height: $icon-size;
+    text-align: center;
+    line-height: $icon-size;
+  }
+}
+
+.rstm-tree-item-group {
+  list-style-type: none;
+  padding-left: 0;
+  border-top: 1px solid $base-light-gray;
+  text-align: left;
+  width: calc(100% - 30px);
+  background-color: $white;
+  z-index: 1000;
+  position: absolute;
+  overflow: auto;
+  max-height: 900px;
+}
+
+.rstm-tree-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  color: $base-dark-gray;
+  background: none;
+  height: $default-input-height;
+  box-shadow: none;
+  z-index: unset;
+  position: relative;
+
+  &--active {
+    color: $base-dark-gray;
+    background: $base-lighter-gray;
+    border-bottom: none;
+  }
+
+  &--focused {
+    box-shadow: 0 0 5px 0 $base-dark-gray;
+    z-index: 999;
+  }
+  &--has-nodes {
+    color: $primary-blue-light;
+  }
+  .rstm-tree-label {
+    &:before {
+      margin-right: 0.5rem;
+      color: $black;
+    }
+  }
+}
