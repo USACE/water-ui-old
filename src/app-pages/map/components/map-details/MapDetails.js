@@ -23,6 +23,7 @@ const MapDetails = ({
     if (!isOpen && selectedLocationCode) toggleDrawer();
   });
 
+  /** @type {React.CSSProperties} */
   const mapDetailsStyle = Object.keys(selectedLocationDetail) && Object.keys(selectedLocationDetail).length > 0
     ? { padding: 0, flexGrow: 1 }
     : { visibility: "hidden" };

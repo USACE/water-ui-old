@@ -43,9 +43,9 @@ const LocationsMap = (props) => {
     ...rest
   } = props;
 
-  const popupContainer = useRef();
-  const popupContent = useRef();
-  const popupCloser = useRef();
+  const popupContainer = useRef( null );
+  const popupContent = useRef( null );
+  const popupCloser = useRef( null );
 
   const addDataToMap = (map) => {
     const iconFeatures = locationSummaries.map((item, index) => {
