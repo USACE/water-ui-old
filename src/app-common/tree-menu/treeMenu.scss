@@ -43,7 +43,7 @@
     box-shadow: 0 0 5px 0 $base-dark-gray;
     z-index: 999;
   }
-  &--is-leaf {
+  &--has-nodes {
     color: $primary-blue-light;
   }
   .rstm-tree-label {

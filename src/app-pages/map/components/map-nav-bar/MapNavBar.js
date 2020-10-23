@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import SearchBox from "../../../../app-common/SearchBox";
 import DropDown from "../../../../app-common/Dropdown";
 import MenuTree from "../../../../app-common/tree-menu/TreeMenu";
 import "./mapNavBar.scss";
 import { connect } from "redux-bundler-react";
+import { returnKeyCodeName } from "../../../../functions";
 
-const MapNavBar = ({
-  locationTree,
-  doSetSelectedLocationCode,
-}) => {
+const MapNavBar = ({ locationTree, doSetSelectedLocationCode }) => {
   const [orgDivToggleState, setOrgDivToggleState] = useState(false);
 
   const handleNodeClick = (e) => {
@@ -21,6 +19,18 @@ const MapNavBar = ({
 
   const handleOrgDivClick = () => {
     setOrgDivToggleState(!orgDivToggleState);
+  };
+
+  const handleKeyDown = (e) => {
+    const firstNode = document.getElementById("rstm-tree-item-1");
+    if (returnKeyCodeName(e) === "downArrow" && firstNode) {
+      e.preventDefault();
+      firstNode.tabIndex = 0;
+      firstNode.focus();
+      firstNode.setAttribute("aria-pressed", "true");
+      //need click to pass in props to tree li
+      firstNode.click();
+    }
   };
 
   return (
@@ -63,12 +73,13 @@ const MapNavBar = ({
             <button
               className="organizational-structure-div"
               onClick={handleOrgDivClick}
+              onKeyDown={handleKeyDown}
             >
               Organizational Structure
             </button>
-            {orgDivToggleState && locationTree  && (
+            {orgDivToggleState && locationTree && (
               <MenuTree
-                data={ locationTree }
+                data={locationTree}
                 onClickItem={(e) => handleNodeClick(e)}
               />
             )}

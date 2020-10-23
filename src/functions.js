@@ -70,3 +70,30 @@ export const KeyDown = ({ children, up, down, left, right, enter }) => {
     </div>
   );
 };
+
+export const returnKeyCodeName = (event) => {
+  const keyCode = event["keyCode"] ? event["keyCode"] : event["which"];
+  // Add other events as necessary:
+  switch (keyCode) {
+    case 37:
+      return "leftArrow";
+    case 39:
+      return "rightArrow";
+    case 38:
+      return "upArrow";
+    case 40:
+      return "downArrow";
+    case 32:
+      return "spaceBar";
+    case 13:
+      return "enter";
+    case 9:
+      return "tab";
+    case 16:
+      return "shift";
+    case 27:
+      return "esc";
+    default:
+      return "";
+  }
+};

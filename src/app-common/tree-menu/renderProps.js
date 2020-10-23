@@ -28,6 +28,7 @@ export const ItemComponent = ({
   toggleNode,
   active,
   focused,
+  location_id,
   label = "unknown",
   style = {},
   location_type = "STREAM"
@@ -38,7 +39,7 @@ export const ItemComponent = ({
       `rstm-tree-item-level${level}`,
       { "rstm-tree-item--active": active },
       { "rstm-tree-item--focused": focused },
-      {"rstm-tree-item--is-leaf": hasNodes}
+      {"rstm-tree-item--has-nodes": hasNodes}
     )}
     style={{
       paddingLeft: `${
@@ -46,6 +47,7 @@ export const ItemComponent = ({
       }rem`,
       ...style,
     }}
+    id={`rstm-tree-item-${location_id}`}
     role="button"
     aria-pressed={active}
     onClick={onClick}
