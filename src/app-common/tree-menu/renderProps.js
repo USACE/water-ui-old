@@ -18,7 +18,6 @@ const iconLibrary = (type) => {
     STREAM: "mdi mdi-map-marker",
     WQ: "mdi mdi-waves",
   };
-  console.log("type: ",type, "return: ",iconMap[type])
   return iconMap[type];
 };
 
