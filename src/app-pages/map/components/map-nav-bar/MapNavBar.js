@@ -60,12 +60,12 @@ const MapNavBar = ({
             />
           </div>
           <div className="col-md-4">
-            <div
+            <button
               className="organizational-structure-div"
               onClick={handleOrgDivClick}
             >
               Organizational Structure
-            </div>
+            </button>
             {orgDivToggleState && locationTree  && (
               <MenuTree
                 data={ locationTree }
