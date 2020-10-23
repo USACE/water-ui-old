@@ -155,7 +155,7 @@ const LocationsMap = (props) => {
           else return;
         }
 
-        const innerHTML = `<h5>${ featureProperties.model.public_name }</h5><p>${ featureProperties.model.longitude }, ${ featureProperties.model.latitude }</p>`;
+        const innerHTML = `<div class="name">${ featureProperties.model.public_name }</div>`;
         popupContent.current.innerHTML = innerHTML;
         popupContent.current.style.cursor = "pointer";
 
@@ -210,7 +210,7 @@ const LocationsMap = (props) => {
       />
       <div ref={popupContainer} className="ol-popup">
         <button ref={popupCloser} className="ol-popup-closer" />
-        <div ref={popupContent} />
+        <div ref={popupContent} className="ol-popup-content" />
       </div>
     </>
   );
