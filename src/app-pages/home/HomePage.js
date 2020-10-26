@@ -20,7 +20,8 @@ const headerContainerStyle = {
   backgroundColor: '#cbd5e0'
 }
 
-const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, selectedDistrict, doSetSelectedBasin } ) => {
+const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, selectedDistrict, doSetSelectedBasin,
+                     doSetLocationSearchText, locationSearchItems } ) => {
   const mapOptions = { center: [ -77.0364, 38.895 ], zoom: 4 };
 
   const districtOptions = districts && districts.map( val => {
@@ -40,6 +41,10 @@ const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, select
     doUpdateUrl( RoutePaths.Map );
   };
 
+  const onSearch = ( e ) => {
+    doSetLocationSearchText( e.target.value );
+  }
+
   return (
     <main>
       <div className="header-section">
@@ -55,7 +60,7 @@ const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, select
 
         <div className="search-box-container py-4 px-4 mx-auto container position-relative">
           <div style={ { top: '100%', zIndex: 1, textAlign: "center" } }>
-            <SearchBox text={ 'Search by City, State, ZIP, or Project Names' } />
+            <SearchBox text={ 'Search by City, State, ZIP, or Project Names' } onChange={ onSearch } />
             <p className="mt-3">Or search by district and basin</p>
             <div className="district-basin-dd row">
               <div className="col-md-6">
@@ -100,5 +105,7 @@ export default connect(
   'doSetSelectedDistrict',
   'selectSelectedDistrict',
   'doSetSelectedBasin',
+  'doSetLocationSearchText',
+  'selectLocationSearchItems',
   HomePage
 );

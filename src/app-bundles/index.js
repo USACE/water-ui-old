@@ -16,6 +16,7 @@ import routeBundle from "./routes-bundle";
 import mapsBundle from './maps-bundle';
 import locationsMapBundle from "./locations-map-bundle";
 import locationSummariesBundle from "./location-summaries-bundle";
+import locationSearchBundle from "./location-search-bundle";
 import districtsAndBasinsBundle from "./districts-and-basins-bundle";
 import corporateOfficeBundle from "./corporate-office-bundle";
 import corporateOfficeReportBundle from "./corporate-office-report-bundle";
@@ -63,4 +64,5 @@ export default composeBundles(
   districtReportBundle,
   locationDetailBundle,
   locationTreeBundle,
+  locationSearchBundle
 );
