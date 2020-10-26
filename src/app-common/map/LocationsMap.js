@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
@@ -47,7 +47,7 @@ const LocationsMap = (props) => {
   const popupContent = useRef( null );
   const popupCloser = useRef( null );
 
-  const addDataToMap = (map) => {
+  const addDataToMap = useCallback((map) => {
     const iconFeatures = locationSummaries.map((item, index) => {
       const iconFeature = new Feature(
         new Point(fromLonLat([item.longitude, item.latitude]))
@@ -178,9 +178,9 @@ const LocationsMap = (props) => {
     });
 
     doLocationsMapLoaded();
-  };
+  }, [locationSummaries, doLocationsMapLoaded, doSetSelectedLocationCode]);
 
-  const saveMapState = (map) => {
+  const saveMapState = useCallback((map) => {
     // reset attached listeners
     popupContent.current.onclick = null;
 
@@ -191,7 +191,7 @@ const LocationsMap = (props) => {
       center: toLonLat( view.getCenter() ),
     };
     doLocationsMapSaveMapState(mapState);
-  };
+  }, [doLocationsMapSaveMapState]);
   
   const newOptions = {
     zoom: locationsMapMapState.zoom || options.zoom,
