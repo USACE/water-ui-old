@@ -30,10 +30,6 @@ export default createRestBundle( {
     _search_limit: 10
   },
   reduceFurther: ( state, { type, payload } ) => {
-    // TODO: Is there a better way to set default state for a rest bundle?
-    // if( !state._search_type ) state._search_type = "ALL";
-    // if( !state._search_limit ) state._search_limit = 10;
-
     switch( type ) {
       case LocationSearchActions.SET_LOCATION_SEARCH_TEXT:
       case LocationSearchActions.SET_LOCATION_SEARCH_TYPE:
@@ -45,7 +41,7 @@ export default createRestBundle( {
   },
   addons: {
     doSetLocationSearchText: ( searchText ) => ( { dispatch } ) => {
-      // TODO: Add debounce() logic to this?
+      // TODO: Add debounce() logic to this? Probably want to add lodash via npm?
       dispatch( {
         type: LocationSearchActions.SET_LOCATION_SEARCH_TEXT,
         payload: {
