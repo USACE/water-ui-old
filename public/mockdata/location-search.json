@@ -1,0 +1,82 @@
+[{
+    "location_id": "2829010",
+    "source": "CWMS",
+    "description": "Cordell Hull Dam",
+    "latitude": 36.289444,
+    "longitude": -85.94431,
+    "zoom_depth": 12,
+    "location_type": "PROJECT"
+  }, {
+    "location_id": "60662029",
+    "source": "CWMS",
+    "description": "Dworshak Dam Spillbay 1",
+    "latitude": 46.514698,
+    "longitude": -116.29526,
+    "zoom_depth": 12,
+    "location_type": "LOCATION"
+  }, {
+    "location_id": "7025016",
+    "source": "CWMS",
+    "description": "Lock and Dam 10 Tailwater",
+    "latitude": 42.785,
+    "longitude": -91.095,
+    "zoom_depth": 12,
+    "location_type": "LOCATION"
+  }, {
+    "location_id": "28480108",
+    "source": "CWMS",
+    "description": "London Locks and Dam",
+    "latitude": 38.1928,
+    "longitude": -81.3692,
+    "zoom_depth": 12,
+    "location_type": "PROJECT"
+  }, {
+    "location_id": "5558030",
+    "source": "CWMS",
+    "description": "Kanopolis Dam \u0026 Reservoir",
+    "latitude": 38.615883,
+    "longitude": -97.9673,
+    "zoom_depth": 12,
+    "location_type": "PROJECT"
+  }, {
+    "location_id": "5734030",
+    "source": "CWMS",
+    "description": "Wilson Dam \u0026 Reservoir",
+    "latitude": 38.965633,
+    "longitude": -98.495674,
+    "zoom_depth": 12,
+    "location_type": "PROJECT"
+  }, {
+    "location_id": "505109",
+    "source": "CWMS",
+    "description": "Adamsboro",
+    "latitude": 40.781944,
+    "longitude": -86.263885,
+    "zoom_depth": 12,
+    "location_type": "LOCATION"
+  }, {
+    "location_id": "6986016",
+    "source": "CWMS",
+    "description": "Lock and Dam 07 Tailwater",
+    "latitude": 43.8666,
+    "longitude": -91.3083,
+    "zoom_depth": 12,
+    "location_type": "LOCATION"
+  }, {
+    "location_id": "16806111",
+    "source": "CWMS",
+    "description": "Union City Dam",
+    "latitude": 41.920498,
+    "longitude": -79.90026,
+    "zoom_depth": 12,
+    "location_type": "PROJECT"
+  }, {
+    "location_id": "518145",
+    "source": "CWMS",
+    "description": "Hansen Dam",
+    "latitude": 34.260555,
+    "longitude": -118.38611,
+    "zoom_depth": 12,
+    "location_type": "PROJECT"
+  }
+]
