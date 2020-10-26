@@ -324,7 +324,7 @@ export default (opts) => {
         const flags = store[selectFlags]();
         const items = store[selectItemsObject]();
 
-        if (url.indexOf("/:") !== -1) {
+        if (url.indexOf("/:") !== -1 || url.indexOf("=:") !== -1) {
           // if we haven't filled in all of our params then bail
           dispatch({
             type: actions.FETCH_ABORT,
@@ -721,7 +721,7 @@ export default (opts) => {
 
       [selectIsGetUrlPopulated]: createSelector(
         selectGetUrl,
-        (url) => url.indexOf("/:") === -1
+        (url) => url.indexOf("/:") === -1 && url.indexOf("=:") === -1
       ),
 
       [selectGetTemplate]: () => {

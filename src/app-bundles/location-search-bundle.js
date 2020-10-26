@@ -6,7 +6,7 @@ const LocationSearchActions = {
   SET_LOCATION_SEARCH_TEXT: `SET_LOCATION_SEARCH_TEXT`,
   SET_LOCATION_SEARCH_TYPE: `SET_LOCATION_SEARCH_TYPE`,
   SET_LOCATION_SEARCH_LIMIT: `SET_LOCATION_SEARCH_LIMIT`,
-  LOCATION_SEARCH_CRITERIA_UPDATED: `LOCATION_SEARCH_CRITERIA_UPDATED`
+  LOCATION_SEARCH_CRITERIA_UPDATED: `LOCATION_SEARCH_CRITERIA_UPDATED`,
 };
 
 export default createRestBundle( {
@@ -52,7 +52,6 @@ export default createRestBundle( {
           _search_text: searchText,
         },
       } );
-      if( searchText === null || searchText.length < 2 ) return;
       dispatch( {
         type: LocationSearchActions.LOCATION_SEARCH_CRITERIA_UPDATED,
         payload: {}
@@ -96,7 +95,7 @@ export default createRestBundle( {
       "selectLocationSearchType",
       "selectLocationSearchLimit",
       ( searchText, searchType, searchLimit ) => {
-        if( !searchText ) return {};
+        if( !( typeof searchText === "string" ) || searchText.length === 0 ) return {};
         return {
           search_text: searchText,
           search_type: searchType,
