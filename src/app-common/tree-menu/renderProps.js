@@ -28,10 +28,10 @@ export const ItemComponent = ({
   toggleNode,
   active,
   focused,
-  location_id,
+  id,
   label = "unknown",
   style = {},
-  location_type = "STREAM"
+  node_type = "STREAM"
 }) => (
   <li
     className={classNames(
@@ -47,13 +47,13 @@ export const ItemComponent = ({
       }rem`,
       ...style,
     }}
-    id={`rstm-tree-item-${location_id}`}
+    id={`rstm-tree-item-${id}`}
     role="button"
     aria-pressed={active}
     onClick={onClick}
   >
     <div
-    className={`rstm-tree-label ${iconLibrary(location_type)}`}
+    className={`rstm-tree-label ${iconLibrary(node_type)}`}
     style={{display:"inline-block"}}
       onClick={(e) => {
         hasNodes && toggleNode && toggleNode();

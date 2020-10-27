@@ -4,7 +4,7 @@ import { createSelector } from "redux-bundler";
 
 export default createRestBundle( {
   name: "locationSummaries",
-  uid: "location_id",
+  uid: "id",
   prefetch: true,
   staleAfter: 10000,
   persist: false,

@@ -13,7 +13,7 @@ const MapNavBar = ({ locationTree, doSetSelectedLocationCode }) => {
   const handleNodeClick = (e) => {
     //if node is a leaf then toggle the drawer
     if (!e.hasNodes) {
-      doSetSelectedLocationCode(e.location_id);
+      doSetSelectedLocationCode(e.id);
     }
   };
 

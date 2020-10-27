@@ -159,7 +159,7 @@ const LocationsMap = (props) => {
         popupContent.current.innerHTML = innerHTML;
         popupContent.current.style.cursor = "pointer";
 
-        popupContent.current.onclick = () => doSetSelectedLocationCode( featureProperties.model.location_id );
+        popupContent.current.onclick = () => doSetSelectedLocationCode( featureProperties.model.id );
 
         overlay.setPosition(coord);
       }

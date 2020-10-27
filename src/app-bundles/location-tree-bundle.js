@@ -56,9 +56,9 @@ function listToTree( sourceList ) {
   let list = sourceList.map( item => ( { ...item } ) );
 
   for( i = 0; i < list.length; i += 1 ) {
-    locationIdToListIndex[ list[ i ].location_id ] = i; // add to lookup map
+    locationIdToListIndex[ list[ i ].id ] = i; // add to lookup map
     list[ i ].nodes = []; // initialize the child node array
-    list[ i ].key = list[ i ].location_id; // add key prop
+    list[ i ].key = list[ i ].id; // add key prop
     list[ i ].label = list[ i ].public_name; // add label prop
   }
 
@@ -70,8 +70,8 @@ function listToTree( sourceList ) {
       return "";
     }
 
-    if( !path ) path = node.location_id;
-    else path = `${ node.location_id }/${ path }`;
+    if( !path ) path = node.id;
+    else path = `${ node.id }/${ path }`;
     if( node.parent_id === "-1" ) return path;
     else {
       return `${ buildTreePath( list[ locationIdToListIndex[ node.parent_id ] ], path, recurseDepth ) }`;
@@ -84,7 +84,7 @@ function listToTree( sourceList ) {
 
       // TODO: Temp fix for an issue where one location has a recursive parent/child relationship
       //   Will remove once I figure out how to deal with this problem.
-      if( currentNode.location_id === "40" ) currentNode.parent_id = "7"
+      if( currentNode.id === "40" ) currentNode.parent_id = "7"
 
       list[ locationIdToListIndex[ currentNode.parent_id ] ].nodes.push( currentNode );
 
