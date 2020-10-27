@@ -224,6 +224,7 @@ export default (opts) => {
           _pageSize: config.pageSize,
           _sortBy: config.sortBy,
           _sortAsc: config.sortAsc,
+          dataMap: {}
         },
           config.defaultState
       );
@@ -261,7 +262,7 @@ export default (opts) => {
               return Object.assign({}, state, payload);
             case actions.FETCH_FINISHED:
             case actions.UPDATED_ITEM:
-              return Object.assign({}, payload);
+              return Object.assign({}, state, payload);
             default:
               if (
                 config.reduceFurther &&
@@ -299,6 +300,7 @@ export default (opts) => {
           type: actions.FETCH_STARTED,
           payload: {
             _shouldFetch: false,
+            _forceFetch: false,
             _isLoading: true,
           },
         });
@@ -346,6 +348,7 @@ export default (opts) => {
               payload: {
                 ...flags,
                 ...{
+                  dataMap: {},
                   _isLoading: false,
                   _lastResource: url,
                   _abortReason: `don't have all the params we need`,
@@ -389,17 +392,18 @@ export default (opts) => {
                 Object.assign(itemsById, items);
               }
               data.forEach((item) => {
-                itemsById[item[config.uid]] = item;
+                itemsById[item[config.uid] || 0] = item;
               });
 
               const action = {
                 type: actions.FETCH_FINISHED,
                 payload: {
-                  ...itemsById,
+                  dataMap: { ...itemsById },
                   ...flags,
                   ...{
-                    _isLoading: false,
+                    _err: null,
                     _isSaving: false,
+                    _isLoading: false,
                     _fetchCount: ++fetchCount,
                     _lastFetch: new Date(),
                     _lastResource: url,
@@ -436,7 +440,7 @@ export default (opts) => {
 
           // create a temporary id and store it in state using that as the key
           const tempId = Number(new Date()).toString();
-          tempState[tempId] = Object.assign({}, item);
+          tempState.dataMap[tempId] = Object.assign({}, item);
           dispatch({
             type: actions.UPDATED_ITEM,
             payload: tempState,
@@ -454,13 +458,13 @@ export default (opts) => {
             } else {
               // remove our temporary record from the state
               const updatedState = store[selectState]();
-              delete updatedState[tempId];
+              delete updatedState.dataMap[tempId];
 
               // add our new id to our item and re-attach to our state
               let data = typeof body === "string" ? JSON.parse(body) : body;
               if (data && data.length) data = data[0];
               const updatedItem = Object.assign({}, item, data);
-              updatedState[updatedItem[config.uid]] = updatedItem;
+              updatedState.dataMap[updatedItem[config.uid] || 0] = updatedItem;
 
               dispatch({
                 type: actions.UPDATED_ITEM,
@@ -484,7 +488,7 @@ export default (opts) => {
           const url = decorateUrlWithItem(store[selectPutUrl](), item);
 
           // add our updated item to the state based on it's key
-          tempState[item[config.uid]] = Object.assign({}, item);
+          tempState.dataMap[item[config.uid] || 0] = Object.assign({}, item);
           dispatch({
             type: actions.UPDATED_ITEM,
             payload: tempState,
@@ -536,7 +540,7 @@ export default (opts) => {
         } else {
           // remove the item from our state and update it internally
           const updatedState = store[selectState]();
-          delete updatedState[item[config.uid]];
+          delete updatedState.dataMap[item[config.uid] || 0];
           dispatch({
             type: actions.UPDATED_ITEM,
             payload: updatedState,
@@ -655,17 +659,13 @@ export default (opts) => {
       ),
 
       [selectItemsObject]: createSelector(selectState, (state) => {
-        const items = {};
-        Object.keys(state).forEach((key) => {
-          if (key[0] !== "_") items[key] = state[key];
-        });
-        return items;
+        return state.dataMap;
       }),
 
       [selectItemsArray]: createSelector(selectState, (state) => {
         const items = [];
-        Object.keys(state).forEach((key) => {
-          if (key[0] !== "_") items.push(state[key]);
+        Object.keys(state.dataMap).forEach((key) => {
+          items.push(state.dataMap[key]);
         });
         return items;
       }),
