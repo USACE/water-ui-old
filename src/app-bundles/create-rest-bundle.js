@@ -115,6 +115,11 @@ export default (opts) => {
     clearItemsOnAbort: true,
 
     /**
+     * If set, add additional default state to the bundle. Be careful not to use the names of built-in REST bundle state.
+     */
+    defaultState: {},
+
+    /**
      * If set, data fetching will only occur if the current URL path equals one of the specified `activeRoutes`.
      */
     activeRoutes: [],
@@ -204,7 +209,7 @@ export default (opts) => {
       name: config.name,
 
       getReducer: () => {
-        const initialData = {
+        const initialData = Object.assign( {}, {
           _err: null,
           _isSaving: false,
           _isLoading: false,
@@ -219,7 +224,9 @@ export default (opts) => {
           _pageSize: config.pageSize,
           _sortBy: config.sortBy,
           _sortAsc: config.sortAsc,
-        };
+        },
+          config.defaultState
+      );
 
         return (state = initialData, { type, payload }) => {
           if (config.fetchActions.indexOf(type) !== -1) {
@@ -317,7 +324,7 @@ export default (opts) => {
         const flags = store[selectFlags]();
         const items = store[selectItemsObject]();
 
-        if (url.indexOf("/:") !== -1) {
+        if (url.indexOf("/:") !== -1 || url.indexOf("=:") !== -1) {
           // if we haven't filled in all of our params then bail
           dispatch({
             type: actions.FETCH_ABORT,
@@ -714,7 +721,7 @@ export default (opts) => {
 
       [selectIsGetUrlPopulated]: createSelector(
         selectGetUrl,
-        (url) => url.indexOf("/:") === -1
+        (url) => url.indexOf("/:") === -1 && url.indexOf("=:") === -1
       ),
 
       [selectGetTemplate]: () => {
