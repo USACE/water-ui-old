@@ -8,6 +8,7 @@ import DropDown from '../../app-common/Dropdown';
 import { cardObj, circlePicObj } from './data.js';
 import { connect } from "redux-bundler-react";
 import { RoutePaths } from "../../app-bundles/routes-bundle";
+import debounce from "lodash/debounce";
 
 const containerTextSection = {
   textAlign: 'center',
@@ -22,6 +23,10 @@ const headerContainerStyle = {
 
 const HomePage = ( { districts, basinsForDistrict, doSetSelectedDistrict, selectedDistrict, doSetSelectedBasin,
                      doSetLocationSearchText, locationSearchItems } ) => {
+
+  // Debounce calls to doSetLocationSearchText()
+  doSetLocationSearchText = debounce( doSetLocationSearchText, 500 );
+
   const mapOptions = { center: [ -77.0364, 38.895 ], zoom: 4 };
 
   const districtOptions = districts && districts.map( val => {

@@ -40,42 +40,38 @@ export default createRestBundle( {
     }
   },
   addons: {
-    doSetLocationSearchText: ( searchText ) => ( { dispatch } ) => {
-      // TODO: Add debounce() logic to this? Probably want to add lodash via npm?
+    doSetLocationSearchCriteriaUpdated: () => ( { dispatch } ) => {
+      dispatch( {
+        type: LocationSearchActions.LOCATION_SEARCH_CRITERIA_UPDATED,
+        payload: {}
+      } );
+    },
+    doSetLocationSearchText: ( searchText ) => ( { dispatch, store } ) => {
       dispatch( {
         type: LocationSearchActions.SET_LOCATION_SEARCH_TEXT,
         payload: {
           _search_text: searchText,
         },
       } );
-      dispatch( {
-        type: LocationSearchActions.LOCATION_SEARCH_CRITERIA_UPDATED,
-        payload: {}
-      } );
+      store.doSetLocationSearchCriteriaUpdated();
     },
-    doSetLocationSearchType: ( searchType ) => ( { dispatch } ) => {
+    doSetLocationSearchType: ( searchType ) => ( { dispatch, store } ) => {
       dispatch( {
         type: LocationSearchActions.SET_LOCATION_SEARCH_TYPE,
         payload: {
           _search_type: searchType,
         },
       } );
-      dispatch( {
-        type: LocationSearchActions.LOCATION_SEARCH_CRITERIA_UPDATED,
-        payload: {}
-      } );
+      store.doSetLocationSearchCriteriaUpdated();
     },
-    doSetLocationSearchLimit: ( searchLimit ) => ( { dispatch } ) => {
+    doSetLocationSearchLimit: ( searchLimit ) => ( { dispatch, store } ) => {
       dispatch( {
         type: LocationSearchActions.SET_LOCATION_SEARCH_LIMIT,
         payload: {
           _search_limit: searchLimit,
         },
       } );
-      dispatch( {
-        type: LocationSearchActions.LOCATION_SEARCH_CRITERIA_UPDATED,
-        payload: {}
-      } );
+      store.doSetLocationSearchCriteriaUpdated();
     },
     selectLocationSearchText: ( state ) => {
       return state.locationSearch._search_text;
