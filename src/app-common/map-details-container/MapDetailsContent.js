@@ -6,7 +6,8 @@ import { accordionArrObjs } from "./data";
 
 
 const MapDetailsContent = ({handleFullScreen,locationDetail,locationCode}) => {
-  // console.log("selectedLocationCode: ",locationCode, locationDetail)
+  // console.log("selectedLocationCode: ",locationCode);
+  // console.log("selectedLocationDetail: ",locationDetail);
   return (
     <main>
       <LocationDetailHeader
