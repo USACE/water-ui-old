@@ -133,14 +133,16 @@ class TreeMenu extends React.Component {
 
     const items = this.generateItems();
     const resetOpenNodes = this.resetOpenNodes;
-    const render = children || defaultChildren;
+
+    /** @type any **/
+    const childComponent = children || defaultChildren;
 
     const renderProps = { items, resetOpenNodes };
 
     return disableKeyboard ? (
-      render(renderProps)
+      childComponent(renderProps)
     ) : (
-      <KeyDown {...this.getKeyDownProps(items)}>{render(renderProps)}</KeyDown>
+      <KeyDown {...this.getKeyDownProps(items)}>{childComponent(renderProps)}</KeyDown>
     );
   }
 }
