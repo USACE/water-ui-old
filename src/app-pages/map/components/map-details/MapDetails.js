@@ -27,7 +27,7 @@ const MapDetails = ({
     ? { padding: 0, flexGrow: 1 }
     : { visibility: "hidden" };
 
-  const handleFullScreen = (e,selectedLocationCode) => {
+  const handleFullScreen = (selectedLocationCode) => {
     setIsFullScreen(true);
     const newLocation = `${ RoutePaths.Locations.replace( ":locationId", selectedLocationCode ) }`;
     setTimeout(function(){   
@@ -42,7 +42,7 @@ const MapDetails = ({
         <div className={`${isOpen ? "is-expanded" : ""}`} onClick={toggleDrawer}>
           <div className={`${isFullScreen ? "full-screen " : "drawer-content-container"}`}>
             <div className={`${isOpen ? "drawer-content" : "display-none"}`}>
-              <MapDetailsContent handleFullScreen={handleFullScreen} locationDetail={selectedLocationDetail} locationCode={selectedLocationCode}/>
+              <MapDetailsContent handleFullScreen={()=>handleFullScreen(selectedLocationCode)} locationDetail={selectedLocationDetail} locationCode={selectedLocationCode}/>
             </div>
 
             <div className="outer-container">
