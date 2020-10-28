@@ -27,5 +27,6 @@ export function getRestUrl( liveUrl, mockUrl, mockOverrideFlag ) {
     : useMockUrl ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`;
 
   if( useMockUrl ) return `${ baseUrl }${ mockUrl }`;
+  else if( liveUrl.startsWith( "http" ) ) return liveUrl;
   else return `${ baseUrl }${ liveUrl }`;
 }

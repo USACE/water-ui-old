@@ -1,6 +1,7 @@
 import React from "react";
 // import PropTypes from "prop-types";
 import Timeline from "../../../app-common/timeline/Timeline";
+import { connect } from "redux-bundler-react";
 
 //Timeline Dummy Data
  const timelineData = [
@@ -26,7 +27,9 @@ import Timeline from "../../../app-common/timeline/Timeline";
   },
 ];
 
-const TimeSeriesSection = () => {
+const TimeSeriesSection = ({
+  locationTimeSeries
+}) => {
 
   return (
     <div className="time-series-section-wrapper">
@@ -42,4 +45,7 @@ const TimeSeriesSection = () => {
 
 // };
 
-export default TimeSeriesSection;
+export default connect(
+  "selectLocationTimeSeries",
+  TimeSeriesSection
+);
