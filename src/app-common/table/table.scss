@@ -1,5 +1,5 @@
 table {
-  width: 600px;
+  width: 100%;
   margin: 1rem 0;
   th {
     border-bottom: 1px solid black;
@@ -11,7 +11,5 @@ table {
   th {
     padding: 10px;
     text-transform: capitalize;
-  }
-  .table-body-row {
   }
 }

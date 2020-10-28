@@ -14,7 +14,7 @@ const LocationDetailHeader = ( { onExpand, locationDetail } ) => {
 
   return (
     <div className="location-detail-header">
-      <div className="mdi mdi-arrow-expand location-expand" title="Expand Detail View" onClick={ onExpandHandler }></div>
+      {onExpand && <div className="mdi mdi-arrow-expand location-expand" title="Expand Detail View" onClick={ onExpandHandler }/>}
       <h4>{ locationDetail.public_name }</h4>
       <div className="location-detail-subheading">
         { locationDetail.office_name } | <a href={ weatherUrl } target="_blank" rel="noopener noreferrer">Local Forecast</a>
