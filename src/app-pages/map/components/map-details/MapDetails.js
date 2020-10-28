@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "redux-bundler-react";
-import LocationDetailHeader from "../../../../app-common/location-detail/Header";
-import Accordion from "../../../../app-common/accordion/Accordion";
-import { accordionArrObjs } from "./data";
 import PropTypes from 'prop-types';
 import "./mapDetails.scss";
+import MapDetailsContent from "../../../../app-common/map-details-container/MapDetailsContent";
+import { RoutePaths } from "../../../../app-bundles/routes-bundle";
 
 const MapDetails = ({
   doSetSelectedLocationCode,
@@ -12,7 +11,7 @@ const MapDetails = ({
   selectedLocationDetail,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const toggleDrawer = () => {
     let wasOpen = isOpen;
     setIsOpen(!isOpen);
@@ -28,18 +27,22 @@ const MapDetails = ({
     ? { padding: 0, flexGrow: 1 }
     : { visibility: "hidden" };
 
+  const handleFullScreen = (e,selectedLocationCode) => {
+    setIsFullScreen(true);
+    const newLocation = `${ RoutePaths.Locations.replace( ":locationId", selectedLocationCode ) }`;
+    setTimeout(function(){   
+        document.body.classList.toggle('fade'); 
+        window.location.href = newLocation;     
+    }, 500);
+  };
+
   return (
     <div className="map-details" style={mapDetailsStyle}>
       <div className="map-details-wrapper">
         <div className={`${isOpen ? "is-expanded" : ""}`} onClick={toggleDrawer}>
-          <div className="drawer-content-container">
+          <div className={`${isFullScreen ? "full-screen " : "drawer-content-container"}`}>
             <div className={`${isOpen ? "drawer-content" : "display-none"}`}>
-              <LocationDetailHeader
-                locationDetail={selectedLocationDetail}
-              ></LocationDetailHeader>
-              <div className="location-detail-content-container">
-                <Accordion data={accordionArrObjs} />
-              </div>
+              <MapDetailsContent handleFullScreen={handleFullScreen} locationDetail={selectedLocationDetail} locationCode={selectedLocationCode}/>
             </div>
 
             <div className="outer-container">

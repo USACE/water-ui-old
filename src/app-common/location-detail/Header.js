@@ -10,7 +10,7 @@ const LocationDetailHeader = ( { onExpand, locationDetail } ) => {
     event.preventDefault();
     event.stopPropagation();
     onExpand();
-  }
+  };
 
   return (
     <div className="location-detail-header">

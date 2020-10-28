@@ -18,7 +18,7 @@ import NotFound from "../app-pages/NotFound";
 export const RoutePaths = {
   Home: `/`,
   Help: `/help`,
-  Locations: `/locations`,
+  Locations: `/locations/:locationId`,
   Map: `/map`,
   ReportsHome: `/reports`,
   DataResources: `/data-resources`,
