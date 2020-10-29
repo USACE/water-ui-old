@@ -4,7 +4,7 @@ import TextSection from '../../app-common/TextSection';
 import CirclePics from '../../app-common/CirclePics';
 import LocationsMap from '../../app-common/map/LocationsMap';
 import { cardObj, circlePicObj } from './data.js';
-import SearchInput from "./components/SearchInput";
+import LocationSearch from "./components/LocationSearch";
 import DistrictsDropdown from "./components/DistrictsDropdown";
 import BasinsDropdown from "./components/BasinsDropdown";
 
@@ -35,7 +35,7 @@ const HomePage = () => {
 
         <div className="search-box-container py-4 px-4 mx-auto container position-relative">
           <div style={ { top: '100%', zIndex: 1, textAlign: "center" } }>
-            <SearchInput />
+            <LocationSearch />
             <p className="mt-3">Or search by district and basin</p>
             <div className="district-basin-dd row">
               <div className="col-md-6">

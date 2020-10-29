@@ -4,7 +4,7 @@ import { connect } from "redux-bundler-react";
 import Autocomplete from "../../../app-common/autocomplete/Autocomplete";
 import debounce from "lodash/debounce";
 
-const SearchInput = ({
+const LocationSearch = ({
   locationSearchText,
   locationSearchItems,
   doSetLocationSearchText,
@@ -25,7 +25,7 @@ const SearchInput = ({
 
   return (
     <Autocomplete
-      id="homepage-search"
+      id="location-search-autocomplete"
       input={{
         // value: locationSearchText,
         onChange: inputOnChange,
@@ -39,7 +39,7 @@ const SearchInput = ({
   );
 };
 
-SearchInput.propTypes = {
+LocationSearch.propTypes = {
   locationSearchText: PropTypes.string.isRequired,
   locationSearchItems: PropTypes.array.isRequired,
   doSetLocationSearchText: PropTypes.func.isRequired,
@@ -49,5 +49,5 @@ export default connect(
   "selectLocationSearchText",
   "selectLocationSearchItems",
   "doSetLocationSearchText",
-  SearchInput,
+  LocationSearch,
 );
