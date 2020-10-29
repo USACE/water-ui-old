@@ -21,7 +21,7 @@ const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode }) =
     <main>
       <LocationDetailHeader
         locationDetail={locationDetail}
-        onExpand={handleFullScreen ? () => handleFullScreen(locationCode) : null}
+        onExpand={handleFullScreen ? () => handleFullScreen({selectedLocationCode:locationCode}) : null}
       ></LocationDetailHeader>
       <div className="location-detail-content-container">
         {!handleFullScreen && (
