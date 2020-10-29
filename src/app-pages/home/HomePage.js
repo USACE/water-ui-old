@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from "prop-types";
+import { connect } from "redux-bundler-react";
+import debounce from "lodash/debounce";
 import Card from '../../app-common/Cards';
 import TextSection from '../../app-common/TextSection';
 import CirclePics from '../../app-common/CirclePics';
@@ -19,8 +22,9 @@ const headerContainerStyle = {
   backgroundColor: '#cbd5e0'
 }
 
-const HomePage = () => {
+const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
   const mapOptions = { center: [ -77.0364, 38.895 ], zoom: 4 };
+  const debounceFetch = debounce(doSetLocationSearchCriteriaUpdated, 500);
 
   return (
     <main>
@@ -35,7 +39,7 @@ const HomePage = () => {
 
         <div className="search-box-container py-4 px-4 mx-auto container position-relative">
           <div style={ { top: '100%', zIndex: 1, textAlign: "center" } }>
-            <LocationSearch />
+            <LocationSearch debounceFetch={debounceFetch} />
             <p className="mt-3">Or search by district and basin</p>
             <div className="district-basin-dd row">
               <div className="col-md-6">
@@ -69,4 +73,8 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+HomePage.propTypes = {
+  doSetLocationSearchCriteriaUpdated: PropTypes.func.isRequired,
+};
+
+export default connect("doSetLocationSearchCriteriaUpdated", HomePage);

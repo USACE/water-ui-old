@@ -2,18 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Autocomplete from "../../../app-common/autocomplete/Autocomplete";
-import debounce from "lodash/debounce";
 
 const LocationSearch = ({
   locationSearchText,
   locationSearchItems,
   doSetLocationSearchText,
+  debounceFetch,
 }) => {
 
-  const debounceDoSetLocationSearchText = debounce(doSetLocationSearchText, 500);
-
   const inputOnChange = (e) => {
-    debounceDoSetLocationSearchText(e.target.value);
+    doSetLocationSearchText(e.target.value);
+    debounceFetch();
   };
 
   const items = locationSearchText ? locationSearchItems.map(({ description }) => description) : [];
@@ -27,7 +26,7 @@ const LocationSearch = ({
     <Autocomplete
       id="location-search-autocomplete"
       input={{
-        // value: locationSearchText,
+        value: locationSearchText,
         onChange: inputOnChange,
         className: "form-control",
       }}
@@ -43,6 +42,7 @@ LocationSearch.propTypes = {
   locationSearchText: PropTypes.string.isRequired,
   locationSearchItems: PropTypes.array.isRequired,
   doSetLocationSearchText: PropTypes.func.isRequired,
+  debounceFetch: PropTypes.func.isRequired,
 };
 
 export default connect(

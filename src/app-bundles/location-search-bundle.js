@@ -53,7 +53,6 @@ export default createRestBundle( {
           _search_text: searchText,
         },
       } );
-      store.doSetLocationSearchCriteriaUpdated();
     },
     doSetLocationSearchType: ( searchType ) => ( { dispatch, store } ) => {
       dispatch( {
