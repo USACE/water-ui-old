@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import LocationDetailHeader from "../location-detail/Header";
 import Accordion from "../accordion/Accordion";
 import { accordionArrObjs } from "./data";
