@@ -22,9 +22,8 @@ const LocationSearch = ({
     : [];
 
   const itemOnClick = (e) => {
-    const locationName = e.target.textContent;
     const locationCode = e.target.value;
-    doSetLocationSearchText(locationName);
+    doSetLocationSearchText("");
     doUpdateUrl(RoutePaths.Locations.replace(":locationId", locationCode));
   }
 
