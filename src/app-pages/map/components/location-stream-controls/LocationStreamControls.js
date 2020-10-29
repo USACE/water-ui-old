@@ -3,7 +3,7 @@ import "./locationStreamControls.scss";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 
-const LocationStreamControls = ({ selectedLocationDetail }) => {
+const LocationStreamControls = ({ selectedLocationDetail, fullScreen }) => {
   // For now, mock this array. Later, we'll add a mock array of stream locations to the location data.
   const options = ["jump to station", "station 1", "station 2", "station 3"];
 
@@ -17,26 +17,36 @@ const LocationStreamControls = ({ selectedLocationDetail }) => {
     e.stopPropagation();
   };
 
+  const fullScreenMode = !fullScreen ? "col-md-6" : "col-md-12";
+
   return (
-    <div className="location-stream-controls-wrapper">
-      <button className="link downstream-station" onClick={changeStation}>
-        downstream station
-      </button>
-      <select
-        className="jump-station"
-        aria-labelledby="jump to station dropdown"
-        onChange={jumpStation}
-        onClick={jumpStation}
-      >
-        {options && options.map((item, i) => (
-          <option key={i} value={item}>
-            {item}
-          </option>
-        ))}
-      </select>
-      <button className="link upstream-station" onClick={changeStation}>
-        upstream station
-      </button>
+    <div className="row">
+      {!fullScreen && (
+        <div className="back-to-map-link col-md-6">
+          <a href="/map">Back to Map</a>
+        </div>
+      )}
+      <div className={`location-stream-controls-wrapper ${fullScreenMode}`}>
+        <button className="link downstream-station" onClick={changeStation}>
+          downstream station
+        </button>
+        <select
+          className="jump-station"
+          aria-labelledby="jump to station dropdown"
+          onChange={jumpStation}
+          onClick={jumpStation}
+        >
+          {options &&
+            options.map((item, i) => (
+              <option key={i} value={item}>
+                {item}
+              </option>
+            ))}
+        </select>
+        <button className="link upstream-station" onClick={changeStation}>
+          upstream station
+        </button>
+      </div>
     </div>
   );
 };

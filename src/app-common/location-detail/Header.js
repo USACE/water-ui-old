@@ -19,7 +19,7 @@ const LocationDetailHeader = ( { onExpand, locationDetail } ) => {
       <div className="location-detail-subheading">
         { locationDetail.office_name } | <a href={ weatherUrl } target="_blank" rel="noopener noreferrer">Local Forecast</a>
       </div>
-      <LocationStreamControls/>
+      <LocationStreamControls fullScreen={ onExpand } />
     </div>
   );
 };
