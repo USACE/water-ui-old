@@ -12,8 +12,10 @@ const LocationDetailHeader = ( { onExpand, locationDetail } ) => {
     onExpand();
   };
 
+  const locationHeaderSticky = !onExpand ? "fixed-sticky" : "";
+  
   return (
-    <div className="location-detail-header">
+    <div className={`location-detail-header ${locationHeaderSticky}`}>
       {onExpand && <div className="mdi mdi-arrow-expand location-expand" title="Expand Detail View" onClick={ onExpandHandler }/>}
       <h4>{ locationDetail.public_name }</h4>
       <div className="location-detail-subheading">
