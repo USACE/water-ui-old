@@ -15,7 +15,7 @@ const Autocomplete = (props) => {
     ...rest
   } = props;
 
-  const node = useRef();
+  const node = useRef( null );
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleInputOnClick = () => {
@@ -163,7 +163,7 @@ const Autocomplete = (props) => {
           <li
             key={value}
             role="menuitem"
-            tabIndex="0"
+            tabIndex={0}
             value={value}
             index={index}
             onClick={handleItemOnClick}
@@ -183,6 +183,7 @@ Autocomplete.propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onKeyDown: PropTypes.func,
+    className: PropTypes.string,
   }).isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any.isRequired,
@@ -191,6 +192,7 @@ Autocomplete.propTypes = {
   itemOnClick: PropTypes.func.isRequired,
   ariaLabel: PropTypes.string.isRequired,
   className: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 Autocomplete.defaultProps = {
