@@ -56,6 +56,7 @@ const LocationStreamControls = ({ selectedLocationDetail, fullScreen }) => {
 
 LocationStreamControls.propTypes = {
   selectedLocationDetail: PropTypes.object,
+  fullScreen: PropTypes.func
 };
 
 export default connect("selectSelectedLocationDetail", LocationStreamControls);

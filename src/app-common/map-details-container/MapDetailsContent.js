@@ -3,6 +3,7 @@ import LocationDetailHeader from "../location-detail/Header";
 import Accordion from "../accordion/Accordion";
 import { accordionArrObjs } from "./data";
 import "./map-details-content.scss";
+import PropTypes from "prop-types";
 
 const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode }) => {
   const formatId = (title) => {
@@ -47,5 +48,12 @@ const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode }) =
     </main>
   );
 };
+
+MapDetailsContent.propTypes = {
+  handleFullScreen: PropTypes.func, 
+  locationDetail: PropTypes.object,
+  locationCode: PropTypes.string
+};
+
 
 export default MapDetailsContent;
