@@ -2,7 +2,11 @@
 @import "../../../../style/sass/abstracts/variables";
 .fade {
   opacity: 0;
-  transition: opacity 100ms;
+  transition: opacity 500ms;
+}
+body{
+  opacity: 1;
+  transition: opacity 500ms;
 }
 .map-details-wrapper {
   width: 100%;
