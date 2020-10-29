@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Autocomplete from "../../../app-common/autocomplete/Autocomplete";
+import { RoutePaths } from "../../../app-bundles/routes-bundle";
 
 const LocationSearch = ({
   locationSearchText,
   locationSearchItems,
   doSetLocationSearchText,
   debounceFetch,
+  doUpdateUrl,
 }) => {
 
   const inputOnChange = (e) => {
@@ -15,11 +17,15 @@ const LocationSearch = ({
     debounceFetch();
   };
 
-  const items = locationSearchText ? locationSearchItems.map(({ description }) => description) : [];
+  const items = locationSearchText
+    ? locationSearchItems.map(({ description, location_id }) => ({ value: location_id, display: description }))
+    : [];
 
-  const itemOnClick = (value) => {
-    doSetLocationSearchText(value);
-    // TODO: redirect user to location details or map page when user selects a menu item
+  const itemOnClick = (e) => {
+    const locationName = e.target.textContent;
+    const locationCode = e.target.value;
+    doSetLocationSearchText(locationName);
+    doUpdateUrl(RoutePaths.Locations.replace(":locationId", locationCode));
   }
 
   return (
@@ -43,11 +49,13 @@ LocationSearch.propTypes = {
   locationSearchItems: PropTypes.array.isRequired,
   doSetLocationSearchText: PropTypes.func.isRequired,
   debounceFetch: PropTypes.func.isRequired,
+  doUpdateUrl: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationSearchText",
   "selectLocationSearchItems",
   "doSetLocationSearchText",
+  "doUpdateUrl",
   LocationSearch,
 );

@@ -64,7 +64,7 @@ const Autocomplete = (props) => {
   };
 
   const handleItemOnClick = (e) => {
-    itemOnClick(e.target.getAttribute('value'));
+    itemOnClick(e);
     setMenuOpen(false);
   };
 
@@ -159,19 +159,19 @@ const Autocomplete = (props) => {
         aria-hidden={!menuOpen && items.length === 0}
         aria-labelledby={id}
       >
-        {items.map((item, index) => (
+        {items.map( ( { value, display }, index ) => (
           <li
-            key={item}
+            key={value}
             role="menuitem"
             tabIndex="0"
-            value={item}
+            value={value}
             index={index}
             onClick={handleItemOnClick}
             onKeyDown={handleItemOnKeyDown}
           >
-            {item}
+            {display}
           </li>
-        ))}
+        ) ) }
       </ul>
     </div>
   );
@@ -184,7 +184,10 @@ Autocomplete.propTypes = {
     onChange: PropTypes.func.isRequired,
     onKeyDown: PropTypes.func,
   }).isRequired,
-  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.any.isRequired,
+    display: PropTypes.string.isRequired,
+  })).isRequired,
   itemOnClick: PropTypes.func.isRequired,
   ariaLabel: PropTypes.string.isRequired,
   className: PropTypes.string,
