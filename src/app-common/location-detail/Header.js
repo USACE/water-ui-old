@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from 'prop-types';
 import "./location-detail.scss";
 import LocationStreamControls from "../../app-pages/map/components/location-stream-controls/LocationStreamControls"
-const LocationDetailHeader = ( { onExpand, locationDetail } ) => {
+const LocationDetailHeader = ( props ) => {
+  const {
+    onExpand,
+    /** @type a2w.models.LocationDetail */
+    locationDetail
+  } = props;
 
   const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${ locationDetail.nearest_city }&state=${ locationDetail.state }`
 
