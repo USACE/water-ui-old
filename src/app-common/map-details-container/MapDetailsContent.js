@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import LocationDetailHeader from "../location-detail/Header";
 import Accordion from "../accordion/Accordion";
 import { accordionArrObjs } from "./data";
@@ -12,9 +12,10 @@ const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode }) =
 
   const handleNavClick = (title) => {
     const accordionBtnId = formatId(title);
-    document.getElementById(accordionBtnId).scrollIntoView({
-      behavior: "smooth",
-    });
+
+    // TODO: Try to get header height via ref instead of hard coding it to 175?
+    const topOfElement = document.getElementById(accordionBtnId).offsetTop - 175;
+    window.scroll({ top: topOfElement, behavior: "smooth" });
   };
 
   return (

@@ -64,7 +64,6 @@ const Footer = (props) => {
 					</div>
 				</div>
 			</div>
-			<div style={footerSectionTwo}></div>
 		</div>
 	);
 };
