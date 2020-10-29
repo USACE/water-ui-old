@@ -42,7 +42,7 @@ const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode }) =
             </ul>
           </div>
         )}
-        <div className={!handleFullScreen ? " pl-0 pr-5 col-md-10" : ""}>
+        <div className={!handleFullScreen ? " pl-0 pr-5 col-md-10" : "col-md-12"}>
           <Accordion data={accordionArrObjs} formatId={formatId}/>
         </div>
       </div>

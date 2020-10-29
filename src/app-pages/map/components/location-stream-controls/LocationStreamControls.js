@@ -17,16 +17,19 @@ const LocationStreamControls = ({ selectedLocationDetail, fullScreen }) => {
     e.stopPropagation();
   };
 
-  const fullScreenMode = !fullScreen ? "col-md-6" : "col-md-12";
+  const fullScreenContainerStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+  };
 
   return (
-    <div className="row">
+    <div className="location-stream-control-container" style={!fullScreen ? fullScreenContainerStyle : null}>
       {!fullScreen && (
-        <div className="back-to-map-link col-md-6">
+        <div className="back-to-map-link">
           <a href="/map">Back to Map</a>
         </div>
       )}
-      <div className={`location-stream-controls-wrapper ${fullScreenMode}`}>
+      <div className="location-stream-controls-wrapper">
         <button className="link downstream-station" onClick={changeStation}>
           downstream station
         </button>

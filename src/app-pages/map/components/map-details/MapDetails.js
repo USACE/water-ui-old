@@ -30,6 +30,7 @@ const MapDetails = ({
   const handleFullScreen = (selectedLocationCode) => {
     setIsFullScreen(true);
     const newLocation = `${ RoutePaths.Locations.replace( ":locationId", selectedLocationCode ) }`;
+    //set timeout to allow css transition to happen
     setTimeout(function(){   
         document.body.classList.toggle('fade'); 
         window.location.href = newLocation;     
