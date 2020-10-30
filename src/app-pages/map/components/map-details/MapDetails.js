@@ -5,7 +5,15 @@ import "./mapDetails.scss";
 import MapDetailsContent from "../../../../app-common/map-details-container/MapDetailsContent";
 import { RoutePaths } from "../../../../app-bundles/routes-bundle";
 
-const MapDetails = ({ doSetSelectedLocationCode, selectedLocationCode, selectedLocationDetail, doUpdateUrl }) => {
+const MapDetails = ( props ) => {
+  const {
+    doSetSelectedLocationCode,
+    selectedLocationCode,
+    /** @type a2w.models.LocationDetail */
+    selectedLocationDetail,
+    doUpdateUrl
+  } = props;
+
   const [isOpen, setIsOpen] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const toggleDrawer = () => {

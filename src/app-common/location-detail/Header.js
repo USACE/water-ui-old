@@ -1,8 +1,15 @@
 import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./location-detail.scss";
-import LocationStreamControls from "../../app-pages/map/components/location-stream-controls/LocationStreamControls";
-const LocationDetailHeader = ({ onExpand, locationDetail, getHeaderHeight }) => {
+import LocationStreamControls from "../../app-pages/map/components/location-stream-controls/LocationStreamControls"
+const LocationDetailHeader = ( props ) => {
+  const {
+    onExpand,
+    /** @type a2w.models.LocationDetail */
+    locationDetail,
+    getHeaderHeight
+  } = props;
+
   const headerHeight = useRef( null );
   const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${locationDetail.nearest_city}&state=${locationDetail.state}`;
 
@@ -45,4 +52,5 @@ LocationDetailHeader.defaultProps = {
 LocationDetailHeader.propTypes = {
   onExpand: PropTypes.func,
   locationDetail: PropTypes.object,
+  getHeaderHeight: PropTypes.func,
 };

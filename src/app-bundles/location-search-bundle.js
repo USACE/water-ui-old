@@ -25,7 +25,7 @@ export default createRestBundle( {
   forceFetchActions: [],
   urlParamSelectors: [ "selectLocationSearchGetTemplateParams" ],
   defaultState: {
-    _search_text: null,
+    _search_text: '',
     _search_type: "ALL",
     _search_limit: 10
   },
@@ -53,7 +53,6 @@ export default createRestBundle( {
           _search_text: searchText,
         },
       } );
-      store.doSetLocationSearchCriteriaUpdated();
     },
     doSetLocationSearchType: ( searchType ) => ( { dispatch, store } ) => {
       dispatch( {

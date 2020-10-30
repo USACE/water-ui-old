@@ -1,0 +1,20 @@
+.autocomplete {
+  position: relative;
+
+  >ul {
+    font-size: inherit;
+    z-index: 1020;
+    width: 100%;
+
+    >li {
+      padding: 10px 20px;
+      font-size: inherit;
+      margin: 0;
+
+      &:hover, &:focus {
+        cursor: pointer;
+        background-color: #eeeeee;
+      }
+    }
+  }
+}

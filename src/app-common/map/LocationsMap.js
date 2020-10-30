@@ -35,6 +35,7 @@ const LocationsMap = (props) => {
     locationsMapIsDataLoaded,
     locationsMapIsLoaded,
     locationsMapMapState,
+    /** @type a2w.models.LocationSummary[] */
     locationSummaries,
     doSetSelectedLocationCode,
     doLocationsMapLoaded,
