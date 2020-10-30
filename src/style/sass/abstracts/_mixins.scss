@@ -50,3 +50,9 @@ $breakpoints: (
     }
   }
 }
+
+@mixin btn-to-link {
+  border: none;
+  background-color: transparent;
+  color: $ahref-color;
+}

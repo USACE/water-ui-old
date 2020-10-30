@@ -37,7 +37,7 @@ const MapNavBar = ({ locationTree, doSetSelectedLocationCode }) => {
     <div className="map-nav-bar-wrapper">
       <div className="h-100 px-5 py-4 bg-secondary">
         <div className="row map-nav-row">
-          <div className="col-md-4">
+          <div className="col-md-4 mb-3">
             <SearchBox />
           </div>
           <div className="col-md-1">
