@@ -1,8 +1,8 @@
 import React from "react";
 import LocationInfo from "../../app-pages/map/components/LocationInfo";
 import DamProfile from "../../app-pages/map/components/DamProfile";
-import TimesSeriesSection from "../../app-pages/map/components/TimeSeriesSection"
-
+import TimeSeriesSection from "../../app-pages/map/components/TimeSeriesSection";
+import TimeLineSection from "../../app-pages/map/components/TimeLineSection";
 // Accordion dummy data
 export const accordionArrObjs = [
   {
@@ -17,7 +17,12 @@ export const accordionArrObjs = [
   },
   {
     title: "Time Series",
-    content: <TimesSeriesSection/>,
+    content: <TimeSeriesSection/>,
+    iconClass: "mdi mdi-chart-timeline",
+  },
+  {
+    title: "TimeLine",
+    content: <TimeLineSection/>,
     iconClass: "mdi mdi-chart-timeline",
   },
   {

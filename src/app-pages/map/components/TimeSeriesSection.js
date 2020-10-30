@@ -1,49 +1,31 @@
 import React from "react";
-// import PropTypes from "prop-types";
-import Timeline from "../../../app-common/timeline/Timeline";
 import { connect } from "redux-bundler-react";
-
-//Timeline Dummy Data
- const timelineData = [
-  {
-    text: "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit",
-    date: "January 1 2020",
-  },
-  {
-    text: "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit",
-    date: "February 1 2020",
-  },
-  {
-    text: "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit",
-    date: "March 01 2020",
-  },
-  {
-    text: "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit",
-    date: "April 01 2020",
-  },
-  {
-    text: "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit",
-    date: "May 01 2020",
-  },
-];
+import A2WPlot from "../../../app-common/plotly/A2Wplot";
 
 const TimeSeriesSection = ({
-  locationTimeSeries
+
 }) => {
 
   return (
     <div className="time-series-section-wrapper">
       <h5>Time Series</h5>
-      {timelineData ? (
-        <Timeline timelineData={timelineData} align={"vertical"} maxHeight={"400px"} compact={true} />
-      ) : null}
+      {/* test to see that it worked */}
+      <A2WPlot
+        data={[
+          {
+            y: [0, 1, 1, 2, 3, 5, 8, 13, 21],
+            boxpoints: 'all',
+            jitter: 0.3,
+            pointpos: -1.8,
+            type: 'box'
+          }
+        ]}
+        layout={ {width: 500, height: 400, title: 'Test Plot'} }
+      />
     </div>
   );
 };
 
-// TimeSeries.propTypes = {
-
-// };
 
 export default connect(
   "selectLocationTimeSeries",
