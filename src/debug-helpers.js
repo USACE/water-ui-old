@@ -15,7 +15,7 @@ const _usePrevious = (value, initialValue) => {
  * @param dependencies
  * @param dependencyNames
  */
-const useEffectDebugger = (effectHook, dependencies, dependencyNames = []) => {
+export const useEffectDebugger = (effectHook, dependencies, dependencyNames = []) => {
   const previousDeps = _usePrevious(dependencies, []);
 
   const changedDeps = dependencies.reduce((accum, dependency, index) => {
@@ -38,4 +38,24 @@ const useEffectDebugger = (effectHook, dependencies, dependencyNames = []) => {
   }
 
   useEffect(effectHook, dependencies);
+};
+
+/**
+ * Helper function to output a JSDoc type definition.
+ * @param model
+ * @param typeName
+ */
+export const toTypeDef = ( model, typeName ) => {
+  if( !model ) return;
+  let result = `/**\n`;
+  result += ` * @typedef ${ typeName }\n`;
+
+  for( const [ key, value ] of Object.entries( model ) ) {
+    result += ` * @property {${ typeof value }} ${ key }\n`;
+  }
+
+  result += "*/";
+
+  console.log( "toTypeDef:" );
+  console.log( result );
 };

@@ -6,11 +6,14 @@ import { accordionArrObjs } from "./data";
 import PropTypes from 'prop-types';
 import "./mapDetails.scss";
 
-const MapDetails = ({
-  doSetSelectedLocationCode,
-  selectedLocationCode,
-  selectedLocationDetail,
-}) => {
+const MapDetails = ( props ) => {
+  const {
+    doSetSelectedLocationCode,
+    selectedLocationCode,
+    /** @type a2w.models.LocationDetail */
+    selectedLocationDetail,
+  } = props;
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer = () => {

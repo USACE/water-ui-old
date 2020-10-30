@@ -30,8 +30,12 @@ export default createRestBundle( {
       "selectLocationSummariesItemsObject",
       ( selectedLocationCode, summaryMap ) => {
         if( !selectedLocationCode ) return {};
+
+        /** @type a2w.models.LocationSummary */
         const summary = summaryMap[ selectedLocationCode ];
+
         if( !summary || summary.office_id === "" || summary.location_id === "" ) return {};
+
         return {
           location_id: summary.location_id,
           office_id: summary.office_id
