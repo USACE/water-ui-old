@@ -8,7 +8,7 @@ export default createRestBundle( {
   staleAfter: 0,
   persist: false,
   getTemplate: getRestUrl(
-    "http://cwms-data.usace.army.mil/cwms-data/timeseries?office=:office_id&name=:location_id.*&format=json",
+    "https://cwms-data.usace.army.mil/cwms-data/timeseries?office=:office_id&name=:location_id.*&format=json",
     "/radar-time-series.json?office=:office_id&name=:location_id.*&format=json" ),
   putTemplate: null,
   postTemplate: null,
