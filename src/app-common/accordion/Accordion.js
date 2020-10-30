@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import "./accordion.scss";
 
 const Accordion = (props) => {
-  const { data } = props;
+  const { data, formatId } = props;
   const [ activeAcc, setActiveAcc ] = useState([]);
 
   const toggleAccordion = (i, e) => {
@@ -26,16 +26,15 @@ const Accordion = (props) => {
         return (
           <div key={ i }>
             <button
-              className={ `accordion-btn` }
-              id={`accordion-control-${i}`}
+              className={ `accordion-btn` } 
               onClick={ (e) => toggleAccordion(i, e) }
-              aria-controls={ ele.title }
+              aria-controls={ title }
               aria-expanded={ activeAcc.includes(i) ? "true" : "false" }
               key={ `button-${i}` }
               type="button"
             >
-              <div className={ `accordion-title text--bold ${iconClass}` }>
-                { ele.title }
+              <div className={ `accordion-title text--bold ${iconClass}` } id={ formatId(title) }>
+                { title }
               </div>
               <div
                 className={
@@ -70,7 +69,8 @@ const Accordion = (props) => {
 };
 
 Accordion.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.array.isRequired,
+  formatId: PropTypes.func
 };
 
 export default Accordion;

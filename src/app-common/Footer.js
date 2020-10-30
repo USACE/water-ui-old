@@ -7,11 +7,6 @@ const footerTextSectionContainer = {
 	backgroundColor: '#4a5568',
 };
 
-const footerSectionTwo = {
-	height: '6rem',
-	backgroundColor: '#2d3748',
-};
-
 const textSectionBodyStyle = {
 	textAlign: 'left',
 	color: '#cbd5e0',
@@ -64,7 +59,6 @@ const Footer = (props) => {
 					</div>
 				</div>
 			</div>
-			<div style={footerSectionTwo}></div>
 		</div>
 	);
 };

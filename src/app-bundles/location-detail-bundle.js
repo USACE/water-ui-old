@@ -7,6 +7,7 @@ export default createRestBundle( {
   uid: "location_code",
   staleAfter: 0,
   persist: false,
+  routeParam: "locationId",
   getTemplate: getRestUrl( "/water/locations/:location_code", "/location-detail.json?/:location_code", true ),
   putTemplate: null,
   postTemplate: null,
