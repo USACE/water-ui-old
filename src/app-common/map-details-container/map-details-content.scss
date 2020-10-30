@@ -3,15 +3,25 @@
 
 .location-detail-content-container {
   display: flex;
+  flex-direction: row;
   padding: 2rem;
+  @include mq($breakpoint: "phone", $direction: "down") {
+    flex-wrap: wrap;
+  }
 
   .map-details-nav {
-    width: 12%;
     position: relative;
+    flex-shrink: 9;
+    width: 100%;
     .fixed-sticky-nav {
       position: -webkit-sticky;
       position: sticky;
       z-index: 10;
+      @include mq($breakpoint: "phone", $direction: "down") {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
     }
     .navbar-ul {
       list-style: none;

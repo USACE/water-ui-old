@@ -1,4 +1,9 @@
+@import "../../../../style/sass/abstracts/mixins";
+
 .location-stream-control-container {
+  @include mq($breakpoint: "phone", $direction: "down") {
+    flex-wrap: wrap;
+  }
   .back-to-map-link {
     display: flex;
     align-items: center;
@@ -56,6 +61,9 @@
       cursor: pointer;
       &:focus {
         outline: none;
+      }
+      @include mq($breakpoint: "phone", $direction: "down") {
+        margin: 0 0.5rem;
       }
     }
   }
