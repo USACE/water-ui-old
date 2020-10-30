@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./location-detail.scss";
 import LocationStreamControls from "../../app-pages/map/components/location-stream-controls/LocationStreamControls";
 const LocationDetailHeader = ({ onExpand, locationDetail, getHeaderHeight }) => {
-  const headerHeight = useRef();
+  const headerHeight = useRef( null );
   const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${locationDetail.nearest_city}&state=${locationDetail.state}`;
 
   const onExpandHandler = (event) => {
@@ -16,7 +16,7 @@ const LocationDetailHeader = ({ onExpand, locationDetail, getHeaderHeight }) => 
 
   useEffect(() => {
     getHeaderHeight(headerHeight.current.clientHeight);
-  }, []);
+  }, [ getHeaderHeight ]);
 
   return (
     <div className={`location-detail-header ${locationHeaderSticky}`} ref={headerHeight}>

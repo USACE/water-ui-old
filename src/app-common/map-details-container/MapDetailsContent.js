@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useCallback, useState } from "react";
 import LocationDetailHeader from "../location-detail/Header";
 import Accordion from "../accordion/Accordion";
 import { accordionArrObjs } from "./data";
@@ -11,9 +11,9 @@ const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode }) =
   const formatId = (title) => {
     return title && title.toLowerCase().replace(" ", "_");
   };
-  const getHeaderHeight = (refHeight) =>{
+  const getHeaderHeight = useCallback( (refHeight) =>{
     setHeaderHeight(refHeight);
-  };
+  }, [ setHeaderHeight ] );
 
   const handleNavClick = (title) => {
     const accordionBtnId = formatId(title);
