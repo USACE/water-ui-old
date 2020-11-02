@@ -181,7 +181,6 @@ export default (opts) => {
   const selectPageSize = `select${uCaseName}PageSize`;
   const selectSortBy = `select${uCaseName}SortBy`;
   const selectSortAsc = `select${uCaseName}SortAsc`;
-  const selectShouldFetch = `select${uCaseName}ShouldFetch`;
   const selectData = `select${uCaseName}Data`;
 
   // reactors
@@ -661,16 +660,11 @@ export default (opts) => {
         return state[config.name]._sortAsc;
       },
 
-      [selectShouldFetch]: state => state[config.name]._shouldFetch,
-
-      [reactShouldFetch]: createSelector(
-        selectShouldFetch,
-        (shouldFetch) => {
-          if (shouldFetch) {
-            return { actionCreator: doFetch };
-          }
+      [reactShouldFetch]: (state) => {
+        if (state[config.name]._shouldFetch) {
+          return { actionCreator: doFetch };
         }
-      )
+      },
     },
     config.addons
   );
