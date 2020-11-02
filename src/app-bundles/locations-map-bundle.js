@@ -84,9 +84,9 @@ export default {
   reactLocationsMapShouldAddData: createSelector(
     "selectLocationsMapIsInitialized",
     "selectLocationsMapIsDataLoaded",
-    "selectLocationSummariesItems",
-    (isInitialized, isDataLoaded, locationSummariesItems) => {
-      if (isInitialized && !isDataLoaded && locationSummariesItems.length > 0) {
+    "selectLocationSummariesData",
+    (isInitialized, isDataLoaded, locationSummariesData) => {
+      if (isInitialized && !isDataLoaded && locationSummariesData) {
         return { actionCreator: "doLocationsMapDataLoaded" };
       }
     },

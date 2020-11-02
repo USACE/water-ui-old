@@ -1,19 +1,32 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import MapDetailsContent from "../../app-common/map-details-container/MapDetailsContent";
 import { connect } from "redux-bundler-react";
 import "./location-page.scss";
 
-const LocationPage = ( { selectedLocationDetail, selectedLocationCode } ) => {
+const LocationPage = ( { locationDetailData, locationDetailCode } ) => {
   useEffect( () => {
     //get location detail of location code in params
   }, [] );
   return (
     <main>
       <div className="map-and-details-container">
-        <MapDetailsContent locationDetail = { selectedLocationDetail } locationCode = { selectedLocationCode } />
+        <MapDetailsContent
+          locationDetail = { locationDetailData }
+          locationCode = { locationDetailCode }
+        />
       </div>
     </main>
   );
 };
 
-export default connect("selectSelectedLocationCode", "selectSelectedLocationDetail", LocationPage);
+LocationPage.propTypes = {
+  locationDetailData: PropTypes.object,
+  locationDetailCode: PropTypes.string,
+}
+
+export default connect(
+  "selectLocationDetailData",
+  "selectLocationDetailCode",
+  LocationPage,
+);

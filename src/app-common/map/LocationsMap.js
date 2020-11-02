@@ -36,8 +36,8 @@ const LocationsMap = (props) => {
     locationsMapIsLoaded,
     locationsMapMapState,
     /** @type a2w.models.LocationSummary[] */
-    locationSummaries,
-    doSetSelectedLocationCode,
+    locationSummariesData,
+    doLocationDetailSetCode,
     doLocationsMapLoaded,
     doLocationsMapSaveMapState,
     options,
@@ -49,7 +49,7 @@ const LocationsMap = (props) => {
   const popupCloser = useRef( null );
 
   const addDataToMap = useCallback((map) => {
-    const iconFeatures = locationSummaries.map((item, index) => {
+    const iconFeatures = locationSummariesData.map((item, index) => {
       const iconFeature = new Feature(
         new Point(fromLonLat([item.longitude, item.latitude]))
       );
@@ -160,7 +160,7 @@ const LocationsMap = (props) => {
         popupContent.current.innerHTML = innerHTML;
         popupContent.current.style.cursor = "pointer";
 
-        popupContent.current.onclick = () => doSetSelectedLocationCode( featureProperties.model.id );
+        popupContent.current.onclick = () => doLocationDetailSetCode( featureProperties.model.id );
 
         overlay.setPosition(coord);
       }
@@ -179,7 +179,7 @@ const LocationsMap = (props) => {
     });
 
     doLocationsMapLoaded();
-  }, [locationSummaries, doLocationsMapLoaded, doSetSelectedLocationCode]);
+  }, [locationSummariesData, doLocationsMapLoaded, doLocationDetailSetCode]);
 
   const saveMapState = useCallback((map) => {
     // reset attached listeners
@@ -222,7 +222,7 @@ LocationsMap.propTypes = {
   locationsMapIsLoaded: PropTypes.bool.isRequired,
   locationsMapMapState: PropTypes.object,
   locationSummaries: PropTypes.array,
-  doSetSelectedLocationCode: PropTypes.func.isRequired,
+  doLocationDetailSetCode: PropTypes.func.isRequired,
   doLocationsMapLoaded: PropTypes.func.isRequired,
   doLocationsMapSaveMapState: PropTypes.func.isRequired,
 };
@@ -231,8 +231,8 @@ export default connect(
   "selectLocationsMapIsDataLoaded",
   "selectLocationsMapIsLoaded",
   "selectLocationsMapMapState",
-  "selectLocationSummaries",
-  "doSetSelectedLocationCode",
+  "selectLocationSummariesData",
+  "doLocationDetailSetCode",
   "doLocationsMapLoaded",
   "doLocationsMapSaveMapState",
   LocationsMap,

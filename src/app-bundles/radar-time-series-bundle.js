@@ -18,7 +18,7 @@ export default createRestBundle( {
   urlParamSelectors: [ "selectLocationTimeSeriesAsGetTemplateParams" ],
   addons: {
     selectLocationTimeSeries: createSelector(
-      "selectLocationTimeSeriesItems",
+      "selectLocationTimeSeriesData",
       ( timeSeriesItems ) => {
         if( timeSeriesItems && Array.isArray( timeSeriesItems ) && timeSeriesItems.length > 0 ) {
           return timeSeriesItems[ 0 ][ "time-series" ];
@@ -26,13 +26,13 @@ export default createRestBundle( {
       }
     ),
     selectLocationTimeSeriesAsGetTemplateParams: createSelector(
-      "selectSelectedLocationCode",
-      "selectLocationSummariesItemsObject",
-      ( selectedLocationCode, summaryMap ) => {
-        if( !selectedLocationCode ) return {};
+      "selectLocationDetailCode",
+      "selectLocationSummariesData",
+      ( locationDetailCode, summaryMap ) => {
+        if( !locationDetailCode ) return {};
 
         /** @type a2w.models.LocationSummary */
-        const summary = summaryMap[ selectedLocationCode ];
+        const summary = summaryMap[ locationDetailCode ];
 
         if( !summary || summary.office_id === "" || summary.location_id === "" ) return {};
 

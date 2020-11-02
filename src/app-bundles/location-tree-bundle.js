@@ -1,4 +1,5 @@
 import { createSelector } from "redux-bundler";
+import { RoutePaths } from "./routes-bundle";
 
 const LocationTreeActions = {
   LOCATION_TREE_CREATE_REQUESTED: `LOCATION_TREE_CREATE_REQUESTED`,
@@ -36,9 +37,10 @@ export default {
 
   reactShouldCreateLocationTree: createSelector(
     "selectLocationTree",
-    "selectLocationSummaries",
-    ( locationTree, locationSummaries ) => {
-      if( locationTree === null && locationSummaries && locationSummaries.length > 0 ) {
+    "selectLocationSummariesData",
+    "selectPathname",
+    ( locationTree, locationSummaries, pathname ) => {
+      if( locationTree === null && locationSummaries && locationSummaries.length > 0 && pathname.includes(RoutePaths.Map)) {
         return { actionCreator: "doCreateLocationTree", args: [ locationSummaries ] };
       }
     }

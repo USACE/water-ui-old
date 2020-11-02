@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReportsContainer from "../../ReportsContainer";
 import CorpOfficeReportsContainer from "../CorpOfficeReportsContainer";
 import { connect } from "redux-bundler-react";
 
-const ReportsPage = ( { corporateOfficeReports, corporateOfficeByRoute: office } ) => {
+const ReportsPage = ({
+  corporateOfficeReportsData,
+  corporateOfficeByRoute: office,
+  doCorporateOfficeReportsFetch,
+}) => {
+  useEffect(() => {
+    doCorporateOfficeReportsFetch();
+  }, [doCorporateOfficeReportsFetch]);
 
   return (
     <ReportsContainer activeTab="Corp Office Reports">
@@ -12,7 +19,7 @@ const ReportsPage = ( { corporateOfficeReports, corporateOfficeByRoute: office }
         activeTab="Corp Office Reports" subSectionCode="CRREL">
         <div className="list-group mx-auto">
 
-          {corporateOfficeReports.map((item, i) => (
+          {corporateOfficeReportsData.map((item, i) => (
             <div className="list-group-item flex-column" key={i}>
               <div className="d-flex w-100 justify-content-between">
                 <a href={ item.url } className="mb-1">{ item.title }</a>
@@ -28,7 +35,8 @@ const ReportsPage = ( { corporateOfficeReports, corporateOfficeByRoute: office }
 };
 
 export default connect(
-  "selectCorporateOfficeReports",
+  "selectCorporateOfficeReportsData",
   "selectCorporateOfficeByRoute",
+  "doCorporateOfficeReportsFetch",
   ReportsPage
 );

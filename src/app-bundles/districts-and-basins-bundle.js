@@ -2,8 +2,13 @@ import createRestBundle from "./create-rest-bundle";
 import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
 
+const DISTRICTS_AND_BASINS_SET_DISTRICT_ID = "DISTRICTS_AND_BASINS_SET_DISTRICT_ID";
+const DISTRICTS_AND_BASINS_SET_BASIN_ID = "DISTRICTS_AND_BASINS_SET_BASIN_ID";
+const DISTRICTS_AND_BASINS_REFORMAT_DATA = "DISTRICTS_AND_BASINS_REFORMAT_DATA";
+
+const name = "districtsAndBasins";
 export default createRestBundle( {
-  name: "districtsAndBasins",
+  name,
   uid: "basin_location_code",
   prefetch: true,
   staleAfter: 10000,
@@ -14,60 +19,103 @@ export default createRestBundle( {
   deleteTemplate: null,
   fetchActions: [],
   forceFetchActions: [],
+  defaultState: {
+    district_office_id: "", // selected district
+    basin_location_id: "", // selected basin
+  },
   reduceFurther: ( state, { type, payload } ) => {
     switch( type ) {
-      case "SET_SELECTED_DISTRICT_ID":
-      case "SET_SELECTED_BASIN_ID":
+      case DISTRICTS_AND_BASINS_SET_DISTRICT_ID:
+      case DISTRICTS_AND_BASINS_SET_BASIN_ID:
+      case DISTRICTS_AND_BASINS_REFORMAT_DATA:
         return Object.assign( {}, state, payload );
       default:
         return state;
     }
   },
   addons: {
+    // once the districts and basins data has been loaded, reformat the data so that all the basins are grouped by district
+    reactDistrictsAndBasinsFormatData: createSelector(
+      "selectDistrictsAndBasinsData",
+      (data) => {
+        if (data && Array.isArray(data)) {
+          return {
+            actionCreator: "doDistrictsAndBasinsFormatData",
+            args: [data],
+          };
+        }
+      }
+    ),
+
+    doDistrictsAndBasinsFormatData: (data) => {
+      const districts = {};
+      data.forEach(({ district_office_id, district_name, basin_name, basin_location_code, basin_location_id }) => {
+        if (!districts[district_office_id]) {
+          districts[district_office_id] = {
+            district_office_id,
+            district_name,
+            basins: [],
+          };
+        }
+        districts[district_office_id].basins.push({
+          basin_name,
+          basin_location_code,
+          basin_location_id,
+        });
+      });
+      return {
+        type: DISTRICTS_AND_BASINS_REFORMAT_DATA,
+        payload: {
+          data: districts,
+        }
+      };
+    },
+
     selectDistricts: createSelector(
-      "selectDistrictsAndBasinsItems",
-      ( districtsAndBasins ) => {
-        // TODO: We could add lodash which has array unique function as well as many other utility functions?
-        const matchedDistrictIds = {};
-        const result = districtsAndBasins.filter( entry => {
-          if( matchedDistrictIds[ entry.district_office_id ] ) return false;
-          matchedDistrictIds[ entry.district_office_id ] = true;
-          return true;
-        } );
-        return result.sort( ( a, b ) => ( a.district_name > b.district_name ) ? 1 : -1 );
+      "selectDistrictsAndBasinsData",
+      (data) => {
+        if (!data || Array.isArray(data)) {
+          return [];
+        }
+        const districts = Object.keys(data).map((key) => ({
+          district_office_id: key,
+          district_name: data[key].district_name,
+        }));
+        districts.sort((a, b) => a.district_name > b.district_name ? 1 : -1)
+        return districts;
       }
     ),
-    selectBasinsForDistrict: createSelector(
-      "selectDistrictsAndBasinsItems",
+  
+    selectBasins: createSelector(
       "selectSelectedDistrict",
-      ( districtsAndBasins, selectedDistrict ) => {
-        if( !selectedDistrict ) return districtsAndBasins;
-        const result = districtsAndBasins.filter( entry => entry.district_office_id === selectedDistrict )
-        return result.sort( ( a, b ) => ( a.basin_name > b.basin_name ) ? 1 : -1 );
+      "selectDistrictsAndBasinsData",
+      (selectedDistrict, data) => {
+        if (!data || Array.isArray(data) || !selectedDistrict) {
+          return [];
+        }
+        const basins = data[selectedDistrict].basins;
+        basins.sort((a, b) => a.district_name > b.district_name ? 1 : -1);
+        return basins;
       }
     ),
-    doSetSelectedDistrict: ( id ) => ( { dispatch } ) => {
-      dispatch( {
-        type: "SET_SELECTED_DISTRICT_ID",
-        payload: {
-          _district_office_id: id,
-          _basin_location_id: null
-        },
-      } );
-    },
-    doSetSelectedBasin: ( id ) => ( { dispatch } ) => {
-      dispatch( {
-        type: "SET_SELECTED_BASIN_ID",
-        payload: {
-          _basin_location_id: id,
-        },
-      } );
-    },
-    selectSelectedDistrict: ( state ) => {
-      return state.districtsAndBasins._district_office_id;
-    },
-    selectSelectedBasin: ( state ) => {
-      return state.districtsAndBasins._basin_location_id;
-    },
+  
+    doSetSelectedDistrict: id => ({
+      type: DISTRICTS_AND_BASINS_SET_DISTRICT_ID,
+      payload: {
+        district_office_id: id,
+        basin_location_id: null
+      },
+    }),
+
+    doSetSelectedBasin: id => ( {
+      type: DISTRICTS_AND_BASINS_SET_BASIN_ID,
+      payload: {
+        basin_location_id: id,
+      },
+    }),
+
+    selectSelectedDistrict: state => state[name].district_office_id,
+
+    selectSelectedBasin: state => state[name].basin_location_id,
   },
 } );

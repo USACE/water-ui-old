@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextSection from '../../../app-common/TextSection';
 import ReportsContainer from "../ReportsContainer";
 import { connect } from "redux-bundler-react";
@@ -18,7 +18,11 @@ const pageSectionDivider = {
   borderTop: '2px solid #333',
 }
 
-const CorpOfficeReportsPage = ( { corporateOffices, corporateOfficeIsLoading } ) => {
+const CorpOfficeReportsPage = ( { corporateOfficeData, corporateOfficeIsLoading, doCorporateOfficeFetch } ) => {
+  // get the corporate office data on the initial render
+  useEffect(() => {
+    doCorporateOfficeFetch();
+  }, [doCorporateOfficeFetch])
 
   return (
     <ReportsContainer activeTab="Corp Office Reports">
@@ -28,13 +32,13 @@ const CorpOfficeReportsPage = ( { corporateOffices, corporateOfficeIsLoading } )
           containerStyle={ TextSubSection }
           title={ 'Corp Office Reports' }
         />
-        <p className="mt-2">{ corporateOffices.length } Offices</p>
+        <p className="mt-2">{ corporateOfficeData.length } Offices</p>
       </div>
 
       <div style={ pageSectionDivider }></div>
 
       <div className="list-group w-50">
-        { corporateOffices.map( ( item, i ) => (
+        { corporateOfficeData.map( ( item, i ) => (
           <div className="list-group-item flex-column" key={ i }>
             <div className="d-flex w-100 justify-content-between">
               <a href={ `${ RoutePaths.CorpOfficeReports.replace( ":corpOfficeId", item.office_id ) }` }
@@ -50,7 +54,8 @@ const CorpOfficeReportsPage = ( { corporateOffices, corporateOfficeIsLoading } )
 };
 
 export default connect(
-  "selectCorporateOffices",
+  "selectCorporateOfficeData",
   "selectCorporateOfficeIsLoading",
+  "doCorporateOfficeFetch",
   CorpOfficeReportsPage
 );
