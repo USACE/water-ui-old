@@ -12,12 +12,12 @@ const MapNavBar = ({ locationTree, doSetSelectedLocationCode, doLocationMapZoom 
   const [orgDivToggleState, setOrgDivToggleState] = useState(false);
 
   const handleNodeClick = (e) => {
-    //if node is a leaf then toggle the drawer
+    //if node is a leaf then toggle the drawer and zoom to lonlat
     if (!e.hasNodes) {
       doSetSelectedLocationCode( e.id );
       const mapZoom = {
         zoom: e.zoom_depth || 8,
-        center: [e.longitude,e.latitude] ,
+        center: [e.longitude, e.latitude],
       };
       doLocationMapZoom( mapZoom );
     }
