@@ -13,6 +13,7 @@ export default createRestBundle( {
   name: "locationSearch",
   uid: "location_id",
   staleAfter: 0,
+  delayMs: 3000,
   persist: false,
   getTemplate: getRestUrl(
     "/water/locations/search?q=:search_text&type=:search_type&limit=:search_limit",
@@ -48,12 +49,15 @@ export default createRestBundle( {
       } );
     },
     doSetLocationSearchText: ( searchText ) => ( { dispatch, store } ) => {
-      dispatch( {
+      const action = {
         type: LocationSearchActions.SET_LOCATION_SEARCH_TEXT,
         payload: {
           _search_text: searchText,
         },
-      } );
+      };
+      // Reset the search results if the search text is empty.
+      if( !( typeof searchText === "string" ) || searchText.trim().length === 0 ) action.payload.data = null;
+      dispatch( action );
     },
     doSetLocationSearchType: ( searchType ) => ( { dispatch, store } ) => {
       dispatch( {
