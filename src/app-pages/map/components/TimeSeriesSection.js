@@ -2,9 +2,12 @@ import React from "react";
 import { connect } from "redux-bundler-react";
 import A2WPlot from "../../../app-common/plotly/A2Wplot";
 
-const TimeSeriesSection = ({
+const TimeSeriesSection = ( props ) => {
+  const {
+    locationTimeSeries
+  } = props;
 
-}) => {
+  console.log( "TimeSeriesSection.locationTimeSeries", locationTimeSeries );
 
   return (
     <div className="time-series-section-wrapper">
