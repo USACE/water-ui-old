@@ -182,6 +182,7 @@ export default (opts) => {
   const selectIsSaving = `select${uCaseName}IsSaving`;
   const selectFetchCount = `select${uCaseName}FetchCount`;
   const selectLastFetch = `select${uCaseName}LastFetch`;
+  const selectLastFetchStart = `select${uCaseName}LastFetchStart`;
   const selectIsStale = `select${uCaseName}IsStale`;
   const selectLastResource = `select${uCaseName}LastResource`;
   const selectForceFetch = `select${uCaseName}ForceFetch`;
@@ -202,8 +203,6 @@ export default (opts) => {
 
   // request Objects so that we can abort?
   let fetchReq = null;
-  // track most recent fetch time so we can abort older requests when they finish
-  let lastFetchTime = new Date();
 
   const result = Object.assign(
     {},
@@ -304,6 +303,7 @@ export default (opts) => {
             _shouldFetch: false,
             _forceFetch: false,
             _isLoading: true,
+            _lastFetchStart: new Date()
           },
         });
 
@@ -377,8 +377,7 @@ export default (opts) => {
 
           // Track the last fetch time so we can compare in the request callback to see if another
           // request started while prior request was running.
-          lastFetchTime = new Date();
-          let thisFetchTime = lastFetchTime;
+          let thisFetchTime = store[selectLastFetchStart]();
 
           const runFetch = () => {
             fetchReq = apiGet( url, ( err, body ) => {
@@ -394,13 +393,12 @@ export default (opts) => {
                     _abortReason: null,
                   },
                 } );
-              } else if( thisFetchTime !== lastFetchTime ) {
-                // If lastFetchTime no longer equals thisFetchTime, we know another request started before this one
+              } else if( thisFetchTime !== store[selectLastFetchStart]() ) {
+                // If store's lastFetchStart no longer equals thisFetchTime, we know another request started before this one
                 // finished. Abort the older request rather than handle the results.
                 dispatch( {
                   type: actions.FETCH_ABORT,
                   payload: {
-                    _isLoading: false,
                     _abortReason: `a newer request is in progress`,
                   },
                 } );
@@ -629,6 +627,10 @@ export default (opts) => {
 
       [selectLastFetch]: (state) => {
         return state[config.name]._lastFetch;
+      },
+
+      [selectLastFetchStart]: (state) => {
+        return state[config.name]._lastFetchStart;
       },
 
       [selectLastResource]: (state) => {
