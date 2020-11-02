@@ -13,7 +13,6 @@ export default createRestBundle( {
   name: "locationSearch",
   uid: "location_id",
   staleAfter: 0,
-  delayMs: 3000,
   persist: false,
   getTemplate: getRestUrl(
     "/water/locations/search?q=:search_text&type=:search_type&limit=:search_limit",
