@@ -84,9 +84,10 @@ export default {
     type: actions.LOCATIONS_MAP_SAVE_MAP_STATE,
     payload: {
       mapState,
+      mapZoom: {}
     },
   }),
-  
+
   doLocationMapZoom: mapZoom => ({
     type: actions.LOCATIONS_MAP_ZOOM,
     payload: {
