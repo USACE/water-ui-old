@@ -283,7 +283,6 @@ export default (opts) => {
         const isStale = store[selectIsStale]();
         const lastResource = store[selectLastResource]();
         const forceFetch = store[selectForceFetch]();
-        const flags = store[selectFlags]();
 
         if (url.indexOf("/:") !== -1 || url.indexOf("=:") !== -1) {
           // if we haven't filled in all of our params then bail
@@ -305,12 +304,9 @@ export default (opts) => {
             dispatch({
               type: actions.UPDATED_ITEM,
               payload: {
-                ...flags,
-                ...{
-                  _isLoading: false,
-                  _lastResource: url,
-                  _abortReason: `don't have all the params we need`,
-                },
+                _isLoading: false,
+                _lastResource: url,
+                _abortReason: `don't have all the params we need`,
               },
             });
           }
@@ -348,7 +344,6 @@ export default (opts) => {
               const action = {
                 type: actions.FETCH_FINISHED,
                 payload: {
-                  ...flags,
                   _err: null,
                   _isSaving: false,
                   _isLoading: false,
