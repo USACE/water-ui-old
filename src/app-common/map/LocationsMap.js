@@ -227,10 +227,12 @@ const LocationsMap = (props) => {
         options={newOptions}
         locationMapZoom={mapZoom}
       />
-      <div ref={popupContainer} className="ol-popup">
-        <button ref={popupCloser} className="ol-popup-closer" />
-        <div ref={popupContent} className="ol-popup-content" />
-      </div>
+      { locationsMapIsDataLoaded ? (
+        <div ref={popupContainer} className="ol-popup">
+          <button ref={popupCloser} className="ol-popup-closer" />
+          <div ref={popupContent} className="ol-popup-content" />
+        </div>
+      ) : null }
     </>
   );
 };

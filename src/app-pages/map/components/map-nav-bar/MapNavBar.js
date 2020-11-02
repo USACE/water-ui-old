@@ -19,7 +19,7 @@ const MapNavBar = ({ locationTree, doSetSelectedLocationCode, doLocationMapZoom 
         zoom: e.zoom_depth || 8,
         center: [e.longitude, e.latitude],
       };
-      doLocationMapZoom( mapZoom );
+      if( e.longitude && e.latitude ) doLocationMapZoom( mapZoom );
     }
   };
 
