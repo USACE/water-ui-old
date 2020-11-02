@@ -7,13 +7,19 @@ import "./mapNavBar.scss";
 import { connect } from "redux-bundler-react";
 import { returnKeyCodeName } from "../../../../functions";
 
-const MapNavBar = ({ locationTree, doSetSelectedLocationCode }) => {
+
+const MapNavBar = ({ locationTree, doSetSelectedLocationCode, doLocationMapZoom }) => {
   const [orgDivToggleState, setOrgDivToggleState] = useState(false);
 
   const handleNodeClick = (e) => {
     //if node is a leaf then toggle the drawer
     if (!e.hasNodes) {
-      doSetSelectedLocationCode(e.id);
+      doSetSelectedLocationCode( e.id );
+      const mapZoom = {
+        zoom: e.zoom_depth || 8,
+        center: [e.longitude,e.latitude] ,
+      };
+      doLocationMapZoom( mapZoom );
     }
   };
 
@@ -107,5 +113,6 @@ MapNavBar.propTypes = {
 export default connect(
   "selectLocationTree",
   "doSetSelectedLocationCode",
+  "doLocationMapZoom",
   MapNavBar
 );

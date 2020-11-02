@@ -40,6 +40,7 @@ const LocationsMap = (props) => {
     doSetSelectedLocationCode,
     doLocationsMapLoaded,
     doLocationsMapSaveMapState,
+    locationMapZoom,
     options,
     ...rest
   } = props;
@@ -193,6 +194,22 @@ const LocationsMap = (props) => {
     };
     doLocationsMapSaveMapState(mapState);
   }, [doLocationsMapSaveMapState]);
+
+  const mapZoom = useCallback((map) => {
+      if (locationMapZoom.center) {
+        // reset attached listeners
+        popupContent.current.onclick = null;
+        const view = map.getView();
+
+        view.animate(
+          { zoom: locationMapZoom.zoom },
+          { center: fromLonLat(locationMapZoom.center) },
+          { duration: 1000 }
+        );
+      }
+    },
+    [locationMapZoom]
+  );
   
   const newOptions = {
     zoom: locationsMapMapState.zoom || options.zoom,
@@ -208,6 +225,7 @@ const LocationsMap = (props) => {
         addDataToMap={addDataToMap}
         saveMapState={saveMapState}
         options={newOptions}
+        locationMapZoom={mapZoom}
       />
       <div ref={popupContainer} className="ol-popup">
         <button ref={popupCloser} className="ol-popup-closer" />
@@ -235,5 +253,6 @@ export default connect(
   "doSetSelectedLocationCode",
   "doLocationsMapLoaded",
   "doLocationsMapSaveMapState",
+  "selectLocationMapZoom",
   LocationsMap,
 );
