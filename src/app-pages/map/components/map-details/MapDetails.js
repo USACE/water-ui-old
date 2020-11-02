@@ -11,6 +11,7 @@ const MapDetails = ( props ) => {
     selectedLocationCode,
     /** @type a2w.models.LocationDetail */
     selectedLocationDetail,
+    locationDetailIsLoading,
     doUpdateUrl
   } = props;
 
@@ -55,7 +56,7 @@ const MapDetails = ( props ) => {
               <MapDetailsContent
                 handleFullScreen={() => handleFullScreen(selectedLocationCode, doUpdateUrl)}
                 locationDetail={selectedLocationDetail}
-                locationCode={selectedLocationCode}
+                locationCode={selectedLocationCode} locationDetailIsLoading={locationDetailIsLoading}
               />
             </div>
 
@@ -86,6 +87,7 @@ export default connect(
   "doSetSelectedLocationCode",
   "selectSelectedLocationCode",
   "selectSelectedLocationDetail",
+  "selectLocationDetailIsLoading",
   "doUpdateUrl",
   MapDetails
 );

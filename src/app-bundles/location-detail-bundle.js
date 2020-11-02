@@ -8,7 +8,7 @@ export default createRestBundle( {
   staleAfter: 0,
   persist: false,
   routeParam: "locationId",
-  getTemplate: getRestUrl( "/water/locations/:location_code", "/location-detail.json?/:location_code", true ),
+  getTemplate: getRestUrl( "/water/locations/details/:location_code", "/location-detail.json?/:location_code" ),
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
@@ -54,6 +54,16 @@ export default createRestBundle( {
         return {
           location_code: selectedLocationCode,
         };
+      }
+    ),
+
+    reactShouldSetLocationCode: createSelector(
+      "selectRouteParams",
+      "selectSelectedLocationCode",
+      ( routeParams, selectedLocationCode ) => {
+        if( routeParams.locationId && !selectedLocationCode ) {
+          return { actionCreator: "doSetSelectedLocationCode", args: [ routeParams.locationId ] };
+        }
       }
     ),
 

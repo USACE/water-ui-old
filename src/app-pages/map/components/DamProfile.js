@@ -12,7 +12,7 @@ const DamProfile = ({selectedLocationDetail}) => {
 const [damProfileState, setDamProfileState] = useState( [] );
 
   useEffect (() => {
-    if(Object.keys(selectedLocationDetail).length > 0){
+    if( selectedLocationDetail.dam_profile && Array.isArray( selectedLocationDetail.dam_profile.history ) ) {
       const damProfileJsonObj = selectedLocationDetail.dam_profile.history[0];
       damProfileRowsArr = Object.entries(damProfileJsonObj);
       setDamProfileState(damProfileRowsArr);
