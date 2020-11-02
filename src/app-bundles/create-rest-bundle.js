@@ -202,6 +202,8 @@ export default (opts) => {
 
   // request Objects so that we can abort?
   let fetchReq = null;
+  // track most recent fetch time so we can abort older requests when they finish
+  let lastFetchTime = new Date();
 
   const result = Object.assign(
     {},
@@ -369,53 +371,72 @@ export default (opts) => {
           });
           return;
         } else {
-          if (fetchReq) fetchReq.abort();
-          fetchReq = null;
-          fetchReq = apiGet(url, (err, body) => {
-            if (err) {
-              dispatch({
-                type: actions.ERROR,
-                payload: {
-                  _err: { err: err },
-                  _isLoading: false,
-                  _isSaving: false,
-                  _fetchCount: ++fetchCount,
-                  _lastResource: url,
-                  _abortReason: null,
-                },
-              });
-            } else {
-              let data = typeof body === "string" ? JSON.parse(body) : body;
-              if (!Array.isArray(data)) data = [data];
-              const itemsById = {};
-              if (config.mergeItems) {
-                Object.assign(itemsById, items);
-              }
-              data.forEach((item) => {
-                itemsById[item[config.uid] || 0] = item;
-              });
 
-              const action = {
-                type: actions.FETCH_FINISHED,
-                payload: {
-                  dataMap: { ...itemsById },
-                  ...flags,
-                  ...{
-                    _err: null,
-                    _isSaving: false,
+          if( fetchReq ) fetchReq.abort();
+          fetchReq = null;
+
+          // Track the last fetch time so we can compare in the request callback to see if another
+          // request started while prior request was running.
+          lastFetchTime = new Date();
+          let thisFetchTime = lastFetchTime;
+
+          const runFetch = () => {
+            fetchReq = apiGet( url, ( err, body ) => {
+              if( err ) {
+                dispatch( {
+                  type: actions.ERROR,
+                  payload: {
+                    _err: { err: err },
                     _isLoading: false,
+                    _isSaving: false,
                     _fetchCount: ++fetchCount,
-                    _lastFetch: new Date(),
                     _lastResource: url,
                     _abortReason: null,
                   },
-                },
-              };
+                } );
+              } else if( thisFetchTime !== lastFetchTime ) {
+                // If lastFetchTime no longer equals thisFetchTime, we know another request started before this one
+                // finished. Abort the older request rather than handle the results.
+                dispatch( {
+                  type: actions.FETCH_ABORT,
+                  payload: {
+                    _isLoading: false,
+                    _abortReason: `a newer request is in progress`,
+                  },
+                } );
+              } else {
+                let data = typeof body === "string" ? JSON.parse( body ) : body;
+                if( !Array.isArray( data ) ) data = [ data ];
+                const itemsById = {};
+                if( config.mergeItems ) {
+                  Object.assign( itemsById, items );
+                }
+                data.forEach( ( item ) => {
+                  itemsById[ item[ config.uid ] || 0 ] = item;
+                } );
 
-              if( !( config.delayMs > 0 ) ) dispatch( action );
-              else setTimeout( () => dispatch( action ), config.delayMs );
-            }
-          });
+                dispatch({
+                  type: actions.FETCH_FINISHED,
+                  payload: {
+                    dataMap: { ...itemsById },
+                    ...flags,
+                    ...{
+                      _err: null,
+                      _isSaving: false,
+                      _isLoading: false,
+                      _fetchCount: ++fetchCount,
+                      _lastFetch: new Date(),
+                      _lastResource: url,
+                      _abortReason: null,
+                    },
+                  },
+                });
+              }
+            } );
+          };
+
+          if( !( config.delayMs > 0 ) ) runFetch();
+          else setTimeout( () => runFetch(), config.delayMs );
         }
       },
 
