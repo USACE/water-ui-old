@@ -194,7 +194,7 @@ const LocationsMap = (props) => {
     doLocationsMapSaveMapState(mapState);
   }, [doLocationsMapSaveMapState]);
 
-  const mapZoom = useCallback((map) => {
+  const updateMap = useCallback((map) => {
       if (locationsMapMapState.center) {
         // reset attached listeners
         popupContent.current.onclick = null;
@@ -222,8 +222,8 @@ const LocationsMap = (props) => {
         isMapsLoaded={locationsMapIsLoaded}
         addDataToMap={addDataToMap}
         saveMapState={saveMapState}
+        updateMap={updateMap}
         options={newOptions}
-        locationMapZoom={mapZoom}
       />
       { locationsMapIsDataLoaded ? (
         <div ref={popupContainer} className="ol-popup">

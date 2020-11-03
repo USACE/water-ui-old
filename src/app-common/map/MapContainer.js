@@ -21,7 +21,7 @@ const MapContainer = (props) => {
     isMapsLoaded,
     addDataToMap,
     saveMapState,
-    locationMapZoom,
+    updateMap,
   } = props;
 
   const [map, setMap] = useState();
@@ -72,12 +72,12 @@ const MapContainer = (props) => {
     };
   }, [map, mapKey, isMapsDataLoaded, isMapsLoaded, addDataToMap, saveMapState]);
 
-  // zoom action
+  // update the map object if the mapState changes
   useEffect(() => {
-    if (locationMapZoom && map && isMapsDataLoaded && isMapsLoaded) {
-      locationMapZoom(map);
+    if (map && isMapsDataLoaded && isMapsLoaded) {
+      updateMap(map);
     }
-  }, [locationMapZoom, map, isMapsDataLoaded, isMapsLoaded]);
+  }, [updateMap, map, isMapsDataLoaded, isMapsLoaded]);
 
   return (
     <div
@@ -99,14 +99,14 @@ MapContainer.propTypes = {
   isMapsLoaded: PropTypes.bool.isRequired,
   addDataToMap: PropTypes.func,
   saveMapState: PropTypes.func,
-  locationMapZoom: PropTypes.func,
+  updateMap: PropTypes.func,
 };
 
 MapContainer.defaultProps = {
   options: {},
   addDataToMap: () => {},
   saveMapState: () => {},
-  locationMapZoom: () => {},
+  updateMap: () => {},
 };
 
 export default connect(
