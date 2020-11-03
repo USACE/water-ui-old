@@ -5,11 +5,11 @@ import debounce from "lodash/debounce";
 import Card from '../../app-common/Cards';
 import TextSection from '../../app-common/TextSection';
 import CirclePics from '../../app-common/CirclePics';
-import LocationsMap from '../../app-common/map/LocationsMap';
 import { cardObj, circlePicObj } from './data.js';
 import LocationSearch from "./components/LocationSearch";
 import DistrictsDropdown from "./components/DistrictsDropdown";
 import BasinsDropdown from "./components/BasinsDropdown";
+import "./homePage.scss";
 
 const containerTextSection = {
   textAlign: 'center',
@@ -18,18 +18,13 @@ const containerTextSection = {
   width: '100%',
 };
 
-const headerContainerStyle = {
-  backgroundColor: '#cbd5e0'
-}
-
 const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
-  const mapOptions = { center: [ -77.0364, 38.895 ], zoom: 4 };
   const debounceFetch = debounce(doSetLocationSearchCriteriaUpdated, 500);
 
   return (
-    <main>
+    <main className="home-page-container">
       <div className="header-section">
-        <div style={ headerContainerStyle } className="p-5">
+        <div className="p-5 header-container">
           <TextSection
             containerStyle={ containerTextSection }
             title="find water resources data across the U.S."
@@ -52,13 +47,7 @@ const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
           </div>
         </div>
       </div>
-
-      <LocationsMap
-        mapKey="locationsMap"
-        height="600px"
-        options={mapOptions}
-      />
-
+      <div className="banner-img-container" />
       <div className="container mx-auto px-5">
         { cardObj && <Card cardObj={ cardObj }/> }
         <div className="container mx-auto my-5">
