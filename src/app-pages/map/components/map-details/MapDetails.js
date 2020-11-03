@@ -7,29 +7,29 @@ import { RoutePaths } from "../../../../app-bundles/routes-bundle";
 
 const MapDetails = ( props ) => {
   const {
-    doSetSelectedLocationCode,
-    selectedLocationCode,
+    locationDetailCode,
     /** @type a2w.models.LocationDetail */
-    selectedLocationDetail,
+    locationDetailData,
     locationDetailIsLoading,
-    doUpdateUrl
+    doUpdateUrl,
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const toggleDrawer = () => {
-    let wasOpen = isOpen;
     setIsOpen(!isOpen);
-    if (wasOpen) doSetSelectedLocationCode(null);
   };
 
+  // open the map sidebar if the locationDetailCode changes
   useEffect(() => {
-    if (!isOpen && selectedLocationCode) toggleDrawer();
-  });
+    if (locationDetailCode) {
+      setIsOpen(true);
+    }
+  }, [locationDetailCode, setIsOpen]);
 
   /** @type {React.CSSProperties} */
   const mapDetailsStyle =
-    Object.keys(selectedLocationDetail) && Object.keys(selectedLocationDetail).length > 0
+    Object.keys(locationDetailData) && Object.keys(locationDetailData).length > 0
       ? { padding: 0, flexGrow: 1 }
       : { visibility: "hidden" };
 
@@ -54,9 +54,10 @@ const MapDetails = ( props ) => {
           <div className={`${isFullScreen ? "full-screen " : "drawer-content-container"}`}>
             <div className={`${isOpen ? "drawer-content" : "display-none"}`}>
               <MapDetailsContent
-                handleFullScreen={() => handleFullScreen(selectedLocationCode, doUpdateUrl)}
-                locationDetail={selectedLocationDetail}
-                locationCode={selectedLocationCode} locationDetailIsLoading={locationDetailIsLoading}
+                handleFullScreen={() => handleFullScreen(locationDetailCode, doUpdateUrl)}
+                locationDetail={locationDetailData}
+                locationCode={locationDetailCode}
+                locationDetailIsLoading={locationDetailIsLoading}
               />
             </div>
 
@@ -78,15 +79,14 @@ const MapDetails = ( props ) => {
 };
 
 MapDetails.propTypes = {
-  doSetSelectedLocationCode: PropTypes.func.isRequired,
   selectedLocationCode: PropTypes.string,
-  selectedLocationDetail: PropTypes.object,
+  locationDetailData: PropTypes.object,
+  doUpdateUrl: PropTypes.func.isRequired,
 };
 
 export default connect(
-  "doSetSelectedLocationCode",
-  "selectSelectedLocationCode",
-  "selectSelectedLocationDetail",
+  "selectLocationDetailCode",
+  "selectLocationDetailData",
   "selectLocationDetailIsLoading",
   "doUpdateUrl",
   MapDetails

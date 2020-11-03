@@ -6,7 +6,7 @@ import { RoutePaths } from "../../../app-bundles/routes-bundle";
 
 const LocationSearch = ({
   locationSearchText,
-  locationSearchItems,
+  locationSearchData,
   doSetLocationSearchText,
   debounceFetch,
   doUpdateUrl,
@@ -18,7 +18,7 @@ const LocationSearch = ({
   };
 
   const items = locationSearchText
-    ? locationSearchItems.map(({ description, location_id }) => ({ value: location_id, display: description }))
+    ? locationSearchData.map(({ description, location_id }) => ({ value: location_id, display: description }))
     : [];
 
   const itemOnClick = (e) => {
@@ -45,7 +45,10 @@ const LocationSearch = ({
 
 LocationSearch.propTypes = {
   locationSearchText: PropTypes.string.isRequired,
-  locationSearchItems: PropTypes.array.isRequired,
+  locationSearchData: PropTypes.arrayOf(PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    location_id: PropTypes.string.isRequired,
+  })).isRequired,
   doSetLocationSearchText: PropTypes.func.isRequired,
   debounceFetch: PropTypes.func.isRequired,
   doUpdateUrl: PropTypes.func.isRequired,
@@ -53,7 +56,7 @@ LocationSearch.propTypes = {
 
 export default connect(
   "selectLocationSearchText",
-  "selectLocationSearchItems",
+  "selectLocationSearchData",
   "doSetLocationSearchText",
   "doUpdateUrl",
   LocationSearch,

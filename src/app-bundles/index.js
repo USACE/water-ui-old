@@ -11,7 +11,6 @@ import createAuthBundle from "@corpsmap/create-auth-bundle";
 import createJwtApiBundle from "@corpsmap/create-jwt-api-bundle";
 import pkg from "../../package.json";
 
-import appBundle from "./app-bundle";
 import routeBundle from "./routes-bundle";
 import mapsBundle from './maps-bundle';
 import locationsMapBundle from "./locations-map-bundle";
@@ -50,7 +49,6 @@ export default composeBundles(
   createNestedUrlBundle({
     pkg: pkg,
   }),
-  appBundle,
   mapsBundle,
   locationSummariesBundle,
   routeBundle,

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReportsContainer from "../ReportsContainer";
 import { connect } from "redux-bundler-react";
 
-const WatershedReportsPage = ( { watershedReports, watershedReportsIsLoading} ) => {
+const WatershedReportsPage = ( { watershedReportsData, watershedReportsIsLoading, doWatershedReportsFetch } ) => {
+  useEffect(() => {
+    doWatershedReportsFetch();
+  }, [doWatershedReportsFetch]);
 
   return (
     <ReportsContainer activeTab="Watershed Reports"sectionTitle="Watershed Reports">
       <div className="list-group mx-auto">
-        {watershedReports.map((item, i) => (
+        {watershedReportsData.map((item, i) => (
           <div className="list-group-item flex-column" key={i}>
             <div className="d-flex w-100 justify-content-between">
               <a href={item.url} className="h5 text-info">{item.title}</a>
@@ -22,7 +25,8 @@ const WatershedReportsPage = ( { watershedReports, watershedReportsIsLoading} ) 
 };
 
 export default connect(
-  "selectWatershedReports",
+  "selectWatershedReportsData",
   "selectWatershedReportsIsLoading",
+  "doWatershedReportsFetch",
   WatershedReportsPage
 );

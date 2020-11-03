@@ -5,7 +5,7 @@ import Dropdown from "../../../app-common/Dropdown";
 import { RoutePaths } from "../../../app-bundles/routes-bundle";
 
 const BasinsDropdown = ({
-  basinsForDistrict,
+  basins,
   doSetSelectedBasin,
   doUpdateUrl,
 }) => {
@@ -15,7 +15,7 @@ const BasinsDropdown = ({
     doUpdateUrl(RoutePaths.Map);
   };
 
-  const options = basinsForDistrict && basinsForDistrict.map(val => ({
+  const options = basins && basins.map(val => ({
     id: val.basin_location_id,
     value: val.basin_name,
   }));
@@ -32,13 +32,17 @@ const BasinsDropdown = ({
 };
 
 BasinsDropdown.propTypes = {
-  basinsForDistrict: PropTypes.array,
+  basins: PropTypes.arrayOf(PropTypes.shape({
+    basin_name: PropTypes.string.isRequired,
+    basin_location_id: PropTypes.string.isRequired,
+    basin_location_code: PropTypes.string.isRequired,
+  })),
   doSetSelectedBasin: PropTypes.func.isRequired,
   doUpdateUrl: PropTypes.func.isRequired,
 };
 
 export default connect(
-  "selectBasinsForDistrict",
+  "selectBasins",
   "doSetSelectedBasin",
   "doUpdateUrl",
   BasinsDropdown,

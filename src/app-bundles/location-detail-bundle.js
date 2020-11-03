@@ -2,8 +2,11 @@ import createRestBundle from "./create-rest-bundle";
 import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
 
+export const LOCATIONDETAIL_SET_CODE = "LOCATIONDETAIL_SET_CODE";
+
+const name = "locationDetail";
 export default createRestBundle( {
-  name: "locationDetail",
+  name,
   uid: "location_code",
   staleAfter: 0,
   persist: false,
@@ -12,57 +15,40 @@ export default createRestBundle( {
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: [ "LOCATION_CODE_SELECTED" ],
   forceFetchActions: [],
-  urlParamSelectors: [ "selectLocationAsGetTemplateParam" ],
+  urlParamSelectors: [ "selectLocationDetailGetTemplateParam" ],
+  defaultState: {
+    data: {},
+    location_code: null,
+  },
   reduceFurther: ( state, { type, payload } ) => {
     switch( type ) {
-      case "SET_SELECTED_LOCATION_CODE":
-      case "LOCATION_CODE_SELECTED":
+      case LOCATIONDETAIL_SET_CODE:
         return Object.assign( {}, state, payload );
       default:
         return state;
     }
   },
   addons: {
-    doSetSelectedLocationCode: ( id ) => ( { dispatch } ) => {
-      dispatch( {
-        type: "SET_SELECTED_LOCATION_CODE",
-        payload: {
-          _location_code: id,
-        },
-      } );
-      dispatch( {
-        type: "LOCATION_CODE_SELECTED",
-        payload: {}
-      } );
-    },
-    selectSelectedLocationCode: ( state ) => {
-      return state.locationDetail._location_code;
-    },
-    selectSelectedLocationDetail: createSelector(
-      "selectLocationDetailItems",
-      ( locationDetailItems ) => {
-        if( locationDetailItems[ 0 ] ) return locationDetailItems[ 0 ];
-        else return {};
-      }
-    ),
-    selectLocationAsGetTemplateParam: createSelector(
-      "selectSelectedLocationCode",
-      ( selectedLocationCode ) => {
-        if( !selectedLocationCode ) return {};
-        return {
-          location_code: selectedLocationCode,
-        };
-      }
+    doLocationDetailSetCode: id => ({
+      type: LOCATIONDETAIL_SET_CODE,
+      payload: {
+        location_code: id,
+        _shouldFetch: true,
+      },
+    }),
+    selectLocationDetailCode: state => state[name].location_code,
+    selectLocationDetailGetTemplateParam: createSelector(
+      "selectLocationDetailCode",
+      locationDetailCode => !locationDetailCode ? {} : { location_code: locationDetailCode },
     ),
 
     reactShouldSetLocationCode: createSelector(
       "selectRouteParams",
-      "selectSelectedLocationCode",
+      "selectLocationDetailCode",
       ( routeParams, selectedLocationCode ) => {
         if( routeParams.locationId && !selectedLocationCode ) {
-          return { actionCreator: "doSetSelectedLocationCode", args: [ routeParams.locationId ] };
+          return { actionCreator: "doLocationDetailSetCode", args: [ routeParams.locationId ] };
         }
       }
     ),
