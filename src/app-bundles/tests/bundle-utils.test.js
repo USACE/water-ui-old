@@ -4,7 +4,7 @@ describe("getRestUrl()", () => {
   const originalEnv = { ...process.env };
 
   beforeAll(() => {
-    process.env.PUBLIC_URL = "/water";
+    /** @type any */ ( process.env ).PUBLIC_URL = "/water";
   });
 
   afterAll(() => {
@@ -18,8 +18,8 @@ describe("getRestUrl()", () => {
   // testing "npm start"
   describe("in dev mode and not in mock mode", () => {
     beforeAll(() => {
-      process.env.NODE_ENV = "development";
-      process.env.REACT_APP_MOCK_MODE = "false";
+      /** @type any */ ( process.env ).NODE_ENV = "development";
+      /** @type any */ ( process.env ).REACT_APP_MOCK_MODE = "false";
     });
 
     it("should return live url when mockOverrideFlag is not set", () => {
@@ -46,8 +46,8 @@ describe("getRestUrl()", () => {
   // testing "npm run mock"
   describe("in dev mode and in mock mode", () => {
     beforeAll(() => {
-      process.env.NODE_ENV = "development";
-      process.env.REACT_APP_MOCK_MODE = "true";
+      /** @type any */ ( process.env ).NODE_ENV = "development";
+      /** @type any */ ( process.env ).REACT_APP_MOCK_MODE = "true";
     });
 
     it("should return mock url when mockOverrideFlag is not set", () => {
@@ -74,8 +74,8 @@ describe("getRestUrl()", () => {
   // testing "npm run build"
   describe("in production mode and not in mock mode", () => {
     beforeAll(() => {
-      process.env.NODE_ENV = "production";
-      process.env.REACT_APP_MOCK_MODE = "false";
+      /** @type any */ ( process.env ).NODE_ENV = "production";
+      /** @type any */ ( process.env ).REACT_APP_MOCK_MODE = "false";
     });
 
     it("should return live url when mockOverrideFlag is not set", () => {
@@ -102,8 +102,8 @@ describe("getRestUrl()", () => {
   // I don't think this is testing any real world scenario, but I copied it over when refactoring the previous unit tests
   describe("in production mode and in mock mode", () => {
     beforeAll(() => {
-      process.env.NODE_ENV = "production";
-      process.env.REACT_APP_MOCK_MODE = "true";
+      /** @type any */ ( process.env ).NODE_ENV = "production";
+      /** @type any */ ( process.env ).REACT_APP_MOCK_MODE = "true";
     });
 
     it("should return mock url when mockOverrideFlag is not set", () => {

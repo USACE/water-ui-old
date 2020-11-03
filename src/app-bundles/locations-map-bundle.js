@@ -64,8 +64,6 @@ export default {
 
   selectLocationsMapMapState: state => state.locationsMap.mapState,
 
-  selectLocationMapZoom: state =>  state.locationsMap.mapZoom,
-
   doLocationsMapDataLoaded: () => ({
     type: actions.LOCATIONS_MAP_DATA_LOADED,
     payload: {
@@ -84,23 +82,15 @@ export default {
     type: actions.LOCATIONS_MAP_SAVE_MAP_STATE,
     payload: {
       mapState,
-      mapZoom: {}
-    },
-  }),
-
-  doLocationMapZoom: mapZoom => ({
-    type: actions.LOCATIONS_MAP_ZOOM,
-    payload: {
-      mapZoom,
     },
   }),
 
   reactLocationsMapShouldAddData: createSelector(
     "selectLocationsMapIsInitialized",
     "selectLocationsMapIsDataLoaded",
-    "selectLocationSummariesItems",
-    (isInitialized, isDataLoaded, locationSummariesItems) => {
-      if (isInitialized && !isDataLoaded && locationSummariesItems.length > 0) {
+    "selectLocationSummaries",
+    (isInitialized, isDataLoaded, locationSummaries) => {
+      if (isInitialized && !isDataLoaded && locationSummaries && locationSummaries.length > 0) {
         return { actionCreator: "doLocationsMapDataLoaded" };
       }
     },

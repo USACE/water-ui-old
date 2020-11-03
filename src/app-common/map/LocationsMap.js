@@ -37,10 +37,9 @@ const LocationsMap = (props) => {
     locationsMapMapState,
     /** @type a2w.models.LocationSummary[] */
     locationSummaries,
-    doSetSelectedLocationCode,
+    doLocationDetailSetCode,
     doLocationsMapLoaded,
     doLocationsMapSaveMapState,
-    locationMapZoom,
     options,
     ...rest
   } = props;
@@ -161,7 +160,7 @@ const LocationsMap = (props) => {
         popupContent.current.innerHTML = innerHTML;
         popupContent.current.style.cursor = "pointer";
 
-        popupContent.current.onclick = () => doSetSelectedLocationCode( featureProperties.model.id );
+        popupContent.current.onclick = () => doLocationDetailSetCode( featureProperties.model.id );
 
         overlay.setPosition(coord);
       }
@@ -180,7 +179,7 @@ const LocationsMap = (props) => {
     });
 
     doLocationsMapLoaded();
-  }, [locationSummaries, doLocationsMapLoaded, doSetSelectedLocationCode]);
+  }, [locationSummaries, doLocationsMapLoaded, doLocationDetailSetCode]);
 
   const saveMapState = useCallback((map) => {
     // reset attached listeners
@@ -196,19 +195,18 @@ const LocationsMap = (props) => {
   }, [doLocationsMapSaveMapState]);
 
   const mapZoom = useCallback((map) => {
-      if (locationMapZoom.center) {
+      if (locationsMapMapState.center) {
         // reset attached listeners
         popupContent.current.onclick = null;
         const view = map.getView();
-
         view.animate(
-          { zoom: locationMapZoom.zoom },
-          { center: fromLonLat(locationMapZoom.center) },
+          { zoom: locationsMapMapState.zoom },
+          { center: fromLonLat(locationsMapMapState.center) },
           { duration: 1000 }
         );
       }
     },
-    [locationMapZoom]
+    [locationsMapMapState]
   );
   
   const newOptions = {
@@ -242,7 +240,7 @@ LocationsMap.propTypes = {
   locationsMapIsLoaded: PropTypes.bool.isRequired,
   locationsMapMapState: PropTypes.object,
   locationSummaries: PropTypes.array,
-  doSetSelectedLocationCode: PropTypes.func.isRequired,
+  doLocationDetailSetCode: PropTypes.func.isRequired,
   doLocationsMapLoaded: PropTypes.func.isRequired,
   doLocationsMapSaveMapState: PropTypes.func.isRequired,
 };
@@ -252,9 +250,8 @@ export default connect(
   "selectLocationsMapIsLoaded",
   "selectLocationsMapMapState",
   "selectLocationSummaries",
-  "doSetSelectedLocationCode",
+  "doLocationDetailSetCode",
   "doLocationsMapLoaded",
   "doLocationsMapSaveMapState",
-  "selectLocationMapZoom",
   LocationsMap,
 );

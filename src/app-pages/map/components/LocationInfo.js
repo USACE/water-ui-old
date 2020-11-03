@@ -6,15 +6,15 @@ import { connect } from "redux-bundler-react";
 const metaDataHeaderArr = ["name", "value"];
 let metaDataRowsArr;
 
-const LocationInfo = ({selectedLocationDetail}) => {
+const LocationInfo = ({ locationDetailData }) => {
 
 const [metaDataState, setmetaDataState] = useState( null );
   useEffect (() => {
-    const metaDataJsonObj = {...selectedLocationDetail};
+    const metaDataJsonObj = { ...locationDetailData };
     delete metaDataJsonObj.dam_profile;
     metaDataRowsArr = Object.entries(metaDataJsonObj);
     setmetaDataState(metaDataRowsArr);
-  }, [selectedLocationDetail]);
+  }, [locationDetailData]);
 
   return (
     <div className="location-info-wrapper">
@@ -25,8 +25,9 @@ const [metaDataState, setmetaDataState] = useState( null );
     </div>
   );
 };
+
 LocationInfo.propTypes = {
-  selectedlocationDetail: PropTypes.object,
+  locationDetailData: PropTypes.object,
 };
 
-export default connect("selectSelectedLocationDetail", LocationInfo);
+export default connect("selectLocationDetailData", LocationInfo);

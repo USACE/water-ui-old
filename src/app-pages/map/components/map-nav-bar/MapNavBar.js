@@ -8,18 +8,18 @@ import { connect } from "redux-bundler-react";
 import { returnKeyCodeName } from "../../../../functions";
 
 
-const MapNavBar = ({ locationTree, doSetSelectedLocationCode, doLocationMapZoom }) => {
+const MapNavBar = ({ locationTree, doLocationDetailSetCode, doLocationsMapSaveMapState }) => {
   const [orgDivToggleState, setOrgDivToggleState] = useState(false);
 
   const handleNodeClick = (e) => {
     //if node is a leaf then toggle the drawer and zoom to lonlat
     if (!e.hasNodes) {
-      doSetSelectedLocationCode( e.id );
-      const mapZoom = {
+      doLocationDetailSetCode( e.id );
+      const mapState = {
         zoom: e.zoom_depth || 8,
         center: [e.longitude, e.latitude],
       };
-      if( e.longitude && e.latitude ) doLocationMapZoom( mapZoom );
+      if( e.longitude && e.latitude ) doLocationsMapSaveMapState( mapState );
     }
   };
 
@@ -108,11 +108,12 @@ const MapNavBar = ({ locationTree, doSetSelectedLocationCode, doLocationMapZoom 
 
 MapNavBar.propTypes = {
   locationTree: PropTypes.array,
+  doLocationDetailSetCode: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationTree",
-  "doSetSelectedLocationCode",
-  "doLocationMapZoom",
+  "doLocationDetailSetCode",
+  "doLocationsMapSaveMapState",
   MapNavBar
 );

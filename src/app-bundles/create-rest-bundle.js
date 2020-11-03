@@ -120,11 +120,6 @@ export default (opts) => {
     defaultState: {},
 
     /**
-     * If set, data fetching will only occur if the current URL path equals one of the specified `activeRoutes`.
-     */
-    activeRoutes: [],
-
-    /**
      * If set, delays Fetch response by specified ms. Useful to simulate async delay when using mock JSON data.
      */
     delayMs: 0
@@ -141,7 +136,6 @@ export default (opts) => {
     FETCH_STARTED: `${baseType}_FETCH_STARTED`,
     FETCH_FINISHED: `${baseType}_FETCH_FINISHED`,
     FETCH_ABORT: `${baseType}_FETCH_ABORT`,
-    FETCH_SKIP: `${baseType}_FETCH_SKIP`,
     SAVE_STARTED: `${baseType}_SAVE_STARTED`,
     SAVE_FINISHED: `${baseType}_SAVE_FINISHED`,
     DELETE_STARTED: `${baseType}_DELETE_STARTED`,
@@ -155,7 +149,6 @@ export default (opts) => {
 
   // action creators
   const doFetch = `do${uCaseName}Fetch`;
-  const doSkipFetch = `do${uCaseName}SkipFetch`;
   const doSave = `do${uCaseName}Save`;
   const doDelete = `do${uCaseName}Delete`;
   const doUpdatePageSize = `do${uCaseName}UpdatePageSize`;
@@ -173,11 +166,6 @@ export default (opts) => {
   const selectPutUrl = `select${uCaseName}PutUrl`;
   const selectPostUrl = `select${uCaseName}PostUrl`;
   const selectDeleteUrl = `select${uCaseName}DeleteUrl`;
-  const selectItemsPaged = `select${uCaseName}ItemsPaged`;
-  const selectItemsObject = `select${uCaseName}ItemsObject`;
-  const selectItemsArray = `select${uCaseName}ItemsArray`;
-  const selectItems = `select${uCaseName}Items`;
-  const selectByRoute = `select${uCaseName}ByRoute`;
   const selectIsLoading = `select${uCaseName}IsLoading`;
   const selectIsSaving = `select${uCaseName}IsSaving`;
   const selectFetchCount = `select${uCaseName}FetchCount`;
@@ -194,9 +182,7 @@ export default (opts) => {
   const selectPageSize = `select${uCaseName}PageSize`;
   const selectSortBy = `select${uCaseName}SortBy`;
   const selectSortAsc = `select${uCaseName}SortAsc`;
-  const selectActiveRoutes = `select${uCaseName}ActiveRoutes`;
-  const selectIsActiveRoute = `selectIs${uCaseName}ActiveRoute`;
-  const selectIsGetUrlPopulated = `selectIs${uCaseName}GetUrlPopulated`;
+  const selectData = `select${uCaseName}Data`;
 
   // reactors
   const reactShouldFetch = `react${uCaseName}ShouldFetch`;
@@ -210,7 +196,7 @@ export default (opts) => {
       name: config.name,
 
       getReducer: () => {
-        const initialData = Object.assign( {}, {
+        const initialData = {
           _err: null,
           _isSaving: false,
           _isLoading: false,
@@ -225,10 +211,9 @@ export default (opts) => {
           _pageSize: config.pageSize,
           _sortBy: config.sortBy,
           _sortAsc: config.sortAsc,
-          dataMap: {}
-        },
-          config.defaultState
-      );
+          data: null,
+          ...config.defaultState
+        };
 
         return (state = initialData, { type, payload }) => {
           if (config.fetchActions.indexOf(type) !== -1) {
@@ -253,47 +238,22 @@ export default (opts) => {
             case actions.SAVE_FINISHED:
             case actions.FETCH_STARTED:
             case actions.FETCH_ABORT:
-            case actions.FETCH_SKIP:
             case actions.DELETE_STARTED:
             case actions.DELETE_FINISHED:
             case actions.PAGE_SIZE_UPDATED:
             case actions.SORT_BY_UPDATED:
             case actions.SORT_ASC_UPDATED:
             case actions.ERROR:
-              return Object.assign({}, state, payload);
             case actions.FETCH_FINISHED:
             case actions.UPDATED_ITEM:
               return Object.assign({}, state, payload);
             default:
-              if (
-                config.reduceFurther &&
-                typeof config.reduceFurther === "function"
-              ) {
+              if (config.reduceFurther && typeof config.reduceFurther === "function") {
                 return config.reduceFurther(state, { type, payload });
-              } else {
-                return state;
               }
+              return state;
           }
         };
-      },
-
-      [doSkipFetch]: () => ({ dispatch, store, apiGet }) => {
-        let reason = "";
-        const isActiveRoute = store[selectIsActiveRoute]();
-        const isGetUrlPopulated = store[selectIsGetUrlPopulated]();
-
-        if( !isActiveRoute ) reason += "current route does not match bundle activeRoutes";
-        else if( !isGetUrlPopulated ) reason += "get URL depends on route params that are not populated";
-        else reason = null;
-
-        dispatch( {
-          type: actions.FETCH_SKIP,
-          payload: {
-            _shouldFetch: false,
-            _isLoading: false,
-            _abortReason: reason,
-          },
-        } );
       },
 
       [doFetch]: () => ({ dispatch, store, apiGet }) => {
@@ -325,8 +285,6 @@ export default (opts) => {
         const isStale = store[selectIsStale]();
         const lastResource = store[selectLastResource]();
         const forceFetch = store[selectForceFetch]();
-        const flags = store[selectFlags]();
-        const items = store[selectItemsObject]();
 
         if (url.indexOf("/:") !== -1 || url.indexOf("=:") !== -1) {
           // if we haven't filled in all of our params then bail
@@ -348,13 +306,9 @@ export default (opts) => {
             dispatch({
               type: actions.UPDATED_ITEM,
               payload: {
-                ...flags,
-                ...{
-                  dataMap: {},
-                  _isLoading: false,
-                  _lastResource: url,
-                  _abortReason: `don't have all the params we need`,
-                },
+                _isLoading: false,
+                _lastResource: url,
+                _abortReason: `don't have all the params we need`,
               },
             });
           }
@@ -403,30 +357,18 @@ export default (opts) => {
                   },
                 } );
               } else {
-                let data = typeof body === "string" ? JSON.parse( body ) : body;
-                if( !Array.isArray( data ) ) data = [ data ];
-                const itemsById = {};
-                if( config.mergeItems ) {
-                  Object.assign( itemsById, items );
-                }
-                data.forEach( ( item ) => {
-                  itemsById[ item[ config.uid ] || 0 ] = item;
-                } );
-
+                const data = typeof body === "string" ? JSON.parse( body ) : body;
                 dispatch({
                   type: actions.FETCH_FINISHED,
                   payload: {
-                    dataMap: { ...itemsById },
-                    ...flags,
-                    ...{
-                      _err: null,
-                      _isSaving: false,
-                      _isLoading: false,
-                      _fetchCount: ++fetchCount,
-                      _lastFetch: new Date(),
-                      _lastResource: url,
-                      _abortReason: null,
-                    },
+                    data,
+                    _err: null,
+                    _isSaving: false,
+                    _isLoading: false,
+                    _fetchCount: ++fetchCount,
+                    _lastFetch: new Date(),
+                    _lastResource: url,
+                    _abortReason: null,
                   },
                 });
               }
@@ -451,19 +393,8 @@ export default (opts) => {
           },
         });
 
-        // grab the state object
-        const tempState = store[selectState]();
-
         if (!item[config.uid] || forcePost) {
           const url = decorateUrlWithItem(store[selectPostUrl](), item);
-
-          // create a temporary id and store it in state using that as the key
-          const tempId = Number(new Date()).toString();
-          tempState.dataMap[tempId] = Object.assign({}, item);
-          dispatch({
-            type: actions.UPDATED_ITEM,
-            payload: tempState,
-          });
 
           apiPost(url, item, (err, body) => {
             if (err) {
@@ -475,20 +406,7 @@ export default (opts) => {
                 },
               });
             } else {
-              // remove our temporary record from the state
-              const updatedState = store[selectState]();
-              delete updatedState.dataMap[tempId];
-
-              // add our new id to our item and re-attach to our state
-              let data = typeof body === "string" ? JSON.parse(body) : body;
-              if (data && data.length) data = data[0];
-              const updatedItem = Object.assign({}, item, data);
-              updatedState.dataMap[updatedItem[config.uid] || 0] = updatedItem;
-
-              dispatch({
-                type: actions.UPDATED_ITEM,
-                payload: updatedState,
-              });
+              const data = typeof body === "string" ? JSON.parse(body) : body;
 
               // Make sure we're sending save_finished when we're done
               dispatch({
@@ -498,20 +416,13 @@ export default (opts) => {
                 },
               });
 
-              if (deferCallback && callback) callback(updatedItem);
+              if (deferCallback && callback) callback(item, data);
             }
           });
           // if we get a callback, go ahead and fire it
           if (!deferCallback && callback) callback();
         } else {
           const url = decorateUrlWithItem(store[selectPutUrl](), item);
-
-          // add our updated item to the state based on it's key
-          tempState.dataMap[item[config.uid] || 0] = Object.assign({}, item);
-          dispatch({
-            type: actions.UPDATED_ITEM,
-            payload: tempState,
-          });
 
           // save changes to the server
           apiPut(url, item, (err, body) => {
@@ -531,7 +442,7 @@ export default (opts) => {
                   _isSaving: false,
                 },
               });
-              if (deferCallback && callback) callback();
+              if (deferCallback && callback) callback(item);
             }
           });
           // if we get a callback, go ahead and fire it
@@ -557,14 +468,6 @@ export default (opts) => {
           // if we haven't filled in all of our params then bail
           return;
         } else {
-          // remove the item from our state and update it internally
-          const updatedState = store[selectState]();
-          delete updatedState.dataMap[item[config.uid] || 0];
-          dispatch({
-            type: actions.UPDATED_ITEM,
-            payload: updatedState,
-          });
-
           // update the state on the server now
           apiDelete(url, (err, body) => {
             if (err) {
@@ -582,7 +485,7 @@ export default (opts) => {
                   _isSaving: false,
                 },
               });
-              if (deferCallback && callback) callback();
+              if (deferCallback && callback) callback(item);
             }
           });
 
@@ -669,83 +572,7 @@ export default (opts) => {
         return flags;
       }),
 
-      [selectItemsPaged]: createSelector(
-        selectItems,
-        selectPageSize,
-        (items, pageSize) => {
-          const pages = [];
-          for (let i = 0; i < Math.ceil(items.length / pageSize); i++) {
-            pages.push(items.slice(pageSize * i, pageSize * i + pageSize));
-          }
-          return pages;
-        }
-      ),
-
-      [selectItemsObject]: createSelector(selectState, (state) => {
-        return state.dataMap;
-      }),
-
-      [selectItemsArray]: createSelector(selectState, (state) => {
-        const items = [];
-        Object.keys(state.dataMap).forEach((key) => {
-          items.push(state.dataMap[key]);
-        });
-        return items;
-      }),
-
-      [selectItems]: createSelector(
-        selectItemsArray,
-        selectSortBy,
-        selectSortAsc,
-        (items, sortBy, sortAsc) => {
-          if (sortBy) {
-            const sorted = items.sort((a, b) => {
-              if (!a.hasOwnProperty(sortBy) || !b.hasOwnProperty(sortBy))
-                return 0;
-              if (a[sortBy] > b[sortBy]) return 1;
-              if (a[sortBy] < b[sortBy]) return -1;
-              return 0;
-            });
-            if (!sortAsc) return sorted.reverse();
-            return sorted;
-          } else {
-            return items;
-          }
-        }
-      ),
-
-      [selectByRoute]: createSelector(
-        selectItemsObject,
-        "selectRouteParams",
-        (items, params) => {
-          if (params.hasOwnProperty(config.routeParam)) {
-            if (items.hasOwnProperty(params[config.routeParam])) {
-              return items[params[config.routeParam]];
-            } else {
-              return null;
-            }
-          } else {
-            return null;
-          }
-        }
-      ),
-
-      [selectActiveRoutes]: () => {
-        return config.activeRoutes;
-      },
-
-      [selectIsActiveRoute]: createSelector(
-        "selectRouteInfo",
-        (routeInfo) => {
-          if(config.activeRoutes.length === 0) return true;
-          return config.activeRoutes.find( path => path === routeInfo.pattern) !== undefined;
-        }
-      ),
-
-      [selectIsGetUrlPopulated]: createSelector(
-        selectGetUrl,
-        (url) => url.indexOf("/:") === -1 && url.indexOf("=:") === -1
-      ),
+      [selectData]: createSelector(selectState, state => state.data),
 
       [selectGetTemplate]: () => {
         return config.getTemplate;
@@ -850,16 +677,11 @@ export default (opts) => {
         return state[config.name]._sortAsc;
       },
 
-      [reactShouldFetch]: createSelector(
-        (state) => state,
-        selectIsActiveRoute,
-        selectIsGetUrlPopulated,
-        (state, isActiveRoute, isGetUrlPopulated) => {
-          if (state[config.name]._shouldFetch ) {
-            if( isActiveRoute && isGetUrlPopulated ) return { actionCreator: doFetch };
-            else return { actionCreator: doSkipFetch }
-          }
-        }),
+      [reactShouldFetch]: (state) => {
+        if (state[config.name]._shouldFetch) {
+          return { actionCreator: doFetch };
+        }
+      },
     },
     config.addons
   );

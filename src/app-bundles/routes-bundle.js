@@ -23,12 +23,12 @@ export const RoutePaths = {
   ReportsHome: `/reports`,
   DataResources: `/data-resources`,
   CorpOfficeList: `/reports/corporate`,
-  DistrictReports: `/reports/district`,
-  WatershedReports: `/reports/watershed`,
-  ProjectReports: `/reports/project`,
   CorpOfficeReports: `/reports/corporate/:corpOfficeId`,
   CorpOfficeSpecialReports: `/reports/corporate/:corpOfficeId/special`,
   CorpOfficeLocationReports: `/reports/corporate/:corpOfficeId/locations`,
+  DistrictReports: `/reports/district`,
+  WatershedReports: `/reports/watershed`,
+  ProjectReports: `/reports/project`,
 };
 
 export default createRouteBundle(

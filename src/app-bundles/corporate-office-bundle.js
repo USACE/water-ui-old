@@ -1,7 +1,6 @@
 import createRestBundle from "./create-rest-bundle";
 import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
-import { RoutePaths } from "./routes-bundle";
 
 export default createRestBundle({
   name: "corporateOffice",
@@ -14,25 +13,21 @@ export default createRestBundle({
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  activeRoutes: [ RoutePaths.CorpOfficeList ],
-  fetchActions: ["APP_INITIALIZED","URL_UPDATED"],
   forceFetchActions: [],
+  defaultState: {
+    data: [],
+  },
   addons: {
-    selectCorporateOffices: createSelector(
-      "selectCorporateOfficeItems",
-      (offices) => {
-        // TODO: Using a selector in case we need to process the list of offices further
-        return offices;
-      }
-    ),
-    selectCorporateOfficeIdByRoute: createSelector(
-      "selectCorporateOfficeByRoute",
-      (office) => {
-        if (!office) return {};
-        return {
-          officeId: office.office_id,
-        };
-      }
+    selectCorporateOfficeByRoute: createSelector(
+      "selectRouteParams",
+      "selectCorporateOfficeData",
+      (routeParams, data) => {
+        if (!routeParams.corpOfficeId || !data) {
+          return {};
+        }
+        const index = data.findIndex(({ office_id }) => office_id === routeParams.corpOfficeId);
+        return data[index];
+      },
     ),
   },
 });

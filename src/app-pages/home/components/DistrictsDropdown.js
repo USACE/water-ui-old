@@ -31,7 +31,10 @@ const DistrictsDropdown = ({
 };
 
 DistrictsDropdown.propTypes = {
-  selectDistricts: PropTypes.array,
+  selectDistricts: PropTypes.arrayOf(PropTypes.shape({
+    district_office_id: PropTypes.string.isRequired,
+    district_name: PropTypes.string.isRequired,
+  })),
   selectedDistrict: PropTypes.string,
   doSetSelectedDistrict: PropTypes.func.isRequired,
 };
