@@ -34,6 +34,7 @@ export const ItemComponent = ({
   node_type = "STREAM"
 }) => (
   <li
+    title={label ? label.replace(/(.{60})/g,"$1\n") : ""}
     className={classNames(
       "rstm-tree-item",
       `rstm-tree-item-level${level}`,

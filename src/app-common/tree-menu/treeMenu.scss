@@ -20,7 +20,7 @@
   z-index: 1000;
   position: absolute;
   overflow: auto;
-  max-height: 900px;
+  max-height: 75vh;
 }
 
 .rstm-tree-item {
@@ -51,5 +51,9 @@
       margin-right: 0.5rem;
       color: $black;
     }
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 600px;
   }
 }
