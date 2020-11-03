@@ -21,9 +21,10 @@ const MapContainer = (props) => {
     isMapsLoaded,
     addDataToMap,
     saveMapState,
+    updateMap,
   } = props;
 
-  const [map, setMap] = useState()
+  const [map, setMap] = useState();
 
   const mapRef = useRef();
   const initialRender = useRef(true); // this ref is used to ensure the componentDidMount useEffect only fires once
@@ -45,7 +46,7 @@ const MapContainer = (props) => {
         layers: [],
         ...mapOptions
       });
-  
+
       setMap(initialMap);
       doMapsInitialize(mapKey);
       initialRender.current = false;
@@ -54,8 +55,8 @@ const MapContainer = (props) => {
 
   // componentWillUnmount
   useEffect(() => () => {
-    doMapsShutdown(mapKey);
-  }, [mapKey, doMapsShutdown])
+      doMapsShutdown(mapKey);
+    }, [mapKey, doMapsShutdown])
 
   useEffect(() => {
     // add data and attach event listeners to the map
@@ -70,6 +71,13 @@ const MapContainer = (props) => {
       }
     };
   }, [map, mapKey, isMapsDataLoaded, isMapsLoaded, addDataToMap, saveMapState]);
+
+  // update the map object if the mapState changes
+  useEffect(() => {
+    if (map && isMapsDataLoaded && isMapsLoaded) {
+      updateMap(map);
+    }
+  }, [updateMap, map, isMapsDataLoaded, isMapsLoaded]);
 
   return (
     <div
@@ -91,12 +99,14 @@ MapContainer.propTypes = {
   isMapsLoaded: PropTypes.bool.isRequired,
   addDataToMap: PropTypes.func,
   saveMapState: PropTypes.func,
+  updateMap: PropTypes.func,
 };
 
 MapContainer.defaultProps = {
   options: {},
   addDataToMap: () => {},
   saveMapState: () => {},
+  updateMap: () => {},
 };
 
 export default connect(
