@@ -1,3 +1,5 @@
+@import "../../style/sass/abstracts/mixins";
+
 .home-page-container {
   .header-container {
     background-color: "#cbd5e0";
@@ -8,5 +10,8 @@
     background-size: cover;
     height: 600px;
     opacity: 0.9;
+    @include mq($breakpoint: "phone", $direction: "down") {
+      height: 300px;
+    }
   }
 }
