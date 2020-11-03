@@ -16,7 +16,7 @@ const MapPage = () => {
         <div className="map-container" style={{ padding: "0", flexGrow: 35 }}>
           <LocationsMap
             mapKey="locationsMap"
-            height="900px"
+            height="75vh"
             options={opts}
           />
         </div>

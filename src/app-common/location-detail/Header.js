@@ -32,7 +32,8 @@ const LocationDetailHeader = ( props ) => {
       )}
       <h4>{locationDetail.public_name}</h4>
       <div className="location-detail-subheading">
-        {locationDetail.office_name} |
+        {locationDetail.office_name}
+        <span style={{ "padding": "0px 5px" }}>|</span>
         <a href={weatherUrl} target="_blank" rel="noopener noreferrer">
           Local Forecast
         </a>
