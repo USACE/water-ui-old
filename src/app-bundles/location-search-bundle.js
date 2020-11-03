@@ -27,7 +27,8 @@ export default createRestBundle( {
   defaultState: {
     _search_text: '',
     _search_type: "ALL",
-    _search_limit: 10
+    _search_limit: 10,
+    data: [],
   },
   reduceFurther: ( state, { type, payload } ) => {
     switch( type ) {

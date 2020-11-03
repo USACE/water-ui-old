@@ -3,7 +3,7 @@ import "./locationStreamControls.scss";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 
-const LocationStreamControls = ({ selectedLocationDetail, fullScreen }) => {
+const LocationStreamControls = ({ locationDetailData, fullScreen }) => {
   // For now, mock this array. Later, we'll add a mock array of stream locations to the location data.
   const options = ["jump to station", "station 1", "station 2", "station 3"];
 
@@ -55,8 +55,8 @@ const LocationStreamControls = ({ selectedLocationDetail, fullScreen }) => {
 };
 
 LocationStreamControls.propTypes = {
-  selectedLocationDetail: PropTypes.object,
+  locationDetailData: PropTypes.object,
   fullScreen: PropTypes.func
 };
 
-export default connect("selectSelectedLocationDetail", LocationStreamControls);
+export default connect("selectLocationDetailData", LocationStreamControls);

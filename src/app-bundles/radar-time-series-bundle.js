@@ -1,6 +1,7 @@
 import createRestBundle from "./create-rest-bundle";
 import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
+import { LOCATIONDETAIL_SET_CODE } from "./location-detail-bundle";
 
 export default createRestBundle( {
   name: "locationTimeSeries",
@@ -13,12 +14,12 @@ export default createRestBundle( {
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: [ "LOCATION_CODE_SELECTED" ],
+  fetchActions: [ LOCATIONDETAIL_SET_CODE ],
   forceFetchActions: [],
   urlParamSelectors: [ "selectLocationTimeSeriesAsGetTemplateParams" ],
   addons: {
     selectLocationTimeSeries: createSelector(
-      "selectLocationTimeSeriesItems",
+      "selectLocationTimeSeriesData",
       ( timeSeriesItems ) => {
         if( timeSeriesItems && Array.isArray( timeSeriesItems ) && timeSeriesItems.length > 0 ) {
           return timeSeriesItems[ 0 ][ "time-series" ];
@@ -26,13 +27,13 @@ export default createRestBundle( {
       }
     ),
     selectLocationTimeSeriesAsGetTemplateParams: createSelector(
-      "selectSelectedLocationCode",
-      "selectLocationSummariesItemsObject",
-      ( selectedLocationCode, summaryMap ) => {
-        if( !selectedLocationCode ) return {};
+      "selectLocationDetailCode",
+      "selectLocationSummariesData",
+      ( locationDetailCode, locationSummariesData ) => {
+        if( !locationDetailCode ) return {};
 
         /** @type a2w.models.LocationSummary */
-        const summary = summaryMap[ selectedLocationCode ];
+        const summary = locationSummariesData[ locationDetailCode ];
 
         if( !summary || summary.office_id === "" || summary.location_id === "" ) return {};
 

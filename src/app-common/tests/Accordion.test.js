@@ -10,10 +10,15 @@ import { findByElementType, findElementByClassName } from "../../testUtils";
 describe("<Accordion />", () => {
   const renderOptions = { disableLifecycleMethods: true };
 
+  const formatId = (title) => {
+    return title && title.toLowerCase().replace(" ", "_");
+  };
+
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<Accordion />, renderOptions);
+    wrapper = shallow(<Accordion data={[]} />, renderOptions);
     wrapper.setProps({
+      formatId: formatId,
       data: [ {
         title: "Time Series",
         content:

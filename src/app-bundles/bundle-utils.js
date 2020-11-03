@@ -30,3 +30,11 @@ export function getRestUrl( liveUrl, mockUrl, mockOverrideFlag ) {
   else if( liveUrl.startsWith( "http" ) ) return liveUrl;
   else return `${ baseUrl }${ liveUrl }`;
 }
+
+export const arrayToObj = (array, uid) => {
+  const obj = {};
+  array.forEach((item) => {
+    obj[item[uid] || 0] = item;
+  });
+  return obj;
+};

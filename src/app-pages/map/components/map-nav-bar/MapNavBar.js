@@ -7,13 +7,13 @@ import "./mapNavBar.scss";
 import { connect } from "redux-bundler-react";
 import { returnKeyCodeName } from "../../../../functions";
 
-const MapNavBar = ({ locationTree, doSetSelectedLocationCode }) => {
+const MapNavBar = ({ locationTree, doLocationDetailSetCode }) => {
   const [orgDivToggleState, setOrgDivToggleState] = useState(false);
 
   const handleNodeClick = (e) => {
     //if node is a leaf then toggle the drawer
     if (!e.hasNodes) {
-      doSetSelectedLocationCode(e.id);
+      doLocationDetailSetCode(e.id);
     }
   };
 
@@ -102,10 +102,11 @@ const MapNavBar = ({ locationTree, doSetSelectedLocationCode }) => {
 
 MapNavBar.propTypes = {
   locationTree: PropTypes.array,
+  doLocationDetailSetCode: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationTree",
-  "doSetSelectedLocationCode",
+  "doLocationDetailSetCode",
   MapNavBar
 );

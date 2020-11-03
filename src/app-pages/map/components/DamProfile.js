@@ -7,17 +7,17 @@ import { connect } from "redux-bundler-react";
 const damProfileHeaderArr = ["name", "value"];
 let damProfileRowsArr;
 
-const DamProfile = ({selectedLocationDetail}) => {
+const DamProfile = ({ locationDetailData }) => {
 
 const [damProfileState, setDamProfileState] = useState( [] );
 
   useEffect (() => {
-    if(Object.keys(selectedLocationDetail).length > 0){
-      const damProfileJsonObj = selectedLocationDetail.dam_profile.history[0];
+    if(Object.keys(locationDetailData).length > 0){
+      const damProfileJsonObj = locationDetailData.dam_profile.history[0];
       damProfileRowsArr = Object.entries(damProfileJsonObj);
       setDamProfileState(damProfileRowsArr);
     }
-  },[selectedLocationDetail]);
+  },[locationDetailData]);
 
   return (
     <div className="dam-profile-wrapper">
@@ -27,10 +27,10 @@ const [damProfileState, setDamProfileState] = useState( [] );
   );
 };
 DamProfile.propTypes = {
-  selectedlocationDetail: PropTypes.object,
+  locationDetailData: PropTypes.object,
 };
 
 export default connect(
-  "selectSelectedLocationDetail",
+  "selectLocationDetailData",
   DamProfile
 );
