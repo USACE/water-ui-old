@@ -2,7 +2,7 @@ import createRestBundle from "./create-rest-bundle";
 import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
 
-const LOCATION_DETAIL_SET_LOCATION_CODE = "LOCATION_DETAIL_SET_LOCATION_CODE";
+export const LOCATIONDETAIL_SET_CODE = "LOCATIONDETAIL_SET_CODE";
 
 const name = "locationDetail";
 export default createRestBundle( {
@@ -23,7 +23,7 @@ export default createRestBundle( {
   },
   reduceFurther: ( state, { type, payload } ) => {
     switch( type ) {
-      case LOCATION_DETAIL_SET_LOCATION_CODE:
+      case LOCATIONDETAIL_SET_CODE:
         return Object.assign( {}, state, payload );
       default:
         return state;
@@ -31,7 +31,7 @@ export default createRestBundle( {
   },
   addons: {
     doLocationDetailSetCode: id => ({
-      type: LOCATION_DETAIL_SET_LOCATION_CODE,
+      type: LOCATIONDETAIL_SET_CODE,
       payload: {
         location_code: id,
         _shouldFetch: true,

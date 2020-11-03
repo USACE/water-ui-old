@@ -37,7 +37,7 @@ export default {
 
   reactShouldCreateLocationTree: createSelector(
     "selectLocationTree",
-    "selectLocationSummariesData",
+    "selectLocationSummaries",
     "selectPathname",
     ( locationTree, locationSummaries, pathname ) => {
       if( locationTree === null && locationSummaries && locationSummaries.length > 0 && pathname.includes(RoutePaths.Map)) {
