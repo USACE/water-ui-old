@@ -5,7 +5,7 @@ import { createSelector } from "redux-bundler";
 export default createRestBundle( {
   name: "locationSummaries",
   uid: "id",
-  prefetch: true,
+  prefetch: false,
   staleAfter: 10000,
   persist: false,
   getTemplate: getRestUrl( "/water/locations", "/location-list.json" ),
