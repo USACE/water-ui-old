@@ -20,11 +20,7 @@ export default createRestBundle( {
   addons: {
     selectLocationTimeSeries: createSelector(
       "selectLocationTimeSeriesData",
-      ( timeSeriesItems ) => {
-        if( timeSeriesItems && Array.isArray( timeSeriesItems ) && timeSeriesItems.length > 0 ) {
-          return timeSeriesItems[ 0 ][ "time-series" ];
-        }
-      }
+      locationTimeSeriesData => locationTimeSeriesData && locationTimeSeriesData["time-series"] && locationTimeSeriesData["time-series"]["time-series"],
     ),
     selectLocationTimeSeriesAsGetTemplateParams: createSelector(
       "selectLocationDetailCode",

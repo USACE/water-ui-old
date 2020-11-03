@@ -1,18 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import A2WPlot from "../../../app-common/plotly/A2Wplot";
 
-const TimeSeriesSection = ( props ) => {
-  const {
-    locationTimeSeries
-  } = props;
-
-  console.log( "TimeSeriesSection.locationTimeSeries", locationTimeSeries );
+const TimeSeriesSection = ({
+  locationTimeSeries
+}) => {
+  console.log('locationTimeSeries = ', locationTimeSeries );
 
   return (
     <div className="time-series-section-wrapper">
       <h5>Time Series</h5>
-      {/* test to see that it worked */}
       <A2WPlot
         data={[
           {
@@ -23,12 +21,15 @@ const TimeSeriesSection = ( props ) => {
             type: 'box'
           }
         ]}
-        layout={ {width: 500, height: 400, title: 'Test Plot'} }
+        layout={{ width: 500, height: 400, title: 'Test Plot' }}
       />
     </div>
   );
 };
 
+TimeSeriesSection.propTypes = {
+  locationTimeSeriesData: PropTypes.array,
+};
 
 export default connect(
   "selectLocationTimeSeries",
