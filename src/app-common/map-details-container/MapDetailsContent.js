@@ -4,8 +4,9 @@ import Accordion from "../accordion/Accordion";
 import { accordionArrObjs } from "./data";
 import "./map-details-content.scss";
 import PropTypes from "prop-types";
+import Loader, { loaderTypes } from "../loader/Loader";
 
-const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode }) => {
+const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode, locationDetailIsLoading }) => {
 
   const [headerHeight, setHeaderHeight] = useState(null);
   const formatId = (title) => {
@@ -22,7 +23,8 @@ const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode }) =
     window.scroll({ top: topOfElement, behavior: "smooth" });
   };
 
-  return (
+  if( locationDetailIsLoading ) return <Loader type={loaderTypes.SPINNER} />
+  else return (
     <main>
       <LocationDetailHeader
         locationDetail={locationDetail}
@@ -59,7 +61,8 @@ const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode }) =
 MapDetailsContent.propTypes = {
   handleFullScreen: PropTypes.func, 
   locationDetail: PropTypes.object,
-  locationCode: PropTypes.string
+  locationCode: PropTypes.string,
+  locationDetailIsLoading: PropTypes.bool,
 };
 
 
