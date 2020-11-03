@@ -7,12 +7,12 @@ import { RoutePaths } from "../../../app-bundles/routes-bundle";
 const BasinsDropdown = ({
   basins,
   doSetSelectedBasin,
-  doUpdateUrl,
+  doUpdateUrlWithHomepage,
 }) => {
   
   const onChange = (e) => {
     doSetSelectedBasin(e.target.value);
-    doUpdateUrl(RoutePaths.Map);
+    doUpdateUrlWithHomepage(RoutePaths.Map);
   };
 
   const options = basins && basins.map(val => ({
@@ -38,12 +38,12 @@ BasinsDropdown.propTypes = {
     basin_location_code: PropTypes.string.isRequired,
   })),
   doSetSelectedBasin: PropTypes.func.isRequired,
-  doUpdateUrl: PropTypes.func.isRequired,
+  doUpdateUrlWithHomepage: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectBasins",
   "doSetSelectedBasin",
-  "doUpdateUrl",
+  "doUpdateUrlWithHomepage",
   BasinsDropdown,
 );

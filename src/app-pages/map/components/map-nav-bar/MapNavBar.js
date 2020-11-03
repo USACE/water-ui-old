@@ -97,6 +97,7 @@ const MapNavBar = ({ locationTree, doLocationDetailSetCode, doLocationsMapSaveMa
               <MenuTree
                 data={locationTree}
                 onClickItem={(e) => handleNodeClick(e)}
+                initialOpenNodes={["1"]}
               />
             )}
           </div>
