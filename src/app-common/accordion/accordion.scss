@@ -65,6 +65,8 @@
     }
   }
   .active-accordion {
-    max-height: 1000px;
+    max-height: 50vh;
+    overflow-y: auto;
+    margin-bottom: 20px;
   }
 }

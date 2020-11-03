@@ -193,6 +193,21 @@ const LocationsMap = (props) => {
     };
     doLocationsMapSaveMapState(mapState);
   }, [doLocationsMapSaveMapState]);
+
+  const updateMap = useCallback((map) => {
+      if (locationsMapMapState.center) {
+        // reset attached listeners
+        popupContent.current.onclick = null;
+        const view = map.getView();
+        view.animate(
+          { zoom: locationsMapMapState.zoom },
+          { center: fromLonLat(locationsMapMapState.center) },
+          { duration: 1000 }
+        );
+      }
+    },
+    [locationsMapMapState]
+  );
   
   const newOptions = {
     zoom: locationsMapMapState.zoom || options.zoom,
@@ -207,12 +222,15 @@ const LocationsMap = (props) => {
         isMapsLoaded={locationsMapIsLoaded}
         addDataToMap={addDataToMap}
         saveMapState={saveMapState}
+        updateMap={updateMap}
         options={newOptions}
       />
-      <div ref={popupContainer} className="ol-popup">
-        <button ref={popupCloser} className="ol-popup-closer" />
-        <div ref={popupContent} className="ol-popup-content" />
-      </div>
+      { locationsMapIsDataLoaded ? (
+        <div ref={popupContainer} className="ol-popup">
+          <button ref={popupCloser} className="ol-popup-closer" />
+          <div ref={popupContent} className="ol-popup-content" />
+        </div>
+      ) : null }
     </>
   );
 };

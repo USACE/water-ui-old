@@ -25,17 +25,38 @@ export default createRestBundle( {
     selectLocationTimeSeriesAsGetTemplateParams: createSelector(
       "selectLocationDetailCode",
       "selectLocationSummariesData",
-      ( locationDetailCode, locationSummariesData ) => {
+      "selectLocationDetailData",
+      ( locationDetailCode, locationSummariesData, locationDetailData ) => {
         if( !locationDetailCode ) return {};
 
         /** @type a2w.models.LocationSummary */
-        const summary = locationSummariesData[ locationDetailCode ];
+        let summary;
+        let office_id;
+        let location_id;
 
-        if( !summary || summary.office_id === "" || summary.location_id === "" ) return {};
+        /** @type { a2w.models.LocationDetail } */
+        let detailData = locationDetailData;
+
+        if( Array.isArray( locationSummariesData ) ) {
+          summary = locationSummariesData.find( item => item.id === locationDetailCode );
+        }
+
+        // Try to pull office ID and location ID from summary
+        if( summary ) {
+          office_id = summary.office_id;
+          location_id = summary.location_id;
+        }
+        // Otherwise, try to pull them from the location detail
+        else if( detailData ) {
+          office_id = detailData.office_id
+          location_id = detailData.location_id;
+        }
+
+        if( !office_id || !location_id ) return {};
 
         return {
-          location_id: summary.location_id,
-          office_id: summary.office_id
+          location_id: location_id,
+          office_id: office_id
         };
       }
     ),

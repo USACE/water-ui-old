@@ -4,7 +4,7 @@ import MapDetailsContent from "../../app-common/map-details-container/MapDetails
 import { connect } from "redux-bundler-react";
 import "./location-page.scss";
 
-const LocationPage = ( { locationDetailData, locationDetailCode } ) => {
+const LocationPage = ( { locationDetailData, locationDetailCode, locationDetailIsLoading } ) => {
   useEffect( () => {
     //get location detail of location code in params
   }, [] );
@@ -14,6 +14,7 @@ const LocationPage = ( { locationDetailData, locationDetailCode } ) => {
         <MapDetailsContent
           locationDetail = { locationDetailData }
           locationCode = { locationDetailCode }
+          locationDetailIsLoading={ locationDetailIsLoading }
         />
       </div>
     </main>
@@ -28,5 +29,6 @@ LocationPage.propTypes = {
 export default connect(
   "selectLocationDetailData",
   "selectLocationDetailCode",
+  "selectLocationDetailIsLoading",
   LocationPage,
 );
