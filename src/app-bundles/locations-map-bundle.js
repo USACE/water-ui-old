@@ -5,7 +5,6 @@ const actions = {
   LOCATIONS_MAP_DATA_LOADED: "LOCATIONS_MAP_DATA_LOADED",
   LOCATIONS_MAP_LOADED: "LOCATIONS_MAP_LOADED",
   LOCATIONS_MAP_SAVE_MAP_STATE: "LOCATIONS_MAP_SAVE_MAP_STATE",
-  LOCATIONS_MAP_ZOOM: "LOCATIONS_MAP_ZOOM"
 };
 
 const name = "locationsMap";
@@ -16,7 +15,6 @@ export default {
   getReducer: () => {
     const initialData = {
       mapState: {},
-      mapZoom: {},
       _isInitialized: false,
       _isDataLoaded: false,
       _isMapLoaded: false,
@@ -47,8 +45,6 @@ export default {
         case actions.LOCATIONS_MAP_DATA_LOADED:
         case actions.LOCATIONS_MAP_LOADED:
         case actions.LOCATIONS_MAP_SAVE_MAP_STATE:
-          return Object.assign({}, state, payload);
-        case actions.LOCATIONS_MAP_ZOOM:
           return Object.assign({}, state, payload);
         default:
           return state;
