@@ -1,4 +1,5 @@
 import React from 'react';
+import { RoutePaths } from "../app-bundles/routes-bundle";
 
 const Navbar = () => {
 	return (
@@ -22,22 +23,22 @@ const Navbar = () => {
 			<div className="collapse navbar-collapse" id="navbarColor02">
 				<ul className="navbar-nav mr-auto">
 					<li className="nav-item">
-						<a className="nav-link" href="/map">
+						<a className="nav-link" href={RoutePaths.Map}>
 							Map 
 						</a>
 					</li> 
 					<li className="nav-item">
-						<a className="nav-link" href="/data-resources">
+						<a className="nav-link" href={RoutePaths.DataResources}>
 							Data Resources
 						</a>
 					</li>
 					<li className="nav-item">
-						<a className="nav-link" href="/reports">
+						<a className="nav-link" href={RoutePaths.ReportsHome}>
 							Reports
 						</a>
 					</li>
 					<li className="nav-item">
-						<a className="nav-link" href="/help">
+						<a className="nav-link" href={RoutePaths.Help}>
 							Help
 						</a>
 					</li>

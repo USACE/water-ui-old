@@ -153,6 +153,7 @@ TreeMenu.defaultProps = {
   children: defaultChildren,
   resetOpenNodesOnDataUpdate: false,
   disableKeyboard: false,
+  initialOpenNodes: [],
 };
 
 export default TreeMenu;

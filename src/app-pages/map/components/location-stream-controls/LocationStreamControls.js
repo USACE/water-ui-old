@@ -2,6 +2,7 @@ import React from "react";
 import "./locationStreamControls.scss";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
+import { RoutePaths } from "../../../../app-bundles/routes-bundle";
 
 const LocationStreamControls = ({ locationDetailData, fullScreen }) => {
   // For now, mock this array. Later, we'll add a mock array of stream locations to the location data.
@@ -26,7 +27,7 @@ const LocationStreamControls = ({ locationDetailData, fullScreen }) => {
     <div className="location-stream-control-container" style={!fullScreen ? fullScreenContainerStyle : null}>
       {!fullScreen && (
         <div className="back-to-map-link">
-          <a href="/map">Back to Map</a>
+          <a href={RoutePaths.Map}>Back to Map</a>
         </div>
       )}
       <div className="location-stream-controls-wrapper">
@@ -56,7 +57,10 @@ const LocationStreamControls = ({ locationDetailData, fullScreen }) => {
 
 LocationStreamControls.propTypes = {
   locationDetailData: PropTypes.object,
-  fullScreen: PropTypes.func
+  fullScreen: PropTypes.func,
 };
 
-export default connect("selectLocationDetailData", LocationStreamControls);
+export default connect(
+  "selectLocationDetailData",
+  LocationStreamControls
+);

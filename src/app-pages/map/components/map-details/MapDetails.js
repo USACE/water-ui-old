@@ -11,7 +11,7 @@ const MapDetails = ( props ) => {
     /** @type a2w.models.LocationDetail */
     locationDetailData,
     locationDetailIsLoading,
-    doUpdateUrl,
+    doUpdateUrlWithHomepage,
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +33,7 @@ const MapDetails = ( props ) => {
       ? { padding: 0, flexGrow: 1 }
       : { visibility: "hidden" };
 
-  const handleFullScreen = (selectedLocationCode, doUpdateUrl) => {
+  const handleFullScreen = (selectedLocationCode, doUpdateUrlWithHomepage) => {
     setIsFullScreen(true);
     const newLocation = `${RoutePaths.Locations.replace(":locationId", selectedLocationCode)}`;
 
@@ -41,7 +41,7 @@ const MapDetails = ( props ) => {
     // added simple fade, will replace later.
     setTimeout(function () {
       document.body.classList.toggle("fade");
-      doUpdateUrl(newLocation);
+      doUpdateUrlWithHomepage(newLocation);
       setTimeout(function () {
         document.body.classList.toggle("fade");
       }, 700);
@@ -54,7 +54,7 @@ const MapDetails = ( props ) => {
           <div className={`${isFullScreen ? "full-screen " : "drawer-content-container"}`}>
             <div className={`${isOpen ? "drawer-content" : "display-none"}`}>
               <MapDetailsContent
-                handleFullScreen={() => handleFullScreen(locationDetailCode, doUpdateUrl)}
+                handleFullScreen={() => handleFullScreen(locationDetailCode, doUpdateUrlWithHomepage)}
                 locationDetail={locationDetailData}
                 locationCode={locationDetailCode}
                 locationDetailIsLoading={locationDetailIsLoading}
@@ -81,13 +81,13 @@ const MapDetails = ( props ) => {
 MapDetails.propTypes = {
   selectedLocationCode: PropTypes.string,
   locationDetailData: PropTypes.object,
-  doUpdateUrl: PropTypes.func.isRequired,
+  doUpdateUrlWithHomepage: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationDetailCode",
   "selectLocationDetailData",
   "selectLocationDetailIsLoading",
-  "doUpdateUrl",
+  "doUpdateUrlWithHomepage",
   MapDetails
 );

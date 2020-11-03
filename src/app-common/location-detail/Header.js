@@ -14,8 +14,6 @@ const LocationDetailHeader = ( props ) => {
   const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${locationDetail.nearest_city}&state=${locationDetail.state}`;
 
   const onExpandHandler = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
     onExpand();
   };
 
