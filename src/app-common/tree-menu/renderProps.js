@@ -22,18 +22,21 @@ const iconLibrary = (type) => {
   return iconMap[type] ? iconMap[type] : iconMap.LOCATION;
 };
 
-export const ItemComponent = ({
-  hasNodes = false,
-  level = 0,
-  onClick,
-  toggleNode,
-  active,
-  focused,
-  id,
-  label = "unknown",
-  style = {},
-  node_type = "STREAM"
-}) => (
+export const ItemComponent = ( props ) => {
+  const {
+    hasNodes = false,
+    level = 0,
+    onClick,
+    toggleNode,
+    active,
+    focused,
+    id,
+    label = "unknown",
+    style = {},
+    node_type = "STREAM"
+  } = props;
+
+  return (
   <li
     title={label ? label.replace(/(.{60})/g,"$1\n") : ""}
     className={classNames(
@@ -64,7 +67,7 @@ export const ItemComponent = ({
       {label}
     </div>
   </li>
-);
+)};
 
 export const defaultChildren = ({ items }) => {
   return (
