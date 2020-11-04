@@ -16,6 +16,7 @@ const containerTextSection = {
   margin: '1rem 0',
   padding: 'auto 12rem',
   width: '100%',
+  color: 'black'
 };
 
 const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
@@ -23,7 +24,7 @@ const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
 
   return (
     <main className="home-page-container">
-      <div className="header-section">
+      <div className="header-section banner-img-container">
         <div className="p-5 header-container">
           <TextSection
             containerStyle={ containerTextSection }
@@ -31,24 +32,20 @@ const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
             body="Access water resources data such as elevation, precipitation, storage, and flow status of more than 700 USACE reservoir and lock & dam projects."
           />
         </div>
-
-        <div className="search-box-container py-4 px-4 mx-auto container position-relative">
-          <div style={ { top: '100%', zIndex: 1, textAlign: "center" } }>
-            <LocationSearch debounceFetch={debounceFetch} />
-            <p className="mt-3">Or search by district and basin</p>
-            <div className="district-basin-dd row">
-              <div className="col-md-6">
-                <DistrictsDropdown />
-              </div>
-              <div className="col-md-6">
-                <BasinsDropdown />
-              </div>
+        <div className="search-box-container py-4 px-4 mx-auto container position-relative text-center">
+          <LocationSearch debounceFetch={debounceFetch} />
+          <p className="mt-3">Or search by district and basin</p>
+          <div className="district-basin-dd row">
+            <div className="col-md-6">
+              <DistrictsDropdown />
+            </div>
+            <div className="col-md-6">
+              <BasinsDropdown />
             </div>
           </div>
         </div>
       </div>
-      <div className="banner-img-container" />
-      <div className="container mx-auto px-5">
+      <div className="container mx-auto px-5 home-info-content-container">
         { cardObj && <Card cardObj={ cardObj }/> }
         <div className="container mx-auto my-5">
           <TextSection

@@ -1,17 +1,32 @@
 @import "../../style/sass/abstracts/mixins";
 
 .home-page-container {
-  .header-container {
-    background-color: #cbd5e0;
-  }
   .banner-img-container {
     background: url("../../img/yellowstone-national-park.jpg");
     background-position: 50% 65%;
     background-size: cover;
-    height: 600px;
+    height: 700px;
     opacity: 0.9;
-    @include mq($breakpoint: "phone", $direction: "down") {
-      height: 300px;
+    @include mq($breakpoint: "phone-lg", $direction: "down") {
+      height: max-content;
+    }
+    .header-container {
+      background-color: #cbd5e0;
+      opacity: 0.8;
+      padding-bottom: 5rem;
+    }
+    .search-box-container {
+      background-color: white;
+      transform: translateY(-20%);
+      @include mq($breakpoint: "phone-lg", $direction: "down") {
+        transform: translateY(0);
+      }
+    }
+  }
+  .home-info-content-container {
+    transform: translateY(-15%);
+    @include mq($breakpoint: "tablet-lg", $direction: "down") {
+      transform: translateY(0);
     }
   }
 }
