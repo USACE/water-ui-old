@@ -69,7 +69,7 @@ class TreeMenu extends React.Component {
       const toggleNode = item.hasNodes
         ? () => this.toggleNode(item.key)
         : undefined;
-      return { ...item, focused, active, onClick, toggleNode };
+      return { ...item, focused, active, onClick, toggleNode, node_type: item.location_type };
     });
   };
 

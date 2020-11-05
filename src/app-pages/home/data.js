@@ -1,4 +1,4 @@
-import waterImage from '../../img/water.jpg';
+import waterImage from '../../img/big-sky-river.jpg';
 
 export const cardObj = [
     { title: 'Locations', text: 'Card 1 Text', img: waterImage, imgAlt: 'Card 1 Image', href: '/locations' },

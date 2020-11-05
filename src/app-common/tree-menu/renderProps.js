@@ -10,30 +10,35 @@ const iconLibrary = (type) => {
 
   const iconMap = {
     HQ: "mdi mdi-quality-high",
-    DIVISION: "mdi mdi-image-filter-hdr",
+    DIVISION: "mdi mdi-image-area",
     DISTRICT: "mdi mdi-chess-rook",
-    OPERATING_BASIN: "mdi mdi-water-pump",
+    OPERATING_BASIN: "mdi mdi-image-filter-hdr",
     BASIN: "mdi mdi-water-pump",
-    CWMS: "mdi mdi-waves",
-    STREAM: "mdi mdi-map-marker",
-    WQ: "mdi mdi-waves",
+    CWMS: "mdi mdi-map-marker",
+    LOCATION: "mdi mdi-map-marker",
+    STREAM: "mdi mdi-waves",
+    WQ: "mdi mdi-cup-water",
   };
-  return iconMap[type];
+  return iconMap[type] ? iconMap[type] : iconMap.LOCATION;
 };
 
-export const ItemComponent = ({
-  hasNodes = false,
-  level = 0,
-  onClick,
-  toggleNode,
-  active,
-  focused,
-  id,
-  label = "unknown",
-  style = {},
-  node_type = "STREAM"
-}) => (
+export const ItemComponent = ( props ) => {
+  const {
+    hasNodes = false,
+    level = 0,
+    onClick,
+    toggleNode,
+    active,
+    focused,
+    id,
+    label = "unknown",
+    style = {},
+    node_type = "STREAM"
+  } = props;
+
+  return (
   <li
+    title={label ? label.replace(/(.{60})/g,"$1\n") : ""}
     className={classNames(
       "rstm-tree-item",
       `rstm-tree-item-level${level}`,
@@ -62,7 +67,7 @@ export const ItemComponent = ({
       {label}
     </div>
   </li>
-);
+)};
 
 export const defaultChildren = ({ items }) => {
   return (

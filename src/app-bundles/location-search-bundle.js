@@ -25,10 +25,9 @@ export default createRestBundle( {
   forceFetchActions: [],
   urlParamSelectors: [ "selectLocationSearchGetTemplateParams" ],
   defaultState: {
-    _search_text: '',
-    _search_type: "ALL",
-    _search_limit: 10,
-    data: [],
+    search_text: '',
+    search_type: "ALL",
+    search_limit: 10,
   },
   reduceFurther: ( state, { type, payload } ) => {
     switch( type ) {
@@ -48,18 +47,21 @@ export default createRestBundle( {
       } );
     },
     doSetLocationSearchText: ( searchText ) => ( { dispatch, store } ) => {
-      dispatch( {
+      const action = {
         type: LocationSearchActions.SET_LOCATION_SEARCH_TEXT,
         payload: {
-          _search_text: searchText,
+          search_text: searchText,
         },
-      } );
+      };
+      // Reset the search results if the search text is empty.
+      if( !( typeof searchText === "string" ) || searchText.length === 0 ) action.payload.data = null;
+      dispatch( action );
     },
     doSetLocationSearchType: ( searchType ) => ( { dispatch, store } ) => {
       dispatch( {
         type: LocationSearchActions.SET_LOCATION_SEARCH_TYPE,
         payload: {
-          _search_type: searchType,
+          search_type: searchType,
         },
       } );
       store.doSetLocationSearchCriteriaUpdated();
@@ -68,7 +70,7 @@ export default createRestBundle( {
       dispatch( {
         type: LocationSearchActions.SET_LOCATION_SEARCH_LIMIT,
         payload: {
-          _search_limit: searchLimit,
+          search_limit: searchLimit,
         },
       } );
       store.doSetLocationSearchCriteriaUpdated();
