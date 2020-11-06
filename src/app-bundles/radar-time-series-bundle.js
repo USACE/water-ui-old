@@ -37,24 +37,28 @@ export default createRestBundle( {
         if (!locationTimeSeriesData || !locationTimeSeriesData["time-series"] || !locationTimeSeriesData["time-series"]["time-series"]) {
           return [];
         }
+
         const plotlyData = [];
         const locationTimeSeries = locationTimeSeriesData["time-series"]["time-series"];
+
         locationTimeSeries.forEach((element) => {
-          const segments = element["regular-interval-values"].segments;
-          if (segments.length > 0) {
+          const segments = element["regular-interval-values"] && element["regular-interval-values"].segments;
+          if (segments && segments.length > 0) {
             const interval = element["regular-interval-values"].interval;
             const segment = segments[0];
-            const values = segment.values;
             const startTime = new Date(segment["first-time"]);
             const intervalLength = getIntervalTime(interval);
+
+            // create array of all the x and y coordinates for plotly
             const xData = [];
             const yData = [];
-            values.forEach(([y], index) => {
+            segment.values.forEach(([y], index) => {
               const xTime = startTime.getTime() + (intervalLength * index);
               const x = new Date(xTime);
               xData.push(x);
               yData.push(y);
             });
+
             plotlyData.push({
               name: element.name,
               x: xData,
