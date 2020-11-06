@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MapNavBar from "./components/map-nav-bar/MapNavBar";
 import MapDetails from "./components/map-details/MapDetails";
 import LocationsMap from '../../app-common/map/LocationsMap';
+import { connect } from "redux-bundler-react";
 
-const MapPage = () => {
+const MapPage = ( {doLocationSummariesFetch }) => {
   const opts = { center: [-95, 38.895], zoom: 5 };
+
+  useEffect(() => {
+    doLocationSummariesFetch();
+  }, [doLocationSummariesFetch])
+
   return (
     <main>
       <MapNavBar />
@@ -25,4 +31,7 @@ const MapPage = () => {
   );
 };
 
-export default MapPage;
+export default connect(
+  "doLocationSummariesFetch",
+  MapPage
+)
