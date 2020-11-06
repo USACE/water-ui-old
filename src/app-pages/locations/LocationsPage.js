@@ -4,10 +4,19 @@ import MapDetailsContent from "../../app-common/map-details-container/MapDetails
 import { connect } from "redux-bundler-react";
 import "./location-page.scss";
 
-const LocationPage = ( { locationDetailData, locationDetailCode, locationDetailIsLoading } ) => {
+const LocationPage = ({
+  routeParams,
+  locationDetailData,
+  locationDetailCode,
+  locationDetailIsLoading,
+  doLocationDetailSetCode,
+}) => {
   useEffect( () => {
-    //get location detail of location code in params
-  }, [] );
+    if (locationDetailCode !== routeParams.locationId) {
+      doLocationDetailSetCode(routeParams.locationId)
+    }
+  }, [locationDetailCode, routeParams, doLocationDetailSetCode] );
+
   return (
     <main>
       <div className="map-and-details-container">
@@ -24,11 +33,15 @@ const LocationPage = ( { locationDetailData, locationDetailCode, locationDetailI
 LocationPage.propTypes = {
   locationDetailData: PropTypes.object,
   locationDetailCode: PropTypes.string,
+  locationDetailIsLoading: PropTypes.bool.isRequired,
+  doLocationDetailSetCode: PropTypes.func.isRequired,
 }
 
 export default connect(
+  "selectRouteParams",
   "selectLocationDetailData",
   "selectLocationDetailCode",
   "selectLocationDetailIsLoading",
+  "doLocationDetailSetCode",
   LocationPage,
 );
