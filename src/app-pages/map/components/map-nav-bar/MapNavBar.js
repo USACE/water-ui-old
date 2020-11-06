@@ -110,6 +110,7 @@ const MapNavBar = ({ locationTree, doLocationDetailSetCode, doLocationsMapSaveMa
 MapNavBar.propTypes = {
   locationTree: PropTypes.array,
   doLocationDetailSetCode: PropTypes.func.isRequired,
+  doLocationsMapSaveMapState: PropTypes.func.isRequired,
 };
 
 export default connect(
