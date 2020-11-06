@@ -1,7 +1,6 @@
-import createRestBundle from "./create-rest-bundle";
-import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
-import { LOCATIONDETAIL_SET_CODE } from "./location-detail-bundle";
+import createRestBundle from "./create-rest-bundle";
+import { getRestUrl, getIntervalTime } from "./bundle-utils";
 
 export default createRestBundle( {
   name: "locationTimeSeries",
@@ -14,52 +13,58 @@ export default createRestBundle( {
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: [ LOCATIONDETAIL_SET_CODE ],
+  fetchActions: [ "LOCATIONDETAIL_FETCH_FINISHED" ],
   forceFetchActions: [],
-  urlParamSelectors: [ "selectLocationTimeSeriesAsGetTemplateParams" ],
+  urlParamSelectors: [ "selectLocationTimeSeriesUrlParams" ],
   addons: {
     selectLocationTimeSeries: createSelector(
       "selectLocationTimeSeriesData",
       locationTimeSeriesData => locationTimeSeriesData && locationTimeSeriesData["time-series"] && locationTimeSeriesData["time-series"]["time-series"],
     ),
-    selectLocationTimeSeriesAsGetTemplateParams: createSelector(
-      "selectLocationDetailCode",
-      "selectLocationSummariesData",
+    selectLocationTimeSeriesUrlParams: createSelector(
       "selectLocationDetailData",
-      ( locationDetailCode, locationSummariesData, locationDetailData ) => {
-        if( !locationDetailCode ) return {};
-
-        /** @type a2w.models.LocationSummary */
-        let summary;
-        let office_id;
-        let location_id;
-
-        /** @type { a2w.models.LocationDetail } */
-        let detailData = locationDetailData;
-
-        if( Array.isArray( locationSummariesData ) ) {
-          summary = locationSummariesData.find( item => item.id === locationDetailCode );
-        }
-
-        // Try to pull office ID and location ID from summary
-        if( summary ) {
-          office_id = summary.office_id;
-          location_id = summary.location_id;
-        }
-        // Otherwise, try to pull them from the location detail
-        else if( detailData ) {
-          office_id = detailData.office_id
-          location_id = detailData.location_id;
-        }
-
-        if( !office_id || !location_id ) return {};
-
+      ( locationDetailData ) => {
+        if( !locationDetailData ) return {};
         return {
-          location_id: location_id,
-          office_id: office_id
-        };
+          location_id: locationDetailData.location_id,
+          office_id: locationDetailData.office_id
+        }
       }
     ),
-
+    selectLocationTimeSeriesPlotlyData: createSelector(
+      "selectLocationTimeSeriesData",
+      (locationTimeSeriesData) => {
+        if (!locationTimeSeriesData || !locationTimeSeriesData["time-series"] || !locationTimeSeriesData["time-series"]["time-series"]) {
+          return [];
+        }
+        const plotlyData = [];
+        const locationTimeSeries = locationTimeSeriesData["time-series"]["time-series"];
+        locationTimeSeries.forEach((element) => {
+          const segments = element["regular-interval-values"].segments;
+          if (segments.length > 0) {
+            const interval = element["regular-interval-values"].interval;
+            const segment = segments[0];
+            const values = segment.values;
+            const startTime = new Date(segment["first-time"]);
+            const intervalLength = getIntervalTime(interval);
+            const xData = [];
+            const yData = [];
+            values.forEach(([y], index) => {
+              const xTime = startTime.getTime() + (intervalLength * index);
+              const x = new Date(xTime);
+              xData.push(x);
+              yData.push(y);
+            });
+            plotlyData.push({
+              name: element.name,
+              x: xData,
+              y: yData,
+              unit: element["regular-interval-values"].unit,
+            });
+          }
+        });
+        return plotlyData;
+      }
+    ),
   }
 } )
