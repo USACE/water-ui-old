@@ -33,6 +33,7 @@ const TimeSeriesSection = ({
       <A2WPlot
         data={[ data[plotIndex] ]}
         layout={layout}
+        config={{scrollZoom: true}}
       />
       <TimeSeriesTable
         data={data}

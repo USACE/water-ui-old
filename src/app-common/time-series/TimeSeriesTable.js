@@ -8,6 +8,12 @@ const TimeSeriesTable = ({
   plotIndex,
   setPlotIndex,
 }) => {
+
+  const handleTableClick = ( event, index ) => {
+    event.stopPropagation();
+    setPlotIndex( index );
+  }
+
   return (
     <table className="table time-series-table">
       <thead>
@@ -22,8 +28,8 @@ const TimeSeriesTable = ({
             key={element.name}
             className={index === plotIndex ? "time-series-selected-row" : ""}
           >
-            <td onClick={() => setPlotIndex(index)}>{element.name}</td>
-            <td onClick={() => setPlotIndex(index)}><Sparkline data={element} /></td>
+            <td onClick={( event ) => handleTableClick( event, index )}>{element.name}</td>
+            <td onClick={( event ) => handleTableClick( event, index )}><Sparkline data={element} /></td>
           </tr>
         ))}
       </tbody>

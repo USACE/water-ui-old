@@ -14,7 +14,7 @@ const Sparkline = ({ data }) => (
       },
     }]}
     layout={{
-      height: "50",
+      height: "25",
       width: "175",
       showlegend: false,
       hovermode: false,
@@ -26,14 +26,16 @@ const Sparkline = ({ data }) => (
         showgrid: false, 
         showline: false, 
         zeroline: false, 
-        showticklabels: false
+        showticklabels: false,
+        fixedrange: true
       },
       yaxis: { 
         ticks: "", 
         showgrid: false, 
         showline: false, 
         zeroline: false, 
-        showticklabels: false  
+        showticklabels: false,
+        fixedrange: true
       },
     }}
     config={{
