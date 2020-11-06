@@ -17,10 +17,6 @@ export default createRestBundle( {
   forceFetchActions: [],
   urlParamSelectors: [ "selectLocationTimeSeriesUrlParams" ],
   addons: {
-    selectLocationTimeSeries: createSelector(
-      "selectLocationTimeSeriesData",
-      locationTimeSeriesData => locationTimeSeriesData && locationTimeSeriesData["time-series"] && locationTimeSeriesData["time-series"]["time-series"],
-    ),
     selectLocationTimeSeriesUrlParams: createSelector(
       "selectLocationDetailData",
       ( locationDetailData ) => {
