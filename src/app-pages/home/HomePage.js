@@ -1,29 +1,40 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import debounce from "lodash/debounce";
-import Card from '../../app-common/Cards';
-import TextSection from '../../app-common/TextSection';
-import CirclePics from '../../app-common/CirclePics';
-import LocationsMap from '../../app-common/map/LocationsMap';
-import { cardObj, circlePicObj } from './data.js';
+import Card from "../../app-common/Cards";
+import TextSection from "../../app-common/TextSection";
+import CirclePics from "../../app-common/CirclePics";
+import LocationsMap from "../../app-common/map/LocationsMap";
+import { cardObj, circlePicObj } from "./data.js";
 import LocationSearch from "./components/LocationSearch";
 import DistrictsDropdown from "./components/DistrictsDropdown";
 import BasinsDropdown from "./components/BasinsDropdown";
 
 const containerTextSection = {
-  textAlign: 'center',
-  margin: '1rem 0',
-  padding: 'auto 12rem',
-  width: '100%',
+  textAlign: "center",
+  margin: "1rem 0",
+  padding: "auto 12rem",
+  width: "100%",
 };
 
 const headerContainerStyle = {
-  backgroundColor: '#cbd5e0'
-}
+  backgroundColor: "#cbd5e0",
+};
 
-const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
-  const mapOptions = { center: [ -77.0364, 38.895 ], zoom: 4 };
+const HomePage = ({
+  doSetLocationSearchCriteriaUpdated,
+  locationParams,
+  doLocationFormattedParamObj
+}) => {
+
+  useEffect(() => {
+    if (locationParams) {
+      doLocationFormattedParamObj(locationParams);
+    }
+  }, [locationParams]);
+
+  const mapOptions = { center: [-77.0364, 38.895], zoom: 4 };
   const debounceFetch = debounce(doSetLocationSearchCriteriaUpdated, 500);
 
   return (
@@ -77,4 +88,11 @@ HomePage.propTypes = {
   doSetLocationSearchCriteriaUpdated: PropTypes.func.isRequired,
 };
 
-export default connect("doSetLocationSearchCriteriaUpdated", HomePage);
+export default connect(
+  "doSetLocationSearchCriteriaUpdated",
+  "selectLocationParams",
+  "selectLocationTimeSeries",
+  "doLocationFormattedParamObj",
+  "selectLocationParamObj",
+  HomePage
+);

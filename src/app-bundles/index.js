@@ -27,6 +27,7 @@ import districtReportBundle from "./district-reports-bundle";
 import locationDetailBundle from "./location-detail-bundle";
 import locationTreeBundle from "./location-tree-bundle";
 import radarTimeSeriesBundle from "./radar-time-series-bundle";
+import radarTimeSeriesParamsBundle from "./radar-time-series-params-bundle";
 import cache from "./../cache.js";
 
 export default composeBundles(
@@ -64,5 +65,6 @@ export default composeBundles(
   locationDetailBundle,
   locationTreeBundle,
   locationSearchBundle,
-  radarTimeSeriesBundle
+  radarTimeSeriesBundle,
+  radarTimeSeriesParamsBundle
 );
