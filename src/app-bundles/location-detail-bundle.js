@@ -42,16 +42,5 @@ export default createRestBundle( {
       "selectLocationDetailCode",
       locationDetailCode => !locationDetailCode ? {} : { location_code: locationDetailCode },
     ),
-
-    reactShouldSetLocationCode: createSelector(
-      "selectRouteParams",
-      "selectLocationDetailCode",
-      ( routeParams, selectedLocationCode ) => {
-        if( routeParams.locationId && !selectedLocationCode ) {
-          return { actionCreator: "doLocationDetailSetCode", args: [ routeParams.locationId ] };
-        }
-      }
-    ),
-
   }
-} )
+} );

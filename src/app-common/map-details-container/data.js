@@ -1,7 +1,7 @@
 import React from "react";
 import LocationInfo from "../../app-pages/map/components/LocationInfo";
 import DamProfile from "../../app-pages/map/components/DamProfile";
-import TimeSeriesSection from "../../app-pages/map/components/TimeSeriesSection";
+import TimeSeriesSection from "../../app-common/time-series/TimeSeriesSection";
 import TimeLineSection from "../../app-pages/map/components/TimeLineSection";
 // Accordion dummy data
 export const accordionArrObjs = [

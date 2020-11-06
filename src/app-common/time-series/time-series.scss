@@ -1,0 +1,17 @@
+.time-series-table {
+  width: 600px !important;
+
+  >tbody {
+    >tr:hover {
+      background-color: rgba(0, 0, 255, 0.1);
+    }
+
+    td {
+      vertical-align: middle;
+    }
+  }
+}
+
+.time-series-selected-row {
+  background-color: rgba(0, 0, 255, 0.1);
+}
