@@ -23,8 +23,8 @@ export function getRestUrl( liveUrl, mockUrl, mockOverrideFlag ) {
   let useMockUrl = isMockMode();
   if( mockOverrideFlag === true || mockOverrideFlag === false ) useMockUrl = mockOverrideFlag;
   const baseUrl = isDevelopmentMode()
-    ? useMockUrl ? `${ process.env.PUBLIC_URL }/mockdata` : `http://localhost:3030`
-    : useMockUrl ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`;
+  ? useMockUrl ? `${ process.env.PUBLIC_URL }/mockdata` : `http://localhost:3030`
+  : useMockUrl ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`;
 
   if( useMockUrl ) return `${ baseUrl }${ mockUrl }`;
   else if( liveUrl.startsWith( "http" ) ) return liveUrl;
@@ -38,3 +38,18 @@ export const arrayToObj = (array, uid) => {
   });
   return obj;
 };
+
+/**
+ * Returns the number of milliseconds of the given time interval
+ * @param {*} interval string representation of the time interval
+ */
+export const getIntervalTime = (interval) => {
+  switch (interval) {
+    case "PT15M": // 15 minutes
+      return 900000;
+    case "PT1H":  // 1 hour
+      return 3600000;
+    default:
+      return 0;
+  }
+}
