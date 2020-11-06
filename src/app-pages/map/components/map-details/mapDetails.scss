@@ -26,7 +26,7 @@ body{
     top: 0;
     left: 0;
     z-index: 200;
-    transform: translateX(-92%);
+    transform: translateX(calc(-100% + 70px));
     transition: transform 0.3s ease-out;
     display: flex;
     flex-direction: row;

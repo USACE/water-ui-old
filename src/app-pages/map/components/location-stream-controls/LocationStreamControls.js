@@ -4,7 +4,7 @@ import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import { RoutePaths } from "../../../../app-bundles/routes-bundle";
 
-const LocationStreamControls = ({ locationDetailData, fullScreen }) => {
+const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMapSaveMapState }) => {
   // For now, mock this array. Later, we'll add a mock array of stream locations to the location data.
   const options = ["jump to station", "station 1", "station 2", "station 3"];
 
@@ -18,6 +18,14 @@ const LocationStreamControls = ({ locationDetailData, fullScreen }) => {
     e.stopPropagation();
   };
 
+  const saveMapState = () => {
+    const mapState = {
+      zoom: locationDetailData.zoom_depth ? Math.round( locationDetailData.zoom_depth * 1.5 ) : 16,
+      center: [locationDetailData.longitude, locationDetailData.latitude],
+    };
+    if( locationDetailData.longitude && locationDetailData.latitude ) doLocationsMapSaveMapState( mapState );
+  }
+
   const fullScreenContainerStyle = {
     display: "flex",
     justifyContent: "space-between",
@@ -27,7 +35,7 @@ const LocationStreamControls = ({ locationDetailData, fullScreen }) => {
     <div className="location-stream-control-container" style={!fullScreen ? fullScreenContainerStyle : null}>
       {!fullScreen && (
         <div className="back-to-map-link">
-          <a href={RoutePaths.Map}>Back to Map</a>
+          <a href={RoutePaths.Map} onClick={saveMapState}>Back to Map</a>
         </div>
       )}
       <div className="location-stream-controls-wrapper">
@@ -62,5 +70,6 @@ LocationStreamControls.propTypes = {
 
 export default connect(
   "selectLocationDetailData",
+  "doLocationsMapSaveMapState",
   LocationStreamControls
 );
