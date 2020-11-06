@@ -28,6 +28,7 @@ export default createRestBundle( {
     search_text: '',
     search_type: "ALL",
     search_limit: 10,
+    data: [],
   },
   reduceFurther: ( state, { type, payload } ) => {
     switch( type ) {
@@ -76,13 +77,13 @@ export default createRestBundle( {
       store.doSetLocationSearchCriteriaUpdated();
     },
     selectLocationSearchText: ( state ) => {
-      return state.locationSearch._search_text;
+      return state.locationSearch.search_text;
     },
     selectLocationSearchType: ( state ) => {
-      return state.locationSearch._search_type;
+      return state.locationSearch.search_type;
     },
     selectLocationSearchLimit: ( state ) => {
-      return state.locationSearch._search_limit;
+      return state.locationSearch.search_limit;
     },
     selectLocationSearchGetTemplateParams: createSelector(
       "selectLocationSearchText",
