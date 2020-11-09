@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import debounce from "lodash/debounce";
-import Card from '../../app-common/Cards';
+import Cards from '../../app-common/Cards';
 import TextSection from '../../app-common/TextSection';
 import CirclePics from '../../app-common/CirclePics';
 import { cardObj, circlePicObj } from './data.js';
@@ -24,7 +24,7 @@ const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
 
   return (
     <div className="home-page-container">
-      <div className="header-section banner-img-container">
+      <div className="banner-img-container">
         <div className="p-5 header-container">
           <TextSection
             containerStyle={ containerTextSection }
@@ -46,7 +46,7 @@ const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
         </div>
       </div>
       <div className="container mx-auto px-5 home-info-content-container">
-        { cardObj && <Card cardObj={ cardObj }/> }
+        { cardObj && <Cards cardObj={ cardObj }/> }
         <div className="container mx-auto my-5">
           <TextSection
             title="The Mission of Access to Water"
