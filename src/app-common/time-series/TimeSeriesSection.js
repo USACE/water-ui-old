@@ -29,7 +29,6 @@ const TimeSeriesSection = ({
 
   return (
     <div className="time-series-section-wrapper">
-      <h5>Time Series</h5>
       <A2WPlot
         data={[ data[plotIndex] ]}
         layout={layout}

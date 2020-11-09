@@ -16,7 +16,7 @@ const MapNavBar = ({ locationTree, doLocationDetailSetCode, doLocationsMapSaveMa
     if (!e.hasNodes) {
       doLocationDetailSetCode( e.id );
       const mapState = {
-        zoom: e.zoom_depth || 8,
+        zoom: e.zoom_depth ? Math.round( e.zoom_depth * 1.5 ) : 16,
         center: [e.longitude, e.latitude],
       };
       if( e.longitude && e.latitude ) doLocationsMapSaveMapState( mapState );
