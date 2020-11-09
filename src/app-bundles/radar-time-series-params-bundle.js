@@ -14,7 +14,7 @@ export default createRestBundle({
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: ["LOCATIONTIMESERIES_FETCH_FINISHED"],
+  fetchActions: ["LOCATIONDETAIL_FETCH_FINISHED"],
   forceFetchActions: [],
   urlParamSelectors: ["selectLocationParams"],
   addons: {
