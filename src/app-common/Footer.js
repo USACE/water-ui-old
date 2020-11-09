@@ -24,7 +24,7 @@ const textSectionTitleStyle = {
 
 const Footer = (props) => {
 	return (
-		<div data-test="component-footer-container" className="footer-container">
+		<footer className="footer-container">
 			<div style={footerTextSectionContainer} className="h-auto d-flex flex-lg-row row mw-100 mx-0">
 				<div style={{ paddingLeft: '10rem'}} className="misson-statement col-lg-6 col-sm-12 mb-1 pr-5 py-4 mx-sm-auto">
 					<TextSection
@@ -59,7 +59,7 @@ const Footer = (props) => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</footer>
 	);
 };
 

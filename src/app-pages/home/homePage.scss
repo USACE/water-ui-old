@@ -6,7 +6,6 @@
     background-position: 50% 55%;
     background-size: cover;
     height: 500px;
-    opacity: 0.75;
     @include mq($breakpoint: "phone-lg", $direction: "down") {
       height: max-content;
     }
@@ -17,7 +16,7 @@
     }
     .search-box-container {
       background-color: white;
-      transform: translateY(-20%);
+      margin-top: -30px;
       @include mq($breakpoint: "phone-lg", $direction: "down") {
         transform: translateY(0);
       }

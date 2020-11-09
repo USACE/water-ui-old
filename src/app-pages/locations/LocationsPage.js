@@ -18,15 +18,13 @@ const LocationPage = ({
   }, [locationDetailCode, routeParams, doLocationDetailSetCode] );
 
   return (
-    <main>
-      <div className="map-and-details-container">
-        <MapDetailsContent
-          locationDetail = { locationDetailData }
-          locationCode = { locationDetailCode }
-          locationDetailIsLoading={ locationDetailIsLoading }
-        />
-      </div>
-    </main>
+    <div className="map-and-details-container">
+      <MapDetailsContent
+        locationDetail = { locationDetailData }
+        locationCode = { locationDetailCode }
+        locationDetailIsLoading={ locationDetailIsLoading }
+      />
+    </div>
   );
 };
 

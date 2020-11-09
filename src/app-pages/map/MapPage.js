@@ -12,7 +12,7 @@ const MapPage = ( {doLocationSummariesFetch }) => {
   }, [doLocationSummariesFetch])
 
   return (
-    <main>
+    <>
       <MapNavBar />
       <div
         className=" map-and-details-container "
@@ -27,7 +27,7 @@ const MapPage = ( {doLocationSummariesFetch }) => {
           />
         </div>
       </div>
-    </main>
+    </>
   );
 };
 

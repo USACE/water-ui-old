@@ -55,7 +55,7 @@ export default createRestBundle( {
         },
       };
       // Reset the search results if the search text is empty.
-      if( !( typeof searchText === "string" ) || searchText.length === 0 ) action.payload.data = null;
+      if( !( typeof searchText === "string" ) || searchText.length === 0 ) action.payload.data = [];
       dispatch( action );
     },
     doSetLocationSearchType: ( searchType ) => ( { dispatch, store } ) => {

@@ -40,27 +40,25 @@ const ReportsContainer = ( props ) => {
   if( props.sectionTitle ) sectionTitleBlock = <h2 style={sectionTitleStyle}>{ props.sectionTitle }</h2>
 
   return (
-    <main>
-      <div className="header-section">
-        <div style={ headerContainerStyle } className="p-5">
-          <div className="d-flex w-100 justify-content-between">
-            <TextSection
-              containerStyle={ containerTextSection }
-              title={ 'Reports' }
-              titleStyle={ titleStyle }
-            />
-            <div className="search-box-container w-50 py-4 px-4 mx-auto container position-relative">
-              <div style={ { top: '100%', zIndex: 1 } }><SearchBox text={ 'Search Reports' }/></div>
-            </div>
+    <div className="header-section">
+      <div style={ headerContainerStyle } className="p-5">
+        <div className="d-flex w-100 justify-content-between">
+          <TextSection
+            containerStyle={ containerTextSection }
+            title={ 'Reports' }
+            titleStyle={ titleStyle }
+          />
+          <div className="search-box-container w-50 py-4 px-4 mx-auto container position-relative">
+            <div style={ { top: '100%', zIndex: 1 } }><SearchBox text={ 'Search Reports' }/></div>
           </div>
-
-          <TabLinks TabInfo={ TabInfo }></TabLinks>
-          { sectionTitleBlock ? sectionTitleBlock : '' }
-          {props.children}
-
         </div>
+
+        <TabLinks TabInfo={ TabInfo }></TabLinks>
+        { sectionTitleBlock ? sectionTitleBlock : '' }
+        {props.children}
+
       </div>
-    </main>
+    </div>
   );
 };
 

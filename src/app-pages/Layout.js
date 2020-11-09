@@ -5,11 +5,13 @@ import Footer from '../app-common/Footer';
 import "./layout.scss";
 
 export default connect('selectRoute', ({ route: Route }) => {
-	return (
-		<div>
-			<Navbar />
-			<Route />
-			<Footer />
-		</div>
-	);
+  return (
+    <>
+      <Navbar />
+      <main>
+        <Route />
+      </main>
+      <Footer />
+    </>
+  );
 });
