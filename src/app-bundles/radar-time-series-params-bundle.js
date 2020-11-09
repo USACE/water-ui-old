@@ -21,7 +21,6 @@ export default createRestBundle({
     selectLocationParams: createSelector(
       "selectLocationParamsData",
       (locationParamsData) => {
-        console.log("selectLocationParams",locationParamsData)
         if (!locationParamsData) return null;
           return structureParamsData(locationParamsData.parameters.parameters);
       }
