@@ -23,7 +23,7 @@ const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
   const debounceFetch = debounce(doSetLocationSearchCriteriaUpdated, 500);
 
   return (
-    <main className="home-page-container">
+    <div className="home-page-container">
       <div className="header-section banner-img-container">
         <div className="p-5 header-container">
           <TextSection
@@ -55,7 +55,7 @@ const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
           { circlePicObj && <CirclePics cardObj={ circlePicObj }/> }
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

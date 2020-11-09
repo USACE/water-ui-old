@@ -25,12 +25,12 @@ const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode, loc
 
   if( locationDetailIsLoading ) return <Loader type={loaderTypes.SPINNER} />
   else return (
-    <main>
+    <>
       <LocationDetailHeader
         locationDetail={locationDetail}
         onExpand={handleFullScreen ? () => handleFullScreen({selectedLocationCode:locationCode}) : null}
         getHeaderHeight = { getHeaderHeight }
-      ></LocationDetailHeader>
+      />
       <div className="location-detail-content-container">
         {!handleFullScreen && (
           <div className="map-details-nav">
@@ -54,7 +54,7 @@ const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode, loc
           <Accordion data={accordionArrObjs} formatId={formatId} />
         </div>
       </div>
-    </main>
+    </>
   );
 };
 
