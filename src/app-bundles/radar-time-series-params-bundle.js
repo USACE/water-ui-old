@@ -31,7 +31,7 @@ export default createRestBundle({
 //returns an obj where the key is the name and the value is the object
 const structureParamsData = (arr) => {
   const results = {};
-  arr.map((item) => {
+  arr.forEach((item) => {
     results[item.name] = item;
   });
   return results;
