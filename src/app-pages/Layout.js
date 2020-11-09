@@ -6,12 +6,12 @@ import "./layout.scss";
 
 export default connect('selectRoute', ({ route: Route }) => {
   return (
-    <div>
+    <>
       <Navbar />
       <main>
         <Route />
       </main>
       <Footer />
-      </div>
+    </>
   );
 });

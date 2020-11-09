@@ -10,8 +10,6 @@ import "./style/sass/main.scss";
 
 export default () => {
 	return (
-		<div>
-			<Layout/>
-		</div>
+		<Layout/>
 	);
 };
