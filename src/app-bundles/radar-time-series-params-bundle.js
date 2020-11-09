@@ -1,8 +1,6 @@
 import createRestBundle from "./create-rest-bundle";
-import { getRestUrl } from "./bundle-utils";
+import { getRestUrl, arrayToObj } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
-
-export const  LOCATION_FORMAT_PARAM_OBJECT = " LOCATION_FORMAT_PARAM_OBJECT";
 
 export default createRestBundle({
   name: "locationParams",
@@ -10,30 +8,31 @@ export default createRestBundle({
   prefetch: false,
   staleAfter: 0,
   persist: false,
-  getTemplate: getRestUrl("http://cwms-data.usace.army.mil/cwms-data/parameters?format=json", "/radar-params.json"),
+  getTemplate: getRestUrl("https://cwms-data.usace.army.mil/cwms-data/parameters?format=json", "/radar-params.json"),
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: ["LOCATIONDETAIL_FETCH_FINISHED"],
   forceFetchActions: [],
-  urlParamSelectors: ["selectLocationParams"],
   addons: {
-    selectLocationParams: createSelector(
+    reactLocationParamsFormatData: createSelector(
       "selectLocationParamsData",
       (locationParamsData) => {
-        if (!locationParamsData) return null;
-          return structureParamsData(locationParamsData.parameters.parameters);
+        if (locationParamsData && locationParamsData.parameters && locationParamsData.parameters.parameters) {
+          return {
+            actionCreator: "doLocationParamsFormatData",
+            args: [locationParamsData.parameters.parameters],
+          };
+        }
       }
     ),
+    doLocationParamsFormatData: (parameters) => {
+      const parametersByName = arrayToObj(parameters, "name");
+      return {
+        type: "LOCATIONPARAMS_UPDATED_ITEM",
+        payload: {
+          data: parametersByName,
+        },
+      };
+    },
   },
 });
-
-//returns an obj where the key is the name and the value is the object
-const structureParamsData = (arr) => {
-  const results = {};
-  arr.map((item) => {
-    results[item.name] = item;
-  });
-  return results;
-};
-

@@ -4,12 +4,16 @@ import MapDetails from "./components/map-details/MapDetails";
 import LocationsMap from '../../app-common/map/LocationsMap';
 import { connect } from "redux-bundler-react";
 
-const MapPage = ( {doLocationSummariesFetch }) => {
+const MapPage = ({
+  doLocationSummariesFetch,
+  doLocationParamsFetch,
+}) => {
   const opts = { center: [-95, 38.895], zoom: 5 };
 
   useEffect(() => {
     doLocationSummariesFetch();
-  }, [doLocationSummariesFetch])
+    doLocationParamsFetch();
+  }, [doLocationSummariesFetch, doLocationParamsFetch])
 
   return (
     <main>
@@ -33,5 +37,6 @@ const MapPage = ( {doLocationSummariesFetch }) => {
 
 export default connect(
   "doLocationSummariesFetch",
+  "doLocationParamsFetch",
   MapPage
 )

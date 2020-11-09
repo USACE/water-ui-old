@@ -29,8 +29,8 @@ export default createRestBundle( {
     ),
     selectLocationTimeSeriesPlotlyData: createSelector(
       "selectLocationTimeSeriesData",
-      "selectLocationParams",
-      (locationTimeSeriesData, locationParams) => {
+      "selectLocationParamsData",
+      (locationTimeSeriesData, locationParamsData) => {
         if (!locationTimeSeriesData || !locationTimeSeriesData["time-series"] || !locationTimeSeriesData["time-series"]["time-series"]) {
           return [];
         }
@@ -57,7 +57,7 @@ export default createRestBundle( {
             });
 
             plotlyData.push({
-              name: locationParams ? formatTimeSeriesName( element.name,locationParams ) : element.name,
+              name: locationParamsData ? formatTimeSeriesName( element.name, locationParamsData ) : element.name,
               x: xData,
               y: yData,
               unit: element["regular-interval-values"].unit,
