@@ -99,7 +99,6 @@ class TreeMenu extends React.Component {
     };
 
     return {
-      // preventDefault: true,
       up: () => {
         this.setState(({ focusKey }) => ({
           focusKey: focusIndex > 0 ? items[focusIndex - 1].key : focusKey,
