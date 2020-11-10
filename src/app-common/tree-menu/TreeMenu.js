@@ -1,9 +1,9 @@
 import React from "react";
-import "./treeMenu.scss";
-
-import { slowWalk } from "./walk";
+import { debounce } from "lodash";
+import { walk } from "./walk";
 import { defaultChildren } from "./renderProps";
-import { KeyDown } from "../../functions";
+import KeyDown from "./KeyDown";
+import "./treeMenu.scss";
 
 const defaultOnClick = (props) => console.log(props);
 
@@ -14,6 +14,7 @@ class TreeMenu extends React.Component {
       openNodes: this.props.initialOpenNodes || [],
       activeKey: this.props.initialActiveKey || "",
       focusKey: this.props.initialFocusKey || "",
+      searchTerm: "",
     };
   }
 
@@ -36,8 +37,15 @@ class TreeMenu extends React.Component {
       openNodes,
       activeKey: activeKey || "",
       focusKey: focusKey || activeKey || "",
+      searchTerm: "",
     });
   };
+
+  debounceSearch = debounce(searchTerm => this.setState({ searchTerm }), 500);
+
+  search = (newTerm) => {
+    this.debounceSearch(newTerm);
+  }
 
   toggleNode = (node) => {
     if (!this.props.openNodes) {
@@ -51,11 +59,13 @@ class TreeMenu extends React.Component {
 
   generateItems = () => {
     const { data, onClickItem, locale } = this.props;
+    const { searchTerm } = this.state;
     const openNodes = this.props.openNodes || this.state.openNodes;
     const activeKey = this.props.activeKey || this.state.activeKey;
     const focusKey = this.props.focusKey || this.state.focusKey;
-    const defaultSearch = slowWalk;
-    const items = data ? defaultSearch({ data, openNodes, locale }) : [];
+    const items = data
+      ? walk({ data, openNodes, locale, searchTerm })
+      : [];
 
     return items.map((item) => {
       const focused = item.key === focusKey;
@@ -89,7 +99,7 @@ class TreeMenu extends React.Component {
     };
 
     return {
-      preventDefault: true,
+      // preventDefault: true,
       up: () => {
         this.setState(({ focusKey }) => ({
           focusKey: focusIndex > 0 ? items[focusIndex - 1].key : focusKey,
@@ -130,20 +140,20 @@ class TreeMenu extends React.Component {
 
   render() {
     const { children, disableKeyboard } = this.props;
+    const { searchTerm } = this.state;
 
+    const search = this.search;
     const items = this.generateItems();
     const resetOpenNodes = this.resetOpenNodes;
 
     /** @type any **/
     const childComponent = children || defaultChildren;
 
-    const renderProps = { items, resetOpenNodes };
+    const renderProps = { items, resetOpenNodes, searchTerm, search };
 
-    return disableKeyboard ? (
-      childComponent(renderProps)
-    ) : (
-      <KeyDown {...this.getKeyDownProps(items)}>{childComponent(renderProps)}</KeyDown>
-    );
+    return disableKeyboard
+      ? childComponent(renderProps)
+      : <KeyDown {...this.getKeyDownProps(items)}>{childComponent(renderProps)}</KeyDown>;
   }
 }
 

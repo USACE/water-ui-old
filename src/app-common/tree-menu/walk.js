@@ -2,7 +2,7 @@ const validateData = (data) => !!data && data.length > 0;
 
 const getValidatedData = (data) => (validateData(data) ? data : []);
 
-const walk = ({ data, ...props }) => {
+export const walk = ({ data, ...props }) => {
   const validatedData = getValidatedData(data);
 
   const propsWithDefaultValues = { parent: "", level: 0, ...props };
@@ -72,6 +72,3 @@ const generateBranch = ({
 
   return isVisible ? [currentItem, ...nextLevelItems] : nextLevelItems;
 };
-
-// export const fastWalk = memoize(walk);
-export const slowWalk = walk;
