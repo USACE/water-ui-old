@@ -1,7 +1,7 @@
 import React, { useRef, useCallback } from 'react';
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
-import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
+import { Vector as VectorLayer } from "ol/layer";
 import Feature from "ol/Feature";
 import Point from "ol/geom/Point";
 import Overlay from "ol/Overlay";
@@ -13,7 +13,7 @@ import {
   Text,
   Icon,
 } from "ol/style";
-import { Cluster, OSM, Vector as VectorSource } from "ol/source";
+import { Cluster, Vector as VectorSource } from "ol/source";
 import { fromLonLat, toLonLat } from "ol/proj";
 import MapContainer from "./MapContainer";
 
@@ -112,10 +112,6 @@ const LocationsMap = (props) => {
       minResolution: 201,
     });
 
-    const raster = new TileLayer({
-      source: new OSM(),
-    });
-
     const overlay = new Overlay({
       element: popupContainer.current,
       positioning: "bottom-center",
@@ -126,7 +122,7 @@ const LocationsMap = (props) => {
 
     //add data points to map obj
     map.addOverlay(overlay);
-    map.addLayer(raster);
+    // Base layer is automatically added by basemap-picker
     map.addLayer(clusters);
     map.addLayer(unclusteredLayer);
 
