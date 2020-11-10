@@ -70,8 +70,8 @@ export default createRestBundle( {
   }
 } );
 
-const formatTimeSeriesName = (rawName, dictionary) => {
-  let formatedName = rawName.split(".");
+export const formatTimeSeriesName = (rawName, dictionary) => {
+  let formatedName = rawName && rawName.split(".");
   const result = [];
   //regex to see if string contains both numbers and letters
   const alphaNumericCheck = /([0-9].*[a-z])|([a-z].*[0-9])/;

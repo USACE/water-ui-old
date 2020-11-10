@@ -49,9 +49,12 @@ describe("locationParams Test", () => {
   });
 
   it("returns false when name is not valid", () => {
-
+    
     store.doLocationTimeSeriesPlotlyData("");
     const rawName = store.selectLocationTimeSeriesPlotlyData().timeSeriesName;
-    expect(formatTimeSeriesName(rawName, locationParamsObject)).toBe(false);
+    expect(formatTimeSeriesName(rawName, locationParamsObject)).toBe("");
   });
 });
+
+
+
