@@ -1,0 +1,444 @@
+{
+  "location-levels": {
+    "query-info": {
+      "processed-at": "cpc-ora-db50:S0CWMSZ2",
+      "time-of-query": "2020-11-06T14:17:33Z",
+      "process-query": "PT5.126S",
+      "format-output": "PT0.008S",
+      "requested-format": "JSON",
+      "requested-start-time": "2020-11-05T14:17:34Z",
+      "requested-end-time": "2020-11-06T14:17:34Z",
+      "requested-office": "NAB",
+      "requested-items": [{
+          "name": "Indian Rock.*",
+          "unit": "EN",
+          "datum": "NATIVE"
+        }
+      ],
+      "total-location-levels-retrieved": 35,
+      "unique-location-levels-retrieved": 35
+    },
+    "location-levels": [{
+        "office": "NAB",
+        "name": "Indian Rock.Area-Drainage.Inst.0.Contributing",
+        "alternate-names": ["07331500.Area-Drainage.Inst.0.Contributing", "CE60A018.Area-Drainage.Inst.0.Contributing", "DSNT2.Area-Drainage.Inst.0.Contributing", "OK10317.Area-Drainage.Inst.0.Contributing"],
+        "values": {
+          "parameter": "Area-Drainage (ft2)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 941816000000], ["2020-11-06T14:17:34Z", 941816000000]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Area-Drainage.Inst.0.Total",
+        "alternate-names": ["07331500.Area-Drainage.Inst.0.Total", "CE60A018.Area-Drainage.Inst.0.Total", "DSNT2.Area-Drainage.Inst.0.Total", "OK10317.Area-Drainage.Inst.0.Total"],
+        "values": {
+          "parameter": "Area-Drainage (ft2)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 1107302000000], ["2020-11-06T14:17:34Z", 1107302000000]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Area.Inst.0.Drainage",
+        "alternate-names": ["07331500.Area.Inst.0.Drainage", "CE60A018.Area.Inst.0.Drainage", "DSNT2.Area.Inst.0.Drainage", "OK10317.Area.Inst.0.Drainage"],
+        "values": {
+          "parameter": "Area (ft2)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 941816000000], ["2020-11-06T14:17:34Z", 941816000000]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.24-hr Surveillance Begins",
+        "alternate-names": ["07331500.Elev.Inst.0.24-hr Surveillance Begins", "CE60A018.Elev.Inst.0.24-hr Surveillance Begins", "DSNT2.Elev.Inst.0.24-hr Surveillance Begins", "OK10317.Elev.Inst.0.24-hr Surveillance Begins"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 632], ["2020-11-06T14:17:34Z", 632]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Bottom of Flood Control",
+        "alternate-names": ["07331500.Elev.Inst.0.Bottom of Flood Control", "CE60A018.Elev.Inst.0.Bottom of Flood Control", "DSNT2.Elev.Inst.0.Bottom of Flood Control", "OK10317.Elev.Inst.0.Bottom of Flood Control"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 617], ["2020-11-06T14:17:34Z", 617]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Bottom of Normal",
+        "alternate-names": ["07331500.Elev.Inst.0.Bottom of Normal", "CE60A018.Elev.Inst.0.Bottom of Normal", "DSNT2.Elev.Inst.0.Bottom of Normal", "OK10317.Elev.Inst.0.Bottom of Normal"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 590], ["2020-11-06T14:17:34Z", 590]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Bottom of Power",
+        "alternate-names": ["07331500.Elev.Inst.0.Bottom of Power", "CE60A018.Elev.Inst.0.Bottom of Power", "DSNT2.Elev.Inst.0.Bottom of Power", "OK10317.Elev.Inst.0.Bottom of Power"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 590], ["2020-11-06T14:17:34Z", 590]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Daily Surveillance Level",
+        "alternate-names": ["07331500.Elev.Inst.0.Daily Surveillance Level", "CE60A018.Elev.Inst.0.Daily Surveillance Level", "DSNT2.Elev.Inst.0.Daily Surveillance Level", "OK10317.Elev.Inst.0.Daily Surveillance Level"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 630], ["2020-11-06T14:17:34Z", 630]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Maximum Pool",
+        "alternate-names": ["07331500.Elev.Inst.0.Maximum Pool", "CE60A018.Elev.Inst.0.Maximum Pool", "DSNT2.Elev.Inst.0.Maximum Pool", "OK10317.Elev.Inst.0.Maximum Pool"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 666.4], ["2020-11-06T14:17:34Z", 666.4]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Pool of Record",
+        "alternate-names": ["07331500.Elev.Inst.0.Pool of Record", "CE60A018.Elev.Inst.0.Pool of Record", "DSNT2.Elev.Inst.0.Pool of Record", "OK10317.Elev.Inst.0.Pool of Record"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 645.72], ["2020-11-06T14:17:34Z", 645.72]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Spillway Crest",
+        "alternate-names": ["07331500.Elev.Inst.0.Spillway Crest", "CE60A018.Elev.Inst.0.Spillway Crest", "DSNT2.Elev.Inst.0.Spillway Crest", "OK10317.Elev.Inst.0.Spillway Crest"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 640], ["2020-11-06T14:17:34Z", 640]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Streambed",
+        "alternate-names": ["07331500.Elev.Inst.0.Streambed", "CE60A018.Elev.Inst.0.Streambed", "DSNT2.Elev.Inst.0.Streambed", "OK10317.Elev.Inst.0.Streambed"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 505], ["2020-11-06T14:17:34Z", 505]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Top of Conservation",
+        "alternate-names": ["07331500.Elev.Inst.0.Top of Conservation", "CE60A018.Elev.Inst.0.Top of Conservation", "DSNT2.Elev.Inst.0.Top of Conservation", "OK10317.Elev.Inst.0.Top of Conservation"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "true",
+              "values": [["2020-11-05T14:17:34Z", 618.5], ["2020-11-06T14:17:34Z", 618.5]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Top of Constant Conservation",
+        "alternate-names": ["07331500.Elev.Inst.0.Top of Constant Conservation", "CE60A018.Elev.Inst.0.Top of Constant Conservation", "DSNT2.Elev.Inst.0.Top of Constant Conservation", "OK10317.Elev.Inst.0.Top of Constant Conservation"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 617], ["2020-11-06T14:17:34Z", 617]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Top of Dam",
+        "alternate-names": ["07331500.Elev.Inst.0.Top of Dam", "CE60A018.Elev.Inst.0.Top of Dam", "DSNT2.Elev.Inst.0.Top of Dam", "OK10317.Elev.Inst.0.Top of Dam"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 670], ["2020-11-06T14:17:34Z", 670]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Top of Flood",
+        "alternate-names": ["07331500.Elev.Inst.0.Top of Flood", "CE60A018.Elev.Inst.0.Top of Flood", "DSNT2.Elev.Inst.0.Top of Flood", "OK10317.Elev.Inst.0.Top of Flood"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 640], ["2020-11-06T14:17:34Z", 640]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Top of Inactive",
+        "alternate-names": ["07331500.Elev.Inst.0.Top of Inactive", "CE60A018.Elev.Inst.0.Top of Inactive", "DSNT2.Elev.Inst.0.Top of Inactive", "OK10317.Elev.Inst.0.Top of Inactive"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 590], ["2020-11-06T14:17:34Z", 590]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Top of Induced Surcharge",
+        "alternate-names": ["07331500.Elev.Inst.0.Top of Induced Surcharge", "CE60A018.Elev.Inst.0.Top of Induced Surcharge", "DSNT2.Elev.Inst.0.Top of Induced Surcharge", "OK10317.Elev.Inst.0.Top of Induced Surcharge"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 643], ["2020-11-06T14:17:34Z", 643]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Top of Normal",
+        "alternate-names": ["07331500.Elev.Inst.0.Top of Normal", "CE60A018.Elev.Inst.0.Top of Normal", "DSNT2.Elev.Inst.0.Top of Normal", "OK10317.Elev.Inst.0.Top of Normal"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "true",
+              "values": [["2020-11-05T14:17:34Z", 618.5], ["2020-11-06T14:17:34Z", 618.5]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Elev.Inst.0.Top of Power",
+        "alternate-names": ["07331500.Elev.Inst.0.Top of Power", "CE60A018.Elev.Inst.0.Top of Power", "DSNT2.Elev.Inst.0.Top of Power", "OK10317.Elev.Inst.0.Top of Power"],
+        "values": {
+          "parameter": "Elev (ft NGVD29)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 617], ["2020-11-06T14:17:34Z", 617]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Flow.Inst.0.Downstream Channel Capacity",
+        "alternate-names": ["07331500.Flow.Inst.0.Downstream Channel Capacity", "CE60A018.Flow.Inst.0.Downstream Channel Capacity", "DSNT2.Flow.Inst.0.Downstream Channel Capacity", "OK10317.Flow.Inst.0.Downstream Channel Capacity"],
+        "values": {
+          "parameter": "Flow (cfs)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 45000], ["2020-11-06T14:17:34Z", 45000]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Precip-Mean Areal.Total.1Month.Normal",
+        "alternate-names": ["07331500.Precip-Mean Areal.Total.1Month.Normal", "CE60A018.Precip-Mean Areal.Total.1Month.Normal", "DSNT2.Precip-Mean Areal.Total.1Month.Normal", "OK10317.Precip-Mean Areal.Total.1Month.Normal"],
+        "values": {
+          "parameter": "Precip-Mean Areal (in)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 1.44], ["2020-11-06T14:17:34Z", 1.44]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.24-hr Surveillance Begins",
+        "alternate-names": ["07331500.Stor.Inst.0.24-hr Surveillance Begins", "CE60A018.Stor.Inst.0.24-hr Surveillance Begins", "DSNT2.Stor.Inst.0.24-hr Surveillance Begins", "OK10317.Stor.Inst.0.24-hr Surveillance Begins"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 3986100], ["2020-11-06T14:17:34Z", 3986100]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Bottom of Flood Control",
+        "alternate-names": ["07331500.Stor.Inst.0.Bottom of Flood Control", "CE60A018.Stor.Inst.0.Bottom of Flood Control", "DSNT2.Stor.Inst.0.Bottom of Flood Control", "OK10317.Stor.Inst.0.Bottom of Flood Control"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 2516200], ["2020-11-06T14:17:34Z", 2516200]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Bottom of Normal",
+        "alternate-names": ["07331500.Stor.Inst.0.Bottom of Normal", "CE60A018.Stor.Inst.0.Bottom of Normal", "DSNT2.Stor.Inst.0.Bottom of Normal", "OK10317.Stor.Inst.0.Bottom of Normal"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 1048900], ["2020-11-06T14:17:34Z", 1048900]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Bottom of Power",
+        "alternate-names": ["07331500.Stor.Inst.0.Bottom of Power", "CE60A018.Stor.Inst.0.Bottom of Power", "DSNT2.Stor.Inst.0.Bottom of Power", "OK10317.Stor.Inst.0.Bottom of Power"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 1048900], ["2020-11-06T14:17:34Z", 1048900]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Maximum Pool",
+        "alternate-names": ["07331500.Stor.Inst.0.Maximum Pool", "CE60A018.Stor.Inst.0.Maximum Pool", "DSNT2.Stor.Inst.0.Maximum Pool", "OK10317.Stor.Inst.0.Maximum Pool"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 9899740], ["2020-11-06T14:17:34Z", 9899740]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Spillway Crest",
+        "alternate-names": ["07331500.Stor.Inst.0.Spillway Crest", "CE60A018.Stor.Inst.0.Spillway Crest", "DSNT2.Stor.Inst.0.Spillway Crest", "OK10317.Stor.Inst.0.Spillway Crest"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 4997100], ["2020-11-06T14:17:34Z", 4997100]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Top of Conservation",
+        "alternate-names": ["07331500.Stor.Inst.0.Top of Conservation", "CE60A018.Stor.Inst.0.Top of Conservation", "DSNT2.Stor.Inst.0.Top of Conservation", "OK10317.Stor.Inst.0.Top of Conservation"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "true",
+              "values": [["2020-11-05T14:17:34Z", 2604309], ["2020-11-06T14:17:34Z", 2604309]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Top of Constant Conservation",
+        "alternate-names": ["07331500.Stor.Inst.0.Top of Constant Conservation", "CE60A018.Stor.Inst.0.Top of Constant Conservation", "DSNT2.Stor.Inst.0.Top of Constant Conservation", "OK10317.Stor.Inst.0.Top of Constant Conservation"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 2487603], ["2020-11-06T14:17:34Z", 2487603]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Top of Dam",
+        "alternate-names": ["07331500.Stor.Inst.0.Top of Dam", "CE60A018.Stor.Inst.0.Top of Dam", "DSNT2.Stor.Inst.0.Top of Dam", "OK10317.Stor.Inst.0.Top of Dam"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 10723000], ["2020-11-06T14:17:34Z", 10723000]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Top of Flood",
+        "alternate-names": ["07331500.Stor.Inst.0.Top of Flood", "CE60A018.Stor.Inst.0.Top of Flood", "DSNT2.Stor.Inst.0.Top of Flood", "OK10317.Stor.Inst.0.Top of Flood"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 4933072], ["2020-11-06T14:17:34Z", 4933072]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Top of Inactive",
+        "alternate-names": ["07331500.Stor.Inst.0.Top of Inactive", "CE60A018.Stor.Inst.0.Top of Inactive", "DSNT2.Stor.Inst.0.Top of Inactive", "OK10317.Stor.Inst.0.Top of Inactive"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 1048900], ["2020-11-06T14:17:34Z", 1048900]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Top of Induced Surcharge",
+        "alternate-names": ["07331500.Stor.Inst.0.Top of Induced Surcharge", "CE60A018.Stor.Inst.0.Top of Induced Surcharge", "DSNT2.Stor.Inst.0.Top of Induced Surcharge", "OK10317.Stor.Inst.0.Top of Induced Surcharge"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 5427300], ["2020-11-06T14:17:34Z", 5427300]]
+            }
+          ]
+        }
+      }, {
+        "office": "NAB",
+        "name": "Indian Rock.Stor.Inst.0.Top of Power",
+        "alternate-names": ["07331500.Stor.Inst.0.Top of Power", "CE60A018.Stor.Inst.0.Top of Power", "DSNT2.Stor.Inst.0.Top of Power", "OK10317.Stor.Inst.0.Top of Power"],
+        "values": {
+          "parameter": "Stor (ac-ft)",
+          "segments": [{
+              "interpolate": "false",
+              "values": [["2020-11-05T14:17:34Z", 2516200], ["2020-11-06T14:17:34Z", 2516200]]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
