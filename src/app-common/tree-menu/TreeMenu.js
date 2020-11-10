@@ -10,29 +10,35 @@ const defaultOnClick = (props) => console.log(props);
 class TreeMenu extends React.Component {
   constructor(props) {
     super(props);
+    const { data, locale } = this.props;
+    const openNodes = this.props.initialOpenNodes || [];
+    const searchTerm = "";
     this.state = {
-      openNodes: this.props.initialOpenNodes || [],
+      openNodes,
+      searchTerm,
       activeKey: this.props.initialActiveKey || "",
       focusKey: this.props.initialFocusKey || "",
-      searchTerm: "",
+      items: walk({ data, locale, openNodes, searchTerm }),
     };
   }
 
-  componentDidUpdate(prevProps) {
-    const { data, initialOpenNodes, resetOpenNodesOnDataUpdate } = this.props;
-    if (
-      prevProps.data !== data &&
-      resetOpenNodesOnDataUpdate &&
-      initialOpenNodes
-    ) {
-      this.setState({ openNodes: initialOpenNodes });
+  componentDidUpdate(prevProps, prevState) {
+    const { data, locale, initialOpenNodes, resetOpenNodesOnDataUpdate } = this.props;
+    const { searchTerm, openNodes } = this.state;
+    // if the data, locale, searchTerm, or openNodes changes, then recompute the tree menu items
+    if (prevProps.data !== data || prevProps.locale !== locale || prevState.searchTerm !== searchTerm || prevState.openNodes !== openNodes) {
+      const items = walk({ data, locale, searchTerm, openNodes });
+      this.setState({ items });
+    }
+    if (prevProps.data !== data && resetOpenNodesOnDataUpdate) {
+      const openNodes = initialOpenNodes || [];
+      this.setState({ openNodes });
     }
   }
 
   resetOpenNodes = (newOpenNodes, activeKey, focusKey) => {
     const { initialOpenNodes } = this.props;
-    const openNodes =
-      (Array.isArray(newOpenNodes) && newOpenNodes) || initialOpenNodes || [];
+    const openNodes = (Array.isArray(newOpenNodes) && newOpenNodes) || initialOpenNodes || [];
     this.setState({
       openNodes,
       activeKey: activeKey || "",
@@ -58,14 +64,10 @@ class TreeMenu extends React.Component {
   };
 
   generateItems = () => {
-    const { data, onClickItem, locale } = this.props;
-    const { searchTerm } = this.state;
-    const openNodes = this.props.openNodes || this.state.openNodes;
+    const { onClickItem } = this.props;
+    const { items } = this.state;
     const activeKey = this.props.activeKey || this.state.activeKey;
     const focusKey = this.props.focusKey || this.state.focusKey;
-    const items = data
-      ? walk({ data, openNodes, locale, searchTerm })
-      : [];
 
     return items.map((item) => {
       const focused = item.key === focusKey;
