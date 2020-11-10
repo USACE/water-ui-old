@@ -13,6 +13,7 @@ const basemaps = [
     attributions:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   },
+  /* These are invalid. Either remove, or update URL and/or token.
   {
     id: "MapBoxStreets",
     name: "MapBox Streets",
@@ -28,7 +29,7 @@ const basemaps = [
       "https://api.tiles.mapbox.com/v4/willbreitkreutzwork.pki0cla6/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXNhY2UiLCJhIjoiY2o1MDZscms4MDI4MjMycG1wa3puc212MCJ9.CW7edZMtlx5vFLNF5P-zTA",
     attributions:
       'Imagery from <a href="https://mapbox.com/about/maps/">MapBox</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  },
+  },*/
   {
     id: "MapBoxOutdoor",
     name: "MapBox Outdoor",
@@ -118,22 +119,24 @@ class BasemapControl extends Control {
     const options = Object.assign(
       {
         basemaps: basemaps.map((b) => {
-          return new XYZ({
+          // Build layer configs that can be used to create XYZ layers later.
+          return {
             url: b.url,
             crossOrigin: true,
             attributions: b.attributions,
             maxZoom: b.maxZoom,
-          });
+          };
         }),
         activeIdx: 0,
       },
       props
-    );
+   );
 
     const layer = new Tile({
-      source: options.basemaps[options.activeIdx],
+      source: new XYZ(options.basemaps[options.activeIdx]),
     });
 
+    // Build Select element and Options for each basemap item
     var select = document.createElement("select");
     basemaps.forEach((b, i) => {
       const opt = document.createElement("option");
@@ -143,6 +146,7 @@ class BasemapControl extends Control {
     });
     select.value = options.activeIdx;
 
+    // Add Select element to DOM
     var element = document.createElement("div");
     element.className = "basemap-control";
     element.appendChild(select);
@@ -157,20 +161,22 @@ class BasemapControl extends Control {
     this.setBasemap = this.setBasemap.bind(this);
 
     select.addEventListener("change", (e) => {
-      this.setBasemap(Number( ( /** @type {HTMLSelectElement} */ ( e.target ) ).value));
+      this.setBasemap(Number((/** @type {HTMLSelectElement} */ (e.target)).value));
     });
   }
 
   setMap(map) {
     super.setMap(map);
-    this.setBasemap(1);
+    this.setBasemap(0);
   }
 
   setBasemap(idx) {
     const map = ( /** @type {Control} */ ( this ) ).getMap();
     map.removeLayer(this.layer);
-    this.layer.setSource(this.options.basemaps[idx]);
+    // Build a new XYZ layer for the selected layer config.
+    this.layer.setSource(new XYZ(this.options.basemaps[idx]));
     map.getLayers().insertAt(0, this.layer);
+    this.options.activeIdx = idx;
   }
 }
 
