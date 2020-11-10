@@ -66,7 +66,7 @@ const LocationTree = ({
             onChange={e => search(e.target.value)}
             onClick={handleInput}
             onKeyDown={handleInput}
-            placeholder="Organizational Structure"
+            placeholder="Search Organizational Structure"
           />
           { treeIsOpen && defaultChildren({ items }) }
         </div>
