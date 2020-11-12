@@ -11,7 +11,7 @@ const MapDetails = ( props ) => {
     /** @type a2w.models.LocationDetail */
     locationDetailData,
     locationDetailIsLoading,
-    doUpdateUrlWithHomepage,
+    doUpdateUrl,
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +33,7 @@ const MapDetails = ( props ) => {
       ? { padding: 0, flexGrow: 1 }
       : { visibility: "hidden" };
 
-  const handleFullScreen = (selectedLocationCode, doUpdateUrlWithHomepage) => {
+  const handleFullScreen = (selectedLocationCode, doUpdateUrl) => {
     setIsFullScreen(true);
     const newLocation = `${RoutePaths.Locations.replace(":locationId", selectedLocationCode)}`;
 
@@ -41,7 +41,7 @@ const MapDetails = ( props ) => {
     // added simple fade, will replace later.
     setTimeout(function () {
       document.body.classList.toggle("fade");
-      doUpdateUrlWithHomepage(newLocation);
+      doUpdateUrl(newLocation);
       setTimeout(function () {
         document.body.classList.toggle("fade");
       }, 700);
@@ -54,7 +54,7 @@ const MapDetails = ( props ) => {
           <div className={`${isFullScreen ? "full-screen " : "drawer-content-container"}`}>
             <div className={`${isOpen ? "drawer-content" : "display-none"}`}>
               <MapDetailsContent
-                handleFullScreen={() => handleFullScreen(locationDetailCode, doUpdateUrlWithHomepage)}
+                handleFullScreen={() => handleFullScreen(locationDetailCode, doUpdateUrl)}
                 locationDetail={locationDetailData}
                 locationCode={locationDetailCode}
                 locationDetailIsLoading={locationDetailIsLoading}
@@ -81,13 +81,13 @@ const MapDetails = ( props ) => {
 MapDetails.propTypes = {
   selectedLocationCode: PropTypes.string,
   locationDetailData: PropTypes.object,
-  doUpdateUrlWithHomepage: PropTypes.func.isRequired,
+  doUpdateUrl: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationDetailCode",
   "selectLocationDetailData",
   "selectLocationDetailIsLoading",
-  "doUpdateUrlWithHomepage",
+  "doUpdateUrl",
   MapDetails
 );

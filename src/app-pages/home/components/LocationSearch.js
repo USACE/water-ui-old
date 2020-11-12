@@ -9,7 +9,7 @@ const LocationSearch = ({
   locationSearchData,
   doSetLocationSearchText,
   debounceFetch,
-  doUpdateUrlWithHomepage,
+  doUpdateUrl,
 }) => {
 
   const inputOnChange = (e) => {
@@ -24,7 +24,7 @@ const LocationSearch = ({
   const itemOnClick = (e) => {
     const locationCode = e.target.value;
     doSetLocationSearchText("");
-    doUpdateUrlWithHomepage(RoutePaths.Locations.replace(":locationId", locationCode));
+    doUpdateUrl(RoutePaths.Locations.replace(":locationId", locationCode));
   }
 
   return (
@@ -51,13 +51,13 @@ LocationSearch.propTypes = {
   })).isRequired,
   doSetLocationSearchText: PropTypes.func.isRequired,
   debounceFetch: PropTypes.func.isRequired,
-  doUpdateUrlWithHomepage: PropTypes.func.isRequired,
+  doUpdateUrl: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationSearchText",
   "selectLocationSearchData",
   "doSetLocationSearchText",
-  "doUpdateUrlWithHomepage",
+  "doUpdateUrl",
   LocationSearch,
 );
