@@ -5,7 +5,7 @@ import Dropdown from "../../../../app-common/Dropdown";
 import MenuTree from "../../../../app-common/tree-menu/TreeMenu";
 import "./mapNavBar.scss";
 import { connect } from "redux-bundler-react";
-import LocationTypeFilter from "./LocationType";
+import LocationTypeFilter from "../LocationTypeFilter";
 import { returnKeyCodeName } from "../../../../functions";
 
 

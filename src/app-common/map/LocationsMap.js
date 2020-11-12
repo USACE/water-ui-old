@@ -48,8 +48,9 @@ const LocationsMap = (props) => {
   const popupContent = useRef( null );
   const popupCloser = useRef( null );
 
-  const addDataToMap = useCallback((map) => {
-    const iconFeatures = locationSummaries.map((item, index) => {
+  const addDataToMap = useCallback(({map, typeFilter}) => {
+    const data = typeFilter ? locationSummaries.filter(location => location.location_type === typeFilter) : locationSummaries;
+    const iconFeatures = data.map((item, index) => {
       const iconFeature = new Feature(
         new Point(fromLonLat([item.longitude, item.latitude]))
       );
@@ -178,13 +179,12 @@ const LocationsMap = (props) => {
 
     doLocationsMapLoaded();
   }, [locationSummaries, doLocationsMapLoaded, doLocationDetailSetCode]);
+
   const removeData = useCallback((map) => {
-    console.log("map1: ", map.getLayers().array_);
-    console.log("map 2:", map);
     map
       .getLayers()
       .getArray()
-      .filter((layer) => layer.get("name") !== undefined)
+      .filter((layer) => layer.get("name"))
       .forEach((layer) => map.removeLayer(layer));
   }, []);
   
@@ -202,7 +202,7 @@ const LocationsMap = (props) => {
   }, [doLocationsMapSaveMapState]);
 
   const updateMap = useCallback((map) => {
-    console.log("update: ",locationsMapMapState)
+
       if (locationsMapMapState.center) {
         // reset attached listeners
         popupContent.current.onclick = null;
@@ -212,14 +212,17 @@ const LocationsMap = (props) => {
           { center: fromLonLat(locationsMapMapState.center) },
           { duration: 1000 }
         );
-      }if(locationsMapMapState.center){
-        console.log("in here ")
-        removeData(map)
-        addDataToMap(map)
       }
-
+      if(locationsMapMapState.typeFilter){
+        removeData(map);
+        if(locationsMapMapState.typeFilter === 'ALL'){
+          addDataToMap({ map });
+        }else{
+          addDataToMap({ map,typeFilter: locationsMapMapState.typeFilter });
+        }
+      }
     },
-    [locationsMapMapState]
+    [locationsMapMapState, addDataToMap, removeData]
   );
   
   const newOptions = {

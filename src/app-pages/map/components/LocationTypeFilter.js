@@ -1,20 +1,19 @@
-import React, { useEffect,useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import PropTypes from 'prop-types';
-import Dropdown from "../../../../app-common/Dropdown";
+import Dropdown from "../../../app-common/Dropdown";
 import { connect } from "redux-bundler-react";
 
 
-const LocationTypeFilter = ({ locationSummaries, doLocationSummariesFormatData, locationsMapMapState,doLocationsMapSaveMapState}) => {
-console.log("locationSummaries: ",locationSummaries)
-const locationSummariesState = locationSummaries;
+const LocationTypeFilter = ({ doLocationsMapSaveMapState }) => {
 
-const filterType = ( e, locationSummariesState, doLocationSummariesFormatData ) =>{
 
-    const mapState = locationsMapMapState.typeFilter = e.target.value.toUpperCase()
-    console.log("in filter", mapState)
-    doLocationsMapSaveMapState(mapState)
-
+const filterType = ( e) =>{
+    const mapState = {
+      typeFilter: e.target.value.toUpperCase()
+    };
+    doLocationsMapSaveMapState(mapState);
 };
+
   return (
     <Fragment >
           <Dropdown
@@ -22,28 +21,26 @@ const filterType = ( e, locationSummariesState, doLocationSummariesFormatData ) 
             label="Location Type"
             placeholder="Select Location Type..."
             options={[
-              { id: "Divisions", value: "Divisions" },
-              { id: "Districts", value: "Districts" },
-              { id: "Projects", value: "Projects" },
-              { id: "Stream Gages", value: "Stream Gages" },
-              { id: "Sites", value: "Sites" },
+              { id: "All", value: "All" },
+              { id: "Location", value: "Location" },
+              // { id: "Stream_Gages", value: "Stream Gages" },
+              // { id: "Stream", value: "Stream" },
               { id: "WQ", value: "WQ" },
-              { id: "BASIN", value: "BASIN" },
+              { id: "Basin", value: "Basin" },
+              { id: "OPERATING_BASIN", value: "Operating Basin" },
+              
             ]}
-            onChange={(e)=> filterType(e,locationSummaries,doLocationSummariesFormatData)}
+            onChange={(e)=> filterType(e)}
             />
 
     </Fragment>
   );
 };
 LocationTypeFilter.propTypes = {
-//   locationDetailData: PropTypes.object,
+  doLocationsMapSaveMapState: PropTypes.func.isRequired,
 };
 
 export default connect(
-  "doLocationSummariesFormatData",
-  "selectLocationSummaries",
   "doLocationsMapSaveMapState",
-  "selectLocationsMapMapState",
   LocationTypeFilter
 );
