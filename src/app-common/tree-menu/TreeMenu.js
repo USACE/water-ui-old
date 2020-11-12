@@ -1,43 +1,58 @@
 import React from "react";
-import "./treeMenu.scss";
-
-import { slowWalk } from "./walk";
+import { debounce } from "lodash";
+import { walk } from "./walk";
 import { defaultChildren } from "./renderProps";
-import { KeyDown } from "../../functions";
+import KeyDown from "./KeyDown";
+import "./treeMenu.scss";
 
 const defaultOnClick = (props) => console.log(props);
 
 class TreeMenu extends React.Component {
   constructor(props) {
     super(props);
+    const { data, locale } = this.props;
+    const openNodes = this.props.initialOpenNodes || [];
+    const searchTerm = "";
     this.state = {
-      openNodes: this.props.initialOpenNodes || [],
+      openNodes,
+      searchTerm,
       activeKey: this.props.initialActiveKey || "",
       focusKey: this.props.initialFocusKey || "",
+      items: walk({ data, locale, openNodes, searchTerm }),
     };
   }
 
-  componentDidUpdate(prevProps) {
-    const { data, initialOpenNodes, resetOpenNodesOnDataUpdate } = this.props;
-    if (
-      prevProps.data !== data &&
-      resetOpenNodesOnDataUpdate &&
-      initialOpenNodes
-    ) {
-      this.setState({ openNodes: initialOpenNodes });
+  componentDidUpdate(prevProps, prevState) {
+    const { data, locale, initialOpenNodes, resetOpenNodesOnDataUpdate } = this.props;
+    const { searchTerm, openNodes } = this.state;
+    // if the data, locale, searchTerm, or openNodes changes, then recompute the tree menu items
+    if (prevProps.data !== data || prevProps.locale !== locale || prevState.searchTerm !== searchTerm || prevState.openNodes !== openNodes) {
+      const items = walk({ data, locale, searchTerm, openNodes });
+      this.setState({ items });
+    }
+    if (prevProps.data !== data && resetOpenNodesOnDataUpdate) {
+      const openNodes = initialOpenNodes || [];
+      this.setState({ openNodes });
     }
   }
 
   resetOpenNodes = (newOpenNodes, activeKey, focusKey) => {
     const { initialOpenNodes } = this.props;
-    const openNodes =
-      (Array.isArray(newOpenNodes) && newOpenNodes) || initialOpenNodes || [];
+    const openNodes = (Array.isArray(newOpenNodes) && newOpenNodes) || initialOpenNodes || [];
     this.setState({
       openNodes,
       activeKey: activeKey || "",
       focusKey: focusKey || activeKey || "",
+      searchTerm: "",
     });
   };
+
+  debounceSearch = debounce(searchTerm => this.setState({ searchTerm }), 500);
+
+  search = (newTerm) => {
+    const searchTerm = newTerm.length < this.props.minSearchLength ? "" : newTerm;
+    this.debounceSearch(searchTerm);
+  }
 
   toggleNode = (node) => {
     if (!this.props.openNodes) {
@@ -50,12 +65,10 @@ class TreeMenu extends React.Component {
   };
 
   generateItems = () => {
-    const { data, onClickItem, locale } = this.props;
-    const openNodes = this.props.openNodes || this.state.openNodes;
+    const { onClickItem } = this.props;
+    const { items } = this.state;
     const activeKey = this.props.activeKey || this.state.activeKey;
     const focusKey = this.props.focusKey || this.state.focusKey;
-    const defaultSearch = slowWalk;
-    const items = data ? defaultSearch({ data, openNodes, locale }) : [];
 
     return items.map((item) => {
       const focused = item.key === focusKey;
@@ -89,7 +102,6 @@ class TreeMenu extends React.Component {
     };
 
     return {
-      preventDefault: true,
       up: () => {
         this.setState(({ focusKey }) => ({
           focusKey: focusIndex > 0 ? items[focusIndex - 1].key : focusKey,
@@ -130,20 +142,20 @@ class TreeMenu extends React.Component {
 
   render() {
     const { children, disableKeyboard } = this.props;
+    const { searchTerm } = this.state;
 
+    const search = this.search;
     const items = this.generateItems();
     const resetOpenNodes = this.resetOpenNodes;
 
     /** @type any **/
     const childComponent = children || defaultChildren;
 
-    const renderProps = { items, resetOpenNodes };
+    const renderProps = { items, resetOpenNodes, searchTerm, search };
 
-    return disableKeyboard ? (
-      childComponent(renderProps)
-    ) : (
-      <KeyDown {...this.getKeyDownProps(items)}>{childComponent(renderProps)}</KeyDown>
-    );
+    return disableKeyboard
+      ? childComponent(renderProps)
+      : <KeyDown {...this.getKeyDownProps(items)}>{childComponent(renderProps)}</KeyDown>;
   }
 }
 
@@ -154,6 +166,7 @@ TreeMenu.defaultProps = {
   resetOpenNodesOnDataUpdate: false,
   disableKeyboard: false,
   initialOpenNodes: [],
+  minSearchLength: 3, // the minimum searchTerm length in order for the search to work
 };
 
 export default TreeMenu;

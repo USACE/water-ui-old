@@ -33,6 +33,11 @@
   z-index: unset;
   position: relative;
 
+  &:hover, &:focus {
+    cursor: pointer;
+    background-color: #eeeeee;
+  }
+
   &--active {
     color: $base-dark-gray;
     background: $base-lighter-gray;
