@@ -5,6 +5,7 @@ import Dropdown from "../../../../app-common/Dropdown";
 import MenuTree from "../../../../app-common/tree-menu/TreeMenu";
 import "./mapNavBar.scss";
 import { connect } from "redux-bundler-react";
+import LocationTypeFilter from "./LocationType";
 import { returnKeyCodeName } from "../../../../functions";
 
 
@@ -71,19 +72,7 @@ const MapNavBar = ({ locationTree, doLocationDetailSetCode, doLocationsMapSaveMa
             />
           </div>
           <div className="col-md-2">
-            <Dropdown
-              id="location-type-dropdown"
-              label="Location Type"
-              placeholder="Select Location Type..."
-              options={[
-                { id: "Divisions", value: "Divisions" },
-                { id: "Districts", value: "Districts" },
-                { id: "Projects", value: "Projects" },
-                { id: "Stream Gages", value: "Stream Gages" },
-                { id: "Sites", value: "Sites" },
-                { id: "WQ", value: "WQ" },
-              ]}
-            />
+          <LocationTypeFilter/>
           </div>
           <div className="col-md-4">
             <button

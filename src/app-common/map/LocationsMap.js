@@ -71,6 +71,7 @@ const LocationsMap = (props) => {
 
     const unclusteredLayer = new VectorLayer({
       source: source,
+      name: "unclusteredLayer",
       style: feature => feature.get("style"),
       maxResolution: 200,
     });
@@ -82,8 +83,9 @@ const LocationsMap = (props) => {
 
     const styleCache = {};
 
-    const clusters = new VectorLayer({
+   const clusters = new VectorLayer({
       source: clusterSource,
+      name: "clusters",
       style: function (feature) {
         const size = feature.get("features").length;
         let style = styleCache[size];
@@ -176,7 +178,16 @@ const LocationsMap = (props) => {
 
     doLocationsMapLoaded();
   }, [locationSummaries, doLocationsMapLoaded, doLocationDetailSetCode]);
-
+  const removeData = useCallback((map) => {
+    console.log("map1: ", map.getLayers().array_);
+    console.log("map 2:", map);
+    map
+      .getLayers()
+      .getArray()
+      .filter((layer) => layer.get("name") !== undefined)
+      .forEach((layer) => map.removeLayer(layer));
+  }, []);
+  
   const saveMapState = useCallback((map) => {
     // reset attached listeners
     popupContent.current.onclick = null;
@@ -191,6 +202,7 @@ const LocationsMap = (props) => {
   }, [doLocationsMapSaveMapState]);
 
   const updateMap = useCallback((map) => {
+    console.log("update: ",locationsMapMapState)
       if (locationsMapMapState.center) {
         // reset attached listeners
         popupContent.current.onclick = null;
@@ -200,7 +212,12 @@ const LocationsMap = (props) => {
           { center: fromLonLat(locationsMapMapState.center) },
           { duration: 1000 }
         );
+      }if(locationsMapMapState.center){
+        console.log("in here ")
+        removeData(map)
+        addDataToMap(map)
       }
+
     },
     [locationsMapMapState]
   );
