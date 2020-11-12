@@ -37,8 +37,8 @@ const LocationSearch = ({
       }}
       items={items}
       itemOnClick={itemOnClick}
-      placeholder="Search by City, State, ZIP, or Project Names"
-      ariaLabel="Search by City, State, ZIP, or Project Names"
+      placeholder="Search by city or project name"
+      ariaLabel="Search by city or project name"
     />
   );
 };
