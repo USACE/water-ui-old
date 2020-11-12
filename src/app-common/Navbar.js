@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { connect } from "redux-bundler-react";
+import PropTypes from "prop-types";
 import { RoutePaths } from "../app-bundles/routes-bundle";
 
-const Navbar = () => {
+const Navbar = ({ pathname }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const closeNavbar = () => {
@@ -53,16 +55,25 @@ const Navbar = () => {
 							</a>
 						</li>
 					</ul>
-					<form className="form-inline my-2 my-lg-0">
-						<input className="form-control mr-sm-2" type="text" placeholder="Search" />
-						<button className="btn btn-secondary my-2 my-sm-0" type="submit">
-							Search
-						</button>
-					</form>
+					{ pathname !== RoutePaths.Home && (
+						<form className="form-inline my-2 my-lg-0">
+							<input className="form-control mr-sm-2" type="text" placeholder="Search" />
+							<button className="btn btn-secondary my-2 my-sm-0" type="submit">
+								Search
+							</button>
+						</form>
+					)}
 				</div>
 			</nav>
 		</header>
 	);
 };
 
-export default Navbar;
+Navbar.propTypes = {
+	pathname: PropTypes.string.isRequired,
+};
+
+export default connect(
+	"selectPathname",
+	Navbar,
+);
