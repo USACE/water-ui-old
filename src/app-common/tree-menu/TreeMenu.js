@@ -50,7 +50,8 @@ class TreeMenu extends React.Component {
   debounceSearch = debounce(searchTerm => this.setState({ searchTerm }), 500);
 
   search = (newTerm) => {
-    this.debounceSearch(newTerm);
+    const searchTerm = newTerm.length < this.props.minSearchLength ? "" : newTerm;
+    this.debounceSearch(searchTerm);
   }
 
   toggleNode = (node) => {
@@ -165,6 +166,7 @@ TreeMenu.defaultProps = {
   resetOpenNodesOnDataUpdate: false,
   disableKeyboard: false,
   initialOpenNodes: [],
+  minSearchLength: 3, // the minimum searchTerm length in order for the search to work
 };
 
 export default TreeMenu;
