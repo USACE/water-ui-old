@@ -48,8 +48,8 @@ const LocationsMap = (props) => {
   const popupContent = useRef( null );
   const popupCloser = useRef( null );
 
-  const addDataToMap = useCallback(({ map, typeFilter }) => {
-    const data = typeFilter ? locationSummaries.filter(location => location.location_type === typeFilter) : locationSummaries;
+  const addDataToMap = useCallback(({ map, typeFilter, key = "location_type" }) => {
+    const data = typeFilter ? locationSummaries.filter(location => location[key] === typeFilter) : locationSummaries;
     const iconFeatures = data.map((item, index) => {
       const iconFeature = new Feature(
         new Point(fromLonLat([item.longitude, item.latitude]))
@@ -215,7 +215,17 @@ const LocationsMap = (props) => {
       }
       if(locationsMapMapState.typeFilter){
         removeData(map);
-        locationsMapMapState.typeFilter === "ALL" ? addDataToMap({ map }) : addDataToMap({ map, typeFilter: locationsMapMapState.typeFilter });
+
+        switch (locationsMapMapState.typeFilter) {
+          case "STREAM_LOCATION":
+            addDataToMap({ map, typeFilter: locationsMapMapState.typeFilter, key: "sub_location_type" });
+            break;
+          case "ALL":
+            addDataToMap({ map });
+            break;
+          default:
+            addDataToMap({ map, typeFilter: locationsMapMapState.typeFilter });
+        }     
       }
     },
     [locationsMapMapState, addDataToMap, removeData]

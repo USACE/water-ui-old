@@ -22,12 +22,17 @@ const filterType = ( e ) =>{
             placeholder="Select Location Type..."
             options={[
               { id: "All", value: "All" },
-              { id: "Location", value: "Location" },
-              // { id: "Stream_Gages", value: "Stream Gages" },
-              // { id: "Stream", value: "Stream" },
+              { id: "Location", value: "Locations" },
+              { id: "Stream_Location", value: "Stream Gages" },
+              // { id: "Stream", value: "Streams" },
+              // { id: "Project", value: "Projects" },
+              // { id: "Turbine", value: "Turbines" },
+              // { id: "Outlet", value: "Outlets" },
+              // { id: "Lock", value: "Locks" },
+              // { id: "Embankment", value: "Embankments" },
               { id: "WQ", value: "WQ" },
-              { id: "Basin", value: "Basin" },
-              { id: "Operating_Basin", value: "Operating Basin" },
+              { id: "Basin", value: "Basins" },
+              { id: "Operating_Basin", value: "Operating Basins" },
               
             ]}
             onChange={(e)=> filterType(e)}
