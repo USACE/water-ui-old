@@ -36,6 +36,14 @@ export const ItemComponent = ( props ) => {
     node_type = "STREAM"
   } = props;
 
+  const handleOnClick = (e) => {
+    if (hasNodes && toggleNode) {
+      toggleNode();
+    } else {
+      onClick(e);
+    }
+  }
+
   return (
   <li
     title={label ? label.replace(/(.{60})/g,"$1\n") : ""}
@@ -55,14 +63,11 @@ export const ItemComponent = ( props ) => {
     id={`rstm-tree-item-${id}`}
     role="button"
     aria-pressed={active}
-    onClick={onClick}
+    onClick={handleOnClick}
   >
     <div
-    className={`rstm-tree-label ${iconLibrary(node_type)}`}
-    style={{display:"inline-block"}}
-      onClick={(e) => {
-        hasNodes && toggleNode && toggleNode();
-      }}
+      className={`rstm-tree-label ${iconLibrary(node_type)}`}
+      style={{ display:"inline-block" }}
     >
       {label}
     </div>
