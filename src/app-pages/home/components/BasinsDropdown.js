@@ -2,17 +2,17 @@ import React from "react";
 import PropTypes from "prop-types"
 import { connect } from "redux-bundler-react";
 import Dropdown from "../../../app-common/Dropdown";
-import { RoutePaths } from "../../../app-bundles/routes-bundle";
+import { RoutePaths } from "../../../app-bundles/route-paths";
 
 const BasinsDropdown = ({
   basins,
   doSetSelectedBasin,
-  doUpdateUrlWithHomepage,
+  doUpdateUrl,
 }) => {
   
   const onChange = (e) => {
     doSetSelectedBasin(e.target.value);
-    doUpdateUrlWithHomepage(RoutePaths.Map);
+    doUpdateUrl(RoutePaths.Map);
   };
 
   const options = basins && basins.map(val => ({
@@ -38,12 +38,12 @@ BasinsDropdown.propTypes = {
     basin_location_code: PropTypes.string.isRequired,
   })),
   doSetSelectedBasin: PropTypes.func.isRequired,
-  doUpdateUrlWithHomepage: PropTypes.func.isRequired,
+  doUpdateUrl: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectBasins",
   "doSetSelectedBasin",
-  "doUpdateUrlWithHomepage",
+  "doUpdateUrl",
   BasinsDropdown,
 );

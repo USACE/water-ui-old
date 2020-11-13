@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import TextSection from '../../../app-common/TextSection';
 import ReportsContainer from "../ReportsContainer";
 import { connect } from "redux-bundler-react";
-import { RoutePaths } from "../../../app-bundles/routes-bundle";
+import { RoutePaths } from "../../../app-bundles/route-paths";
 
 const TextSubSection = {
   textAlign: 'left',

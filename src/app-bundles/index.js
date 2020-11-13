@@ -3,14 +3,8 @@ import {
   createCacheBundle,
   createUrlBundle,
 } from "redux-bundler";
-
-import {
-  createNestedUrlBundle,
-} from "@corpsmap/corpsmap-bundles";
 import createAuthBundle from "@corpsmap/create-auth-bundle";
 import createJwtApiBundle from "@corpsmap/create-jwt-api-bundle";
-import pkg from "../../package.json";
-
 import routeBundle from "./routes-bundle";
 import mapsBundle from './maps-bundle';
 import locationsMapBundle from "./locations-map-bundle";
@@ -47,9 +41,6 @@ export default composeBundles(
     cacheFn: cache.set,
   }),
   createUrlBundle(),
-  createNestedUrlBundle({
-    pkg: pkg,
-  }),
   mapsBundle,
   locationSummariesBundle,
   routeBundle,

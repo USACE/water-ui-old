@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Autocomplete from "../../../app-common/autocomplete/Autocomplete";
-import { RoutePaths } from "../../../app-bundles/routes-bundle";
+import { RoutePaths } from "../../../app-bundles/route-paths";
 
 const LocationSearch = ({
   locationSearchText,
   locationSearchData,
   doSetLocationSearchText,
   debounceFetch,
-  doUpdateUrlWithHomepage,
+  doUpdateUrl,
 }) => {
 
   const inputOnChange = (e) => {
@@ -24,7 +24,7 @@ const LocationSearch = ({
   const itemOnClick = (e) => {
     const locationCode = e.target.value;
     doSetLocationSearchText("");
-    doUpdateUrlWithHomepage(RoutePaths.Locations.replace(":locationId", locationCode));
+    doUpdateUrl(RoutePaths.Locations.replace(":locationId", locationCode));
   }
 
   return (
@@ -37,8 +37,8 @@ const LocationSearch = ({
       }}
       items={items}
       itemOnClick={itemOnClick}
-      placeholder="Search by City, State, ZIP, or Project Names"
-      ariaLabel="Search by City, State, ZIP, or Project Names"
+      placeholder="Search by city or project name"
+      ariaLabel="Search by city or project name"
     />
   );
 };
@@ -51,13 +51,13 @@ LocationSearch.propTypes = {
   })).isRequired,
   doSetLocationSearchText: PropTypes.func.isRequired,
   debounceFetch: PropTypes.func.isRequired,
-  doUpdateUrlWithHomepage: PropTypes.func.isRequired,
+  doUpdateUrl: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationSearchText",
   "selectLocationSearchData",
   "doSetLocationSearchText",
-  "doUpdateUrlWithHomepage",
+  "doUpdateUrl",
   LocationSearch,
 );
