@@ -29,7 +29,6 @@ export default createRestBundle( {
     ),
     selectLocationTimeSeriesPlotlyData: createSelector(
       "selectLocationTimeSeriesData",
-      "selectLocationParams",
       (locationTimeSeriesData, locationParams) => {
         if (!locationTimeSeriesData || !locationTimeSeriesData["time-series"] || !locationTimeSeriesData["time-series"]["time-series"]) {
           return [];
@@ -57,7 +56,7 @@ export default createRestBundle( {
             });
 
             plotlyData.push({
-              name: locationParams ? formatTimeSeriesName( element.name,locationParams ) : element.name,
+              name: element.name,
               x: xData,
               y: yData,
               unit: element["regular-interval-values"].unit,
@@ -69,34 +68,3 @@ export default createRestBundle( {
     ),
   }
 } );
-
-const formatTimeSeriesName = (rawName, dictionary) => {
-  let formatedName = rawName.split(".");
-  const result = [];
-  //regex to see if string contains both numbers and letters
-  const alphaNumericCheck = /([0-9].*[a-z])|([a-z].*[0-9])/;
-  // func to check if text is unit of time.
-  const unitsOfTimeCheck = (str) => {
-    const unitsOfTime = ["seconds","minutes","hours","days","months","weeks","years"];
-    // split num and letters 
-    const timeParams = str.toLowerCase().match(/[a-zA-Z]+|[0-9]+/g)[1];
-    for( let i = 0; i < unitsOfTime.length; i++ ){
-      if( unitsOfTime[i].includes(timeParams) ){
-        return true;
-      }
-    }
-  };
-
-  for (let i = 1; i < formatedName.length; i++) {
-    let paramName = dictionary[formatedName[i]];
-
-    if (paramName) {
-      result.push(paramName["long-name"]);
-    } else if (alphaNumericCheck.test(formatedName[i]) && unitsOfTimeCheck(formatedName[i])) {
-      result.push(formatedName[i].replace(/[a-z](?=\d)|\d(?=[a-z])/gi, "$& "));
-    } else if ( i === formatedName.length -  1 ) {
-      result.push(formatedName[i]);
-    }
-  }
-  return result.join(" ");
-};
