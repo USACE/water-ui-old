@@ -10,6 +10,7 @@ import LocationSearch from "./components/LocationSearch";
 import DistrictsDropdown from "./components/DistrictsDropdown";
 import BasinsDropdown from "./components/BasinsDropdown";
 import "./homePage.scss";
+import background from "../../img/yellowstone-national-park.jpg";
 
 const containerTextSection = {
   textAlign: "center",
@@ -22,7 +23,7 @@ const containerTextSection = {
 const titleStyle = {
   textTransform: "capitalize",
   fontSize: "2.5rem",
-  color: "white",
+  color: "black",
   fontWeight: "600",
 }
 
@@ -32,7 +33,7 @@ const bodyStyle = {
   fontSize: "1.25rem",
   fontWeight: "300",
   opacity: "1",
-  color: "white",
+  color: "black",
 }
 
 const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
@@ -41,6 +42,7 @@ const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
   return (
     <div className="home-page-container">
       <div className="banner-img-container">
+        <img className="banner-img" src={ background } />
         <div className="p-5 header-container">
           <TextSection
             containerStyle={ containerTextSection }

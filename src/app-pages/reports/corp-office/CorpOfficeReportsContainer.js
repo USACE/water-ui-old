@@ -1,7 +1,7 @@
 import React from "react";
 import TabLinks from "../../../app-common/TabLinks";
 import TextSection from "../../../app-common/TextSection";
-import { RoutePaths } from "../../../app-bundles/routes-bundle";
+import { RoutePaths } from "../../../app-bundles/route-paths";
 
 const pageSectionDivider = {
   height: 0,

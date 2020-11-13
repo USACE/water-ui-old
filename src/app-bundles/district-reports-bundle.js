@@ -1,6 +1,6 @@
 import createRestBundle from "./create-rest-bundle";
 import { getRestUrl } from "./bundle-utils";
-import { RoutePaths } from "./routes-bundle";
+import { RoutePaths } from "./route-paths";
 
 export default createRestBundle({
   name: "districtReports",

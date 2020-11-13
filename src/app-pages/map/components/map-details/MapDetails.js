@@ -3,7 +3,7 @@ import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import "./mapDetails.scss";
 import MapDetailsContent from "../../../../app-common/map-details-container/MapDetailsContent";
-import { RoutePaths } from "../../../../app-bundles/routes-bundle";
+import { RoutePaths } from "../../../../app-bundles/route-paths";
 
 const MapDetails = ( props ) => {
   const {

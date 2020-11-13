@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
-import { RoutePaths } from "../app-bundles/routes-bundle";
+import { RoutePaths } from "../app-bundles/route-paths";
 
 const Navbar = ({ pathname }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -55,7 +55,7 @@ const Navbar = ({ pathname }) => {
 							</a>
 						</li>
 					</ul>
-					{ pathname !== RoutePaths.Home && (
+					{ pathname !== RoutePaths.Home && pathname !== "/" && (
 						<form className="form-inline my-2 my-lg-0">
 							<input className="form-control mr-sm-2" type="text" placeholder="Search" />
 							<button className="btn btn-secondary my-2 my-sm-0" type="submit">

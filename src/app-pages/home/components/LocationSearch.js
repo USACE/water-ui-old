@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Autocomplete from "../../../app-common/autocomplete/Autocomplete";
-import { RoutePaths } from "../../../app-bundles/routes-bundle";
+import { RoutePaths } from "../../../app-bundles/route-paths";
 
 const LocationSearch = ({
   locationSearchText,

@@ -1,5 +1,4 @@
 import { createRouteBundle } from "redux-bundler";
-import pkg from "../../package.json";
 import Home from "../app-pages/home/HomePage";
 import Locations from "../app-pages/locations/LocationsPage";
 import MapPage from "../app-pages/map/MapPage";
@@ -14,28 +13,10 @@ import SpecialReports from "../app-pages/reports/corp-office/office-location/spe
 import AllLocations from "../app-pages/reports/corp-office/office-location/all-locations/AllLocationsReportsContainer";
 import DataResources from "../app-pages/data-resources/DataResourcesPage";
 import NotFound from "../app-pages/NotFound";
-
-// get the base url for which all the routes will be nested under
-const homepage = new URL(pkg.homepage);
-const baseUrl = homepage.pathname;
-
-export const RoutePaths = {
-  Home: baseUrl,
-  Help: `${baseUrl}/help`,
-  Locations: `${baseUrl}/locations/:locationId`,
-  Map: `${baseUrl}/map`,
-  ReportsHome: `${baseUrl}/reports`,
-  DataResources: `${baseUrl}/data-resources`,
-  CorpOfficeList: `${baseUrl}/reports/corporate`,
-  CorpOfficeReports: `${baseUrl}/reports/corporate/:corpOfficeId`,
-  CorpOfficeSpecialReports: `${baseUrl}/reports/corporate/:corpOfficeId/special`,
-  CorpOfficeLocationReports: `${baseUrl}/reports/corporate/:corpOfficeId/locations`,
-  DistrictReports: `${baseUrl}/reports/district`,
-  WatershedReports: `${baseUrl}/reports/watershed`,
-  ProjectReports: `${baseUrl}/reports/project`,
-};
+import { RoutePaths } from "./route-paths";
 
 export default createRouteBundle({
+  "/": Home,
   [RoutePaths.Home]: Home,
   [RoutePaths.Help]: Help,
   [RoutePaths.Locations]: Locations,
