@@ -48,7 +48,7 @@ const LocationsMap = (props) => {
   const popupContent = useRef( null );
   const popupCloser = useRef( null );
 
-  const addDataToMap = useCallback(({map, typeFilter}) => {
+  const addDataToMap = useCallback(({ map, typeFilter }) => {
     const data = typeFilter ? locationSummaries.filter(location => location.location_type === typeFilter) : locationSummaries;
     const iconFeatures = data.map((item, index) => {
       const iconFeature = new Feature(
@@ -215,11 +215,7 @@ const LocationsMap = (props) => {
       }
       if(locationsMapMapState.typeFilter){
         removeData(map);
-        if(locationsMapMapState.typeFilter === 'ALL'){
-          addDataToMap({ map });
-        }else{
-          addDataToMap({ map,typeFilter: locationsMapMapState.typeFilter });
-        }
+        locationsMapMapState.typeFilter === "ALL" ? addDataToMap({ map }) : addDataToMap({ map, typeFilter: locationsMapMapState.typeFilter });
       }
     },
     [locationsMapMapState, addDataToMap, removeData]

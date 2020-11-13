@@ -7,11 +7,11 @@ import { connect } from "redux-bundler-react";
 const LocationTypeFilter = ({ doLocationsMapSaveMapState }) => {
 
 
-const filterType = ( e) =>{
+const filterType = ( e ) =>{
     const mapState = {
       typeFilter: e.target.value.toUpperCase()
     };
-    doLocationsMapSaveMapState(mapState);
+    doLocationsMapSaveMapState( mapState );
 };
 
   return (
@@ -27,7 +27,7 @@ const filterType = ( e) =>{
               // { id: "Stream", value: "Stream" },
               { id: "WQ", value: "WQ" },
               { id: "Basin", value: "Basin" },
-              { id: "OPERATING_BASIN", value: "Operating Basin" },
+              { id: "Operating_Basin", value: "Operating Basin" },
               
             ]}
             onChange={(e)=> filterType(e)}
