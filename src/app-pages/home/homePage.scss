@@ -3,20 +3,20 @@
 .home-page-container {
   .banner-img-container {
     background: url("../../img/yellowstone-national-park.jpg");
-    background-position: 50% 55%;
+    background-position: 50%;
     background-size: cover;
-    height: 500px;
+    height: 550px;
     @include mq($breakpoint: "phone-lg", $direction: "down") {
       height: max-content;
     }
     .header-container {
-      background-color: #cbd5e0;
       opacity: 0.9;
       padding-bottom: 5rem;
     }
     .search-box-container {
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.3);
       margin-top: -30px;
+      color: white;
       @include mq($breakpoint: "phone-lg", $direction: "down") {
         transform: translateY(0);
       }
