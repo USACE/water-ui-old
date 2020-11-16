@@ -58,6 +58,6 @@ export default composeBundles(
   locationTreeBundle,
   locationSearchBundle,
   radarTimeSeriesBundle,
-  radarTimeSeriesBundle,
+  radarTimeSeriesParamsBundle,
   streamLocationsBundle
 );

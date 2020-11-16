@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{ useEffect } from "react";
 import "./locationStreamControls.scss";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
