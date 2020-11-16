@@ -37,31 +37,11 @@ export default createRestBundle( {
 
         const plotlyData = [];
         const locationTimeSeries = locationTimeSeriesData["time-series"]["time-series"];
-
-        locationTimeSeries.forEach((element) => {
-          const segments = element["regular-interval-values"] && element["regular-interval-values"].segments;
-          if (segments && segments.length > 0) {
-            const interval = element["regular-interval-values"].interval;
-            const segment = segments[0];
-            const startTime = new Date(segment["first-time"]);
-            const intervalLength = getIntervalTime(interval);
-
-            // create array of all the x and y coordinates for plotly
-            const xData = [];
-            const yData = [];
-            segment.values.forEach(([y], index) => {
-              const xTime = startTime.getTime() + (intervalLength * index);
-              const x = new Date(xTime);
-              xData.push(x);
-              yData.push(y);
-            });
-
-            plotlyData.push({
-              name: locationParams ? formatTimeSeriesName( element.name,locationParams ) : element.name,
-              x: xData,
-              y: yData,
-              unit: element["regular-interval-values"].unit,
-            });
+        locationTimeSeries.forEach((timeSeries) => {
+          if (timeSeries["regular-interval-values"]) {
+            getRegularIntervalValuesData(plotlyData, timeSeries, locationParams);
+          } else if (timeSeries["irregular-interval-values"]) {
+            getIrregularIntervalValuesData(plotlyData, timeSeries, locationParams);
           }
         });
         return plotlyData;
@@ -70,8 +50,76 @@ export default createRestBundle( {
   }
 } );
 
+// helper function that appends the regular-interval-values data to the plotlyData array
+const getRegularIntervalValuesData = (plotlyData, timeSeries, locationParams) => {
+  const segments = timeSeries["regular-interval-values"].segments;
+  if (segments && segments.length > 0) {
+    const interval = timeSeries["regular-interval-values"].interval;
+    const segment = segments[0];
+    const startTime = new Date(segment["first-time"]);
+    const intervalLength = getIntervalTime(interval);
+
+    // create array of all the x and y coordinates for plotly
+    const xData = [];
+    const yData = [];
+    segment.values.forEach(([y], index) => {
+      const xTime = startTime.getTime() + (intervalLength * index);
+      const x = new Date(xTime);
+      xData.push(x);
+      yData.push(y);
+    });
+
+    plotlyData.push({
+      name: getPlotName(timeSeries, locationParams),
+      x: xData,
+      y: yData,
+      unit: timeSeries["regular-interval-values"].unit,
+    });
+  }
+};
+
+// helper function that appends the irregular-interval-values data to the plotlyData array
+const getIrregularIntervalValuesData = (plotlyData, timeSeries, locationParams) => {
+  const values = timeSeries["irregular-interval-values"].values;
+  if (values && values.length > 0) {
+    // create array of all the x and y coordinates for plotly
+    const xData = [];
+    const yData = [];
+    values.forEach(([x, y]) => {
+      xData.push(x);
+      yData.push(y);
+    });
+
+    plotlyData.push({
+      name: getPlotName(timeSeries, locationParams),
+      x: xData,
+      y: yData,
+      unit: timeSeries["irregular-interval-values"].unit,
+    });
+  }
+};
+
+const getPlotName = (timeSeries, locationParams) => {
+  const useNameParser = false;
+  if( useNameParser ) return formatTimeSeriesName( timeSeries.name, locationParams );
+
+  // if there are no alternate names, then simply use the plot's given name
+  if (!timeSeries["alternate-names"] || timeSeries["alternate-names"].length === 0) {
+    return timeSeries.name;
+  }
+
+  // use the shortest name as the plot's name
+  let name = timeSeries.name;
+  timeSeries["alternate-names"].forEach((alternateName) => {
+    if (alternateName.length < name.length) {
+      name = alternateName;
+    }
+  })
+  return name;
+};
+
 const formatTimeSeriesName = (rawName, dictionary) => {
-  let formatedName = rawName.split(".");
+  let formattedName = rawName.split(".");
   const result = [];
   //regex to see if string contains both numbers and letters
   const alphaNumericCheck = /([0-9].*[a-z])|([a-z].*[0-9])/;
@@ -87,15 +135,15 @@ const formatTimeSeriesName = (rawName, dictionary) => {
     }
   };
 
-  for (let i = 1; i < formatedName.length; i++) {
-    let paramName = dictionary[formatedName[i]];
+  for (let i = 1; i < formattedName.length; i++) {
+    let paramName = dictionary[formattedName[i]];
 
     if (paramName) {
       result.push(paramName["long-name"]);
-    } else if (alphaNumericCheck.test(formatedName[i]) && unitsOfTimeCheck(formatedName[i])) {
-      result.push(formatedName[i].replace(/[a-z](?=\d)|\d(?=[a-z])/gi, "$& "));
-    } else if ( i === formatedName.length -  1 ) {
-      result.push(formatedName[i]);
+    } else if (alphaNumericCheck.test(formattedName[i]) && unitsOfTimeCheck(formattedName[i])) {
+      result.push(formattedName[i].replace(/[a-z](?=\d)|\d(?=[a-z])/gi, "$& "));
+    } else if ( i === formattedName.length -  1 ) {
+      result.push(formattedName[i]);
     }
   }
   return result.join(" ");
