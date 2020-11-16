@@ -17,9 +17,21 @@ const LocationSearch = ({
     debounceFetch();
   };
 
-  const items = locationSearchText
-    ? locationSearchData.map(({ description, location_id }) => ({ value: location_id, display: description }))
-    : [];
+  let items = [];
+  if( locationSearchText ) {
+    items = locationSearchData.map( ( { description, location_id, nearest_city, county_name } ) => {
+      let additionalText = [];
+      if( nearest_city ) additionalText.push( `near ${ nearest_city }` )
+      if( county_name ) additionalText.push( `${ county_name } county` )
+
+      let dispVal = <>
+        <span style={{ marginRight: "5px" }}>{description}</span>
+        <span style={{ fontSize: ".8rem" }}>{additionalText.length ? `(${ additionalText.join( ', ' ) })` : "" }</span>
+      </>
+
+      return ( { value: location_id, display: dispVal } )
+    } )
+  }
 
   const itemOnClick = (e) => {
     const locationCode = e.target.value;
@@ -37,8 +49,8 @@ const LocationSearch = ({
       }}
       items={items}
       itemOnClick={itemOnClick}
-      placeholder="Search by city or project name"
-      ariaLabel="Search by city or project name"
+      placeholder="Search by location, city, or county"
+      ariaLabel="Search by location, city, or county"
     />
   );
 };
