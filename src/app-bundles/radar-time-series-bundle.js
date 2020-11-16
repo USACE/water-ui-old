@@ -37,31 +37,11 @@ export default createRestBundle( {
 
         const plotlyData = [];
         const locationTimeSeries = locationTimeSeriesData["time-series"]["time-series"];
-
-        locationTimeSeries.forEach((element) => {
-          const segments = element["regular-interval-values"] && element["regular-interval-values"].segments;
-          if (segments && segments.length > 0) {
-            const interval = element["regular-interval-values"].interval;
-            const segment = segments[0];
-            const startTime = new Date(segment["first-time"]);
-            const intervalLength = getIntervalTime(interval);
-
-            // create array of all the x and y coordinates for plotly
-            const xData = [];
-            const yData = [];
-            segment.values.forEach(([y], index) => {
-              const xTime = startTime.getTime() + (intervalLength * index);
-              const x = new Date(xTime);
-              xData.push(x);
-              yData.push(y);
-            });
-
-            plotlyData.push({
-              name: locationParams ? formatTimeSeriesName( element.name,locationParams ) : element.name,
-              x: xData,
-              y: yData,
-              unit: element["regular-interval-values"].unit,
-            });
+        locationTimeSeries.forEach((timeSeries) => {
+          if (timeSeries["regular-interval-values"]) {
+            getRegularIntervalValuesData(plotlyData, timeSeries);
+          } else if (timeSeries["irregular-interval-values"]) {
+            getIrregularIntervalValuesData(plotlyData, timeSeries);
           }
         });
         return plotlyData;
@@ -69,6 +49,71 @@ export default createRestBundle( {
     ),
   }
 } );
+
+// helper function that appends the regular-interval-values data to the plotlyData array
+const getRegularIntervalValuesData = (plotlyData, timeSeries) => {
+  const segments = timeSeries["regular-interval-values"].segments;
+  if (segments && segments.length > 0) {
+    const interval = timeSeries["regular-interval-values"].interval;
+    const segment = segments[0];
+    const startTime = new Date(segment["first-time"]);
+    const intervalLength = getIntervalTime(interval);
+
+    // create array of all the x and y coordinates for plotly
+    const xData = [];
+    const yData = [];
+    segment.values.forEach(([y], index) => {
+      const xTime = startTime.getTime() + (intervalLength * index);
+      const x = new Date(xTime);
+      xData.push(x);
+      yData.push(y);
+    });
+
+    plotlyData.push({
+      name: getPlotName(timeSeries),
+      x: xData,
+      y: yData,
+      unit: timeSeries["regular-interval-values"].unit,
+    });
+  }
+};
+
+// helper function that appends the irregular-interval-values data to the plotlyData array
+const getIrregularIntervalValuesData = (plotlyData, timeSeries) => {
+  const values = timeSeries["irregular-interval-values"].values;
+  if (values && values.length > 0) {
+    // create array of all the x and y coordinates for plotly
+    const xData = [];
+    const yData = [];
+    values.forEach(([x, y]) => {
+      xData.push(x);
+      yData.push(y);
+    });
+
+    plotlyData.push({
+      name: getPlotName(timeSeries),
+      x: xData,
+      y: yData,
+      unit: timeSeries["irregular-interval-values"].unit,
+    });
+  }
+};
+
+const getPlotName = (timeSeries) => {
+  // if there are no alternate names, then simply use the plot's given name
+  if (!timeSeries["alternate-names"] || timeSeries["alternate-names"].length === 0) {
+    return timeSeries.name;
+  }
+
+  // use the shortest name as the plot's name
+  let name = timeSeries.name;
+  timeSeries["alternate-names"].forEach((alternateName) => {
+    if (alternateName.length < name.length) {
+      name = alternateName;
+    }
+  })
+  return name;
+};
 
 const formatTimeSeriesName = (rawName, dictionary) => {
   let formatedName = rawName.split(".");
