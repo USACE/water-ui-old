@@ -1,15 +1,23 @@
-import React,{ useEffect } from "react";
-import "./locationStreamControls.scss";
+import React, { useState, useEffect } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import { RoutePaths } from "../../../../app-bundles/route-paths";
+import "./locationStreamControls.scss";
 
-const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMapSaveMapState, doSelectStreamLocation, streamLocations }) => {
-  const options = streamLocations && streamLocations.data ? streamLocations.data : [];
+const LocationStreamControls = ({
+  fullScreen,
+  locationDetailData,
+  streamLocationsData,
+  doLocationsMapSaveMapState,
+  doStreamLocationsFetch,
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    doSelectStreamLocation( locationDetailData &&  locationDetailData.location_code);
-  }, [locationDetailData, doSelectStreamLocation]);
+    // fetch new stream locations data and reset the current index whenver the locationsDetailData changes
+    doStreamLocationsFetch();
+    setCurrentIndex(0);
+  }, [locationDetailData, doStreamLocationsFetch, setCurrentIndex])
 
   const changeStation = (e) => {
     e.preventDefault();
@@ -19,6 +27,7 @@ const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMap
   const jumpStation = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    setCurrentIndex(e.target.value);
   };
 
   const saveMapState = () => {
@@ -34,9 +43,6 @@ const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMap
     justifyContent: "space-between",
   };
 
-  // Don't show stream controls if there were no stream locations found
-  if( options.length === 0 ) return <></>
-
   return (
     <div className="location-stream-control-container" style={!fullScreen ? fullScreenContainerStyle : null}>
       {!fullScreen && (
@@ -44,28 +50,33 @@ const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMap
           <a href={RoutePaths.Map} onClick={saveMapState}>Back to Map</a>
         </div>
       )}
-      <div className="location-stream-controls-wrapper">
-        <button className="link downstream-station" onClick={changeStation}>
-          downstream station
-        </button>
-        <select
-          className="jump-station"
-          aria-labelledby="jump to station dropdown"
-          onChange={jumpStation}
-          onClick={jumpStation}
-          value={options[ streamLocations.current_index ] ? options[ streamLocations.current_index ].location_code : ""}
-        >
-          {options &&
-            options.map((item, i) => (
-              <option key={i} value={item.location_code}>
-                {item.public_name}
-              </option>
-            ))}
-        </select>
-        <button className="link upstream-station" onClick={changeStation}>
-          upstream station
-        </button>
-      </div>
+      { streamLocationsData && streamLocationsData.length > 0 && (
+        <div className="location-stream-controls-wrapper">
+          <button className="link downstream-station" onClick={changeStation}>
+            downstream station
+          </button>
+          <select
+            className="jump-station"
+            aria-labelledby="jump to station dropdown"
+            onChange={jumpStation}
+            onClick={jumpStation}
+            value={currentIndex}
+          >
+            { streamLocationsData.map((item, i) => (
+                <option
+                  key={item.location_code}
+                  value={i}
+                >
+                  {item.public_name}
+                </option>
+              ))
+            }
+          </select>
+          <button className="link upstream-station" onClick={changeStation}>
+            upstream station
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -77,8 +88,8 @@ LocationStreamControls.propTypes = {
 
 export default connect(
   "selectLocationDetailData",
+  "selectStreamLocationsData",
   "doLocationsMapSaveMapState",
-  "doSelectStreamLocation",
-  "selectStreamLocations",
+  "doStreamLocationsFetch",
   LocationStreamControls
 );
