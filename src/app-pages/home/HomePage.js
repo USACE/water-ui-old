@@ -42,7 +42,7 @@ const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
   return (
     <div className="home-page-container">
       <div className="banner-img-container">
-        <img className="banner-img" src={ background } />
+        <img className="banner-img" src={ background } alt="" />
         <div className="p-5 header-container">
           <TextSection
             containerStyle={ containerTextSection }
