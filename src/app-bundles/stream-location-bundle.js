@@ -13,7 +13,7 @@ export default createRestBundle({
   staleAfter: 0,
   persist: false,
   routeParam: "locationId",
-  getTemplate: getRestUrl("/water/locations/streams/:location_code", "/stream-locations.json"),
+  getTemplate: getRestUrl("/water/locations/stream-locations/:location_code", "/stream-locations.json"),
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,

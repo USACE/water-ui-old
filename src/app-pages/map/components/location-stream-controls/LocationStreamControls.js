@@ -5,9 +5,8 @@ import PropTypes from "prop-types";
 import { RoutePaths } from "../../../../app-bundles/route-paths";
 
 const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMapSaveMapState, doSelectStreamLocation, streamLocations }) => {
-  // For now, mock this array. Later, we'll add a mock array of stream locations to the location data.
-  const options = ["jump to station", "station 1", "station 2", "station 3"];
-  
+  const options = streamLocations && streamLocations.data ? streamLocations.data : [];
+
   useEffect(() => {
     doSelectStreamLocation( locationDetailData &&  locationDetailData.location_code);
   }, [locationDetailData, doSelectStreamLocation]);
@@ -35,6 +34,9 @@ const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMap
     justifyContent: "space-between",
   };
 
+  // Don't show stream controls if there were no stream locations found
+  if( options.length === 0 ) return <></>
+
   return (
     <div className="location-stream-control-container" style={!fullScreen ? fullScreenContainerStyle : null}>
       {!fullScreen && (
@@ -51,11 +53,12 @@ const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMap
           aria-labelledby="jump to station dropdown"
           onChange={jumpStation}
           onClick={jumpStation}
+          value={options[ streamLocations.current_index ] ? options[ streamLocations.current_index ].location_code : ""}
         >
           {options &&
             options.map((item, i) => (
-              <option key={i} value={item}>
-                {item}
+              <option key={i} value={item.location_code}>
+                {item.public_name}
               </option>
             ))}
         </select>
