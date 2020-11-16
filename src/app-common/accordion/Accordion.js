@@ -5,12 +5,11 @@ import "./accordion.scss";
 const Accordion = ({ data, formatId }) => {
   const [ activeAcc, setActiveAcc ] = useState({});
 
-  const toggleAccordion = (e) => {
+  const toggleAccordion = (e, i) => {
     e.stopPropagation();
-    const sectionIndex = e.target.value;
     setActiveAcc({
       ...activeAcc,
-      [sectionIndex]: !activeAcc[sectionIndex],
+      [i]: !activeAcc[i],
     });
   };
 
@@ -22,8 +21,7 @@ const Accordion = ({ data, formatId }) => {
             <div key={ title }>
               <button
                 className="accordion-btn"
-                onClick={ toggleAccordion }
-                value={ i }
+                onClick={ e => toggleAccordion(e, i) }
                 aria-controls={ `accordion-control-${i}` }
                 aria-expanded={ !!activeAcc[i] }
                 type="button"
