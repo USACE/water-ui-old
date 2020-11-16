@@ -3,7 +3,7 @@ import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import { RoutePaths } from "../app-bundles/route-paths";
 
-const Navbar = ({ pathname }) => {
+const Header = ({ pathname }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const closeNavbar = () => {
@@ -69,11 +69,11 @@ const Navbar = ({ pathname }) => {
 	);
 };
 
-Navbar.propTypes = {
+Header.propTypes = {
 	pathname: PropTypes.string.isRequired,
 };
 
 export default connect(
 	"selectPathname",
-	Navbar,
+	Header,
 );
