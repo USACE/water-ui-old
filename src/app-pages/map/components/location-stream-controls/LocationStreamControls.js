@@ -1,12 +1,16 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "./locationStreamControls.scss";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import { RoutePaths } from "../../../../app-bundles/route-paths";
 
-const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMapSaveMapState }) => {
+const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMapSaveMapState, doSelectStreamLocation, streamLocations }) => {
   // For now, mock this array. Later, we'll add a mock array of stream locations to the location data.
   const options = ["jump to station", "station 1", "station 2", "station 3"];
+  
+  useEffect(() => {
+    doSelectStreamLocation( locationDetailData &&  locationDetailData.location_code);
+  }, [locationDetailData, doSelectStreamLocation]);
 
   const changeStation = (e) => {
     e.preventDefault();
@@ -71,5 +75,7 @@ LocationStreamControls.propTypes = {
 export default connect(
   "selectLocationDetailData",
   "doLocationsMapSaveMapState",
+  "doSelectStreamLocation",
+  "selectStreamLocations",
   LocationStreamControls
 );
