@@ -3,6 +3,7 @@
 .accordion-section {
   margin-bottom: 1rem;
   width: 100%;
+
   .accordion-btn {
     width: 100%;
     border: none;
@@ -26,6 +27,7 @@
         margin-right: 10px;
       }
     }
+
     .chevron {
       &:before {
         border-style: solid;
@@ -41,7 +43,7 @@
         width: 1rem;
       }
     }
-    .chevron.right {
+    .chevron.down {
       transform: rotate(90deg);
       transition: transform 0.2s linear;
       &:before {
@@ -49,24 +51,19 @@
         transform-origin: right;
       }
     }
-
-    .chevron.right.open {
+    .chevron.up {
       transform: rotate(0deg);
       transition: transform 0.2s linear;
     }
   }
 
   .accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    /*transition: max-height 0.6s ease;*/
+    max-height: 75vh;
+    overflow-y: auto;
+  
     .content-paragraph {
       padding: 1rem;
+      margin-bottom: 20px;
     }
-  }
-  .active-accordion {
-    max-height: 50vh;
-    overflow-y: auto;
-    margin-bottom: 20px;
   }
 }
