@@ -34,6 +34,7 @@ export default createRestBundle( {
       type: LOCATIONDETAIL_SET_CODE,
       payload: {
         location_code: id,
+        data: {},
         _shouldFetch: true,
       },
     }),

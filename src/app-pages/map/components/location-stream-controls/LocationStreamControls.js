@@ -1,12 +1,30 @@
-import React from "react";
-import "./locationStreamControls.scss";
+import React, { useState, useEffect } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import { RoutePaths } from "../../../../app-bundles/route-paths";
+import "./locationStreamControls.scss";
 
-const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMapSaveMapState }) => {
-  // For now, mock this array. Later, we'll add a mock array of stream locations to the location data.
-  const options = ["jump to station", "station 1", "station 2", "station 3"];
+const LocationStreamControls = ({
+  fullScreen,
+  locationDetailData,
+  streamLocationsData,
+  doLocationsMapSaveMapState,
+  doStreamLocationsFetch,
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    // fetch new stream locations data and reset the current index whenever the locationsDetailData changes
+    if( locationDetailData && locationDetailData.stream_location_code ) doStreamLocationsFetch();
+    setCurrentIndex(0);
+  }, [locationDetailData, doStreamLocationsFetch, setCurrentIndex])
+
+  useEffect(() => {
+    // Set the current stream location index to match the current location
+    if( locationDetailData && streamLocationsData ) setCurrentIndex(
+      streamLocationsData.findIndex( item => item.location_code === locationDetailData.location_code )
+    );
+  }, [locationDetailData, streamLocationsData, setCurrentIndex])
 
   const changeStation = (e) => {
     e.preventDefault();
@@ -16,6 +34,7 @@ const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMap
   const jumpStation = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    setCurrentIndex(e.target.value);
   };
 
   const saveMapState = () => {
@@ -38,27 +57,33 @@ const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMap
           <a href={RoutePaths.Map} onClick={saveMapState}>Back to Map</a>
         </div>
       )}
-      <div className="location-stream-controls-wrapper">
-        <button className="link downstream-station" onClick={changeStation}>
-          downstream station
-        </button>
-        <select
-          className="jump-station"
-          aria-labelledby="jump to station dropdown"
-          onChange={jumpStation}
-          onClick={jumpStation}
-        >
-          {options &&
-            options.map((item, i) => (
-              <option key={i} value={item}>
-                {item}
-              </option>
-            ))}
-        </select>
-        <button className="link upstream-station" onClick={changeStation}>
-          upstream station
-        </button>
-      </div>
+      { streamLocationsData && streamLocationsData.length > 0 && (
+        <div className="location-stream-controls-wrapper">
+          <button className="link downstream-station" onClick={changeStation}>
+            downstream station
+          </button>
+          <select
+            className="jump-station"
+            aria-labelledby="jump to station dropdown"
+            onChange={jumpStation}
+            onClick={jumpStation}
+            value={currentIndex}
+          >
+            { streamLocationsData.map((item, i) => (
+                <option
+                  key={item.location_code}
+                  value={i}
+                >
+                  {item.public_name}
+                </option>
+              ))
+            }
+          </select>
+          <button className="link upstream-station" onClick={changeStation}>
+            upstream station
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -70,6 +95,8 @@ LocationStreamControls.propTypes = {
 
 export default connect(
   "selectLocationDetailData",
+  "selectStreamLocationsData",
   "doLocationsMapSaveMapState",
+  "doStreamLocationsFetch",
   LocationStreamControls
 );
