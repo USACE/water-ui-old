@@ -1,82 +1,102 @@
 [{
-    "location_id": "2829010",
+    "location_id": "880108",
     "source": "CWMS",
-    "description": "Cordell Hull Dam",
-    "latitude": 36.289444,
-    "longitude": -85.94431,
+    "description": "Bellepoint",
+    "latitude": 40.2483,
+    "longitude": -83.1738,
     "zoom_depth": 12,
-    "location_type": "PROJECT"
+    "location_type": "LOCATION",
+    "nearest_city": "Bellepoint",
+    "county_name": "Delaware"
   }, {
-    "location_id": "60662029",
+    "location_id": "2424030",
     "source": "CWMS",
-    "description": "Dworshak Dam Spillbay 1",
-    "latitude": 46.514698,
-    "longitude": -116.29526,
+    "description": "Belle Fourche R at State Line",
+    "latitude": 44.748886,
+    "longitude": -104.0511,
     "zoom_depth": 12,
-    "location_type": "LOCATION"
+    "location_type": "STREAM_GAGE",
+    "nearest_city": "",
+    "county_name": ""
   }, {
-    "location_id": "7025016",
+    "location_id": "50577029",
     "source": "CWMS",
-    "description": "Lock and Dam 10 Tailwater",
-    "latitude": 42.785,
-    "longitude": -91.095,
+    "description": "W. Labelle \u0026 Long Island Cnl",
+    "latitude": 43.690556,
+    "longitude": -111.85555,
     "zoom_depth": 12,
-    "location_type": "LOCATION"
+    "location_type": "LOCATION",
+    "nearest_city": "",
+    "county_name": "Jefferson"
   }, {
-    "location_id": "28480108",
+    "location_id": "940145",
     "source": "CWMS",
-    "description": "London Locks and Dam",
-    "latitude": 38.1928,
-    "longitude": -81.3692,
+    "description": "Stewart and Gray",
+    "latitude": 33.94583,
+    "longitude": -118.163055,
     "zoom_depth": 12,
-    "location_type": "PROJECT"
+    "location_type": "LOCATION",
+    "nearest_city": "Bell Gardens",
+    "county_name": ""
   }, {
-    "location_id": "5558030",
+    "location_id": "3036015",
     "source": "CWMS",
-    "description": "Kanopolis Dam \u0026 Reservoir",
-    "latitude": 38.615883,
-    "longitude": -97.9673,
+    "description": "Miss River @ Belle Chase",
+    "latitude": 29.856943,
+    "longitude": -89.977776,
     "zoom_depth": 12,
-    "location_type": "PROJECT"
+    "location_type": "LOCATION",
+    "nearest_city": "",
+    "county_name": "Plaquemines"
   }, {
-    "location_id": "5734030",
+    "location_id": "28477108",
     "source": "CWMS",
-    "description": "Wilson Dam \u0026 Reservoir",
-    "latitude": 38.965633,
-    "longitude": -98.495674,
+    "description": "Belleville Locks and Dam",
+    "latitude": 39.1187,
+    "longitude": -81.743484,
     "zoom_depth": 12,
-    "location_type": "PROJECT"
+    "location_type": "PROJECT",
+    "nearest_city": "Reedsville",
+    "county_name": "Meigs"
   }, {
-    "location_id": "505109",
+    "location_id": "28481108",
     "source": "CWMS",
-    "description": "Adamsboro",
-    "latitude": 40.781944,
-    "longitude": -86.263885,
+    "description": "Marmet Locks and Dam",
+    "latitude": 38.25373,
+    "longitude": -81.56678,
     "zoom_depth": 12,
-    "location_type": "LOCATION"
+    "location_type": "PROJECT",
+    "nearest_city": "Belle",
+    "county_name": "Kanawha"
   }, {
-    "location_id": "6986016",
+    "location_id": "5160030",
     "source": "CWMS",
-    "description": "Lock and Dam 07 Tailwater",
-    "latitude": 43.8666,
-    "longitude": -91.3083,
+    "description": "Belle Fourche at Elm Springs",
+    "latitude": 44.370003,
+    "longitude": -102.56608,
     "zoom_depth": 12,
-    "location_type": "LOCATION"
+    "location_type": "STREAM_GAGE",
+    "nearest_city": "",
+    "county_name": ""
   }, {
-    "location_id": "16806111",
+    "location_id": "5359030",
     "source": "CWMS",
-    "description": "Union City Dam",
-    "latitude": 41.920498,
-    "longitude": -79.90026,
+    "description": "Papillion Cr at Fort Crook, NE",
+    "latitude": 41.117645,
+    "longitude": -95.93825,
     "zoom_depth": 12,
-    "location_type": "PROJECT"
+    "location_type": "STREAM_GAGE",
+    "nearest_city": "Bellevue",
+    "county_name": "Sarpy"
   }, {
-    "location_id": "518145",
+    "location_id": "1502030",
     "source": "CWMS",
-    "description": "Hansen Dam",
-    "latitude": 34.260555,
-    "longitude": -118.38611,
+    "description": "Weeping Water Cr at Union, NE",
+    "latitude": 40.793926,
+    "longitude": -95.9114,
     "zoom_depth": 12,
-    "location_type": "PROJECT"
+    "location_type": "STREAM_GAGE",
+    "nearest_city": "Bellevue",
+    "county_name": "Cass"
   }
 ]
