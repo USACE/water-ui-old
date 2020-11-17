@@ -11,38 +11,23 @@ const TimeSeriesControl = ({
   doLtsSetTimeControl,
   doLtsSetCustomDate,
 }) => {
+  const handleDateRangeOnChange = (e) => {
+    e.stopPropagation();
+    doLtsSetTimeControl(parseInt(e.target.value));
+  }
+
   const handleDateOnChange = (e) => {
+    e.stopPropagation();
     const name = e.target.name;
     const date = e.target.value;
     doLtsSetCustomDate(name, date);
   };
 
+  const handleOnClick = e => e.stopPropagation();
+
   const today = dateToString(new Date());
   return (
     <div className="time-series-control">
-      {/* <p>Date Range:</p>
-      { radarTimeControls.map(({ value, label }) => {
-          const id = `time-series-control-${label}`
-          return (
-            <div
-              key={id}
-              className="time-series-input"
-            >
-              <input
-                id={id}
-                type="radio"
-                name="timeControl"
-                value={value}
-                checked={ltsTimeControl === value}
-                onChange={e => doLtsSetTimeControl(parseInt(e.target.value))}
-              />
-              <label htmlFor={id}>
-                {label}
-              </label>
-            </div>
-          );
-        }
-      )} */}
       <div className="time-series-input">
         <label htmlFor="timeControl">
           Date Range
@@ -50,7 +35,8 @@ const TimeSeriesControl = ({
         <select
           id="timeControl"
           value={ltsTimeControl}
-          onChange={e => doLtsSetTimeControl(parseInt(e.target.value))}
+          onChange={handleDateRangeOnChange}
+          onClick={handleOnClick}
         >
           { radarTimeControls.map(({ value, label }) => (
             <option
@@ -76,6 +62,7 @@ const TimeSeriesControl = ({
               value={ltsCustomStartDate}
               max={ltsCustomEndDate || today}
               onChange={handleDateOnChange}
+              onClick={handleOnClick}
             />
           </div>
           <div className="time-series-input">
@@ -90,6 +77,7 @@ const TimeSeriesControl = ({
               max={today}
               min={ltsCustomStartDate}
               onChange={handleDateOnChange}
+              onClick={handleOnClick}
             />
           </div>
         </>
