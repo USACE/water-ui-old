@@ -14,10 +14,17 @@ const LocationStreamControls = ({
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // fetch new stream locations data and reset the current index whenver the locationsDetailData changes
-    doStreamLocationsFetch();
+    // fetch new stream locations data and reset the current index whenever the locationsDetailData changes
+    if( locationDetailData && locationDetailData.stream_location_code ) doStreamLocationsFetch();
     setCurrentIndex(0);
   }, [locationDetailData, doStreamLocationsFetch, setCurrentIndex])
+
+  useEffect(() => {
+    // Set the current stream location index to match the current location
+    if( locationDetailData && streamLocationsData ) setCurrentIndex(
+      streamLocationsData.findIndex( item => item.location_code === locationDetailData.location_code )
+    );
+  }, [locationDetailData, streamLocationsData, setCurrentIndex])
 
   const changeStation = (e) => {
     e.preventDefault();

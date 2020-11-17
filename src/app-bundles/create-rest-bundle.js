@@ -232,6 +232,8 @@ export default (opts) => {
             }
           }
 
+          let result = state;
+
           switch (type) {
             case actions.ADDON_ACTION:
             case actions.SAVE_STARTED:
@@ -246,13 +248,18 @@ export default (opts) => {
             case actions.ERROR:
             case actions.FETCH_FINISHED:
             case actions.UPDATED_ITEM:
-              return Object.assign({}, state, payload);
+              result = Object.assign({}, state, payload);
+              break;
             default:
-              if (config.reduceFurther && typeof config.reduceFurther === "function") {
-                return config.reduceFurther(state, { type, payload });
-              }
-              return state;
+              result = state;
           }
+
+          // Allow reduceFurther() to run on any action
+          if (config.reduceFurther && typeof config.reduceFurther === "function") {
+            result = config.reduceFurther(result, { type, payload });
+          }
+
+          return result;
         };
       },
 
