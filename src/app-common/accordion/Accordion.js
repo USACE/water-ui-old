@@ -16,7 +16,7 @@ const Accordion = ({ data, formatId }) => {
   return (
     <div className="accordion-section">
       { data && data.map((ele, i) => {
-          const { content, title, iconClass } = ele;
+          const { Component, title, iconClass } = ele;
           return (
             <div key={ title }>
               <button
@@ -43,7 +43,7 @@ const Accordion = ({ data, formatId }) => {
                 aria-hidden={ !activeAcc[i] }
               >
                 <div className="content-paragraph">
-                  { content }
+                  <Component />
                 </div>
               </div>
             </div>
@@ -56,7 +56,11 @@ const Accordion = ({ data, formatId }) => {
 
 Accordion.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
-    content: PropTypes.node.isRequired,
+    // TODO: change Component prop types to PropTypes.element after we create an actual component for the Sedimentation section
+    Component: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func
+    ]).isRequired,
     title: PropTypes.string.isRequired,
     iconClass: PropTypes.string,
   })),

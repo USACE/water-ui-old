@@ -35,7 +35,7 @@ const LocationDetails = ({ handleFullScreen, locationDetail, locationCode, locat
           <div className="map-details-nav">
             {/* added 32 for padding*/}
             <ul className="navbar-ul fixed-sticky-nav" style={{ top:headerHeight + 32 }}>
-              { accordionArrObjs.map((section, i) => {
+              { accordionArrObjs.map((section) => {
                   const { title } = section;
                   return (
                     <li className="nav-item" key={title}>

@@ -34,7 +34,7 @@ const TimeSeriesTable = ({
         ))}
       </tbody>
     </table>
-  )
+  );
 };
 
 TimeSeriesTable.propTypes = {
