@@ -1,6 +1,6 @@
 import React from "react";
 // import PropTypes from "prop-types";
-import Timeline from "../../../app-common/timeline/Timeline";
+import Timeline from "../../../../../app-common//timeline/Timeline";
 // import { connect } from "redux-bundler-react";
 
 //Timeline Dummy Data

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
-import A2WPlot from "../plotly/A2Wplot";
+import A2WPlot from "../../../../../../app-common/plotly/A2Wplot";
 import TimeSeriesTable from "./TimeSeriesTable";
 
 const TimeSeriesSection = ({

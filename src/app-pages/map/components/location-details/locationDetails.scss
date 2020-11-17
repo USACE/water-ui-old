@@ -1,5 +1,7 @@
 @import "../../../../style/sass/abstracts/mixins";
 @import "../../../../style/sass/abstracts/variables";
+
+// css for LocationDetailsContainer component
 .fade {
   opacity: 0;
   transition: opacity 500ms;
@@ -75,4 +77,67 @@ body{
       display: none;
     }
   }
+}
+
+// css for LocationDetails component
+.location-detail-content-container {
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+  min-height: 60vh;
+  @include mq($breakpoint: "phone", $direction: "down") {
+    flex-wrap: wrap;
+  }
+
+  .map-details-nav {
+    position: relative;
+    flex-shrink: 8;
+    width: 100%;
+    .fixed-sticky-nav {
+      position: -webkit-sticky;
+      position: sticky;
+      z-index: 10;
+      @include mq($breakpoint: "phone", $direction: "down") {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+    .navbar-ul {
+      list-style: none;
+      padding-left: 0;
+      .nav-item {
+        button {
+          text-align: left;
+          padding-left: .25rem;
+          color: $black;
+        }
+      }
+      .nav-link-btn {
+        @include btn-to-link;
+        padding: 0.25rem 3rem;
+      }
+    }
+  }
+
+  .accordion-container {
+    width: 100%;
+  }
+}
+
+// css for LocationDetailHeader component
+.location-detail-header {
+  width: 100%;
+  padding: 1em;
+  background-color: $base-lighter-gray;
+  .location-expand {
+    float:right;
+  }
+}
+
+.fixed-sticky {
+  position: -webkit-sticky; 
+  position: sticky;
+  top: 0;
+  z-index: 11;
 }

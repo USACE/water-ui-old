@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import "./location-detail.scss";
-import LocationStreamControls from "../../app-pages/map/components/location-stream-controls/LocationStreamControls"
+import LocationStreamControls from "./location-stream-controls/LocationStreamControls"
+
 const LocationDetailHeader = ( props ) => {
   const {
     onExpand,

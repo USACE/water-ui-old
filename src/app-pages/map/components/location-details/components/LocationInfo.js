@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import Table from "../../../app-common/table/Table";
 import { connect } from "redux-bundler-react";
+import Table from "../../../../../app-common/table/Table";
 
 const metaDataHeaderArr = ["name", "value"];
 let metaDataRowsArr;
 
 const LocationInfo = ({ locationDetailData }) => {
 
-const [metaDataState, setmetaDataState] = useState( null );
+  const [metaDataState, setmetaDataState] = useState( null );
+
   useEffect (() => {
     const metaDataJsonObj = { ...locationDetailData };
     delete metaDataJsonObj.dam_profile;
@@ -19,9 +20,10 @@ const [metaDataState, setmetaDataState] = useState( null );
   return (
     <div className="location-info-wrapper">
       <h5>Metadata</h5>
-      {metaDataState ? (
-        <Table rowsArr={metaDataState} headerRowArr={metaDataHeaderArr} />
-      ) : null}
+      { metaDataState
+        ? <Table rowsArr={metaDataState} headerRowArr={metaDataHeaderArr} />
+        : null
+      }
     </div>
   );
 };

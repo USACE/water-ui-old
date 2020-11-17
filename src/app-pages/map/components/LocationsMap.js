@@ -15,7 +15,7 @@ import {
 } from "ol/style";
 import { Cluster, Vector as VectorSource } from "ol/source";
 import { fromLonLat, toLonLat } from "ol/proj";
-import MapContainer from "./MapContainer";
+import MapContainer from "../../../app-common/map/MapContainer";
 
 const createStyle = (src, img) => (
   new Style({

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import MapDetailsContent from "../../app-common/map-details-container/MapDetailsContent";
+import LocationDetails from "../map/components/location-details/LocationDetails";
 import { connect } from "redux-bundler-react";
 import "./location-page.scss";
 
@@ -19,7 +19,7 @@ const LocationPage = ({
 
   return (
     <div className="map-and-details-container">
-      <MapDetailsContent
+      <LocationDetails
         locationDetail = { locationDetailData }
         locationCode = { locationDetailCode }
         locationDetailIsLoading={ locationDetailIsLoading }

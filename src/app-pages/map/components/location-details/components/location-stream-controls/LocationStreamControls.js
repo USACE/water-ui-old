@@ -1,8 +1,8 @@
 import React from "react";
-import "./locationStreamControls.scss";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
-import { RoutePaths } from "../../../../app-bundles/route-paths";
+import { RoutePaths } from "../../../../../../app-bundles/route-paths";
+import "./locationStreamControls.scss";
 
 const LocationStreamControls = ({ locationDetailData, fullScreen, doLocationsMapSaveMapState }) => {
   // For now, mock this array. Later, we'll add a mock array of stream locations to the location data.
