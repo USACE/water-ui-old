@@ -23,7 +23,7 @@ export function getRestUrl( liveUrl, mockUrl, mockOverrideFlag ) {
   let useMockUrl = isMockMode();
   if( mockOverrideFlag === true || mockOverrideFlag === false ) useMockUrl = mockOverrideFlag;
   const baseUrl = isDevelopmentMode()
-    ? useMockUrl ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`
+    ? useMockUrl ? `${ process.env.PUBLIC_URL }/mockdata` : `http://localhost:3030`
     : useMockUrl ? `${ process.env.PUBLIC_URL }/mockdata` : `https://api.rsgis.dev/development`;
 
   if( useMockUrl ) return `${ baseUrl }${ mockUrl }`;
