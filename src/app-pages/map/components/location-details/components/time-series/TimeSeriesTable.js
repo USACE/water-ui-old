@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Sparkline from "../../../../../../app-common/plotly//Sparkline";
+import Sparkline from "../../../../../../app-common/plotly/Sparkline";
 import "./time-series.scss";
 
 const TimeSeriesTable = ({
