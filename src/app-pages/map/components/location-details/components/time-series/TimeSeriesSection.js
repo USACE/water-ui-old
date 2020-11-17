@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
+import Loader from "../../../../../../app-common/loader/Loader";
 import A2WPlot from "../../../../../../app-common/plotly/A2Wplot";
+import TimeSeriesControl from "./TimeSeriesControl";
 import TimeSeriesTable from "./TimeSeriesTable";
 
 const TimeSeriesSection = ({
-  locationTimeSeriesPlotlyData
+  locationTimeSeriesPlotlyData,
+  locationTimeSeriesIsLoading,
 }) => {
   const [plotIndex, setPlotIndex] = useState(0);
 
-  if (locationTimeSeriesPlotlyData.length === 0) {
-    return null;
-  }
+  // reset the plotIndex when the plotly data changes
+  useEffect(() => {
+    setPlotIndex(0);
+  }, [locationTimeSeriesPlotlyData, setPlotIndex]);
 
   const data = locationTimeSeriesPlotlyData.map(plotlyData => ({
     ...plotlyData,
@@ -19,21 +23,33 @@ const TimeSeriesSection = ({
     mode: "lines",
   }));
 
+  if (data.length === 0 || !data[plotIndex]) {
+    return null;
+  }
+
   const layout = {
-    width: 600,
+    width: "100%",
     title: data[plotIndex].name,
     yaxis: {
       title: data[plotIndex].unit,
     },
   };
 
+  const config = {
+    scrollZoom: true,
+  }
+
   return (
-    <div className="time-series-section-wrapper">
-      <A2WPlot
-        data={[ data[plotIndex] ]}
-        layout={layout}
-        config={{scrollZoom: true}}
-      />
+    <div className="time-series-section">
+      { locationTimeSeriesIsLoading && <Loader /> }
+      <div className="time-series-plot">
+        <A2WPlot
+          data={[ data[plotIndex] ]}
+          layout={layout}
+          config={config}
+        />
+        <TimeSeriesControl />
+      </div>
       <TimeSeriesTable
         data={data}
         plotIndex={plotIndex}
@@ -45,9 +61,11 @@ const TimeSeriesSection = ({
 
 TimeSeriesSection.propTypes = {
   locationTimeSeriesPlotlyData: PropTypes.array.isRequired,
+  locationTimeSeriesIsLoading: PropTypes.bool.isRequired,
 };
 
 export default connect(
   "selectLocationTimeSeriesPlotlyData",
+  "selectLocationTimeSeriesIsLoading",
   TimeSeriesSection
 );

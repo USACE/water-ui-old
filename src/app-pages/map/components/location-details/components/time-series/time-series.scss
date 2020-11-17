@@ -1,11 +1,55 @@
+.time-series-section {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
+}
+
+.time-series-plot {
+  flex-grow: 1;
+}
+
+.time-series-control {
+  display: flex;
+  flex-wrap: wrap;
+  >p {
+    font-weight: 700;
+    font-size: 15px;
+  }
+}
+
+// .time-series-input {
+//   >input {
+//     &:hover, &:focus, &:active{
+//       cursor: pointer;
+//     }
+//   }
+//   >label {
+//     margin-left: 0.5rem;
+//     margin-right: 1rem;
+//     &:hover, &:focus, &:active{
+//       cursor: pointer;
+//     }
+//   }
+// }
+
+.time-series-input {
+  margin-right: 1rem;
+  font-weight: 700;
+  >input, label, select {
+    display: block;
+  }
+  >input, select {
+    width: 150px;
+    height: 30px;
+  }  
+}
+
 .time-series-table {
   width: 600px !important;
-
   >tbody {
     >tr:hover {
       background-color: rgba(0, 0, 255, 0.1);
     }
-
     td {
       vertical-align: middle;
     }
