@@ -38,6 +38,7 @@
   "scripts": {
     "start": "react-scripts start",
     "mock": "env-cmd -f .env.mock react-scripts start",
+    "remote": "env-cmd -f .env.remote react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

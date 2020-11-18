@@ -10,6 +10,8 @@ const LocationStreamControls = ({
   streamLocationsData,
   doLocationsMapSaveMapState,
   doStreamLocationsFetch,
+  doLocationDetailSetCode,
+  doUpdateUrl
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -26,15 +28,22 @@ const LocationStreamControls = ({
     );
   }, [locationDetailData, streamLocationsData, setCurrentIndex])
 
-  const changeStation = (e) => {
+  const changeStation = ( e, newIndex ) => {
     e.preventDefault();
     e.stopPropagation();
+
+    let nextLocation = streamLocationsData[ newIndex ];
+
+    if( nextLocation ) {
+      const newLocation = `${RoutePaths.Locations.replace(":locationId", nextLocation.location_code)}`;
+      setCurrentIndex( e.target.value );
+      doUpdateUrl( newLocation );
+      doLocationDetailSetCode( nextLocation.location_code );
+    }
   };
 
   const jumpStation = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentIndex(e.target.value);
+    changeStation( e, e.currentTarget.value );
   };
 
   const saveMapState = () => {
@@ -59,14 +68,18 @@ const LocationStreamControls = ({
       )}
       { streamLocationsData && streamLocationsData.length > 0 && (
         <div className="location-stream-controls-wrapper">
-          <button className="link downstream-station" onClick={changeStation}>
-            downstream station
-          </button>
+
+          { currentIndex > 0 && (
+            <button className="link downstream-station"
+                    onClick={ ( e ) => changeStation( e, currentIndex - 1 ) }>
+              upstream station
+            </button>
+          )}
+
           <select
             className="jump-station"
             aria-labelledby="jump to station dropdown"
             onChange={jumpStation}
-            onClick={jumpStation}
             value={currentIndex}
           >
             { streamLocationsData.map((item, i) => (
@@ -79,9 +92,14 @@ const LocationStreamControls = ({
               ))
             }
           </select>
-          <button className="link upstream-station" onClick={changeStation}>
-            upstream station
-          </button>
+
+          { currentIndex + 1 < streamLocationsData.length && (
+            <button className="link upstream-station"
+                    onClick={ ( e ) => changeStation( e, currentIndex + 1 ) }>
+              downstream station
+            </button>
+          )}
+
         </div>
       )}
     </div>
@@ -98,5 +116,7 @@ export default connect(
   "selectStreamLocationsData",
   "doLocationsMapSaveMapState",
   "doStreamLocationsFetch",
+  "doLocationDetailSetCode",
+  "doUpdateUrl",
   LocationStreamControls
 );
