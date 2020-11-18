@@ -4,14 +4,20 @@ import PropTypes from "prop-types";
 import { RoutePaths } from "../../../../../../app-bundles/route-paths";
 import "./locationStreamControls.scss";
 
-const LocationStreamControls = ({
-  fullScreen,
-  locationDetailData,
-  streamLocationsData,
-  doLocationsMapSaveMapState,
-  doStreamLocationsFetch,
-  doUpdateUrl
-}) => {
+const LocationStreamControls = (props) => {
+
+  const {
+    fullScreen,
+    /** @type a2w.models.LocationDetail */
+    locationDetailData,
+    /** @type a2w.models.StreamLocation[] */
+    streamLocationsData,
+    doLocationsMapSaveMapState,
+    doStreamLocationsFetch,
+    doUpdateUrl
+  } = props;
+
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -34,8 +40,8 @@ const LocationStreamControls = ({
     let nextLocation = streamLocationsData[ newIndex ];
 
     if( nextLocation ) {
-      const newLocation = `${RoutePaths.Locations.replace(":locationId", nextLocation.location_code)}`;
-      setCurrentIndex( e.target.value );
+      const newLocation = `${ RoutePaths.Locations.replace(":locationId", nextLocation.location_code) }`;
+      setCurrentIndex( newIndex );
       doUpdateUrl( newLocation );
     }
   };
