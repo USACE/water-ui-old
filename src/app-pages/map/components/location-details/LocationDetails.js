@@ -30,41 +30,39 @@ const LocationDetails = ( props ) => {
   };
 
   if( locationDetailIsLoading ) return <Loader type={ loaderTypes.SPINNER }/>
-  else {
-    const detailSections = buildLocationDetailSections( locationDetail )
-    return (
-      <>
-        <LocationDetailHeader
-          locationDetail={ locationDetail }
-          onExpand={ handleFullScreen ? () => handleFullScreen( { selectedLocationCode: locationCode } ) : null }
-          getHeaderHeight={ getHeaderHeight }
-        />
-        <div className="location-detail-content-container">
-          { !handleFullScreen && (
-            <div className="map-details-nav">
-              {/* added 32 for padding*/ }
-              <ul className="navbar-ul fixed-sticky-nav" style={ { top: headerHeight + 32 } }>
-                { detailSections.map( ( section ) => {
-                  const { title } = section;
-                  return (
-                    <li className="nav-item" key={ title }>
-                      <button className="nav-link-btn" onClick={ () => handleNavClick( title ) }>
-                        { title }
-                      </button>
-                    </li>
-                  );
-                } )
-                }
-              </ul>
-            </div>
-          ) }
-          <div className="accordion-container">
-            <Accordion data={ detailSections } formatId={ formatId }/>
+  const detailSections = buildLocationDetailSections( locationDetail )
+  return (
+    <>
+      <LocationDetailHeader
+        locationDetail={ locationDetail }
+        onExpand={ handleFullScreen ? () => handleFullScreen( { selectedLocationCode: locationCode } ) : null }
+        getHeaderHeight={ getHeaderHeight }
+      />
+      <div className="location-detail-content-container">
+        { !handleFullScreen && (
+          <div className="map-details-nav">
+            {/* added 32 for padding*/ }
+            <ul className="navbar-ul fixed-sticky-nav" style={ { top: headerHeight + 32 } }>
+              { detailSections.map( ( section ) => {
+                const { title } = section;
+                return (
+                  <li className="nav-item" key={ title }>
+                    <button className="nav-link-btn" onClick={ () => handleNavClick( title ) }>
+                      { title }
+                    </button>
+                  </li>
+                );
+              } )
+              }
+            </ul>
           </div>
+        ) }
+        <div className="accordion-container">
+          <Accordion data={ detailSections } formatId={ formatId }/>
         </div>
-      </>
-    )
-  };
+      </div>
+    </>
+  );
 };
 
 LocationDetails.propTypes = {
