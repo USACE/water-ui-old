@@ -4,13 +4,20 @@ import PropTypes from "prop-types";
 import { RoutePaths } from "../../../../../../app-bundles/route-paths";
 import "./locationStreamControls.scss";
 
-const LocationStreamControls = ({
-  fullScreen,
-  locationDetailData,
-  streamLocationsData,
-  doLocationsMapSaveMapState,
-  doStreamLocationsFetch,
-}) => {
+const LocationStreamControls = (props) => {
+
+  const {
+    fullScreen,
+    /** @type a2w.models.LocationDetail */
+    locationDetailData,
+    /** @type a2w.models.StreamLocation[] */
+    streamLocationsData,
+    doLocationsMapSaveMapState,
+    doStreamLocationsFetch,
+    doUpdateUrl
+  } = props;
+
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -26,15 +33,21 @@ const LocationStreamControls = ({
     );
   }, [locationDetailData, streamLocationsData, setCurrentIndex])
 
-  const changeStation = (e) => {
+  const changeStation = ( e, newIndex ) => {
     e.preventDefault();
     e.stopPropagation();
+
+    let nextLocation = streamLocationsData[ newIndex ];
+
+    if( nextLocation ) {
+      const newLocation = `${ RoutePaths.Locations.replace(":locationId", nextLocation.location_code) }`;
+      setCurrentIndex( newIndex );
+      doUpdateUrl( newLocation );
+    }
   };
 
   const jumpStation = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentIndex(e.target.value);
+    changeStation( e, e.currentTarget.value );
   };
 
   const saveMapState = () => {
@@ -59,14 +72,19 @@ const LocationStreamControls = ({
       )}
       { streamLocationsData && streamLocationsData.length > 0 && (
         <div className="location-stream-controls-wrapper">
-          <button className="link downstream-station" onClick={changeStation}>
-            downstream station
-          </button>
+
+          { currentIndex > 0 && (
+            <button className="link downstream-station"
+                    onClick={ ( e ) => changeStation( e, currentIndex - 1 ) }>
+              upstream station
+            </button>
+          )}
+
           <select
             className="jump-station"
             aria-labelledby="jump to station dropdown"
             onChange={jumpStation}
-            onClick={jumpStation}
+            onClick={e => e.stopPropagation()}
             value={currentIndex}
           >
             { streamLocationsData.map((item, i) => (
@@ -79,9 +97,14 @@ const LocationStreamControls = ({
               ))
             }
           </select>
-          <button className="link upstream-station" onClick={changeStation}>
-            upstream station
-          </button>
+
+          { currentIndex + 1 < streamLocationsData.length && (
+            <button className="link upstream-station"
+                    onClick={ ( e ) => changeStation( e, currentIndex + 1 ) }>
+              downstream station
+            </button>
+          )}
+
         </div>
       )}
     </div>
@@ -98,5 +121,6 @@ export default connect(
   "selectStreamLocationsData",
   "doLocationsMapSaveMapState",
   "doStreamLocationsFetch",
+  "doUpdateUrl",
   LocationStreamControls
 );

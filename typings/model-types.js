@@ -101,9 +101,9 @@
  * @property {number} current_elevation
  * @property {number} previous_elevation
  * @property {string} elevation_date
- * @property {object} current_stage
- * @property {object} previous_stage
- * @property {object} stage_date
+ * @property {number} current_stage
+ * @property {number} previous_stage
+ * @property {string} stage_date
  * @property {number} current_flow
  * @property {string} flow_date
  * @property {number} current_inflow
@@ -112,32 +112,52 @@
  * @property {string} precipitation_date
  * @property {number} current_storage
  * @property {string} storage_date
- * @property {object} current_drought_storage
- * @property {object} drought_storage_date
- * @property {object} current_surcharge
- * @property {object} surchange_date
- * @property {object} current_top_of_wall_elevation
- * @property {object} top_of_wall_elevation_date
- * @property {object} current_top_of_wall_stage
- * @property {object} top_of_wall_stage_date
- * @property {object} current_rule_curve
- * @property {object} rule_curve_date
- * @property {object} current_power_generation
- * @property {object} power_generation_date
- * @property {object} current_air_temperature
- * @property {object} air_temperature_date
- * @property {object} current_water_temperature
- * @property {object} water_temperature_date
- * @property {object} current_do
- * @property {object} do_date
- * @property {object} current_ph
- * @property {object} ph_date
- * @property {object} current_cond
- * @property {object} cond_date
+ * @property {number} current_drought_storage
+ * @property {string} drought_storage_date
+ * @property {number} current_surcharge
+ * @property {string} surchange_date
+ * @property {number} current_top_of_wall_elevation
+ * @property {number} top_of_wall_elevation_date
+ * @property {number} current_top_of_wall_stage
+ * @property {number} top_of_wall_stage_date
+ * @property {number} current_rule_curve
+ * @property {string} rule_curve_date
+ * @property {number} current_power_generation
+ * @property {string} power_generation_date
+ * @property {number} current_air_temperature
+ * @property {string} air_temperature_date
+ * @property {number} current_water_temperature
+ * @property {string} water_temperature_date
+ * @property {number} current_do
+ * @property {string} do_date
+ * @property {number} current_ph
+ * @property {number} ph_date
+ * @property {number} current_cond
+ * @property {string} cond_date
  * @property {object} channel_capacity
- * @property {object} spillway_crest
+ * @property {number} spillway_crest
  * @property {string} vertical_datum
- * @property {object} drainage_area
+ * @property {number} drainage_area
  * @property {number} public_ind
- * @property {a2w.models.DamProfile} dam_profile
- */
+ * @property {string} stream_location_code
+ * @property {number} bottom_of_conservation
+ * @property {number} bottom_of_flood
+ * @property {number} bottom_of_normal
+ * @property {number} design_capacity
+ * @property {string} level_type
+ * @property {number} stream_bed
+ * @property {number} top_of_conservation
+ * @property {number} top_of_dam
+ * @property {number} top_of_deadpool
+ * @property {number} top_of_flood
+ * @property {number} top_of_surcharge
+*/
+
+/**
+ * @typedef a2w.models.StreamLocation
+ * @property {string} office_id
+ * @property {string} public_name
+ * @property {string} location_code
+ * @property {string} location_id
+ * @property {number} station
+*/
