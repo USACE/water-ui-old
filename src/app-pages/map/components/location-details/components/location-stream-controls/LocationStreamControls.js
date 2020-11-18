@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
-import { RoutePaths } from "../../../../app-bundles/route-paths";
+import { RoutePaths } from "../../../../../../app-bundles/route-paths";
 import "./locationStreamControls.scss";
 
 const LocationStreamControls = ({

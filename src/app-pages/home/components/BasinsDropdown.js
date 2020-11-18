@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types"
 import { connect } from "redux-bundler-react";
-import Dropdown from "../../../app-common/Dropdown";
+import Dropdown from "../../../app-common/inputs/Dropdown";
 import { RoutePaths } from "../../../app-bundles/route-paths";
 
 const BasinsDropdown = ({

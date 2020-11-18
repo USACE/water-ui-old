@@ -1,12 +1,11 @@
 import React, { useCallback, useState } from "react";
-import LocationDetailHeader from "../location-detail/Header";
-import Accordion from "../accordion/Accordion";
-import { accordionArrObjs } from "./data";
-import "./map-details-content.scss";
 import PropTypes from "prop-types";
-import Loader, { loaderTypes } from "../loader/Loader";
+import Accordion from "../../../../app-common/accordion/Accordion";
+import Loader, { loaderTypes } from "../../../../app-common/loader/Loader";
+import LocationDetailHeader from "./components/LocationDetailHeader";
+import { accordionArrObjs } from "./data";
 
-const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode, locationDetailIsLoading }) => {
+const LocationDetails = ({ handleFullScreen, locationDetail, locationCode, locationDetailIsLoading }) => {
 
   const [headerHeight, setHeaderHeight] = useState(null);
   const formatId = (title) => {
@@ -36,17 +35,17 @@ const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode, loc
           <div className="map-details-nav">
             {/* added 32 for padding*/}
             <ul className="navbar-ul fixed-sticky-nav" style={{ top:headerHeight + 32 }}>
-              {accordionArrObjs &&
-                accordionArrObjs.map((section, i) => {
+              { accordionArrObjs.map((section) => {
                   const { title } = section;
                   return (
-                    <li className="nav-item" key={i}>
+                    <li className="nav-item" key={title}>
                       <button className="nav-link-btn" onClick={() => handleNavClick(title)}>
                         {title}
                       </button>
                     </li>
                   );
-                })}
+                })
+              }
             </ul>
           </div>
         )}
@@ -58,7 +57,7 @@ const MapDetailsContent = ({ handleFullScreen, locationDetail, locationCode, loc
   );
 };
 
-MapDetailsContent.propTypes = {
+LocationDetails.propTypes = {
   handleFullScreen: PropTypes.func, 
   locationDetail: PropTypes.object,
   locationCode: PropTypes.string,
@@ -66,4 +65,4 @@ MapDetailsContent.propTypes = {
 };
 
 
-export default MapDetailsContent;
+export default LocationDetails;

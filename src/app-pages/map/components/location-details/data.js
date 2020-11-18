@@ -1,8 +1,9 @@
 import React from "react";
-import LocationInfo from "../../app-pages/map/components/LocationInfo";
-import DamProfile from "../../app-pages/map/components/DamProfile";
-import TimeSeriesSection from "../../app-common/time-series/TimeSeriesSection";
-import TimeLineSection from "../../app-pages/map/components/TimeLineSection";
+import DamProfile from "./components/DamProfile";
+import LocationInfo from "./components/LocationInfo";
+import TimeSeriesSection from "./components/time-series/TimeSeriesSection";
+import TimeLineSection from "./components/TimeLineSection";
+
 // Accordion dummy data
 export const accordionArrObjs = [
   {
@@ -27,8 +28,7 @@ export const accordionArrObjs = [
   },
   {
     title: "Sedimentation",
-    content:
-      "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
+    content: "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
     iconClass: "mdi mdi-map-marker",
   },
 ];

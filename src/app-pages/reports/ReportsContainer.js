@@ -1,6 +1,6 @@
 import React from "react";
 import TextSection from '../../app-common/TextSection';
-import SearchBox from '../../app-common/SearchBox';
+import SearchBox from '../../app-common/inputs/SearchBox';
 import TabLinks from '../../app-common/TabLinks';
 import { RoutePaths } from "../../app-bundles/route-paths";
 

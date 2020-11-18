@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
-import "./mapDetails.scss";
-import MapDetailsContent from "../../../../app-common/map-details-container/MapDetailsContent";
+import LocationDetails from "./LocationDetails";
 import { RoutePaths } from "../../../../app-bundles/route-paths";
+import "./locationDetails.scss";
 
-const MapDetails = ( props ) => {
+const LocationDetailsContainer = ( props ) => {
   const {
     locationDetailCode,
     /** @type a2w.models.LocationDetail */
@@ -50,10 +50,10 @@ const MapDetails = ( props ) => {
   return (
     <div className="map-details" style={mapDetailsStyle}>
       <div className="map-details-wrapper">
-        <div className={`${isOpen ? "is-expanded" : ""}`} onClick={toggleDrawer}>
-          <div className={`${isFullScreen ? "full-screen " : "drawer-content-container"}`}>
-            <div className={`${isOpen ? "drawer-content" : "display-none"}`}>
-              <MapDetailsContent
+        <div className={ isOpen ? "is-expanded" : "" } onClick={toggleDrawer}>
+          <div className={ isFullScreen ? "full-screen " : "drawer-content-container" }>
+            <div className={ isOpen ? "drawer-content" : "display-none" }>
+              <LocationDetails
                 handleFullScreen={() => handleFullScreen(locationDetailCode, doUpdateUrl)}
                 locationDetail={locationDetailData}
                 locationCode={locationDetailCode}
@@ -78,7 +78,7 @@ const MapDetails = ( props ) => {
   );
 };
 
-MapDetails.propTypes = {
+LocationDetailsContainer.propTypes = {
   selectedLocationCode: PropTypes.string,
   locationDetailData: PropTypes.object,
   doUpdateUrl: PropTypes.func.isRequired,
@@ -89,5 +89,5 @@ export default connect(
   "selectLocationDetailData",
   "selectLocationDetailIsLoading",
   "doUpdateUrl",
-  MapDetails
+  LocationDetailsContainer
 );

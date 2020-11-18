@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import MapNavBar from "./components/map-nav-bar/MapNavBar";
-import MapDetails from "./components/map-details/MapDetails";
-import LocationsMap from '../../app-common/map/LocationsMap';
+import LocationDetailsContainer from "./components/location-details/LocationDetailsContainer";
+import LocationsMap from "./components/LocationsMap";
 import { connect } from "redux-bundler-react";
 
 const MapPage = ( {doLocationSummariesFetch }) => {
@@ -18,7 +18,7 @@ const MapPage = ( {doLocationSummariesFetch }) => {
         className=" map-and-details-container "
         style={{ display: "flex", flexDirection: "row" }}
       >
-        <MapDetails />
+        <LocationDetailsContainer />
         <div className="map-container" style={{ padding: "0", flexGrow: 35 }}>
           <LocationsMap
             mapKey="locationsMap"

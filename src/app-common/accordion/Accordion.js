@@ -1,76 +1,66 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-
-// CSS
 import "./accordion.scss";
 
-const Accordion = (props) => {
-  const { data, formatId } = props;
-  const [ activeAcc, setActiveAcc ] = useState([]);
+const Accordion = ({ data, formatId }) => {
+  const [ activeAcc, setActiveAcc ] = useState({});
 
-  const toggleAccordion = (i, e) => {
+  const toggleAccordion = (e, i) => {
     e.stopPropagation();
-    // if active then close
-    if ( activeAcc.includes(i) ) {
-      setActiveAcc(activeAcc.filter((arr) => arr !== i));
-    } else {
-      setActiveAcc([...activeAcc, i]);
-    }
-  };
-
-  const renderAccordion = () => {
-    return (
-      data &&
-      data.map((ele, i) => {
-        const { content, title, iconClass } = ele;
-        return (
-          <div key={ i }>
-            <button
-              className={ `accordion-btn` } 
-              onClick={ (e) => toggleAccordion(i, e) }
-              aria-controls={ title }
-              aria-expanded={ activeAcc.includes(i) ? "true" : "false" }
-              key={ `button-${i}` }
-              type="button"
-            >
-              <div className={ `accordion-title text--bold ${iconClass}` } id={ formatId(title) }>
-                { title }
-              </div>
-              <div
-                className={
-                  activeAcc.includes(i) ? "chevron right" : "chevron right open"
-                }
-              ></div>
-            </button>
-            <div
-              className={
-                activeAcc.includes(i)
-                  ? "accordion-content active-accordion"
-                  : "accordion-content"
-              }
-              aria-labelledby={ title }
-              key={ `accordion-content-${i}` }
-              id={ `accordion-control-${i}` }
-              aria-hidden={ !activeAcc.includes(i) ? "true" : "false" }
-            >
-              <div className="content-paragraph">{ content }</div>
-            </div>
-          </div>
-        );
-      })
-    );
+    setActiveAcc({
+      ...activeAcc,
+      [i]: !activeAcc[i],
+    });
   };
 
   return (
-    <div className="accordion-section" data-test="accordion-section">
-      { data && renderAccordion() }
+    <div className="accordion-section">
+      { data && data.map((ele, i) => {
+          const { content, title, iconClass } = ele;
+          return (
+            <div key={ title }>
+              <button
+                className="accordion-btn"
+                onClick={ e => toggleAccordion(e, i) }
+                aria-controls={ `accordion-control-${i}` }
+                aria-expanded={ !!activeAcc[i] }
+                type="button"
+              >
+                <div
+                  id={ formatId(title) }
+                  className={ `accordion-title text--bold ${iconClass}` }
+                >
+                  { title }
+                </div>
+                <div
+                  className={ activeAcc[i] ? "chevron up" : "chevron down" }
+                />
+              </button>
+              <div
+                id={ `accordion-control-${i}` }
+                className={ activeAcc[i] ? "accordion-content" : "accordion-content d-none" }
+                aria-labelledby={ title }
+                aria-hidden={ !activeAcc[i] }
+              >
+                <div className="content-paragraph">
+                  { content }
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
     </div>
   );
 };
 
 Accordion.propTypes = {
-  data: PropTypes.array.isRequired,
-  formatId: PropTypes.func
+  data: PropTypes.arrayOf(PropTypes.shape({
+    content: PropTypes.node.isRequired,
+    title: PropTypes.string.isRequired,
+    iconClass: PropTypes.string,
+  })),
+  formatId: PropTypes.func.isRequired,
 };
 
 export default Accordion;
