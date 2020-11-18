@@ -10,7 +10,6 @@ const LocationStreamControls = ({
   streamLocationsData,
   doLocationsMapSaveMapState,
   doStreamLocationsFetch,
-  doLocationDetailSetCode,
   doUpdateUrl
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,7 +37,6 @@ const LocationStreamControls = ({
       const newLocation = `${RoutePaths.Locations.replace(":locationId", nextLocation.location_code)}`;
       setCurrentIndex( e.target.value );
       doUpdateUrl( newLocation );
-      doLocationDetailSetCode( nextLocation.location_code );
     }
   };
 
@@ -116,7 +114,6 @@ export default connect(
   "selectStreamLocationsData",
   "doLocationsMapSaveMapState",
   "doStreamLocationsFetch",
-  "doLocationDetailSetCode",
   "doUpdateUrl",
   LocationStreamControls
 );
