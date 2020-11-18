@@ -1,15 +1,25 @@
 .time-series-section {
   display: flex;
   flex-wrap: wrap;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .time-series-plot {
   flex-grow: 1;
 }
 
+.js-plotly-plot {
+  width: 100%;
+  min-width: 100%;
+}
+
+.plot-container {
+  width: 100%;
+}
+
 .time-series-control {
   display: flex;
+  position: static;
   flex-wrap: wrap;
   >p {
     font-weight: 700;

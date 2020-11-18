@@ -28,7 +28,8 @@ const TimeSeriesSection = ({
   }
 
   const layout = {
-    width: "100%",
+    autosize: true,
+    margin: { t: 70, b: 50, l: 70, r: 70 },
     title: data[plotIndex].name,
     yaxis: {
       title: data[plotIndex].unit,
@@ -47,6 +48,7 @@ const TimeSeriesSection = ({
           data={[ data[plotIndex] ]}
           layout={layout}
           config={config}
+          useResizeHandler={ true }
         />
         <TimeSeriesControl />
       </div>
