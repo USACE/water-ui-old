@@ -78,6 +78,7 @@ const LocationStreamControls = ({
             className="jump-station"
             aria-labelledby="jump to station dropdown"
             onChange={jumpStation}
+            onClick={e => e.stopPropagation()}
             value={currentIndex}
           >
             { streamLocationsData.map((item, i) => (
