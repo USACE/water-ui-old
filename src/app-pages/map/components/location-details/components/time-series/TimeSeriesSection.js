@@ -56,7 +56,7 @@ const TimeSeriesSection = ({
 
   const config = {
     scrollZoom: true,
-  }
+  };
 
   return (
     <div className="time-series-section">
