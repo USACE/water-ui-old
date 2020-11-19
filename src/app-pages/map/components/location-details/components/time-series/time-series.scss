@@ -1,0 +1,56 @@
+.time-series-section {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.time-series-plot {
+  flex-grow: 1;
+}
+
+.js-plotly-plot {
+  width: 100%;
+  min-width: 100%;
+}
+
+.plot-container {
+  width: 100%;
+}
+
+.time-series-control {
+  display: flex;
+  position: static;
+  flex-wrap: wrap;
+  >p {
+    font-weight: 700;
+    font-size: 15px;
+  }
+}
+
+.time-series-input {
+  margin-right: 1rem;
+  font-weight: 700;
+  >input, label, select {
+    display: block;
+  }
+  >input, select {
+    width: 150px;
+    height: 30px;
+  }  
+}
+
+.time-series-table {
+  width: 600px !important;
+  >tbody {
+    >tr:hover {
+      background-color: rgba(0, 0, 255, 0.1);
+    }
+    td {
+      vertical-align: middle;
+    }
+  }
+}
+
+.time-series-selected-row {
+  background-color: rgba(0, 0, 255, 0.1);
+}

@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
-import Autocomplete from "../../../app-common/autocomplete/Autocomplete";
-import { RoutePaths } from "../../../app-bundles/routes-bundle";
+import Autocomplete from "../../../app-common/inputs/autocomplete/Autocomplete";
+import { RoutePaths } from "../../../app-bundles/route-paths";
 
 const LocationSearch = ({
   locationSearchText,
   locationSearchData,
   doSetLocationSearchText,
   debounceFetch,
-  doUpdateUrlWithHomepage,
+  doUpdateUrl,
 }) => {
 
   const inputOnChange = (e) => {
@@ -17,14 +17,26 @@ const LocationSearch = ({
     debounceFetch();
   };
 
-  const items = locationSearchText
-    ? locationSearchData.map(({ description, location_id }) => ({ value: location_id, display: description }))
-    : [];
+  let items = [];
+  if( locationSearchText ) {
+    items = locationSearchData.map( ( { description, location_id, nearest_city, county_name } ) => {
+      let additionalText = [];
+      if( nearest_city ) additionalText.push( `near ${ nearest_city }` )
+      if( county_name ) additionalText.push( `${ county_name } county` )
+
+      let dispVal = <>
+        <span style={{ marginRight: "5px" }}>{description}</span>
+        <span style={{ fontSize: ".8rem" }}>{additionalText.length ? `(${ additionalText.join( ', ' ) })` : "" }</span>
+      </>
+
+      return ( { value: location_id, display: dispVal } )
+    } )
+  }
 
   const itemOnClick = (e) => {
-    const locationCode = e.target.value;
+    const locationCode = e.currentTarget.value || e.target.value;
     doSetLocationSearchText("");
-    doUpdateUrlWithHomepage(RoutePaths.Locations.replace(":locationId", locationCode));
+    doUpdateUrl(RoutePaths.Locations.replace(":locationId", locationCode));
   }
 
   return (
@@ -37,8 +49,8 @@ const LocationSearch = ({
       }}
       items={items}
       itemOnClick={itemOnClick}
-      placeholder="Search by City, State, ZIP, or Project Names"
-      ariaLabel="Search by City, State, ZIP, or Project Names"
+      placeholder="Search by location, city, or county"
+      ariaLabel="Search by location, city, or county"
     />
   );
 };
@@ -51,13 +63,13 @@ LocationSearch.propTypes = {
   })).isRequired,
   doSetLocationSearchText: PropTypes.func.isRequired,
   debounceFetch: PropTypes.func.isRequired,
-  doUpdateUrlWithHomepage: PropTypes.func.isRequired,
+  doUpdateUrl: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationSearchText",
   "selectLocationSearchData",
   "doSetLocationSearchText",
-  "doUpdateUrlWithHomepage",
+  "doUpdateUrl",
   LocationSearch,
 );

@@ -3,14 +3,8 @@ import {
   createCacheBundle,
   createUrlBundle,
 } from "redux-bundler";
-
-import {
-  createNestedUrlBundle,
-} from "@corpsmap/corpsmap-bundles";
 import createAuthBundle from "@corpsmap/create-auth-bundle";
 import createJwtApiBundle from "@corpsmap/create-jwt-api-bundle";
-import pkg from "../../package.json";
-
 import routeBundle from "./routes-bundle";
 import mapsBundle from './maps-bundle';
 import locationsMapBundle from "./locations-map-bundle";
@@ -28,6 +22,7 @@ import locationDetailBundle from "./location-detail-bundle";
 import locationTreeBundle from "./location-tree-bundle";
 import radarTimeSeriesBundle from "./radar-time-series-bundle";
 import radarTimeSeriesParamsBundle from "./radar-time-series-params-bundle";
+import streamLocationsBundle from "./stream-location-bundle";
 import cache from "./../cache.js";
 
 export default composeBundles(
@@ -47,9 +42,6 @@ export default composeBundles(
     cacheFn: cache.set,
   }),
   createUrlBundle(),
-  createNestedUrlBundle({
-    pkg: pkg,
-  }),
   mapsBundle,
   locationSummariesBundle,
   routeBundle,
@@ -66,5 +58,6 @@ export default composeBundles(
   locationTreeBundle,
   locationSearchBundle,
   radarTimeSeriesBundle,
-  radarTimeSeriesParamsBundle
+  radarTimeSeriesParamsBundle,
+  streamLocationsBundle
 );

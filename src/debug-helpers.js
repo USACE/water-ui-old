@@ -48,7 +48,7 @@ export const useEffectDebugger = (effectHook, dependencies, dependencyNames = []
 export const toTypeDef = ( model, typeName ) => {
   if( !model ) return;
   let result = `/**\n`;
-  result += ` * @typedef ${ typeName }\n`;
+  result += ` * @typedef a2w.models.${ typeName }\n`;
 
   for( const [ key, value ] of Object.entries( model ) ) {
     result += ` * @property {${ typeof value }} ${ key }\n`;

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
-import "./mapDetails.scss";
-import MapDetailsContent from "../../../../app-common/map-details-container/MapDetailsContent";
-import { RoutePaths } from "../../../../app-bundles/routes-bundle";
+import LocationDetails from "./LocationDetails";
+import { RoutePaths } from "../../../../app-bundles/route-paths";
+import "./locationDetails.scss";
 
-const MapDetails = ( props ) => {
+const LocationDetailsContainer = ( props ) => {
   const {
     locationDetailCode,
     /** @type a2w.models.LocationDetail */
     locationDetailData,
     locationDetailIsLoading,
-    doUpdateUrlWithHomepage,
+    doUpdateUrl,
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +33,7 @@ const MapDetails = ( props ) => {
       ? { padding: 0, flexGrow: 1 }
       : { visibility: "hidden" };
 
-  const handleFullScreen = (selectedLocationCode, doUpdateUrlWithHomepage) => {
+  const handleFullScreen = (selectedLocationCode, doUpdateUrl) => {
     setIsFullScreen(true);
     const newLocation = `${RoutePaths.Locations.replace(":locationId", selectedLocationCode)}`;
 
@@ -41,7 +41,7 @@ const MapDetails = ( props ) => {
     // added simple fade, will replace later.
     setTimeout(function () {
       document.body.classList.toggle("fade");
-      doUpdateUrlWithHomepage(newLocation);
+      doUpdateUrl(newLocation);
       setTimeout(function () {
         document.body.classList.toggle("fade");
       }, 700);
@@ -50,11 +50,11 @@ const MapDetails = ( props ) => {
   return (
     <div className="map-details" style={mapDetailsStyle}>
       <div className="map-details-wrapper">
-        <div className={`${isOpen ? "is-expanded" : ""}`} onClick={toggleDrawer}>
-          <div className={`${isFullScreen ? "full-screen " : "drawer-content-container"}`}>
-            <div className={`${isOpen ? "drawer-content" : "display-none"}`}>
-              <MapDetailsContent
-                handleFullScreen={() => handleFullScreen(locationDetailCode, doUpdateUrlWithHomepage)}
+        <div className={ isOpen ? "is-expanded" : "" } onClick={toggleDrawer}>
+          <div className={ isFullScreen ? "full-screen " : "drawer-content-container" }>
+            <div className={ isOpen ? "drawer-content" : "display-none" }>
+              <LocationDetails
+                handleFullScreen={() => handleFullScreen(locationDetailCode, doUpdateUrl)}
                 locationDetail={locationDetailData}
                 locationCode={locationDetailCode}
                 locationDetailIsLoading={locationDetailIsLoading}
@@ -78,16 +78,16 @@ const MapDetails = ( props ) => {
   );
 };
 
-MapDetails.propTypes = {
+LocationDetailsContainer.propTypes = {
   selectedLocationCode: PropTypes.string,
   locationDetailData: PropTypes.object,
-  doUpdateUrlWithHomepage: PropTypes.func.isRequired,
+  doUpdateUrl: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationDetailCode",
   "selectLocationDetailData",
   "selectLocationDetailIsLoading",
-  "doUpdateUrlWithHomepage",
-  MapDetails
+  "doUpdateUrl",
+  LocationDetailsContainer
 );

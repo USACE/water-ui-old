@@ -1,23 +1,40 @@
-import React from 'react';
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import debounce from "lodash/debounce";
-import Cards from '../../app-common/Cards';
-import TextSection from '../../app-common/TextSection';
-import CirclePics from '../../app-common/CirclePics';
-import { cardObj, circlePicObj } from './data.js';
+import Cards from "../../app-common/Cards";
+import TextSection from "../../app-common/TextSection";
+import CirclePics from "../../app-common/CirclePics";
+import { cardObj, circlePicObj } from "./data.js";
 import LocationSearch from "./components/LocationSearch";
 import DistrictsDropdown from "./components/DistrictsDropdown";
 import BasinsDropdown from "./components/BasinsDropdown";
 import "./homePage.scss";
+import background from "../../img/yellowstone-national-park.jpg";
 
 const containerTextSection = {
-  textAlign: 'center',
-  margin: '1rem 0',
-  padding: 'auto 12rem',
-  width: '100%',
-  color: 'black'
+  textAlign: "center",
+  margin: "1rem 0",
+  padding: "auto 12rem",
+  width: "100%",
+  color: "black"
 };
+
+const titleStyle = {
+  textTransform: "capitalize",
+  fontSize: "2.5rem",
+  color: "black",
+  fontWeight: "600",
+}
+
+const bodyStyle = {
+  marginTop: "1rem",
+  marginBottom: "1rem",
+  fontSize: "1.25rem",
+  fontWeight: "300",
+  opacity: "1",
+  color: "black",
+}
 
 const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
   const debounceFetch = debounce(doSetLocationSearchCriteriaUpdated, 500);
@@ -25,9 +42,12 @@ const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
   return (
     <div className="home-page-container">
       <div className="banner-img-container">
+        <img className="banner-img" src={ background } alt="" />
         <div className="p-5 header-container">
           <TextSection
             containerStyle={ containerTextSection }
+            titleStyle={ titleStyle }
+            bodyStyle={ bodyStyle }
             title="find water resources data across the U.S."
             body="Access water resources data such as elevation, precipitation, storage, and flow status of more than 700 USACE reservoir and lock & dam projects."
           />

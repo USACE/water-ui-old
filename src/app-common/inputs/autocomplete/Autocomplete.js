@@ -187,7 +187,7 @@ Autocomplete.propTypes = {
   }).isRequired,
   items: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any.isRequired,
-    display: PropTypes.string.isRequired,
+    display: PropTypes.node.isRequired,
   })).isRequired,
   itemOnClick: PropTypes.func.isRequired,
   ariaLabel: PropTypes.string.isRequired,

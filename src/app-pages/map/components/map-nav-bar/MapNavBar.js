@@ -1,6 +1,6 @@
 import React from "react";
-import SearchBox from "../../../../app-common/SearchBox";
-import Dropdown from "../../../../app-common/Dropdown";
+import SearchBox from "../../../../app-common/inputs/SearchBox";
+import Dropdown from "../../../../app-common/inputs/Dropdown";
 import LocationTree from "./LocationTree";
 import LocationTypeFilter from "../LocationTypeFilter";
 import "./mapNavBar.scss";

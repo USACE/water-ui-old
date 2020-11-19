@@ -1,4 +1,4 @@
-@import "../../../../style/sass/abstracts/mixins";
+@import "../../../../../../style/sass/abstracts/mixins";
 
 .location-stream-control-container {
   @include mq($breakpoint: "phone", $direction: "down") {
