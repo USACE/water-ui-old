@@ -1,11 +1,10 @@
 import React, { Fragment } from "react";
 import PropTypes from 'prop-types';
-import Dropdown from "../../../app-common/Dropdown";
+import Dropdown from "../../../app-common/inputs/Dropdown";
 import { connect } from "redux-bundler-react";
 
 
 const LocationTypeFilter = ({ doLocationsMapSaveMapState }) => {
-
 
 const filterType = ( e ) =>{
     const mapState = {

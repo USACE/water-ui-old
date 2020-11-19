@@ -82,6 +82,7 @@ LocationTree.propTypes = {
   locationTree: PropTypes.array,
   doLocationDetailSetCode: PropTypes.func.isRequired,
   doLocationsMapSaveMapState: PropTypes.func.isRequired,
+  locationsMapMapState: PropTypes.object.isRequired
 };
 
 export default connect(

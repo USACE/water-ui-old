@@ -167,6 +167,7 @@ TreeMenu.defaultProps = {
   disableKeyboard: false,
   initialOpenNodes: [],
   minSearchLength: 3, // the minimum searchTerm length in order for the search to work
+  typeFilter: undefined
 };
 
 export default TreeMenu;
