@@ -31,7 +31,7 @@ export const ItemComponent = ( props ) => {
     active,
     focused,
     id,
-    label = "unknown",
+    label = "No Results Found",
     style = {},
     node_type = "STREAM"
   } = props;
@@ -42,7 +42,7 @@ export const ItemComponent = ( props ) => {
     } else {
       onClick(e);
     }
-  }
+  };
 
   return (
   <li
@@ -74,11 +74,11 @@ export const ItemComponent = ( props ) => {
   </li>
 )};
 
-export const defaultChildren = ({ items }) => {
+export const defaultChildren = ({items, typeFilter}) => {
   return (
     <>
       <ul className="rstm-tree-item-group">
-        {items.map(({ key, ...props }) => (
+        {typeFilter && items.length === 0 ?  <ItemComponent key={ 0 }></ItemComponent> : items.map(({ key, ...props }) => (
           <ItemComponent key={key} {...props}></ItemComponent>
         ))}
       </ul>

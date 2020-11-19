@@ -48,8 +48,9 @@ const LocationsMap = (props) => {
   const popupContent = useRef( null );
   const popupCloser = useRef( null );
 
-  const addDataToMap = useCallback((map) => {
-    const iconFeatures = locationSummaries.map((item, index) => {
+  const addDataToMap = useCallback(({ map, typeFilter, key = "location_type" }) => {
+    const data = typeFilter ? locationSummaries.filter(location => location[key] === typeFilter) : locationSummaries;
+    const iconFeatures = data.map((item, index) => {
       const iconFeature = new Feature(
         new Point(fromLonLat([item.longitude, item.latitude]))
       );
@@ -71,6 +72,7 @@ const LocationsMap = (props) => {
 
     const unclusteredLayer = new VectorLayer({
       source: source,
+      name: "unclusteredLayer",
       style: feature => feature.get("style"),
       maxResolution: 200,
     });
@@ -82,8 +84,9 @@ const LocationsMap = (props) => {
 
     const styleCache = {};
 
-    const clusters = new VectorLayer({
+   const clusters = new VectorLayer({
       source: clusterSource,
+      name: "clusters",
       style: function (feature) {
         const size = feature.get("features").length;
         let style = styleCache[size];
@@ -177,6 +180,14 @@ const LocationsMap = (props) => {
     doLocationsMapLoaded();
   }, [locationSummaries, doLocationsMapLoaded, doLocationDetailSetCode]);
 
+  const removeData = useCallback((map) => {
+    map
+      .getLayers()
+      .getArray()
+      .filter((layer) => layer.get("name"))
+      .forEach((layer) => map.removeLayer(layer));
+  }, []);
+  
   const saveMapState = useCallback((map) => {
     // reset attached listeners
     popupContent.current.onclick = null;
@@ -191,6 +202,7 @@ const LocationsMap = (props) => {
   }, [doLocationsMapSaveMapState]);
 
   const updateMap = useCallback((map) => {
+
       if (locationsMapMapState.center) {
         // reset attached listeners
         popupContent.current.onclick = null;
@@ -201,8 +213,22 @@ const LocationsMap = (props) => {
           { duration: 1000 }
         );
       }
+      if(locationsMapMapState.typeFilter){
+        removeData(map);
+
+        switch (locationsMapMapState.typeFilter) {
+          case "STREAM_LOCATION":
+            addDataToMap({ map, typeFilter: locationsMapMapState.typeFilter, key: "sub_location_type" });
+            break;
+          case "ALL":
+            addDataToMap({ map });
+            break;
+          default:
+            addDataToMap({ map, typeFilter: locationsMapMapState.typeFilter });
+        }     
+      }
     },
-    [locationsMapMapState]
+    [locationsMapMapState, addDataToMap, removeData]
   );
   
   const newOptions = {
