@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { cloneElement, useState } from "react";
 import PropTypes from "prop-types";
 import "./accordion.scss";
 
@@ -43,7 +43,7 @@ const Accordion = ({ data, formatId }) => {
                 aria-hidden={ !activeAcc[i] }
               >
                 <div className="content-paragraph">
-                  { content }
+                  { cloneElement( content, { visible: !!activeAcc[ i ] } ) }
                 </div>
               </div>
             </div>

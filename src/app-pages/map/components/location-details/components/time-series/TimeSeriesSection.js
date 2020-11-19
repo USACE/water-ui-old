@@ -9,8 +9,12 @@ import TimeSeriesTable from "./TimeSeriesTable";
 const TimeSeriesSection = ({
   locationTimeSeriesPlotlyData,
   locationTimeSeriesIsLoading,
+  visible
 }) => {
   const [plotIndex, setPlotIndex] = useState(0);
+
+  // TODO: remove, this is just to test that visibility prop is being passed in correctly
+  console.log( "time series visible?", visible );
 
   // reset the plotIndex when the plotly data changes
   useEffect(() => {
