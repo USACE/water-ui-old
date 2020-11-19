@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { cloneElement, isValidElement, useState } from "react";
 import PropTypes from "prop-types";
 import "./accordion.scss";
 
@@ -15,41 +15,46 @@ const Accordion = ({ data, formatId }) => {
 
   return (
     <div className="accordion-section">
-      { data && data.map((ele, i) => {
-          const { content, title, iconClass } = ele;
-          return (
-            <div key={ title }>
-              <button
-                className="accordion-btn"
-                onClick={ e => toggleAccordion(e, i) }
-                aria-controls={ `accordion-control-${i}` }
-                aria-expanded={ !!activeAcc[i] }
-                type="button"
-              >
-                <div
-                  id={ formatId(title) }
-                  className={ `accordion-title text--bold ${iconClass}` }
-                >
-                  { title }
-                </div>
-                <div
-                  className={ activeAcc[i] ? "chevron up" : "chevron down" }
-                />
-              </button>
+      { data && data.map((config, i) => {
+        const { content, title, iconClass, lazy } = config;
+
+        return (
+          <div key={ title }>
+            <button
+              className="accordion-btn"
+              onClick={ e => toggleAccordion(e, i) }
+              aria-controls={ `accordion-control-${i}` }
+              aria-expanded={ !!activeAcc[i] }
+              type="button"
+            >
               <div
-                id={ `accordion-control-${i}` }
-                className={ activeAcc[i] ? "accordion-content" : "accordion-content d-none" }
-                aria-labelledby={ title }
-                aria-hidden={ !activeAcc[i] }
+                id={ formatId(title) }
+                className={ `accordion-title text--bold ${iconClass}` }
               >
-                <div className="content-paragraph">
-                  { content }
-                </div>
+                { title }
+              </div>
+              <div
+                className={ activeAcc[i] ? "chevron up" : "chevron down" }
+              />
+            </button>
+            <div
+              id={ `accordion-control-${i}` }
+              className={ activeAcc[i] ? "accordion-content" : "accordion-content d-none" }
+              aria-labelledby={ title }
+              aria-hidden={ !activeAcc[i] }
+            >
+              <div className="content-paragraph">
+                { isValidElement( content ) // content is a React element
+                  ? lazy !== true
+                    ? cloneElement( content, { visible: !!activeAcc[ i ] } )
+                    : activeAcc[ i ] && cloneElement( content, { visible: !!activeAcc[ i ] } )
+                  : content // content is a string
+                }
               </div>
             </div>
-          );
-        })
-      }
+          </div>
+        );
+      })}
     </div>
   );
 };
