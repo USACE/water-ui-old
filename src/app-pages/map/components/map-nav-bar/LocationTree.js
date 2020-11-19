@@ -8,7 +8,7 @@ const LocationTree = ({
   locationTree,
   doLocationDetailSetCode,
   doLocationsMapSaveMapState,
-  locationsMapMapState
+  typeFilter
 }) => {
   const node = useRef( null );
   const [treeIsOpen, setTreeIsOpen] = useState(false);
@@ -52,7 +52,6 @@ const LocationTree = ({
       }
     }
   };
-  const typeFilter =  locationsMapMapState && locationsMapMapState.typeFilter;
 
   return (
     <TreeMenu
@@ -89,6 +88,5 @@ export default connect(
   "selectLocationTree",
   "doLocationDetailSetCode",
   "doLocationsMapSaveMapState",
-  "selectLocationsMapMapState",
   LocationTree,
 );

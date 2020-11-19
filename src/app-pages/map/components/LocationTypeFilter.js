@@ -1,15 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useRef } from "react";
 import PropTypes from 'prop-types';
 import Dropdown from "../../../app-common/inputs/Dropdown";
 import { connect } from "redux-bundler-react";
 
 
-const LocationTypeFilter = ({ doLocationsMapSaveMapState }) => {
+const LocationTypeFilter = ({ doLocationsMapSaveMapState, setTypeFilter}) => {
 
 const filterType = ( e ) =>{
     const mapState = {
       typeFilter: e.target.value.toUpperCase()
     };
+    setTypeFilter(e.target.value.toUpperCase());
     doLocationsMapSaveMapState( mapState );
 };
 
