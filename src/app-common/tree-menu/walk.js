@@ -14,14 +14,14 @@ const filter = ({ typeFilter, data }) => {
     } else if ( obj[typeKey] === typeFilter ) {
       leafNodes.push( obj );
     }
-    return leafNodes.sort((a, b) => a.label.trim().localeCompare(b.label.trim()));
+    return leafNodes;
   };
   return getLeafNodes( leafNodes, data[0] );
 };
 
 export const walk = ({ data, typeFilter, ...props }) => {
   let treeData;
-  typeFilter ? ( treeData = filter({ typeFilter, data }) ) : ( treeData = data );
+  typeFilter ? ( treeData = filter({ typeFilter, data }).sort((a, b) => a.label.trim().localeCompare(b.label.trim())) ) : ( treeData = data );
   const validatedData = getValidatedData( treeData );
   const propsWithDefaultValues = { parent: "", level: 0, ...props };
   const handleArray = (dataAsArray) =>
