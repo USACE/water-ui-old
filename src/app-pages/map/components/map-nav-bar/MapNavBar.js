@@ -7,8 +7,8 @@ import "./mapNavBar.scss";
 
 const MapNavBar = () => {
 
-  const [ typeFilterState, setTypeFilterState ] = useState( undefined );
-  
+  const [ typeFilterState, setTypeFilterState ] = useState( "" );
+
   return (
   <div className="map-nav-bar-wrapper">
     <div className="h-100 px-5 py-4 bg-secondary">
