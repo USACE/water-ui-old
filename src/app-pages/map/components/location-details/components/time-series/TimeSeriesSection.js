@@ -17,7 +17,25 @@ const TimeSeriesSection = ({
     setPlotIndex(0);
   }, [locationTimeSeriesPlotlyData, setPlotIndex]);
 
-  const data = locationTimeSeriesPlotlyData.map(plotlyData => ({
+  const sortTimeSeriesData = ( data ) => {
+    const returnSortOrder = ( data ) => {
+      const name = data.name.toLowerCase();
+      if ( name.includes( "elev" ) ) {
+        return "0";
+      } else if ( name.includes( "flow" ) ) {
+        return "1";
+      } else if ( name.includes( "stage" ) ) {
+        return "2";
+      } else if ( name.includes( "temp" ) ) {
+        return "3";
+      } else {
+        return Infinity;
+      }
+    };
+    return data.sort(( a, b ) => returnSortOrder( a ) - returnSortOrder( b ));
+  };
+
+  const data = locationTimeSeriesPlotlyData && sortTimeSeriesData(locationTimeSeriesPlotlyData).map(plotlyData => ({
     ...plotlyData,
     type: "scatter",
     mode: "lines",
@@ -38,7 +56,7 @@ const TimeSeriesSection = ({
 
   const config = {
     scrollZoom: true,
-  }
+  };
 
   return (
     <div className="time-series-section">
