@@ -10,7 +10,7 @@ const defaultOnClick = (props) => console.log(props);
 class TreeMenu extends React.Component {
   constructor(props) {
     super(props);
-    const { data, locale } = this.props;
+    const { data, locale, typeFilter } = this.props;
     const openNodes = this.props.initialOpenNodes || [];
     const searchTerm = "";
     this.state = {
@@ -18,16 +18,16 @@ class TreeMenu extends React.Component {
       searchTerm,
       activeKey: this.props.initialActiveKey || "",
       focusKey: this.props.initialFocusKey || "",
-      items: walk({ data, locale, openNodes, searchTerm }),
+      items: walk({ data, locale, openNodes, searchTerm, typeFilter }),   
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { data, locale, initialOpenNodes, resetOpenNodesOnDataUpdate } = this.props;
+    const { data, locale, initialOpenNodes, resetOpenNodesOnDataUpdate, typeFilter } = this.props;
     const { searchTerm, openNodes } = this.state;
     // if the data, locale, searchTerm, or openNodes changes, then recompute the tree menu items
-    if (prevProps.data !== data || prevProps.locale !== locale || prevState.searchTerm !== searchTerm || prevState.openNodes !== openNodes) {
-      const items = walk({ data, locale, searchTerm, openNodes });
+    if ( prevProps.data !== data || prevProps.locale !== locale || prevState.searchTerm !== searchTerm || prevState.openNodes !== openNodes || prevProps.typeFilter !== typeFilter ) {
+      const items = walk({ data, locale, searchTerm, openNodes,typeFilter });
       this.setState({ items });
     }
     if (prevProps.data !== data && resetOpenNodesOnDataUpdate) {
@@ -141,7 +141,7 @@ class TreeMenu extends React.Component {
   };
 
   render() {
-    const { children, disableKeyboard } = this.props;
+    const { children, disableKeyboard, typeFilter } = this.props;
     const { searchTerm } = this.state;
 
     const search = this.search;
@@ -151,8 +151,8 @@ class TreeMenu extends React.Component {
     /** @type any **/
     const childComponent = children || defaultChildren;
 
-    const renderProps = { items, resetOpenNodes, searchTerm, search };
-
+    const renderProps = { items, resetOpenNodes, searchTerm, search, typeFilter };
+  
     return disableKeyboard
       ? childComponent(renderProps)
       : <KeyDown {...this.getKeyDownProps(items)}>{childComponent(renderProps)}</KeyDown>;

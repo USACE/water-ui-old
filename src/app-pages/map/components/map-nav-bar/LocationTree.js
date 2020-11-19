@@ -8,6 +8,7 @@ const LocationTree = ({
   locationTree,
   doLocationDetailSetCode,
   doLocationsMapSaveMapState,
+  locationsMapMapState
 }) => {
   const node = useRef( null );
   const [treeIsOpen, setTreeIsOpen] = useState(false);
@@ -51,12 +52,14 @@ const LocationTree = ({
       }
     }
   };
+  const typeFilter =  locationsMapMapState && locationsMapMapState.typeFilter;
 
   return (
     <TreeMenu
       data={locationTree}
       onClickItem={handleNodeClick}
       initialOpenNodes={["1"]}
+      typeFilter = { typeFilter !== "ALL" ? typeFilter: ""}
     >
       {({ items, search }) => (
         <div ref={node}>
@@ -68,7 +71,7 @@ const LocationTree = ({
             onKeyDown={handleInput}
             placeholder="Search Organizational Structure"
           />
-          { treeIsOpen && defaultChildren({ items }) }
+          { treeIsOpen && defaultChildren({ items, typeFilter }) }
         </div>
       )}
     </TreeMenu>
@@ -85,5 +88,6 @@ export default connect(
   "selectLocationTree",
   "doLocationDetailSetCode",
   "doLocationsMapSaveMapState",
+  "selectLocationsMapMapState",
   LocationTree,
 );
