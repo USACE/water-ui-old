@@ -61,7 +61,7 @@ const MapContainer = (props) => {
   useEffect(() => {
     // add data and attach event listeners to the map
     if (isMapsDataLoaded && !isMapsLoaded) {
-      addDataToMap(map, mapKey);
+      addDataToMap({map, mapKey});
     }
 
     // save map data and remove any attached event listeners
