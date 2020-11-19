@@ -4,13 +4,14 @@ const getValidatedData = (data) => (validateData(data) ? data : []);
 
 const filter = ({ typeFilter, data }) => {
   const leafNodes = [];
+  const typeKey = typeFilter === "STREAM_LOCATION" ? "sub_location_type" : "location_type";
 
   const getLeafNodes = ( leafNodes, obj ) => {
     if ( !obj.is_leaf ) {
       obj.nodes.forEach(function (child) {
         getLeafNodes(leafNodes, child);
       });
-    } else if ( obj.location_type === typeFilter ) {
+    } else if ( obj[typeKey] === typeFilter ) {
       leafNodes.push( obj );
     }
     return leafNodes.sort((a, b) => a.label.trim().localeCompare(b.label.trim()));
