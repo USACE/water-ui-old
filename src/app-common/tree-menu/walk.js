@@ -50,7 +50,7 @@ export const walk = ({ data, typeFilter, ...props }) => {
 
 const defaultMatchSearch = ({ label, searchTerm }) => {
   const processString = (text) => text.trim().toLowerCase();
-  return processString(label).includes(searchTerm);
+  return processString(label).includes(processString(searchTerm));
 };
 
 const defaultLocale = ({ label }) => label;
