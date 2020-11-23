@@ -16,18 +16,12 @@ import {
 import { Cluster, Vector as VectorSource } from "ol/source";
 import { fromLonLat, toLonLat } from "ol/proj";
 import MapContainer from "../../../app-common/map/MapContainer";
-
-const createStyle = (src, img) => (
-  new Style({
-    image: new Icon({
-      anchor: [0.5, 0.96],
-      crossOrigin: "anonymous",
-      src: src,
-      img,
-      imgSize: img && [img.width, img.height],
-    }),
-  })
-);
+import basin from "../../../img/mountain.svg";
+import district from "../../../img/maps-black.svg";
+import wq from "../../../img/water.svg";
+import hq from "../../../img/building.svg";
+import operatingBasin from "../../../img/water-wave.svg";
+import division from "../../../img/water-drop.svg";
 
 // HOC that renders ol map with locations data
 const LocationsMap = (props) => {
@@ -48,23 +42,40 @@ const LocationsMap = (props) => {
   const popupContent = useRef( null );
   const popupCloser = useRef( null );
 
+  const iconLibrary = (type) => {
+    //temp imgs from https://uxwing.com/
+    const iconObjects = {
+      LOCATION: "https://openlayers.org/en/latest/examples/data/icon.png",
+      BASIN: basin,
+      DISTRICT: district,
+      WQ: wq,
+      HQ: hq,
+      OPERATING_BASIN: operatingBasin,
+      DIVISION: division,
+    };
+    return iconObjects[type] || iconObjects["LOCATION"];
+  };
+
   const addDataToMap = useCallback(({ map, typeFilter, key = "location_type" }) => {
     const data = typeFilter ? locationSummaries.filter(location => location[key] === typeFilter) : locationSummaries;
     const iconFeatures = data.map((item, index) => {
       const iconFeature = new Feature(
         new Point(fromLonLat([item.longitude, item.latitude]))
       );
+
       iconFeature.setProperties({
         model: { ...item },
       });
       iconFeature.setId(index);
-      iconFeature.set(
-        "style",
-        createStyle(
-          "https://openlayers.org/en/latest/examples/data/icon.png",
-          undefined
-        )
-      );
+
+      const iconStyle = new Style({
+        image: new Icon({
+          src: iconLibrary(item.location_type),
+        }),
+      });
+
+      iconFeature.setStyle(iconStyle);
+
       return iconFeature;
     });
 
