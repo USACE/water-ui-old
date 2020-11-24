@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
-import LocationDetails from "./LocationDetails";
+import MapDetails from "./MapDetails";
 import { RoutePaths } from "../../../../app-bundles/route-paths";
-import "./locationDetails.scss";
+import "./mapDetails.scss";
 
-const LocationDetailsContainer = ( props ) => {
+const MapDetailsContainer = ( props ) => {
   const {
     locationDetailCode,
     /** @type a2w.models.LocationDetail */
@@ -53,7 +53,7 @@ const LocationDetailsContainer = ( props ) => {
         <div className={ isOpen ? "is-expanded" : "" } onClick={toggleDrawer}>
           <div className={ isFullScreen ? "full-screen " : "drawer-content-container" }>
             <div className={ isOpen ? "drawer-content" : "display-none" }>
-              <LocationDetails
+              <MapDetails
                 handleFullScreen={() => handleFullScreen(locationDetailCode, doUpdateUrl)}
                 locationDetail={locationDetailData}
                 locationCode={locationDetailCode}
@@ -78,7 +78,7 @@ const LocationDetailsContainer = ( props ) => {
   );
 };
 
-LocationDetailsContainer.propTypes = {
+MapDetailsContainer.propTypes = {
   selectedLocationCode: PropTypes.string,
   locationDetailData: PropTypes.object,
   doUpdateUrl: PropTypes.func.isRequired,
@@ -89,5 +89,5 @@ export default connect(
   "selectLocationDetailData",
   "selectLocationDetailIsLoading",
   "doUpdateUrl",
-  LocationDetailsContainer
+  MapDetailsContainer
 );

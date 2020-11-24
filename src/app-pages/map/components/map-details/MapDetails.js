@@ -2,10 +2,10 @@ import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import Accordion from "../../../../app-common/accordion/Accordion";
 import Loader, { loaderTypes } from "../../../../app-common/loader/Loader";
-import LocationDetailHeader from "./components/LocationDetailHeader";
+import MapDetailHeader from "./components/MapDetailHeader";
 import { buildLocationDetailSections } from "./data";
 
-const LocationDetails = ( props ) => {
+const MapDetails = ( props ) => {
   const {
     handleFullScreen,
     /** @type a2w.models.LocationDetail */
@@ -33,7 +33,7 @@ const LocationDetails = ( props ) => {
   const detailSections = buildLocationDetailSections( locationDetail )
   return (
     <>
-      <LocationDetailHeader
+      <MapDetailHeader
         locationDetail={ locationDetail }
         onExpand={ handleFullScreen ? () => handleFullScreen( { selectedLocationCode: locationCode } ) : null }
         getHeaderHeight={ getHeaderHeight }
@@ -65,7 +65,7 @@ const LocationDetails = ( props ) => {
   );
 };
 
-LocationDetails.propTypes = {
+MapDetails.propTypes = {
   handleFullScreen: PropTypes.func, 
   locationDetail: PropTypes.object,
   locationCode: PropTypes.string,
@@ -73,4 +73,4 @@ LocationDetails.propTypes = {
 };
 
 
-export default LocationDetails;
+export default MapDetails;

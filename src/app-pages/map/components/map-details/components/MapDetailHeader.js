@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import LocationStreamControls from "./location-stream-controls/LocationStreamControls"
 
-const LocationDetailHeader = ( props ) => {
+const MapDetailHeader = ( props ) => {
   const {
     onExpand,
     /** @type a2w.models.LocationDetail */
@@ -41,14 +41,14 @@ const LocationDetailHeader = ( props ) => {
   );
 };
 
-export default LocationDetailHeader;
+export default MapDetailHeader;
 
-LocationDetailHeader.defaultProps = {
+MapDetailHeader.defaultProps = {
   onExpand: () => null,
   locationDetail: {},
 };
 
-LocationDetailHeader.propTypes = {
+MapDetailHeader.propTypes = {
   onExpand: PropTypes.func,
   locationDetail: PropTypes.object,
   getHeaderHeight: PropTypes.func,
