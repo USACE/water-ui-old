@@ -2,14 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Dropdown from "../../../../app-common/inputs/Dropdown";
+import { LOCATION_TYPES, getMapUrl } from "../../utils";
 
-const LocationTypeFilter = ({ doLocationsMapSaveMapState, setTypeFilter }) => {
-  const filterType = (e) => {
-    const mapState = {
-      typeFilter: e.target.value.toUpperCase()
+const LocationTypeFilter = ({ queryObject, doUpdateUrl }) => {
+  const onChange = (e) => {
+    const locationType = e.target.value;
+    const mapParams = {
+      ...queryObject,
+      locationType,
     };
-    setTypeFilter( e.target.value.toUpperCase() );
-    doLocationsMapSaveMapState( mapState );
+    const mapUrl = getMapUrl(mapParams);
+    doUpdateUrl(mapUrl)
   };
 
   return (
@@ -17,29 +20,32 @@ const LocationTypeFilter = ({ doLocationsMapSaveMapState, setTypeFilter }) => {
       id="location-type-dropdown"
       label="Location Type"
       placeholder="Select Location Type..."
+      value={queryObject.locationType || LOCATION_TYPES.ALL}
       options={[
-        { id: "All", value: "All" },
-        { id: "Location", value: "Locations" },
-        { id: "Stream_Location", value: "Stream Gages" },
-        // { id: "Stream", value: "Streams" },
-        // { id: "Project", value: "Projects" },
-        // { id: "Turbine", value: "Turbines" },
-        // { id: "Outlet", value: "Outlets" },
-        // { id: "Lock", value: "Locks" },
-        // { id: "Embankment", value: "Embankments" },
-        { id: "WQ", value: "WQ" },
-        { id: "Basin", value: "Basins" },
-        { id: "Operating_Basin", value: "Operating Basins" },
+        { id: LOCATION_TYPES.ALL, value: "All" },
+        { id: LOCATION_TYPES.LOCATION, value: "Locations" },
+        { id: LOCATION_TYPES.STREAM_LOCATION, value: "Stream Gages" },
+        // { id: LOCATION_TYPES.STREAM, value: "Streams" },
+        // { id: LOCATION_TYPES.PROJECT, value: "Projects" },
+        // { id: LOCATION_TYPES.TURBINE, value: "Turbines" },
+        // { id: LOCATION_TYPES.OUTLET, value: "Outlets" },
+        // { id: LOCATION_TYPES.LOCK, value: "Locks" },
+        // { id: LOCATION_TYPES.EMBANKMENT, value: "Embankments" },
+        { id: LOCATION_TYPES.WQ, value: "WQ" },
+        { id: LOCATION_TYPES.BASIN, value: "Basins" },
+        { id: LOCATION_TYPES.OPERATING_BASIN, value: "Operating Basins" },
         
       ]}
-      onChange={e=> filterType(e)}
+      onChange={onChange}
     />
   );
 };
 
 LocationTypeFilter.propTypes = {
-  doLocationsMapSaveMapState: PropTypes.func.isRequired,
-  setTypeFilter: PropTypes.func.isRequired,
+  queryObject: PropTypes.shape({
+    locationType: PropTypes.string,
+  }).isRequired,
+  doUpdateUrl: PropTypes.func.isRequired,
 };
 
 export default connect(

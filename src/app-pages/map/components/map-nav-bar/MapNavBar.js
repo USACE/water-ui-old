@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchBox from "../../../../app-common/inputs/SearchBox";
 import Dropdown from "../../../../app-common/inputs/Dropdown";
 import LocationTree from "./LocationTree";
 import LocationTypeFilter from "./LocationTypeFilter";
 import "./mapNavBar.scss";
 
-const MapNavBar = () => {
-
-  const [ typeFilterState, setTypeFilterState ] = useState( "" );
-
-  return (
+const MapNavBar = ({ queryObject, doUpdateUrl }) => (
   <div className="map-nav-bar-wrapper">
     <div className="h-100 px-5 py-4 bg-secondary">
       <div className="row map-nav-row">
@@ -41,14 +37,20 @@ const MapNavBar = () => {
           />
         </div>
         <div className="col-md-2">
-          <LocationTypeFilter setTypeFilter = { setTypeFilterState }/>
+          <LocationTypeFilter
+            queryObject={queryObject}
+            doUpdateUrl={doUpdateUrl}
+          />
         </div>
         <div className="col-md-4">
-          <LocationTree typeFilter = { typeFilterState }/>
+          <LocationTree
+            queryObject={queryObject}
+            doUpdateUrl={doUpdateUrl}
+          />
         </div>
       </div>
     </div>
   </div>
-)};
+);
 
 export default MapNavBar;
