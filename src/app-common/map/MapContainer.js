@@ -60,13 +60,13 @@ const MapContainer = (props) => {
 
   useEffect(() => {
     // add data and attach event listeners to the map
-    if (isMapsDataLoaded && !isMapsLoaded) {
-      addDataToMap({map, mapKey});
+    if (isMapsDataLoaded && !isMapsLoaded && addDataToMap) {
+      addDataToMap(map, mapKey);
     }
 
     // save map data and remove any attached event listeners
     return () => {
-      if (map && isMapsDataLoaded && isMapsLoaded) {
+      if (map && isMapsDataLoaded && isMapsLoaded && saveMapState) {
         saveMapState(map);
       }
     };
@@ -74,7 +74,7 @@ const MapContainer = (props) => {
 
   // update the map object if the mapState changes
   useEffect(() => {
-    if (map && isMapsDataLoaded && isMapsLoaded) {
+    if (map && isMapsDataLoaded && isMapsLoaded && updateMap) {
       updateMap(map);
     }
   }, [updateMap, map, isMapsDataLoaded, isMapsLoaded]);
@@ -104,9 +104,6 @@ MapContainer.propTypes = {
 
 MapContainer.defaultProps = {
   options: {},
-  addDataToMap: () => {},
-  saveMapState: () => {},
-  updateMap: () => {},
 };
 
 export default connect(
