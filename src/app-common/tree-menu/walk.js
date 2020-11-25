@@ -16,7 +16,11 @@ const filter = ({ typeFilter, data }) => {
     }
     return leafNodes;
   };
-  return getLeafNodes( leafNodes, data[0] );
+
+  if (data && data[0]) {
+    return getLeafNodes( leafNodes, data[0] );
+  }
+  return [];
 };
 
 export const walk = ({ data, typeFilter, ...props }) => {
