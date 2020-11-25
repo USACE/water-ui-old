@@ -1,6 +1,7 @@
 import createRestBundle from "./create-rest-bundle";
 import { getRestUrl, isMockMode, arrayToObj } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
+import { RoutePaths } from "./route-paths";
 
 export default createRestBundle( {
   name: "locationSummaries",
@@ -16,6 +17,19 @@ export default createRestBundle( {
   forceFetchActions: [],
   delayMs: isMockMode() ? 2000 : 0,
   addons: {
+    // make fetch call to get the location summaries data if on the map page and location summaries has not already been loaded
+    reactLocationSummariesFetch: createSelector(
+      "selectPathname",
+      "selectLocationSummariesData",
+      "selectLocationSummariesIsLoading",
+      (pathname, data, isLoading) => {
+        if (pathname === RoutePaths.Map && !data && !isLoading) {
+          return { actionCreator: "doLocationSummariesFetch" };
+        }
+      },
+    ),
+
+    // reformat the location summaries data into an object to quickly look up location info via the location id 
     reactLocationSummariesFormatData: createSelector(
       "selectLocationSummariesData",
       (data) => {
@@ -36,9 +50,11 @@ export default createRestBundle( {
         }
       };
     },
+
+    // return an array of all the location summaries
     selectLocationSummaries: createSelector(
       "selectLocationSummariesData",
       data => data ? Object.keys(data).map(key => data[key]) : [],
-    )
+    ),
   },
 } );
