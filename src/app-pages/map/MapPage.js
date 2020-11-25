@@ -1,37 +1,58 @@
 import React, { useEffect } from "react";
-import MapNavBar from "./components/map-nav-bar/MapNavBar";
-import LocationDetailsContainer from "./components/location-details/LocationDetailsContainer";
-import LocationsMap from "./components/LocationsMap";
+import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
+import MapNavBar from "./components/map-nav-bar/MapNavBar";
+import MapDetailsContainer from "./components/map-details/MapDetailsContainer";
+import Map from "./components/Map";
+import "./mapPage.scss";
 
-const MapPage = ( {doLocationSummariesFetch }) => {
-  const opts = { center: [-95, 38.895], zoom: 5 };
-
+const MapPage = ({
+  queryObject,
+  doUpdateUrl,
+  doLocationDetailSetCode,
+}) => {
+  console.log("MapPage() -> queryObject = ", queryObject);
+  const locationId = queryObject.locationId || "";
   useEffect(() => {
-    doLocationSummariesFetch();
-  }, [doLocationSummariesFetch])
+    if (locationId || locationId === 0) {
+      doLocationDetailSetCode(locationId);
+    }
+  }, [locationId, doLocationDetailSetCode])
 
   return (
     <>
-      <MapNavBar />
-      <div
-        className=" map-and-details-container "
-        style={{ display: "flex", flexDirection: "row" }}
-      >
-        <LocationDetailsContainer />
-        <div className="map-container" style={{ padding: "0", flexGrow: 35 }}>
-          <LocationsMap
-            mapKey="locationsMap"
-            height="75vh"
-            options={opts}
-          />
-        </div>
+      <MapNavBar
+        queryObject={queryObject}
+        doUpdateUrl={doUpdateUrl}
+      />
+      <div className="map-page-content">
+        <MapDetailsContainer
+          queryObject={queryObject}
+          doUpdateUrl={doUpdateUrl}
+        />
+        <Map
+          queryObject={queryObject}
+          doUpdateUrl={doUpdateUrl}
+        />
       </div>
     </>
   );
 };
 
+MapPage.propTypes = {
+  queryObject: PropTypes.shape({
+    locationId: PropTypes.string,
+    lat: PropTypes.string,
+    lon: PropTypes.string,
+    zoom: PropTypes.string,
+  }).isRequired,
+  doUpdateUrl: PropTypes.func.isRequired,
+  doLocationDetailSetCode: PropTypes.func.isRequired,
+};
+
 export default connect(
-  "doLocationSummariesFetch",
+  "selectQueryObject",
+  "doUpdateUrl",
+  "doLocationDetailSetCode",
   MapPage
 )

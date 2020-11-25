@@ -16,6 +16,7 @@ import {
 import { Cluster, Vector as VectorSource } from "ol/source";
 import { fromLonLat, toLonLat } from "ol/proj";
 import MapContainer from "../../../app-common/map/MapContainer";
+import { RoutePaths } from "../../../app-bundles/route-paths";
 
 const createStyle = (src, img) => (
   new Style({
@@ -40,13 +41,26 @@ const LocationsMap = (props) => {
     doLocationDetailSetCode,
     doLocationsMapLoaded,
     doLocationsMapSaveMapState,
-    options,
+    doUpdateUrl,
+    // options,
+    queryObject,
     ...rest
   } = props;
-
+  console.log("LocationsMap()");
   const popupContainer = useRef( null );
   const popupContent = useRef( null );
   const popupCloser = useRef( null );
+
+  // const { locationId, lat, lon, zoom } = queryObject;
+  const locationId = queryObject.locationId || "";
+  const lat = parseFloat(queryObject.lat) || 38.895;
+  const lon = parseFloat(queryObject.lon) || -95;
+  const zoom = parseFloat(queryObject.zoom) || 5;
+  const options = {
+    center: [lon, lat],
+    zoom,
+  };
+  console.log("opts = ", options);
 
   const addDataToMap = useCallback(({ map, typeFilter, key = "location_type" }) => {
     const data = typeFilter ? locationSummaries.filter(location => location[key] === typeFilter) : locationSummaries;
@@ -159,7 +173,11 @@ const LocationsMap = (props) => {
         popupContent.current.innerHTML = innerHTML;
         popupContent.current.style.cursor = "pointer";
 
-        popupContent.current.onclick = () => doLocationDetailSetCode( featureProperties.model.id );
+        popupContent.current.onclick = () => {
+          const newLocationId = featureProperties.model.id;
+          doUpdateUrl(`${RoutePaths.Map}?locationId=${newLocationId}&lat=${lat}&lon=${lon}&zoom=${zoom}`);
+          // doLocationDetailSetCode( featureProperties.model.id );
+        };
 
         overlay.setPosition(coord);
       }
@@ -177,64 +195,81 @@ const LocationsMap = (props) => {
       return false;
     });
 
-    doLocationsMapLoaded();
-  }, [locationSummaries, doLocationsMapLoaded, doLocationDetailSetCode]);
+    // update the lat, lon, and zoom every time the map changes
+    map.on("moveend", (e) => {
+      console.log('moveend()');
+      console.log('e = ', e);
+      const mapView = e.map.getView();
+      const center = toLonLat(mapView.getCenter());
+      const newLon = center[0];
+      const newLat = center[1];
+      const newZoom = mapView.getZoom();
+      console.log('center = ', center);
+      console.log('zoom = ', mapView.getZoom());
+      doUpdateUrl(`${RoutePaths.Map}?locationId=${locationId}&lat=${newLat}&lon=${newLon}&zoom=${newZoom}`);
+    });
 
-  const removeData = useCallback((map) => {
-    map
-      .getLayers()
-      .getArray()
-      .filter((layer) => layer.get("name"))
-      .forEach((layer) => map.removeLayer(layer));
-  }, []);
+    doLocationsMapLoaded();
+  }, [locationSummaries, doLocationsMapLoaded, locationId, lat, lon, zoom, doUpdateUrl]);
+  // }, [locationSummaries, doLocationsMapLoaded, doLocationDetailSetCode, locationId, lat, lon, zoom, doUpdateUrl]);
+
+  // const removeData = useCallback((map) => {
+  //   map
+  //     .getLayers()
+  //     .getArray()
+  //     .filter((layer) => layer.get("name"))
+  //     .forEach((layer) => map.removeLayer(layer));
+  // }, []);
   
   const saveMapState = useCallback((map) => {
     // reset attached listeners
     popupContent.current.onclick = null;
 
     // save the map state
-    const view = map.getView();
-    const mapState = {
-      zoom: view.getZoom(),
-      center: toLonLat( view.getCenter() ),
-    };
-    doLocationsMapSaveMapState(mapState);
-  }, [doLocationsMapSaveMapState]);
+    // const view = map.getView();
+    // const mapState = {
+    //   zoom: view.getZoom(),
+    //   center: toLonLat( view.getCenter() ),
+    // };
+    // doLocationsMapSaveMapState(mapState);
+  }, []);
+  // }, [doLocationsMapSaveMapState]);
 
   const updateMap = useCallback((map) => {
+    if (locationsMapMapState.center) {
+      // reset attached listeners
+      popupContent.current.onclick = null;
+      const view = map.getView();
+      view.animate(
+        { zoom: locationsMapMapState.zoom },
+        { center: fromLonLat(locationsMapMapState.center) },
+        { duration: 1000 }
+      );
+    }
+    if(locationsMapMapState.typeFilter){
+      // remove map layers
+      map.getLayers().getArray()
+        .filter((layer) => layer.get("name"))
+        .forEach((layer) => map.removeLayer(layer));
 
-      if (locationsMapMapState.center) {
-        // reset attached listeners
-        popupContent.current.onclick = null;
-        const view = map.getView();
-        view.animate(
-          { zoom: locationsMapMapState.zoom },
-          { center: fromLonLat(locationsMapMapState.center) },
-          { duration: 1000 }
-        );
-      }
-      if(locationsMapMapState.typeFilter){
-        removeData(map);
-
-        switch (locationsMapMapState.typeFilter) {
-          case "STREAM_LOCATION":
-            addDataToMap({ map, typeFilter: locationsMapMapState.typeFilter, key: "sub_location_type" });
-            break;
-          case "ALL":
-            addDataToMap({ map });
-            break;
-          default:
-            addDataToMap({ map, typeFilter: locationsMapMapState.typeFilter });
-        }     
-      }
-    },
-    [locationsMapMapState, addDataToMap, removeData]
-  );
+      switch (locationsMapMapState.typeFilter) {
+        case "STREAM_LOCATION":
+          addDataToMap({ map, typeFilter: locationsMapMapState.typeFilter, key: "sub_location_type" });
+          break;
+        case "ALL":
+          addDataToMap({ map });
+          break;
+        default:
+          addDataToMap({ map, typeFilter: locationsMapMapState.typeFilter });
+      }     
+    }
+  }, [locationsMapMapState, addDataToMap]);
+  // }, [locationsMapMapState, addDataToMap, removeData]);
   
-  const newOptions = {
-    zoom: locationsMapMapState.zoom || options.zoom,
-    center: locationsMapMapState.center || options.center,
-  };
+  // const newOptions = {
+  //   zoom: locationsMapMapState.zoom || options.zoom,
+  //   center: locationsMapMapState.center || options.center,
+  // };
 
   return (
     <>
@@ -245,7 +280,7 @@ const LocationsMap = (props) => {
         addDataToMap={addDataToMap}
         saveMapState={saveMapState}
         updateMap={updateMap}
-        options={newOptions}
+        options={options}
       />
       { locationsMapIsDataLoaded ? (
         <div ref={popupContainer} className="ol-popup">
@@ -265,6 +300,13 @@ LocationsMap.propTypes = {
   doLocationDetailSetCode: PropTypes.func.isRequired,
   doLocationsMapLoaded: PropTypes.func.isRequired,
   doLocationsMapSaveMapState: PropTypes.func.isRequired,
+  doUpdateUrl: PropTypes.func.isRequired,
+  queryObject: PropTypes.shape({
+    locationId: PropTypes.string,
+    lat: PropTypes.string,
+    lon: PropTypes.string,
+    zoom: PropTypes.string,
+  }),
 };
 
 export default connect(
@@ -275,5 +317,6 @@ export default connect(
   "doLocationDetailSetCode",
   "doLocationsMapLoaded",
   "doLocationsMapSaveMapState",
+  "doUpdateUrl",
   LocationsMap,
 );
