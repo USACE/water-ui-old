@@ -3,7 +3,7 @@ import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import TreeMenu from "../../../../app-common/tree-menu/TreeMenu";
 import { defaultChildren } from "../../../../app-common/tree-menu/renderProps";
-import { LOCATION_TYPES, getMapUrl } from "../../utils";
+import { LOCATION_TYPES, defaultMapParams, getMapUrl } from "../../utils";
 
 const LocationTree = ({
   locationTree,
@@ -42,6 +42,7 @@ const LocationTree = ({
     //if node is a leaf then toggle the drawer and zoom to lonlat
     if (!e.hasNodes) {
       const mapParams = {
+        ...defaultMapParams,
         ...queryObject,
         locationId: e.id,
         lat: e.latitude,
