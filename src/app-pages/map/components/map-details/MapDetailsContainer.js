@@ -88,6 +88,5 @@ export default connect(
   "selectLocationDetailCode",
   "selectLocationDetailData",
   "selectLocationDetailIsLoading",
-  "doUpdateUrl",
   MapDetailsContainer
 );
