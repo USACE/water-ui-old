@@ -36,7 +36,7 @@ const LocationSearch = ({
   }
 
   const itemOnClick = (e) => {
-    const index = e.target.value;
+    const index = e.target.value || e.currentTarget.value;
     const location = locationSearchData[index];
     const mapParams = {
       ...defaultMapParams,
