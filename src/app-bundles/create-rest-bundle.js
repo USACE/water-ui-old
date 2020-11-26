@@ -346,7 +346,7 @@ export default (opts) => {
                 dispatch( {
                   type: actions.ERROR,
                   payload: {
-                    _err: { err: err },
+                    _err: err.toString(),
                     _isLoading: false,
                     _isSaving: false,
                     _fetchCount: ++fetchCount,
