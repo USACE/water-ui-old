@@ -6,7 +6,7 @@ import LocationTypeFilter from "./LocationTypeFilter";
 import "./mapNavBar.scss";
 
 const MapNavBar = ({ queryObject, doUpdateUrl }) => (
-  <div className="map-nav-bar-wrapper">
+  <div className="map-navbar">
     <div className="h-100 px-5 py-4 bg-secondary">
       <div className="row map-nav-row">
         <div className="col-md-4 mb-3">
