@@ -21,7 +21,7 @@ const sectionConfigs = {
     iconClass: "mdi mdi-chart-timeline",
   },
   timeline: {
-    title: "TimeLine",
+    title: "Time Line",
       content: <TimeLineSection/>,
     iconClass: "mdi mdi-chart-timeline",
   },
