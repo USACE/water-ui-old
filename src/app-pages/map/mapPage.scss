@@ -1,5 +1,4 @@
 .map-page-content {
-  min-height: 60vh;
   display: flex;
   flex-direction: row;
 }
@@ -7,6 +6,8 @@
 .map-container {
   padding: 0;
   flex-grow: 35;
+  height: 75vh;
+  position: relative;
 }
 
 .ol-popup {

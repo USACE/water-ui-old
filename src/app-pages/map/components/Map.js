@@ -8,7 +8,6 @@ import { defaultMapParams, getMapUrl, getInitialMap, getMapOverlay, getMapLayers
 
 const mapKey = "locationsMap";
 const overlayId = "map-overlay";
-const height = "75vh";
 
 const Map = ({
   queryObject,
@@ -197,20 +196,18 @@ const Map = ({
     }
   }, [locationsMapIsLoaded, map, locationType, locationSummaries]);
 
+  const popup = (
+    <div ref={popupContainer} className="ol-popup">
+      <button ref={popupCloser} className="ol-popup-closer" />
+      <div ref={popupContent} className="ol-popup-content" />
+    </div>
+  );
   return (
-    <div className="map-container">
-      <div
-        ref={mapRef}
-        style={{ height, position: "relative" }}
-      >
-        {!locationsMapIsDataLoaded && <Loader />}
-      </div>
-      { locationsMapIsDataLoaded && (
-        <div ref={popupContainer} className="ol-popup">
-          <button ref={popupCloser} className="ol-popup-closer" />
-          <div ref={popupContent} className="ol-popup-content" />
-        </div>
-      )}
+    <div
+      ref={mapRef}
+      className="map-container"
+    >
+      { locationsMapIsDataLoaded ? popup : <Loader /> }
     </div>
   );
 };
