@@ -34,7 +34,6 @@ const LocationTypeFilter = ({ queryObject, doUpdateUrl }) => {
         { id: LOCATION_TYPES.WQ, value: "WQ" },
         { id: LOCATION_TYPES.BASIN, value: "Basins" },
         { id: LOCATION_TYPES.OPERATING_BASIN, value: "Operating Basins" },
-        
       ]}
       onChange={onChange}
     />
