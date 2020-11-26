@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "redux-bundler-react";
 import Dropdown from "../../../../app-common/inputs/Dropdown";
 import { LOCATION_TYPES, defaultMapParams, getMapUrl } from "../../utils";
 
@@ -49,7 +48,4 @@ LocationTypeFilter.propTypes = {
   doUpdateUrl: PropTypes.func.isRequired,
 };
 
-export default connect(
-  "doLocationsMapSaveMapState",
-  LocationTypeFilter
-);
+export default LocationTypeFilter;
