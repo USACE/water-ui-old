@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import { toLonLat, fromLonLat } from "ol/proj";
 import { unByKey } from "ol/Observable";
+import "ol/ol.css";
 import Loader from "../../../app-common/loader/Loader";
 import { defaultMapParams, getMapUrl, getInitialMap, getMapOverlay, getMapLayers, LOCATION_TYPES } from "../utils";
 
