@@ -158,11 +158,11 @@ const Map = ({
       const mapZoom = view.getZoom();
 
       if (mapLat !== lat || mapLon !== lon || mapZoom !== zoom) {
-        view.animate(
-          { zoom },
-          { center: fromLonLat([lon, lat]) },
-          { duration: 1000 }
-        );
+        view.animate({
+          zoom,
+          center: fromLonLat([lon, lat]),
+          duration: 1000,
+        });
       }
     }
   }, [map, lat, lon, zoom]);
