@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import { toLonLat, fromLonLat } from "ol/proj";
 import { unByKey } from "ol/Observable";
-import "ol/ol.css";
 import Loader from "../../../app-common/loader/Loader";
-import { defaultMapParams, getMapUrl, getInitialMap, getMapOverlay, getMapLayers, LOCATION_TYPES } from "../utils";
+import { defaultMapParams, mapUrlOptions, getInitialMap, getMapOverlay, getMapLayers, LOCATION_TYPES } from "../utils";
+import "ol/ol.css";
 
 const mapKey = "locationsMap";
 const overlayId = "map-overlay";
 
 const Map = ({
   queryObject,
-  doUpdateUrl,
+  doUpdateQuery,
   /** @type a2w.models.LocationSummary[] */
   locationSummaries,
   locationsMapIsDataLoaded,
@@ -81,21 +81,6 @@ const Map = ({
 
       const overlay = map.getOverlayById(overlayId);
 
-      const updateMapUrl = (e, locationId) => {
-        console.log("updateMapUrl()");
-        const mapView = e.map.getView();
-        const [newLon, newLat] = toLonLat(mapView.getCenter());
-        const newZoom = mapView.getZoom();
-        const mapParams = {
-          ...queryObject,
-          locationId,
-          lat: newLat,
-          lon: newLon,
-          zoom: newZoom,
-        };
-        const mapUrl = getMapUrl(mapParams);
-        doUpdateUrl(mapUrl);
-      };
 
       // display popup if user moves on top of one of the locations
       pointermoveKey.current = map.on("pointermove", (e) => {
@@ -105,22 +90,25 @@ const Map = ({
         if (feature) {
           const geometry = feature.getGeometry();
           const coord = geometry.getCoordinates();
-          let featureProperties = feature.getProperties();
-          let displayedFeature = feature;
+          let properties = feature.getProperties();
   
           // feature can already be a specific location, or a cluster of features.
-          if (Array.isArray(featureProperties.features)) {
-            if (featureProperties.features.length > 0) {
-              displayedFeature = featureProperties.features[ 0 ];
-              featureProperties = displayedFeature.getProperties();
-            }
-            else return;
+          if (Array.isArray(properties.features) && properties.features.length > 0) {
+            properties = properties.features[0].getProperties();
           }
   
-          const innerHTML = `<div class="name">${ featureProperties.model.public_name }</div>`;
-          popupContent.current.innerHTML = innerHTML;
+          popupContent.current.innerHTML = `<div class="name">${ properties.model.public_name }</div>`;
           popupContent.current.style.cursor = "pointer";
-          popupContent.current.onclick = () => updateMapUrl(e, featureProperties.model.id);
+          popupContent.current.onclick = () => {
+            const newQuery = {
+              ...queryObject,
+              locationId: properties.model.id,
+              lon: properties.model.longitude,
+              lat: properties.model.latitude,
+              zoom: properties.model.zoom_depth,
+            };
+            doUpdateQuery(newQuery, mapUrlOptions);
+          };
   
           overlay.setPosition(coord);
         }
@@ -132,8 +120,18 @@ const Map = ({
       });
 
       // update the lat, lon, and zoom when user moves to a new location within map
-      const locationId = queryObject.locationId || defaultMapParams.locationId;
-      moveendKey.current = map.on("moveend", e => updateMapUrl(e, locationId));
+      moveendKey.current = map.on("moveend", (e) => {
+        const mapView = e.map.getView();
+        const [newLon, newLat] = toLonLat(mapView.getCenter());
+        const newZoom = mapView.getZoom();
+        const newQuery = {
+          ...queryObject,
+          lon: newLon,
+          lat: newLat,
+          zoom: newZoom,
+        };
+        doUpdateQuery(newQuery, mapUrlOptions);
+      });
   
       // close the popup on click
       clickKey.current = map.on("click", () => {
@@ -150,7 +148,7 @@ const Map = ({
         popup.onclick = null;
       }
     };
-  }, [locationsMapIsLoaded, map, queryObject, doUpdateUrl]);
+  }, [locationsMapIsLoaded, map, queryObject, doUpdateQuery]);
 
   // update map center and zoom if the query params change
   useEffect(() => {
@@ -220,7 +218,7 @@ Map.propTypes = {
     lon: PropTypes.string,
     zoom: PropTypes.string,
   }).isRequired,
-  doUpdateUrl: PropTypes.func.isRequired, // received from parent component
+  doUpdateQuery: PropTypes.func.isRequired,
   locationSummaries: PropTypes.array,
   locationsMapIsDataLoaded: PropTypes.bool.isRequired,
   locationsMapIsLoaded: PropTypes.bool.isRequired,
@@ -236,5 +234,6 @@ export default connect(
   "doLocationsMapLoaded",
   "doMapsInitialize",
   "doMapsShutdown",
+  "doUpdateQuery",
   Map,
 );
