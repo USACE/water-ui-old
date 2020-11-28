@@ -3,12 +3,12 @@ import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import TreeMenu from "../../../../app-common/tree-menu/TreeMenu";
 import { defaultChildren } from "../../../../app-common/tree-menu/renderProps";
-import { LOCATION_TYPES, defaultMapParams, getMapUrl } from "../../utils";
+import { LOCATION_TYPES, mapUrlOptions } from "../../utils";
 
 const LocationTree = ({
   locationTree,
   queryObject,
-  doUpdateUrl
+  doUpdateQuery,
 }) => {
   const node = useRef( null );
   const [treeIsOpen, setTreeIsOpen] = useState(false);
@@ -41,16 +41,14 @@ const LocationTree = ({
   const handleNodeClick = (e) => {
     //if node is a leaf then toggle the drawer and zoom to lonlat
     if (!e.hasNodes) {
-      const mapParams = {
-        ...defaultMapParams,
+      const newQuery = {
         ...queryObject,
         locationId: e.id,
         lat: e.latitude,
         lon: e.longitude,
         zoom: e.zoom_depth ? Math.round( e.zoom_depth * 1.5 ) : 16,
       };
-      const mapUrl = getMapUrl(mapParams);
-      doUpdateUrl(mapUrl);
+      doUpdateQuery(newQuery, mapUrlOptions);
     }
   };
 
@@ -84,10 +82,11 @@ LocationTree.propTypes = {
   queryObject: PropTypes.shape({
     locationType: PropTypes.string,
   }).isRequired,
-  doUpdateUrl: PropTypes.func.isRequired,
+  doUpdateQuery: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationTree",
+  "doUpdateQuery",
   LocationTree,
 );

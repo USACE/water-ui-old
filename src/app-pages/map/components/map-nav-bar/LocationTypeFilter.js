@@ -1,18 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "redux-bundler-react";
 import Dropdown from "../../../../app-common/inputs/Dropdown";
-import { LOCATION_TYPES, defaultMapParams, getMapUrl } from "../../utils";
+import { LOCATION_TYPES, mapUrlOptions } from "../../utils";
 
-const LocationTypeFilter = ({ queryObject, doUpdateUrl }) => {
+const LocationTypeFilter = ({ queryObject, doUpdateQuery }) => {
   const onChange = (e) => {
     const locationType = e.target.value;
-    const mapParams = {
-      ...defaultMapParams,
+    const newQuery = {
       ...queryObject,
       locationType,
     };
-    const mapUrl = getMapUrl(mapParams);
-    doUpdateUrl(mapUrl)
+    doUpdateQuery(newQuery, mapUrlOptions);
   };
 
   return (
@@ -44,7 +43,10 @@ LocationTypeFilter.propTypes = {
   queryObject: PropTypes.shape({
     locationType: PropTypes.string,
   }).isRequired,
-  doUpdateUrl: PropTypes.func.isRequired,
+  doUpdateQuery: PropTypes.func.isRequired,
 };
 
-export default LocationTypeFilter;
+export default connect(
+  "doUpdateQuery",
+  LocationTypeFilter,
+);

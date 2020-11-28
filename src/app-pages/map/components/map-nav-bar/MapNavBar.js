@@ -5,7 +5,7 @@ import LocationTree from "./LocationTree";
 import LocationTypeFilter from "./LocationTypeFilter";
 import "./mapNavBar.scss";
 
-const MapNavBar = ({ queryObject, doUpdateUrl }) => (
+const MapNavBar = ({ queryObject }) => (
   <div className="map-navbar">
     <div className="h-100 px-5 py-4 bg-secondary">
       <div className="row map-nav-row">
@@ -39,13 +39,11 @@ const MapNavBar = ({ queryObject, doUpdateUrl }) => (
         <div className="col-md-2">
           <LocationTypeFilter
             queryObject={queryObject}
-            doUpdateUrl={doUpdateUrl}
           />
         </div>
         <div className="col-md-4">
           <LocationTree
             queryObject={queryObject}
-            doUpdateUrl={doUpdateUrl}
           />
         </div>
       </div>
