@@ -12,11 +12,11 @@ const overlayId = "map-overlay";
 
 const Map = ({
   queryObject,
-  doUpdateQuery,
   /** @type a2w.models.LocationSummary[] */
   locationSummaries,
   locationsMapIsDataLoaded,
   locationsMapIsLoaded,
+  doUpdateQuery,
   doMapsInitialize,
   doMapsShutdown,
   doLocationsMapLoaded,
@@ -218,22 +218,23 @@ Map.propTypes = {
     lon: PropTypes.string,
     zoom: PropTypes.string,
   }).isRequired,
-  doUpdateQuery: PropTypes.func.isRequired,
   locationSummaries: PropTypes.array,
   locationsMapIsDataLoaded: PropTypes.bool.isRequired,
   locationsMapIsLoaded: PropTypes.bool.isRequired,
+  doUpdateQuery: PropTypes.func.isRequired,
   doLocationsMapLoaded: PropTypes.func.isRequired,
   doMapsInitialize: PropTypes.func.isRequired,
   doMapsShutdown: PropTypes.func.isRequired,
 };
 
 export default connect(
+  "selectQueryObject",
   "selectLocationSummaries",
   "selectLocationsMapIsDataLoaded",
   "selectLocationsMapIsLoaded",
+  "doUpdateQuery",
   "doLocationsMapLoaded",
   "doMapsInitialize",
   "doMapsShutdown",
-  "doUpdateQuery",
   Map,
 );
