@@ -13,7 +13,7 @@ const MapNavbar = ({ doSetLocationSearchCriteriaUpdated }) => {
   return (
     <div className="map-navbar">
       <div className="h-100 px-5 py-4 bg-secondary">
-        <div className="row map-nav-row">
+        <div className="row">
           <div className="col-md-4">
             <LocationSearch
               debounceFetch={debounceFetch}
