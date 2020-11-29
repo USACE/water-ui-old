@@ -7,7 +7,6 @@ import ScaleBar from "ol/control/ScaleLine";
 import BasemapPicker from "../../ol-controls/basemap-picker";
 import { fromLonLat } from "ol/proj";
 import Loader, { loaderTypes } from "../loader/Loader";
-import "./map.scss";
 
 // renders ol map
 const MapContainer = (props) => {
