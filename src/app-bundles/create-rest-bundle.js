@@ -313,6 +313,7 @@ export default (opts) => {
             dispatch({
               type: actions.UPDATED_ITEM,
               payload: {
+                data: config.defaultState.data,
                 _isLoading: false,
                 _lastResource: url,
                 _abortReason: `don't have all the params we need`,
@@ -346,6 +347,7 @@ export default (opts) => {
                 dispatch( {
                   type: actions.ERROR,
                   payload: {
+                    data: config.defaultState.data,
                     _err: err.toString(),
                     _isLoading: false,
                     _isSaving: false,
