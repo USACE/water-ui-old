@@ -99,7 +99,6 @@ const Map = ({
           }
   
           popupContent.current.innerHTML = `<div class="name">${ properties.model.public_name }</div>`;
-          popupContent.current.style.cursor = "pointer";
           popupContent.current.onclick = () => {
             const newQuery = {
               ...queryObject,
