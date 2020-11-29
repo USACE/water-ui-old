@@ -1,12 +1,8 @@
-.map-page-content {
-  display: flex;
-  flex-direction: row;
-}
+@import "../../../../style/sass/abstracts/variables";
 
 .map-container {
   padding: 0;
-  flex-grow: 35;
-  height: 75vh;
+  height: $map-height;
   position: relative;
 }
 

@@ -3,12 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import MapNavBar from "./components/map-nav-bar/MapNavBar";
 import MapDetailsContainer from "./components/map-details/MapDetailsContainer";
-import Map from "./components/Map";
-import "./mapPage.scss";
+import Map from "./components/map/Map";
 
 const MapPage = ({
   queryObject,
-  doUpdateUrl,
   doLocationDetailSetCode,
 }) => {
   console.log("MapPage() -> queryObject = ", queryObject);
@@ -21,19 +19,10 @@ const MapPage = ({
 
   return (
     <>
-      <MapNavBar
-        queryObject={queryObject}
-        doUpdateUrl={doUpdateUrl}
-      />
-      <div className="map-page-content">
-        <MapDetailsContainer
-          queryObject={queryObject}
-          doUpdateUrl={doUpdateUrl}
-        />
-        <Map
-          queryObject={queryObject}
-          doUpdateUrl={doUpdateUrl}
-        />
+      <MapNavBar />
+      <div>
+        <MapDetailsContainer />
+        <Map />
       </div>
     </>
   );
@@ -46,13 +35,11 @@ MapPage.propTypes = {
     lon: PropTypes.string,
     zoom: PropTypes.string,
   }).isRequired,
-  doUpdateUrl: PropTypes.func.isRequired,
   doLocationDetailSetCode: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectQueryObject",
-  "doUpdateUrl",
   "doLocationDetailSetCode",
   MapPage
 )

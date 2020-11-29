@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import { toLonLat, fromLonLat } from "ol/proj";
 import { unByKey } from "ol/Observable";
-import Loader from "../../../app-common/loader/Loader";
-import { defaultMapParams, mapUrlOptions, getInitialMap, getMapOverlay, getMapLayers, LOCATION_TYPES } from "../utils";
+import Loader from "../../../../app-common/loader/Loader";
+import { defaultMapParams, mapUrlOptions, getInitialMap, getMapOverlay, getMapLayers, LOCATION_TYPES } from "../../utils";
 import "ol/ol.css";
+import "./map.scss";
 
 const mapKey = "locationsMap";
 const overlayId = "map-overlay";
