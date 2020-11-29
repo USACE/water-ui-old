@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Autocomplete from "../../../app-common/inputs/autocomplete/Autocomplete";
-import { defaultMapParams, getMapUrl } from "../../map/utils";
+import { getMapUrl } from "../../map/utils";
 
 const LocationSearch = ({
+  queryObject,
   locationSearchText,
   locationSearchData,
   doSetLocationSearchText,
@@ -38,14 +39,14 @@ const LocationSearch = ({
   const itemOnClick = (e) => {
     const index = e.target.value || e.currentTarget.value;
     const location = locationSearchData[index];
-    const mapParams = {
-      ...defaultMapParams,
+    const mapQuery = {
+      ...queryObject,
       locationId: location.location_id,
       lat: location.latitude,
       lon: location.longitude,
       zoom: location.zoom_depth,
     };
-    const mapUrl = getMapUrl(mapParams);
+    const mapUrl = getMapUrl(mapQuery);
     doUpdateUrl(mapUrl);
   }
 
@@ -66,6 +67,7 @@ const LocationSearch = ({
 };
 
 LocationSearch.propTypes = {
+  queryObject: PropTypes.object.isRequired,
   locationSearchText: PropTypes.string.isRequired,
   locationSearchData: PropTypes.arrayOf(PropTypes.shape({
     description: PropTypes.string.isRequired,
@@ -77,6 +79,7 @@ LocationSearch.propTypes = {
 };
 
 export default connect(
+  "selectQueryObject",
   "selectLocationSearchText",
   "selectLocationSearchData",
   "doSetLocationSearchText",
