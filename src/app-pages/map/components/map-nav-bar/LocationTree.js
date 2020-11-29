@@ -87,6 +87,7 @@ LocationTree.propTypes = {
 
 export default connect(
   "selectLocationTree",
+  "selectQueryObject",
   "doUpdateQuery",
   LocationTree,
 );

@@ -47,6 +47,7 @@ LocationTypeFilter.propTypes = {
 };
 
 export default connect(
+  "selectQueryObject",
   "doUpdateQuery",
   LocationTypeFilter,
 );
