@@ -7,7 +7,6 @@ const baseUrl = homepage.pathname;
 export const RoutePaths = {
   Home: baseUrl,
   Help: `${ baseUrl }/help`,
-  Locations: `${ baseUrl }/locations/:locationId`,
   Map: `${ baseUrl }/map`,
   ReportsHome: `${ baseUrl }/reports`,
   DataResources: `${ baseUrl }/data-resources`,
