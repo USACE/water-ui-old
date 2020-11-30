@@ -6,6 +6,11 @@
   position: relative;
 }
 
+// hide the map when map details is full screen
+.map-container.fs {
+  display: none;
+}
+
 .ol-popup {
   position: static;
   background-color: white;

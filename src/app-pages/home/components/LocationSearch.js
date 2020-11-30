@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Autocomplete from "../../../app-common/inputs/autocomplete/Autocomplete";
-import { getMapUrl } from "../../map/utils";
+import { getMapUrl, displayTypes } from "../../map/utils";
 
 const LocationSearch = ({
   queryObject,
@@ -45,6 +45,7 @@ const LocationSearch = ({
       lat: location.latitude,
       lon: location.longitude,
       zoom: location.zoom_depth,
+      display: displayTypes.opened,
     };
     const mapUrl = getMapUrl(mapQuery);
     doUpdateUrl(mapUrl);

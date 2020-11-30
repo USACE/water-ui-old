@@ -1,126 +1,104 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
-import { RoutePaths } from "../../../../../../app-bundles/route-paths";
+import { mapUrlOptions } from "../../../../utils";
 import "./locationStreamControls.scss";
 
-const LocationStreamControls = (props) => {
+const LocationStreamControls = ({
+  queryObject,
+  /** @type a2w.models.LocationDetail */
+  locationDetailData,
+  locationSummariesData,
+  doUpdateQuery,
+  /** @type a2w.models.StreamLocation[] */
+  streamLocationsData,
+  doStreamLocationsFetch,
+}) => {
 
-  const {
-    fullScreen,
-    /** @type a2w.models.LocationDetail */
-    locationDetailData,
-    /** @type a2w.models.StreamLocation[] */
-    streamLocationsData,
-    doLocationsMapSaveMapState,
-    doStreamLocationsFetch,
-    doUpdateUrl
-  } = props;
-
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
+  // fetch new stream locations data whenever the streamLocationsCode changes
+  const streamLocationsCode = locationDetailData.stream_location_code;
   useEffect(() => {
-    // fetch new stream locations data and reset the current index whenever the locationsDetailData changes
-    if( locationDetailData && locationDetailData.stream_location_code ) doStreamLocationsFetch();
-    setCurrentIndex(0);
-  }, [locationDetailData, doStreamLocationsFetch, setCurrentIndex])
+    doStreamLocationsFetch();
+  }, [streamLocationsCode, doStreamLocationsFetch]);
 
-  useEffect(() => {
-    // Set the current stream location index to match the current location
-    if( locationDetailData && streamLocationsData ) setCurrentIndex(
-      streamLocationsData.findIndex( item => item.location_code === locationDetailData.location_code )
-    );
-  }, [locationDetailData, streamLocationsData, setCurrentIndex])
-
-  const changeStation = ( e, newIndex ) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    let nextLocation = streamLocationsData[ newIndex ];
-
-    if( nextLocation ) {
-      const newLocation = `${ RoutePaths.Locations.replace(":locationId", nextLocation.location_code) }`;
-      setCurrentIndex( newIndex );
-      doUpdateUrl( newLocation );
-    }
-  };
-
-  const jumpStation = (e) => {
-    changeStation( e, e.currentTarget.value );
-  };
-
-  const saveMapState = () => {
-    const mapState = {
-      zoom: locationDetailData.zoom_depth ? Math.round( locationDetailData.zoom_depth * 1.5 ) : 16,
-      center: [locationDetailData.longitude, locationDetailData.latitude],
+  const changeLocation = (e) => {
+    const location = streamLocationsData[e.target.value];
+    const locationId = location.location_code;
+    const locationData = locationSummariesData[locationId];
+    const newQuery = {
+      ...queryObject,
+      locationId,
+      lon: locationData.longitude,
+      lat: locationData.latitude,
+      zoom: locationData.zoom_depth,
     };
-    if( locationDetailData.longitude && locationDetailData.latitude ) doLocationsMapSaveMapState( mapState );
+    doUpdateQuery(newQuery, mapUrlOptions);
+  };
+
+  if (!streamLocationsData || streamLocationsData.length <= 1 || !locationDetailData.location_code) {
+    return null;
   }
 
-  const fullScreenContainerStyle = {
-    display: "flex",
-    justifyContent: "space-between",
-  };
+  const currentIndex = streamLocationsData.findIndex(item => item.location_code === locationDetailData.location_code);
 
+  let justifyContent = "justify-content-between";
+  if (currentIndex === 0) {
+    justifyContent = "justify-content-end";
+  } else if (currentIndex === streamLocationsData.length - 1) {
+    justifyContent = "justify-content-start";
+  }
   return (
-    <div className="location-stream-control-container" style={!fullScreen ? fullScreenContainerStyle : null}>
-      {!fullScreen && (
-        <div className="back-to-map-link">
-          <a href={RoutePaths.Map} onClick={saveMapState}>Back to Map</a>
-        </div>
+    <div className={`location-stream-container ${justifyContent}`}>
+      { currentIndex > 0 && (
+        <button
+          type="button"
+          className="location-stream-btn upstream"
+          value={currentIndex - 1}
+          onClick={changeLocation}
+        >
+          Upstream Station
+        </button>
       )}
-      { streamLocationsData && streamLocationsData.length > 0 && (
-        <div className="location-stream-controls-wrapper">
-
-          { currentIndex > 0 && (
-            <button className="link downstream-station"
-                    onClick={ ( e ) => changeStation( e, currentIndex - 1 ) }>
-              upstream station
-            </button>
-          )}
-
-          <select
-            className="jump-station"
-            aria-labelledby="jump to station dropdown"
-            onChange={jumpStation}
-            onClick={e => e.stopPropagation()}
-            value={currentIndex}
+      {/* TODO: create custom dropdown component for selecting a new location since the select element does not look neat on Safari and Firefox */}
+      <select
+        className="location-stream-selector"
+        onChange={changeLocation}
+        value={currentIndex}
+      >
+        { streamLocationsData.map((item, i) => (
+          <option
+            key={item.location_code}
+            value={i}
           >
-            { streamLocationsData.map((item, i) => (
-                <option
-                  key={item.location_code}
-                  value={i}
-                >
-                  {item.public_name}
-                </option>
-              ))
-            }
-          </select>
-
-          { currentIndex + 1 < streamLocationsData.length && (
-            <button className="link upstream-station"
-                    onClick={ ( e ) => changeStation( e, currentIndex + 1 ) }>
-              downstream station
-            </button>
-          )}
-
-        </div>
+            {item.public_name}
+          </option>
+        ))}
+      </select>
+      { currentIndex < streamLocationsData.length - 1 && (
+        <button
+          type="button"
+          className="location-stream-btn downstream"
+          value={currentIndex + 1}
+          onClick={changeLocation}
+        >
+          Downstream Station
+        </button>
       )}
     </div>
   );
 };
 
 LocationStreamControls.propTypes = {
-  locationDetailData: PropTypes.object,
-  fullScreen: PropTypes.func,
+  queryObject: PropTypes.object.isRequired,
+  locationDetailData: PropTypes.object.isRequired,
+  locationSummariesData: PropTypes.object.isRequired,
+  doUpdateQuery: PropTypes.func.isRequired,
+  streamLocationsData: PropTypes.array,
+  doStreamLocationsFetch: PropTypes.func.isRequired,
 };
 
 export default connect(
-  "selectLocationDetailData",
   "selectStreamLocationsData",
-  "doLocationsMapSaveMapState",
   "doStreamLocationsFetch",
-  "doUpdateUrl",
   LocationStreamControls
 );

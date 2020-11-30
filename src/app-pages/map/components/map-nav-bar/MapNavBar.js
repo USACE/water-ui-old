@@ -8,10 +8,10 @@ import LocationTree from "./LocationTree";
 import LocationTypeFilter from "./LocationTypeFilter";
 import "./mapNavBar.scss";
 
-const MapNavbar = ({ doSetLocationSearchCriteriaUpdated }) => {
+const MapNavbar = ({ queryObject, doSetLocationSearchCriteriaUpdated }) => {
   const debounceFetch = debounce(doSetLocationSearchCriteriaUpdated, 500);
   return (
-    <div className="map-navbar">
+    <div className={`map-navbar ${queryObject.display}`}>
       <div className="h-100 px-5 py-4 bg-secondary">
         <div className="row">
           <div className="col-md-4">
@@ -56,7 +56,14 @@ const MapNavbar = ({ doSetLocationSearchCriteriaUpdated }) => {
 };
 
 MapNavbar.propTypes = {
+  queryObject: PropTypes.shape({
+    display: PropTypes.string,
+  }).isRequired,
   doSetLocationSearchCriteriaUpdated: PropTypes.func.isRequired,
 };
 
-export default connect("doSetLocationSearchCriteriaUpdated", MapNavbar);
+export default connect(
+  "selectQueryObject",
+  "doSetLocationSearchCriteriaUpdated",
+  MapNavbar,
+);

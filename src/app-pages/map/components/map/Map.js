@@ -4,7 +4,15 @@ import { connect } from "redux-bundler-react";
 import { toLonLat, fromLonLat } from "ol/proj";
 import { unByKey } from "ol/Observable";
 import Loader from "../../../../app-common/loader/Loader";
-import { defaultMapParams, mapUrlOptions, getInitialMap, getMapOverlay, getMapLayers, LOCATION_TYPES } from "../../utils";
+import {
+  defaultMapParams,
+  mapUrlOptions,
+  getInitialMap,
+  getMapOverlay,
+  getMapLayers,
+  LOCATION_TYPES,
+  displayTypes,
+} from "../../utils";
 import "ol/ol.css";
 import "./map.scss";
 
@@ -22,11 +30,10 @@ const Map = ({
   doMapsShutdown,
   doLocationsMapLoaded,
 }) => {
-  console.log("Map()");
   const [map, setMap] = useState();
 
   // dom refs
-  const mapRef = useRef();
+  const mapRef = useRef( null );
   const popupContainer = useRef( null );
   const popupContent = useRef( null );
   const popupCloser = useRef( null );
@@ -40,6 +47,7 @@ const Map = ({
   const lon = parseFloat(queryObject.lon) || defaultMapParams.lon;
   const zoom = parseFloat(queryObject.zoom) || defaultMapParams.zoom;
   const locationType = queryObject.locationType || defaultMapParams.locationType;
+  const display = queryObject.display;
 
   // componentDidMount
   const initialRender = useRef(true); // this ref is used to ensure the componentDidMount useEffect only fires once
@@ -58,7 +66,6 @@ const Map = ({
   // add map overlay
   useEffect(() => {
     if (locationsMapIsDataLoaded && !locationsMapIsLoaded) {
-      console.log("add overlay")
       const overlay = getMapOverlay(overlayId, popupContainer);
       map.addOverlay(overlay);
 
@@ -74,7 +81,6 @@ const Map = ({
   // update the map listeners
   useEffect(() => {
     if (locationsMapIsLoaded) {
-      console.log("add listeners");
       // remove the previous map listeners
       unByKey(pointermoveKey.current);
       unByKey(moveendKey.current);
@@ -106,6 +112,7 @@ const Map = ({
               lon: properties.model.longitude,
               lat: properties.model.latitude,
               zoom: properties.model.zoom_depth,
+              display: displayTypes.opened,
             };
             doUpdateQuery(newQuery, mapUrlOptions);
           };
@@ -167,10 +174,19 @@ const Map = ({
     }
   }, [map, lat, lon, zoom]);
 
-  // add the map layers based on the location type
+  // there's a bug with OpenLayers where if you attach a map to a div with "display: none", then the map
+  // will not display even if you remove the "display: none". This bug occurs when the user initially loads
+  // the map details in full screen mode, then collapses the map details to display the map (in which case the map
+  // will just be blank). To fix this, we just need to call map.updateSize whenever the map details display changes.
+  useEffect(() => {
+    if (map) {
+      map.updateSize();
+    }
+  }, [map, display])
+
+  // add the map layers depending on the location type
   useEffect(() => {
     if (locationsMapIsLoaded && locationType) {
-      console.log('add layers hook');
       // remove the previous map layers
       map.getLayers().getArray()
         .filter((layer) => layer.get("name"))
@@ -204,7 +220,7 @@ const Map = ({
   return (
     <div
       ref={mapRef}
-      className="map-container"
+      className={`map-container ${queryObject.display}`}
     >
       { locationsMapIsDataLoaded ? popup : <Loader /> }
     </div>
@@ -217,6 +233,7 @@ Map.propTypes = {
     lat: PropTypes.string,
     lon: PropTypes.string,
     zoom: PropTypes.string,
+    display: PropTypes.string,
   }).isRequired,
   locationSummaries: PropTypes.array,
   locationsMapIsDataLoaded: PropTypes.bool.isRequired,

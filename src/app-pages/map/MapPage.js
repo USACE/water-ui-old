@@ -7,15 +7,12 @@ import Map from "./components/map/Map";
 
 const MapPage = ({
   queryObject,
-  doLocationDetailSetCode,
+  doLocationDetailFetch,
 }) => {
-  console.log("MapPage() -> queryObject = ", queryObject);
   const locationId = queryObject.locationId || "";
   useEffect(() => {
-    if (locationId || locationId === 0) {
-      doLocationDetailSetCode(locationId);
-    }
-  }, [locationId, doLocationDetailSetCode])
+    doLocationDetailFetch();
+  }, [locationId, doLocationDetailFetch])
 
   return (
     <>
@@ -31,15 +28,12 @@ const MapPage = ({
 MapPage.propTypes = {
   queryObject: PropTypes.shape({
     locationId: PropTypes.string,
-    lat: PropTypes.string,
-    lon: PropTypes.string,
-    zoom: PropTypes.string,
   }).isRequired,
-  doLocationDetailSetCode: PropTypes.func.isRequired,
+  doLocationDetailFetch: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectQueryObject",
-  "doLocationDetailSetCode",
+  "doLocationDetailFetch",
   MapPage
-)
+);

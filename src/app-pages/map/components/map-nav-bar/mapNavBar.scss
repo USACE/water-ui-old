@@ -6,3 +6,8 @@
     color: $base-gray;
   }
 }
+
+// don't display map navbar if the map details are full screen
+.map-navbar.fs {
+  display: none;
+}

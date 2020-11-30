@@ -3,7 +3,7 @@ import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import TreeMenu from "../../../../app-common/tree-menu/TreeMenu";
 import { defaultChildren } from "../../../../app-common/tree-menu/renderProps";
-import { LOCATION_TYPES, mapUrlOptions } from "../../utils";
+import { LOCATION_TYPES, mapUrlOptions, displayTypes, defaultMapParams } from "../../utils";
 
 const LocationTree = ({
   locationTree,
@@ -46,7 +46,8 @@ const LocationTree = ({
         locationId: e.id,
         lat: e.latitude,
         lon: e.longitude,
-        zoom: e.zoom_depth ? Math.round( e.zoom_depth * 1.5 ) : 16,
+        zoom: e.zoom_depth ? Math.round( e.zoom_depth * 1.5 ) : defaultMapParams.zoom,
+        display: displayTypes.opened,
       };
       doUpdateQuery(newQuery, mapUrlOptions);
     }
