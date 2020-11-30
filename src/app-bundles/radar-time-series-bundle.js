@@ -126,6 +126,7 @@ export default createRestBundle( {
             getIrregularIntervalValuesData(plotlyData, timeSeries);
           }
         });
+        plotlyData.sort((a, b) => a.sortIndex - b.sortIndex);
         return plotlyData;
       }
     ),
@@ -151,6 +152,21 @@ const validateStartEndDates = (startDate, endDate) => {
   return false;
 }
 
+const getSortIndex = (name) => {
+  const lowerCaseName = name.toLowerCase();
+  if ( lowerCaseName.includes( "elev" ) ) {
+    return 0;
+  } else if ( lowerCaseName.includes( "flow" ) ) {
+    return 1;
+  } else if ( lowerCaseName.includes( "stage" ) ) {
+    return 2;
+  } else if ( lowerCaseName.includes( "temp" ) ) {
+    return 3;
+  } else {
+    return Infinity;
+  }
+};
+
 // helper function that appends the regular-interval-values data to the plotlyData array
 const getRegularIntervalValuesData = (plotlyData, timeSeries) => {
   const segments = timeSeries["regular-interval-values"].segments;
@@ -172,8 +188,11 @@ const getRegularIntervalValuesData = (plotlyData, timeSeries) => {
       });
     });
 
+    const name = getPlotName(timeSeries);
+    const sortIndex = getSortIndex(name);
     plotlyData.push({
-      name: getPlotName(timeSeries),
+      name,
+      sortIndex,
       x: xData,
       y: yData,
       unit: timeSeries["regular-interval-values"].unit,
@@ -193,8 +212,11 @@ const getIrregularIntervalValuesData = (plotlyData, timeSeries) => {
       yData.push(y);
     });
 
+    const name = getPlotName(timeSeries);
+    const sortIndex = getSortIndex(name);
     plotlyData.push({
-      name: getPlotName(timeSeries),
+      name,
+      sortIndex,
       x: xData,
       y: yData,
       unit: timeSeries["irregular-interval-values"].unit,
