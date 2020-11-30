@@ -30,7 +30,7 @@ const Map = ({
   doMapsShutdown,
   doLocationsMapLoaded,
 }) => {
-  const [map, setMap] = useState();
+  const [map, setMap] = useState(null);
 
   // dom refs
   const mapRef = useRef( null );
@@ -50,15 +50,13 @@ const Map = ({
   const display = queryObject.display;
 
   // componentDidMount
-  const initialRender = useRef(true); // this ref is used to ensure the componentDidMount useEffect only fires once
   useEffect(() => {
-    if (initialRender.current) {
+    if (!map) {
       const initialMap = getInitialMap(mapRef, lat, lon, zoom);
       setMap(initialMap);
       doMapsInitialize(mapKey);
-      initialRender.current = false;
     }
-  }, [lat, lon, zoom, doMapsInitialize, setMap]);
+  }, [lat, lon, zoom, map, doMapsInitialize, setMap]);
 
   // componentWillUnmount()
   useEffect(() => () => doMapsShutdown(mapKey), [doMapsShutdown]);
