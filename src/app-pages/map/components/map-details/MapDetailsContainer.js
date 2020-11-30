@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import Loader from "../../../../app-common/loader/Loader";
+import MapDetailsHeader from "./MapDetailsHeader";
 import MapDetails from "./MapDetails";
-import MapDetailsHeader from "./components/MapDetailsHeader";
 import { displayTypes, defaultMapParams } from "../../utils";
 import "./mapDetails.scss";
 
