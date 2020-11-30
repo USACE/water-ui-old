@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
-import MapNavBar from "./components/map-nav-bar/MapNavBar";
+import MapNavbar from "./components/map-navbar/MapNavbar";
 import MapDetailsContainer from "./components/map-details/MapDetailsContainer";
 import Map from "./components/map/Map";
 
@@ -16,7 +16,7 @@ const MapPage = ({
 
   return (
     <>
-      <MapNavBar />
+      <MapNavbar />
       <div>
         <MapDetailsContainer />
         <Map />

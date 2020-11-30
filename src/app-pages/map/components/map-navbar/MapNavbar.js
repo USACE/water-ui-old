@@ -6,7 +6,7 @@ import LocationSearch from "../../../home/components/LocationSearch";
 import Dropdown from "../../../../app-common/inputs/Dropdown";
 import LocationTree from "./LocationTree";
 import LocationTypeFilter from "./LocationTypeFilter";
-import "./mapNavBar.scss";
+import "./mapNavbar.scss";
 
 const MapNavbar = ({ queryObject, doSetLocationSearchCriteriaUpdated }) => {
   const debounceFetch = debounce(doSetLocationSearchCriteriaUpdated, 500);
