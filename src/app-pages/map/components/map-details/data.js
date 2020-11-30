@@ -6,28 +6,33 @@ import TimeLineSection from "./components/TimeLineSection";
 
 const sectionConfigs = {
   damProfile: {
+    id: "dam-profile",
     title: "Dam Profile",
     content: <DamProfile />,
     iconClass: "mdi mdi-water-pump",
   },
   locationInfo: {
+    id: "location-information",
     title: "Location Information",
-      content: <LocationInfo />,
+    content: <LocationInfo />,
     iconClass: "mdi mdi-map-marker",
   },
   timeSeries: {
+    id: "time-series",
     title: "Time Series",
-      content: <TimeSeriesSection/>,
+    content: <TimeSeriesSection/>,
     iconClass: "mdi mdi-chart-timeline",
   },
   timeline: {
+    id: "time-line",
     title: "Time Line",
-      content: <TimeLineSection/>,
+    content: <TimeLineSection/>,
     iconClass: "mdi mdi-chart-timeline",
   },
   sedimentation: {
+    id: "sedimentation",
     title: "Sedimentation",
-      content: "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
+    content: "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
     iconClass: "mdi mdi-map-marker",
   }
 }

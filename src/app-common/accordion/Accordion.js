@@ -2,7 +2,7 @@ import React, { cloneElement, isValidElement, useState } from "react";
 import PropTypes from "prop-types";
 import "./accordion.scss";
 
-const Accordion = ({ data, formatId }) => {
+const Accordion = ({ data }) => {
   const [ activeAcc, setActiveAcc ] = useState({});
 
   const toggleAccordion = (e, i) => {
@@ -16,7 +16,7 @@ const Accordion = ({ data, formatId }) => {
   return (
     <div className="accordion-section">
       { data && data.map((config, i) => {
-        const { content, title, iconClass, lazy } = config;
+        const { id, title, content, iconClass, lazy } = config;
 
         return (
           <div key={ title }>
@@ -28,7 +28,7 @@ const Accordion = ({ data, formatId }) => {
               type="button"
             >
               <div
-                id={ formatId(title) }
+                id={ id }
                 className={ `accordion-title text--bold ${iconClass}` }
               >
                 { title }
@@ -61,11 +61,12 @@ const Accordion = ({ data, formatId }) => {
 
 Accordion.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
-    content: PropTypes.node.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    content: PropTypes.node.isRequired,
     iconClass: PropTypes.string,
+    lazy: PropTypes.bool,
   })),
-  formatId: PropTypes.func.isRequired,
 };
 
 export default Accordion;
