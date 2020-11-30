@@ -13,9 +13,13 @@ const Accordion = ({ data }) => {
     });
   };
 
+  if (!data || data.length === 0) {
+    return null;
+  }
+
   return (
     <div className="accordion-section">
-      { data && data.map((config, i) => {
+      { data.map((config, i) => {
         const { id, title, content, iconClass, lazy } = config;
 
         return (
