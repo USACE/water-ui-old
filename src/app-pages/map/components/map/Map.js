@@ -10,7 +10,7 @@ import {
   getInitialMap,
   getMapOverlay,
   getMapLayers,
-  LOCATION_TYPES,
+  locationTypes,
   displayTypes,
 } from "../../utils";
 import "ol/ol.css";
@@ -194,10 +194,10 @@ const Map = ({
 
       let filteredLocations;
       switch (locationType) {
-        case LOCATION_TYPES.ALL:
+        case locationTypes.ALL:
           filteredLocations = locationSummaries;
           break;
-        case LOCATION_TYPES.STREAM_LOCATION:
+        case locationTypes.STREAM_LOCATION:
           filteredLocations = locationSummaries.filter(location => location.sub_location_type === locationType);
           break;
         default:

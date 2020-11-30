@@ -19,7 +19,7 @@ import { fromLonLat } from "ol/proj";
 import BasemapPicker from "../../ol-controls/basemap-picker";
 import { RoutePaths } from "../../app-bundles/route-paths";
 
-export const LOCATION_TYPES = {
+export const locationTypes = {
   ALL: "ALL",
   LOCATION: "LOCATION",
   STREAM_LOCATION: "STREAM_LOCATION",
@@ -48,7 +48,7 @@ export const defaultMapParams = {
   lat: 38.895,
   lon: -95,
   zoom: 5,
-  locationType: LOCATION_TYPES.ALL,
+  locationType: locationTypes.ALL,
   display: displayTypes.opened,
 };
 

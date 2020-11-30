@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Dropdown from "../../../../app-common/inputs/Dropdown";
-import { LOCATION_TYPES, mapUrlOptions } from "../../utils";
+import { locationTypes, mapUrlOptions } from "../../utils";
 
 const LocationTypeFilter = ({ queryObject, doUpdateQuery }) => {
   const onChange = (e) => {
@@ -19,20 +19,20 @@ const LocationTypeFilter = ({ queryObject, doUpdateQuery }) => {
       id="location-type-dropdown"
       label="Location Type"
       placeholder="Select Location Type..."
-      value={queryObject.locationType || LOCATION_TYPES.ALL}
+      value={queryObject.locationType || locationTypes.ALL}
       options={[
-        { id: LOCATION_TYPES.ALL, value: "All" },
-        { id: LOCATION_TYPES.LOCATION, value: "Locations" },
-        { id: LOCATION_TYPES.STREAM_LOCATION, value: "Stream Gages" },
-        // { id: LOCATION_TYPES.STREAM, value: "Streams" },
-        // { id: LOCATION_TYPES.PROJECT, value: "Projects" },
-        // { id: LOCATION_TYPES.TURBINE, value: "Turbines" },
-        // { id: LOCATION_TYPES.OUTLET, value: "Outlets" },
-        // { id: LOCATION_TYPES.LOCK, value: "Locks" },
-        // { id: LOCATION_TYPES.EMBANKMENT, value: "Embankments" },
-        { id: LOCATION_TYPES.WQ, value: "WQ" },
-        { id: LOCATION_TYPES.BASIN, value: "Basins" },
-        { id: LOCATION_TYPES.OPERATING_BASIN, value: "Operating Basins" },
+        { id: locationTypes.ALL, value: "All" },
+        { id: locationTypes.LOCATION, value: "Locations" },
+        { id: locationTypes.STREAM_LOCATION, value: "Stream Gages" },
+        // { id: locationTypes.STREAM, value: "Streams" },
+        // { id: locationTypes.PROJECT, value: "Projects" },
+        // { id: locationTypes.TURBINE, value: "Turbines" },
+        // { id: locationTypes.OUTLET, value: "Outlets" },
+        // { id: locationTypes.LOCK, value: "Locks" },
+        // { id: locationTypes.EMBANKMENT, value: "Embankments" },
+        { id: locationTypes.WQ, value: "WQ" },
+        { id: locationTypes.BASIN, value: "Basins" },
+        { id: locationTypes.OPERATING_BASIN, value: "Operating Basins" },
       ]}
       onChange={onChange}
     />

@@ -3,7 +3,7 @@ import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import TreeMenu from "../../../../app-common/tree-menu/TreeMenu";
 import { defaultChildren } from "../../../../app-common/tree-menu/renderProps";
-import { LOCATION_TYPES, mapUrlOptions, displayTypes, defaultMapParams } from "../../utils";
+import { locationTypes, mapUrlOptions, displayTypes, defaultMapParams } from "../../utils";
 
 const LocationTree = ({
   locationTree,
@@ -59,7 +59,7 @@ const LocationTree = ({
       data={locationTree}
       onClickItem={handleNodeClick}
       initialOpenNodes={["1"]}
-      typeFilter={locationType === LOCATION_TYPES.ALL ? "" : locationType}
+      typeFilter={locationType === locationTypes.ALL ? "" : locationType}
     >
       {({ items, search, typeFilter }) => (
         <div ref={node}>
