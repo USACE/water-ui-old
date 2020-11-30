@@ -88,7 +88,6 @@ const Map = ({
 
       const overlay = map.getOverlayById(overlayId);
 
-
       // display popup if user moves on top of one of the locations
       pointermoveKey.current = map.on("pointermove", (e) => {
         const feature = map.forEachFeatureAtPixel(e.pixel, feature => feature);
