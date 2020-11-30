@@ -45,15 +45,19 @@ const MapDetails = ({
   else {
     const detailSections = buildLocationDetailSections(locationDetailData);
     const navbarPadding = 32;
-    const top = headerHeight + navbarPadding;
+    const ulStyle = {
+      top: headerHeight + navbarPadding,
+    };
   
+    // scroll to the top of the selected accordion section
     const handleNavlink = (e) => {
       const index = e.target.value;
       const accordionBtnId = detailSections[index].id;
       const accordionBtn = document.getElementById(accordionBtnId);
-      const accordionTop = accordionBtn.offsetTop - headerHeight + 50;
+      const mainHeader = document.getElementById("main-nav");
+      const top = accordionBtn.offsetTop + mainHeader.clientHeight - headerHeight - navbarPadding;
       window.scroll({
-        top: accordionTop,
+        top,
         behavior: "smooth",
       });
     };
@@ -64,7 +68,7 @@ const MapDetails = ({
           <div className="map-details-nav">
             <ul
               className="navbar-ul fixed-sticky-nav"
-              style={{ top }}
+              style={ulStyle}
             >
               { detailSections.map( ({ title }, index) => (
                   <li

@@ -5,11 +5,12 @@ import "./accordion.scss";
 const Accordion = ({ data }) => {
   const [ activeAcc, setActiveAcc ] = useState({});
 
-  const toggleAccordion = (e, i) => {
+  const toggleAccordion = (e) => {
     e.stopPropagation();
+    const id = e.currentTarget.id;
     setActiveAcc({
       ...activeAcc,
-      [i]: !activeAcc[i],
+      [id]: !activeAcc[id],
     });
   };
 
@@ -19,46 +20,43 @@ const Accordion = ({ data }) => {
 
   return (
     <div className="accordion-section">
-      { data.map((config, i) => {
-        const { id, title, content, iconClass, lazy } = config;
-
-        return (
+      { data.map( ({ id, title, content, iconClass, lazy }) => (
           <div key={ title }>
             <button
+              id={ id }
               className="accordion-btn"
-              onClick={ e => toggleAccordion(e, i) }
-              aria-controls={ `accordion-control-${i}` }
-              aria-expanded={ !!activeAcc[i] }
+              onClick={toggleAccordion}
+              aria-controls={ `accordion-control-${id}` }
+              aria-expanded={ !!activeAcc[id] }
               type="button"
             >
               <div
-                id={ id }
                 className={ `accordion-title text--bold ${iconClass}` }
               >
                 { title }
               </div>
               <div
-                className={ activeAcc[i] ? "chevron up" : "chevron down" }
+                className={ activeAcc[id] ? "chevron up" : "chevron down" }
               />
             </button>
             <div
-              id={ `accordion-control-${i}` }
-              className={ activeAcc[i] ? "accordion-content" : "accordion-content d-none" }
+              id={ `accordion-control-${id}` }
+              className={ activeAcc[id] ? "accordion-content" : "accordion-content d-none" }
               aria-labelledby={ title }
-              aria-hidden={ !activeAcc[i] }
+              aria-hidden={ !activeAcc[id] }
             >
               <div className="content-paragraph">
                 { isValidElement( content ) // content is a React element
                   ? lazy !== true
-                    ? cloneElement( content, { visible: !!activeAcc[ i ] } )
-                    : activeAcc[ i ] && cloneElement( content, { visible: !!activeAcc[ i ] } )
+                    ? cloneElement( content, { visible: !!activeAcc[ id ] } )
+                    : activeAcc[ id ] && cloneElement( content, { visible: !!activeAcc[ id ] } )
                   : content // content is a string
                 }
               </div>
             </div>
           </div>
-        );
-      })}
+        ))
+      }
     </div>
   );
 };

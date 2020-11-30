@@ -15,7 +15,7 @@ const Header = ({ pathname }) => {
 	const show = isOpen ? "show" : "";
 	return (
 		<header>
-			<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+			<nav id="main-nav" className="navbar navbar-expand-lg navbar-dark bg-primary">
 				<a className="navbar-brand" href={RoutePaths.Home}>
 					<div className="text-2xl font-semibold text-capitalize">access to water</div>
 					<div className="text-base text-capitalize">water management data dissemination</div>
