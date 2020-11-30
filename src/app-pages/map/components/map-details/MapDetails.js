@@ -94,7 +94,7 @@ const MapDetails = ({
   }
   return (
     <div
-      className={`location-detail-content-container ${display}`}
+      className={`map-details-content ${display}`}
       style={style}
     >
       {content}

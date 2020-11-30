@@ -110,7 +110,7 @@
   }
 }
 
-.location-detail-content-container {
+.map-details-content {
   display: flex;
   flex-direction: row;
   padding: 2rem;
@@ -154,6 +154,6 @@
   }
 }
 
-.location-detail-content-container.fs {
+.map-details-content.fs {
   min-height: 60vh;
 }
