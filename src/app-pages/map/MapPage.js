@@ -1,37 +1,39 @@
 import React, { useEffect } from "react";
-import MapNavBar from "./components/map-nav-bar/MapNavBar";
-import LocationDetailsContainer from "./components/location-details/LocationDetailsContainer";
-import LocationsMap from "./components/LocationsMap";
+import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
+import MapNavbar from "./components/map-navbar/MapNavbar";
+import MapDetailsContainer from "./components/map-details/MapDetailsContainer";
+import Map from "./components/map/Map";
 
-const MapPage = ( {doLocationSummariesFetch }) => {
-  const opts = { center: [-95, 38.895], zoom: 5 };
-
+const MapPage = ({
+  queryObject,
+  doLocationDetailFetch,
+}) => {
+  const locationId = queryObject.locationId || "";
   useEffect(() => {
-    doLocationSummariesFetch();
-  }, [doLocationSummariesFetch])
+    doLocationDetailFetch();
+  }, [locationId, doLocationDetailFetch])
 
   return (
     <>
-      <MapNavBar />
-      <div
-        className=" map-and-details-container "
-        style={{ display: "flex", flexDirection: "row" }}
-      >
-        <LocationDetailsContainer />
-        <div className="map-container" style={{ padding: "0", flexGrow: 35 }}>
-          <LocationsMap
-            mapKey="locationsMap"
-            height="75vh"
-            options={opts}
-          />
-        </div>
+      <MapNavbar />
+      <div>
+        <MapDetailsContainer />
+        <Map />
       </div>
     </>
   );
 };
 
+MapPage.propTypes = {
+  queryObject: PropTypes.shape({
+    locationId: PropTypes.string,
+  }).isRequired,
+  doLocationDetailFetch: PropTypes.func.isRequired,
+};
+
 export default connect(
-  "doLocationSummariesFetch",
+  "selectQueryObject",
+  "doLocationDetailFetch",
   MapPage
-)
+);

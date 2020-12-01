@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import { radarTimeControls } from "../../../../../../app-bundles/radar-time-series-bundle";
-import { dateToString } from "../../../../../../app-bundles/bundle-utils";
+import { dateToString } from "../../../../../../utils";
 
 const TimeSeriesControl = ({
   ltsTimeControl,

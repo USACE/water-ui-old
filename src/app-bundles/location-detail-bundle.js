@@ -2,8 +2,6 @@ import createRestBundle from "./create-rest-bundle";
 import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
 
-export const LOCATIONDETAIL_SET_CODE = "LOCATIONDETAIL_SET_CODE";
-
 const name = "locationDetail";
 export default createRestBundle( {
   name,
@@ -19,29 +17,11 @@ export default createRestBundle( {
   urlParamSelectors: [ "selectLocationDetailGetTemplateParam" ],
   defaultState: {
     data: {},
-    location_code: null,
-  },
-  reduceFurther: ( state, { type, payload } ) => {
-    switch( type ) {
-      case LOCATIONDETAIL_SET_CODE:
-        return Object.assign( {}, state, payload );
-      default:
-        return state;
-    }
   },
   addons: {
-    doLocationDetailSetCode: id => ({
-      type: LOCATIONDETAIL_SET_CODE,
-      payload: {
-        location_code: id,
-        data: {},
-        _shouldFetch: true,
-      },
-    }),
-    selectLocationDetailCode: state => state[name].location_code,
     selectLocationDetailGetTemplateParam: createSelector(
-      "selectLocationDetailCode",
-      locationDetailCode => !locationDetailCode ? {} : { location_code: locationDetailCode },
+      "selectQueryObject",
+      ({ locationId }) => locationId ? { location_code: locationId } : {},
     ),
   }
 } );

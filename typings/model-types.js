@@ -1,3 +1,7 @@
+/**
+ * @typedef {any} ResizeObserver
+ */
+
 /** @namespace a2w.models */
 
 /**

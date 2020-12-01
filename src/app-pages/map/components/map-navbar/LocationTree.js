@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from "redux-bundler-react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import TreeMenu from "../../../../app-common/tree-menu/TreeMenu";
 import { defaultChildren } from "../../../../app-common/tree-menu/renderProps";
+import { locationTypes, mapUrlOptions, displayTypes, defaultMapParams } from "../../map-utils";
 
 const LocationTree = ({
   locationTree,
-  doLocationDetailSetCode,
-  doLocationsMapSaveMapState,
-  typeFilter
+  queryObject,
+  doUpdateQuery,
 }) => {
   const node = useRef( null );
   const [treeIsOpen, setTreeIsOpen] = useState(false);
@@ -41,26 +41,27 @@ const LocationTree = ({
   const handleNodeClick = (e) => {
     //if node is a leaf then toggle the drawer and zoom to lonlat
     if (!e.hasNodes) {
-      doLocationDetailSetCode( e.id );
-      if ( e.longitude && e.latitude ) {
-        const mapState = {
-          zoom: e.zoom_depth ? Math.round( e.zoom_depth * 1.5 ) : 16,
-          center: [e.longitude, e.latitude],
-        };
-        doLocationsMapSaveMapState( mapState );
-        setTreeIsOpen(false);
-      }
+      const newQuery = {
+        ...queryObject,
+        locationId: e.id,
+        lat: e.latitude,
+        lon: e.longitude,
+        zoom: e.zoom_depth ? Math.round( e.zoom_depth * 1.5 ) : defaultMapParams.zoom,
+        display: displayTypes.opened,
+      };
+      doUpdateQuery(newQuery, mapUrlOptions);
     }
   };
 
+  const locationType = queryObject.locationType || "";
   return (
     <TreeMenu
       data={locationTree}
       onClickItem={handleNodeClick}
       initialOpenNodes={["1"]}
-      typeFilter = { typeFilter !== "ALL" ? typeFilter: ""}
+      typeFilter={locationType === locationTypes.ALL ? "" : locationType}
     >
-      {({ items, search }) => (
+      {({ items, search, typeFilter }) => (
         <div ref={node}>
           <input
             type="text"
@@ -79,14 +80,15 @@ const LocationTree = ({
 
 LocationTree.propTypes = {
   locationTree: PropTypes.array,
-  doLocationDetailSetCode: PropTypes.func.isRequired,
-  doLocationsMapSaveMapState: PropTypes.func.isRequired,
-  typeFilter: PropTypes.string.isRequired
+  queryObject: PropTypes.shape({
+    locationType: PropTypes.string,
+  }).isRequired,
+  doUpdateQuery: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectLocationTree",
-  "doLocationDetailSetCode",
-  "doLocationsMapSaveMapState",
+  "selectQueryObject",
+  "doUpdateQuery",
   LocationTree,
 );

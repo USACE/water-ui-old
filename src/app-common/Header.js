@@ -15,7 +15,7 @@ const Header = ({ pathname }) => {
 	const show = isOpen ? "show" : "";
 	return (
 		<header>
-			<nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+			<nav id="main-nav" className="navbar navbar-expand-lg navbar-dark bg-primary">
 				<a className="navbar-brand" href={RoutePaths.Home}>
 					<div className="text-2xl font-semibold text-capitalize">access to water</div>
 					<div className="text-base text-capitalize">water management data dissemination</div>
@@ -55,14 +55,14 @@ const Header = ({ pathname }) => {
 							</a>
 						</li>
 					</ul>
-					{ pathname !== RoutePaths.Home && pathname !== "/" && (
+					{/* { pathname !== RoutePaths.Home && pathname !== "/" && (
 						<form className="form-inline my-2 my-lg-0">
 							<input className="form-control mr-sm-2" type="text" placeholder="Search" />
 							<button className="btn btn-secondary my-2 my-sm-0" type="submit">
 								Search
 							</button>
 						</form>
-					)}
+					)} */}
 				</div>
 			</nav>
 		</header>

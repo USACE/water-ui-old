@@ -10,7 +10,7 @@ import LocationSearch from "./components/LocationSearch";
 import DistrictsDropdown from "./components/DistrictsDropdown";
 import BasinsDropdown from "./components/BasinsDropdown";
 import "./homePage.scss";
-import background from "../../img/yellowstone-national-park.jpg";
+import background from "../../img/mountain-river.jpg";
 
 const containerTextSection = {
   textAlign: "center",

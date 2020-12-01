@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const _usePrevious = (value, initialValue) => {
   const ref = useRef(initialValue);
@@ -41,21 +41,27 @@ export const useEffectDebugger = (effectHook, dependencies, dependencyNames = []
 };
 
 /**
- * Helper function to output a JSDoc type definition.
- * @param model
- * @param typeName
+ * Custom hook which returns an element's height and width in the format [height, width]
+ * @param {React.RefObject} ref the ref you want to monitor for size changes
  */
-export const toTypeDef = ( model, typeName ) => {
-  if( !model ) return;
-  let result = `/**\n`;
-  result += ` * @typedef a2w.models.${ typeName }\n`;
+export const useDimensions = (ref) => {
+  const [dimensions, setDimensions] = useState([ 0, 0 ]);
+  const resizeObserverRef = useRef(null);
 
-  for( const [ key, value ] of Object.entries( model ) ) {
-    result += ` * @property {${ typeof value }} ${ key }\n`;
-  }
-
-  result += "*/";
-
-  console.log( "toTypeDef:" );
-  console.log( result );
+  useEffect(() => {
+    resizeObserverRef.current = new ResizeObserver((entries) => {
+      // only care about the first element
+      const { clientHeight, clientWidth } = entries[0].target;
+      setDimensions([clientHeight, clientWidth]);
+    });
+    if (ref.current) {
+      resizeObserverRef.current.observe(ref.current);
+    }
+    return () => {
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+      }
+    };
+  }, [ref]);
+  return dimensions;
 };

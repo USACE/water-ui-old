@@ -1,11 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-
-// Component import:
 import Timeline from "../timeline/Timeline";
-
-// utils:
-import { findElementByClassName } from "../../testUtils";
 
 describe("<Accordion />", () => {
   const renderOptions = { disableLifecycleMethods: true };
@@ -41,8 +36,8 @@ describe("<Accordion />", () => {
   });
 
   it("renders correct number of data points", () => {
-    const timelineContainer = findElementByClassName(wrapper, "timeline-container");
-    const timelineItems = findElementByClassName(wrapper, "timeline-item");
+    const timelineContainer = wrapper.find(".timeline-container");
+    const timelineItems = wrapper.find(".timeline-item");
 
     expect(timelineContainer.length).toBe(1);
     expect(timelineItems.length).toBe(4);

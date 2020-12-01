@@ -16,7 +16,11 @@ const filter = ({ typeFilter, data }) => {
     }
     return leafNodes;
   };
-  return getLeafNodes( leafNodes, data[0] );
+
+  if (data && data[0]) {
+    return getLeafNodes( leafNodes, data[0] );
+  }
+  return [];
 };
 
 export const walk = ({ data, typeFilter, ...props }) => {
@@ -75,14 +79,14 @@ const generateBranch = ({
 
   const data = getValidatedData(nodes);
   const nextLevelItems = isOpen
-    ? walk({
+    ? walk( /** @type {any} */ ({
         data,
         locale,
         matchSearch,
         ...props,
         parent: key,
         level: level + 1,
-      })
+      }))
     : [];
 
   return isVisible ? [currentItem, ...nextLevelItems] : nextLevelItems;

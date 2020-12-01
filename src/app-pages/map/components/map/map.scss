@@ -1,3 +1,16 @@
+@import "../../../../style/sass/abstracts/variables";
+
+.map-container {
+  padding: 0;
+  height: $map-height;
+  position: relative;
+}
+
+// hide the map when map details is full screen
+.map-container.fs {
+  display: none;
+}
+
 .ol-popup {
   position: static;
   background-color: white;
@@ -40,10 +53,10 @@
   .ol-popup-content {
     margin: .25rem 0;
     max-width: 220px;
+    cursor: pointer;
     .name {
       font-size: 1rem;
       font-weight: bold;
     }
   }
-
 }
