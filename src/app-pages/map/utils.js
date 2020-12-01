@@ -1,4 +1,3 @@
-import { useEffect, useState, useRef } from "react";
 import Map from "ol/Map.js";
 import View from "ol/View";
 import ScaleLine from "ol/control/ScaleLine";
@@ -177,30 +176,4 @@ export const getMapLayers = (locationSummaries) => {
   });
 
   return { unclusteredLayer, clusters };
-};
-
-/**
- * Custom hook which returns a given ref's height and width in the format [height, width]
- * @param {ref} ref the ref you want to monitor for size changes
- */
-export const useDimensions = (ref) => {
-  const [dimensions, setDimensions] = useState([ 0, 0 ]);
-  const resizeObserverRef = useRef(null);
-
-  useEffect(() => {
-    resizeObserverRef.current = new ResizeObserver((entries) => {
-      // only care about the first element
-      const { clientHeight, clientWidth } = entries[0].target;
-      setDimensions([clientHeight, clientWidth]);
-    });
-    if (ref.current) {
-      resizeObserverRef.current.observe(ref.current);
-    }
-    return () => {
-      if (resizeObserverRef.current) {
-        resizeObserverRef.current.disconnect();
-      }
-    };
-  }, [ref]);
-  return dimensions;
 };

@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Accordion from "../../../../app-common/accordion/Accordion";
 import { buildLocationDetailSections } from "./data";
-import { displayTypes, useDimensions, defaultMapParams } from "../../utils";
+import { displayTypes, defaultMapParams } from "../../utils";
+import { useDimensions } from "../../../../utils";
 
 const MapDetails = ({
   queryObject,

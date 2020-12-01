@@ -4,7 +4,6 @@ import { Provider } from "redux-bundler-react";
 import { getNavHelper } from "internal-nav-helper";
 import getStore from "./app-bundles";
 import cache from "./cache";
-
 import App from "./App";
 
 cache.getAll().then((initialData) => {

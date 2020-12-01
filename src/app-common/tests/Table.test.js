@@ -1,11 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-
-// Component import:
 import Table from "../table/Table";
-
-// utils:
-import { findByElementType } from "../../testUtils";
 
 describe("<Table />", () => {
   const renderOptions = { disableLifecycleMethods: true };
@@ -29,9 +24,9 @@ describe("<Table />", () => {
         ["tableBody1", "tableBody2", "tableBody3"],
       ],
     });
-    const th = findByElementType(wrapper, "th");
-    const td = findByElementType(wrapper, "td");
-    const tr = findByElementType(wrapper, "tr");
+    const th = wrapper.find("th");
+    const td = wrapper.find("td");
+    const tr = wrapper.find("tr");
 
     const numberOfColumns = td.length / (tr.length - 1);
     expect(numberOfColumns).toBe(th.length);
@@ -48,9 +43,9 @@ describe("<Table />", () => {
       ],
     });
 
-    const tHeadTag = findByElementType(wrapper, "thead");
-    const th = findByElementType(wrapper, "th");
-    const tr = findByElementType(wrapper, "tr");
+    const tHeadTag = wrapper.find("thead");
+    const th = wrapper.find("th");
+    const tr = wrapper.find("tr");
 
     // Check for <thead>
     expect(tHeadTag.length).toBe(1);
@@ -61,9 +56,9 @@ describe("<Table />", () => {
   });
 
   it("table headers DON'T RENDER when no headerRowArr props exist", () => {
-    const thead = findByElementType(wrapper, "thead");
-    const th = findByElementType(wrapper, "th");
-    const tr = findByElementType(wrapper, "tr");
+    const thead = wrapper.find("thead");
+    const th = wrapper.find("th");
+    const tr = wrapper.find("tr");
 
     // Check for <thead>
     expect(thead.length).toBe(0);
@@ -84,9 +79,9 @@ describe("<Table />", () => {
       ],
     });
 
-    const tbody = findByElementType(wrapper, "tbody");
-    const tr = findByElementType(wrapper, "tr");
-    const td = findByElementType(wrapper, "td");
+    const tbody = wrapper.find("tbody");
+    const tr = wrapper.find("tr");
+    const td = wrapper.find("td");
 
     // Check for <tbody>
     expect(tbody.length).toBe(1);
@@ -97,9 +92,9 @@ describe("<Table />", () => {
   });
 
   it("table body DOES NOT render when no rowsArr props exists", () => {
-    const tBody = findByElementType(wrapper, "tbody");
-    const tr = findByElementType(wrapper, "tr");
-    const td = findByElementType(wrapper, "td");
+    const tBody = wrapper.find("tbody");
+    const tr = wrapper.find("tr");
+    const td = wrapper.find("td");
     // Check for <tbody>
     expect(tBody.length).toBe(0);
     // Check for <tr>
