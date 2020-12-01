@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
+import { RoutePaths } from "../../../app-bundles/route-paths";
 import Autocomplete from "../../../app-common/inputs/autocomplete/Autocomplete";
 import { getMapUrl, displayTypes } from "../../map/utils";
 
 const LocationSearch = ({
+  pathname,
   queryObject,
   locationSearchText,
   locationSearchData,
@@ -12,6 +14,12 @@ const LocationSearch = ({
   debounceFetch,
   doUpdateUrl,
 }) => {
+
+  useEffect(() => {
+    if (pathname === RoutePaths.Home) {
+      doSetLocationSearchText("");
+    }
+  }, [pathname, doSetLocationSearchText]);
 
   const inputOnChange = (e) => {
     doSetLocationSearchText(e.target.value);
@@ -68,6 +76,7 @@ const LocationSearch = ({
 };
 
 LocationSearch.propTypes = {
+  pathname: PropTypes.string.isRequired,
   queryObject: PropTypes.object.isRequired,
   locationSearchText: PropTypes.string.isRequired,
   locationSearchData: PropTypes.arrayOf(PropTypes.shape({
@@ -80,6 +89,7 @@ LocationSearch.propTypes = {
 };
 
 export default connect(
+  "selectPathname",
   "selectQueryObject",
   "selectLocationSearchText",
   "selectLocationSearchData",
