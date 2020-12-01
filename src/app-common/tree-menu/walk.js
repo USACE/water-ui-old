@@ -79,14 +79,14 @@ const generateBranch = ({
 
   const data = getValidatedData(nodes);
   const nextLevelItems = isOpen
-    ? walk({
+    ? walk( /** @type {any} */ ({
         data,
         locale,
         matchSearch,
         ...props,
         parent: key,
         level: level + 1,
-      })
+      }))
     : [];
 
   return isVisible ? [currentItem, ...nextLevelItems] : nextLevelItems;

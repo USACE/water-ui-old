@@ -5,6 +5,9 @@
     height: $default-input-height;
     color: $base-gray;
   }
+  .form-group {
+    margin-bottom: 0px;
+  }
 }
 
 // don't display map navbar if the map details are full screen

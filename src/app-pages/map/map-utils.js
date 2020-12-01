@@ -69,10 +69,10 @@ export const getMapUrl = (mapParams) => {
 /**
  * Helper function that returns the initial ol map object
  *
- * @param {ref} mapRef dom node for the map
- * @param {float} lat latitude
- * @param {float} lon longitude
- * @param {float} zoom zoom level
+ * @param {React.RefObject} mapRef dom node for the map
+ * @param {number} lat latitude
+ * @param {number} lon longitude
+ * @param {number} zoom zoom level
  */
 export const getInitialMap = (mapRef, lat, lon, zoom) => new Map({
   target: mapRef.current,
@@ -91,7 +91,7 @@ export const getInitialMap = (mapRef, lat, lon, zoom) => new Map({
  * Helper function that returns the map overlayy
  *
  * @param {string} id overlay id
- * @param {node} popupContainer dom node for the popup container
+ * @param {React.RefObject} popupContainer dom node for the popup container
  */
 export const getMapOverlay = (id, popupContainer) => new Overlay({
   id,

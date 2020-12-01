@@ -42,7 +42,7 @@ export const useEffectDebugger = (effectHook, dependencies, dependencyNames = []
 
 /**
  * Custom hook which returns an element's height and width in the format [height, width]
- * @param {ref} ref the ref you want to monitor for size changes
+ * @param {React.RefObject} ref the ref you want to monitor for size changes
  */
 export const useDimensions = (ref) => {
   const [dimensions, setDimensions] = useState([ 0, 0 ]);

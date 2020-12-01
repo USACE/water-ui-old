@@ -10,7 +10,7 @@ const MapDetailsHeader = forwardRef((props, ref) => {
     locationSummariesData,
     doUpdateQuery,
     locationSummariesHasLoaded,
-  } = props;
+  } = /** @type {any} */ ( props );
 
   const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${locationDetailData.nearest_city}&state=${locationDetailData.state}`;
   const locationId = queryObject.locationId;
@@ -44,11 +44,13 @@ const MapDetailsHeader = forwardRef((props, ref) => {
       <button
         type="button"
         className="map-details-toggle-btn toggle-close"
+        title="Collapse Location Details"
         onClick={closeBtnOnClick}
       />
       <button
         type="button"
         className="map-details-toggle-btn toggle-expand"
+        title="Expand Location Details"
         onClick={expandBtnOnClick}
       />
       { locationSummariesHasLoaded && locationSummariesData[locationId] &&
@@ -79,14 +81,18 @@ const MapDetailsHeader = forwardRef((props, ref) => {
   );
 });
 
-MapDetailsHeader.propTypes = {
+MapDetailsHeader.propTypes = /** @type {any} */ ({
   queryObject: PropTypes.shape({
     locationId: PropTypes.string.isRequired,
+    lon: PropTypes.number,
+    lat: PropTypes.number,
+    zoom: PropTypes.number,
+    display: PropTypes.string,
   }).isRequired,
   locationDetailData: PropTypes.object,
   locationSummariesData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   doUpdateQuery: PropTypes.func.isRequired,
   locationSummariesHasLoaded: PropTypes.bool,
-};
+});
 
 export default MapDetailsHeader;

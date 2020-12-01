@@ -21,7 +21,7 @@ const LocationTypeFilter = ({ queryObject, doUpdateQuery }) => {
       placeholder="Select Location Type..."
       value={queryObject.locationType || locationTypes.ALL}
       options={[
-        { id: locationTypes.ALL, value: "All" },
+        { id: locationTypes.ALL, value: "All Locations" },
         { id: locationTypes.LOCATION, value: "Locations" },
         { id: locationTypes.STREAM_LOCATION, value: "Stream Gages" },
         // { id: locationTypes.STREAM, value: "Streams" },

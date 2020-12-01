@@ -14,12 +14,12 @@ const MapNavbar = ({ queryObject, doSetLocationSearchCriteriaUpdated }) => {
     <div className={`map-navbar ${queryObject.display}`}>
       <div className="h-100 px-5 py-4 bg-secondary">
         <div className="row">
-          <div className="col-md-4">
+          <div className="col-md-2">
             <LocationSearch
               debounceFetch={debounceFetch}
             />
           </div>
-          <div className="col-md-1">
+          <div className="col-md-2">
             <Dropdown
               label="Districts Dropdown"
               id="districts-dropdown"
@@ -31,7 +31,7 @@ const MapNavbar = ({ queryObject, doSetLocationSearchCriteriaUpdated }) => {
               ]}
             />
           </div>
-          <div className="col-md-1">
+          <div className="col-md-2">
             <Dropdown
               id="basins-dropdown"
               label="Basin Dropdown"
