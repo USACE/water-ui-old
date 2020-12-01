@@ -47,7 +47,7 @@ const Map = ({
   const lon = parseFloat(queryObject.lon) || defaultMapParams.lon;
   const zoom = parseFloat(queryObject.zoom) || defaultMapParams.zoom;
   const locationType = queryObject.locationType || defaultMapParams.locationType;
-  const display = queryObject.display;
+  const display = queryObject.display || defaultMapParams.display;
 
   // componentDidMount
   useEffect(() => {
@@ -217,7 +217,7 @@ const Map = ({
   return (
     <div
       ref={mapRef}
-      className={`map-container ${queryObject.display}`}
+      className={`map-container ${display}`}
     >
       { locationsMapIsDataLoaded ? popup : <Loader /> }
     </div>
