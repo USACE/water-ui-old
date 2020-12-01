@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import { RoutePaths } from "../../../app-bundles/route-paths";
 import Autocomplete from "../../../app-common/inputs/autocomplete/Autocomplete";
-import { getMapUrl, displayTypes } from "../../map/utils";
+import { getMapUrl, displayTypes } from "../../map/map-utils";
 
 const LocationSearch = ({
   pathname,

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Loader from "../../../../app-common/loader/Loader";
 import MapDetailsHeader from "./MapDetailsHeader";
 import MapDetails from "./MapDetails";
-import { displayTypes, defaultMapParams } from "../../utils";
+import { displayTypes, defaultMapParams } from "../../map-utils";
 import "./mapDetails.scss";
 
 // renders a collapsible side panel containing the selected location's data

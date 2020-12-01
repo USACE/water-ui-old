@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
-import { mapUrlOptions } from "../../../../utils";
+import { mapUrlOptions } from "../../../../map-utils";
 import "./locationStreamControls.scss";
 
 const LocationStreamControls = ({

@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import LocationStreamControls from "./components/location-stream-controls/LocationStreamControls";
-import { defaultMapParams, displayTypes, mapUrlOptions } from "../../utils";
+import { defaultMapParams, displayTypes, mapUrlOptions } from "../../map-utils";
 
 const MapDetailsHeader = forwardRef((props, ref) => {
   const {

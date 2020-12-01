@@ -12,7 +12,7 @@ import {
   getMapLayers,
   locationTypes,
   displayTypes,
-} from "../../utils";
+} from "../../map-utils";
 import "ol/ol.css";
 import "./map.scss";
 

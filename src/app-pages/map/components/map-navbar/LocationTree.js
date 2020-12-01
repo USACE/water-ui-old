@@ -3,7 +3,7 @@ import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import TreeMenu from "../../../../app-common/tree-menu/TreeMenu";
 import { defaultChildren } from "../../../../app-common/tree-menu/renderProps";
-import { locationTypes, mapUrlOptions, displayTypes, defaultMapParams } from "../../utils";
+import { locationTypes, mapUrlOptions, displayTypes, defaultMapParams } from "../../map-utils";
 
 const LocationTree = ({
   locationTree,

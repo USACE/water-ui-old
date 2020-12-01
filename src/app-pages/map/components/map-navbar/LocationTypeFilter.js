@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Dropdown from "../../../../app-common/inputs/Dropdown";
-import { locationTypes, mapUrlOptions } from "../../utils";
+import { locationTypes, mapUrlOptions } from "../../map-utils";
 
 const LocationTypeFilter = ({ queryObject, doUpdateQuery }) => {
   const onChange = (e) => {
