@@ -49,21 +49,17 @@ export default createRestBundle( {
 
     doDistrictsAndBasinsFormatData: ( /** @type a2w.models.DistrictBasin[] */ data) => {
       const districts = {};
-      data.forEach(({
-        district_office_id, district_name, basin_name, basin_location_id, basin_division_code,
-        basin_operating_area_id, latitude, longitude
-      }) => {
+      data.forEach(({ district_office_id, district_name, ...basinInfo }) => {
+        // initialize the district object if it does not exists
         if (!districts[district_office_id]) {
           districts[district_office_id] = {
-            district_office_id, district_name, basin_name, basin_location_id, basin_division_code,
-            basin_operating_area_id, latitude, longitude,
+            district_office_id,
+            district_name,
             basins: [],
           };
         }
-        districts[district_office_id].basins.push({
-          district_office_id, district_name, basin_name, basin_location_id, basin_division_code,
-          basin_operating_area_id, latitude, longitude
-        });
+        // create a new basin object and add it to the basins array for it's correspondin district
+        districts[district_office_id].basins.push({ ...basinInfo });
       });
       return {
         type: DISTRICTS_AND_BASINS_REFORMAT_DATA,
@@ -106,7 +102,7 @@ export default createRestBundle( {
       type: DISTRICTS_AND_BASINS_SET_DISTRICT_ID,
       payload: {
         district_office_id: id,
-        basin_location_id: null
+        basin_location_id: "",
       },
     }),
 
