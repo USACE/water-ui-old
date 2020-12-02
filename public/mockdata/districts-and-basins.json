@@ -1,80 +1,1982 @@
 [{
     "district_office_id": "SPA",
     "district_name": "Albuquerque District",
-    "basin_name": "Arkansas River Basin",
-    "basin_location_code": "10626043",
-    "basin_location_id": "ARKANSAS_R_B"
+    "basin_name": "Arkansas River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "171043",
+    "basin_operating_area_id": "204",
+    "latitude": 38.26973,
+    "longitude": -104.72482
   }, {
     "district_office_id": "SPA",
     "district_name": "Albuquerque District",
-    "basin_name": "Canadian River Basin",
-    "basin_location_code": "10627043",
-    "basin_location_id": "CANADIAN_R_B"
+    "basin_name": "Canadian River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "33043",
+    "basin_operating_area_id": "205",
+    "latitude": 35.40278,
+    "longitude": -104.190834
   }, {
     "district_office_id": "SPA",
     "district_name": "Albuquerque District",
-    "basin_name": "Pecos River Basin",
-    "basin_location_code": "10625043",
-    "basin_location_id": "PECOS_R_B"
+    "basin_name": "Pecos River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "17043",
+    "basin_operating_area_id": "203",
+    "latitude": 32.546665,
+    "longitude": -104.37861
   }, {
     "district_office_id": "SPA",
     "district_name": "Albuquerque District",
-    "basin_name": "Rio Grande Basin",
-    "basin_location_code": "10624043",
-    "basin_location_id": "RIO_GRANDE_B"
-  }, {
-    "district_office_id": "SPA",
-    "district_name": "Albuquerque District",
-    "basin_name": "San Juan River Basin",
-    "basin_location_code": "10628043",
-    "basin_location_id": "SAN_JUAN_R_B"
+    "basin_name": "Rio Grande River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "70043",
+    "basin_operating_area_id": "206",
+    "latitude": 37.351955,
+    "longitude": -106.54449
   }, {
     "district_office_id": "NAB",
     "district_name": "Baltimore District",
-    "basin_name": "Chemung River Basin",
-    "basin_location_code": "10389020",
-    "basin_location_id": "Chemung River"
+    "basin_name": "Chemung River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "300020",
+    "basin_operating_area_id": "228",
+    "latitude": 41.98355,
+    "longitude": -77.15091
   }, {
     "district_office_id": "NAB",
     "district_name": "Baltimore District",
-    "basin_name": "Juniata River Basin",
-    "basin_location_code": "10391020",
-    "basin_location_id": "Juniata River"
+    "basin_name": "Juniata River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "14020",
+    "basin_operating_area_id": "229",
+    "latitude": 40.42713,
+    "longitude": -78.001366
   }, {
     "district_office_id": "NAB",
     "district_name": "Baltimore District",
-    "basin_name": "MainStem Susquehanna River Basin",
-    "basin_location_code": "10388020",
-    "basin_location_id": "Main Stem Susq"
+    "basin_name": "Main Stem Susquehanna River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "1123020",
+    "basin_operating_area_id": "230",
+    "latitude": 39.92263,
+    "longitude": -76.753815
   }, {
     "district_office_id": "NAB",
     "district_name": "Baltimore District",
-    "basin_name": "North Branch Potomac River Basin",
-    "basin_location_code": "10392020",
-    "basin_location_id": "NB Potomac"
+    "basin_name": "Potomac River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "160020",
+    "basin_operating_area_id": "233",
+    "latitude": 39.507603,
+    "longitude": -79.13491
   }, {
     "district_office_id": "NAB",
     "district_name": "Baltimore District",
-    "basin_name": "Susquehanna River Basin",
-    "basin_location_code": "10487020",
-    "basin_location_id": "Susq"
+    "basin_name": "Upper Susquehanna River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "245020",
+    "basin_operating_area_id": "231",
+    "latitude": 42.328873,
+    "longitude": -75.230194
   }, {
     "district_office_id": "NAB",
     "district_name": "Baltimore District",
-    "basin_name": "Upper Susquehanna River Basin",
-    "basin_location_code": "10390020",
-    "basin_location_id": "Upper Susq"
-  }, {
-    "district_office_id": "NAB",
-    "district_name": "Baltimore District",
-    "basin_name": "West Branch Susquehanna Basin",
-    "basin_location_code": "10387020",
-    "basin_location_id": "West Branch Susq"
+    "basin_name": "West Branch Susquehanna River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "27020",
+    "basin_operating_area_id": "232",
+    "latitude": 41.04839,
+    "longitude": -77.61023
   }, {
     "district_office_id": "LRB",
     "district_name": "Buffalo District",
-    "basin_name": "Genesee River Basin",
-    "basin_location_code": "2774006",
-    "basin_location_id": "Genesee_R Basin"
+    "basin_name": "Genesee River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "1803006",
+    "basin_operating_area_id": "190",
+    "latitude": 42.733288,
+    "longitude": -77.907074
+  }, {
+    "district_office_id": "LRE",
+    "district_name": "Detroit District",
+    "basin_name": "Lake Winnebago",
+    "basin_division_code": "LRD",
+    "basin_location_id": "20005",
+    "basin_operating_area_id": "127",
+    "latitude": 44.162357,
+    "longitude": -88.76922
+  }, {
+    "district_office_id": "SWF",
+    "district_name": "Fort Worth District",
+    "basin_name": "Brazos River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "142048",
+    "basin_operating_area_id": "298",
+    "latitude": 31.584,
+    "longitude": -97.202
+  }, {
+    "district_office_id": "SWF",
+    "district_name": "Fort Worth District",
+    "basin_name": "Colorado River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "199048",
+    "basin_operating_area_id": "295",
+    "latitude": 31.832779,
+    "longitude": -99.560555
+  }, {
+    "district_office_id": "SWF",
+    "district_name": "Fort Worth District",
+    "basin_name": "Guadalupe River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "215048",
+    "basin_operating_area_id": "297",
+    "latitude": 29.69,
+    "longitude": -98.1
+  }, {
+    "district_office_id": "SWF",
+    "district_name": "Fort Worth District",
+    "basin_name": "Neches River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "223048",
+    "basin_operating_area_id": "294",
+    "latitude": 31.060556,
+    "longitude": -94.105835
+  }, {
+    "district_office_id": "SWF",
+    "district_name": "Fort Worth District",
+    "basin_name": "Sulphur River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "231048",
+    "basin_operating_area_id": "296",
+    "latitude": 32.775,
+    "longitude": -94.49917
+  }, {
+    "district_office_id": "SWF",
+    "district_name": "Fort Worth District",
+    "basin_name": "Trinity River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "404048",
+    "basin_operating_area_id": "299",
+    "latitude": 32.25,
+    "longitude": -96.64
+  }, {
+    "district_office_id": "SWG",
+    "district_name": "Galveston District",
+    "basin_name": "Buffalo Bayou River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "29049",
+    "basin_operating_area_id": "285",
+    "latitude": 29.76995,
+    "longitude": -95.64717
+  }, {
+    "district_office_id": "SWG",
+    "district_name": "Galveston District",
+    "basin_name": "Lavaca River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "2377049",
+    "basin_operating_area_id": "284",
+    "latitude": 28.959723,
+    "longitude": -96.68611
+  }, {
+    "district_office_id": "SWG",
+    "district_name": "Galveston District",
+    "basin_name": "Lower Colorado River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "2261049",
+    "basin_operating_area_id": "310",
+    "latitude": 28.974146,
+    "longitude": -96.01246
+  }, {
+    "district_office_id": "SWG",
+    "district_name": "Galveston District",
+    "basin_name": "Nueces River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "2311049",
+    "basin_operating_area_id": "282",
+    "latitude": 27.882778,
+    "longitude": -97.625
+  }, {
+    "district_office_id": "SWG",
+    "district_name": "Galveston District",
+    "basin_name": "San Diego Creek",
+    "basin_division_code": "SWD",
+    "basin_location_id": "2244049",
+    "basin_operating_area_id": "281",
+    "latitude": 27.772223,
+    "longitude": -98.03333
+  }, {
+    "district_office_id": "SWG",
+    "district_name": "Galveston District",
+    "basin_name": "Trinity River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "2484049",
+    "basin_operating_area_id": "311",
+    "latitude": 30.0575,
+    "longitude": -94.818054
+  }, {
+    "district_office_id": "LRH",
+    "district_name": "Huntington District",
+    "basin_name": "Big Sandy River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "20108",
+    "basin_operating_area_id": "118",
+    "latitude": 38.0294,
+    "longitude": -82.8461
+  }, {
+    "district_office_id": "LRH",
+    "district_name": "Huntington District",
+    "basin_name": "Guyandotte River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "183108",
+    "basin_operating_area_id": "125",
+    "latitude": 37.6,
+    "longitude": -81.8225
+  }, {
+    "district_office_id": "LRH",
+    "district_name": "Huntington District",
+    "basin_name": "Hocking River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "224108",
+    "basin_operating_area_id": "121",
+    "latitude": 39.542282,
+    "longitude": -82.05733
+  }, {
+    "district_office_id": "LRH",
+    "district_name": "Huntington District",
+    "basin_name": "Kanawha River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "253108",
+    "basin_operating_area_id": "124",
+    "latitude": 37.640606,
+    "longitude": -80.88649
+  }, {
+    "district_office_id": "LRH",
+    "district_name": "Huntington District",
+    "basin_name": "Little Kanawha River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "459108",
+    "basin_operating_area_id": "122",
+    "latitude": 38.8433,
+    "longitude": -80.62
+  }, {
+    "district_office_id": "LRH",
+    "district_name": "Huntington District",
+    "basin_name": "Little Sandy River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "495108",
+    "basin_operating_area_id": "119",
+    "latitude": 38.253498,
+    "longitude": -82.98428
+  }, {
+    "district_office_id": "LRH",
+    "district_name": "Huntington District",
+    "basin_name": "Muskingum River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "518108",
+    "basin_operating_area_id": "123",
+    "latitude": 40.52667,
+    "longitude": -81.285
+  }, {
+    "district_office_id": "LRH",
+    "district_name": "Huntington District",
+    "basin_name": "Ohio River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "797108",
+    "basin_operating_area_id": "116",
+    "latitude": 38.8736,
+    "longitude": -82.3558
+  }, {
+    "district_office_id": "LRH",
+    "district_name": "Huntington District",
+    "basin_name": "Scioto River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "433108",
+    "basin_operating_area_id": "117",
+    "latitude": 39.8767,
+    "longitude": -83.4417
+  }, {
+    "district_office_id": "LRH",
+    "district_name": "Huntington District",
+    "basin_name": "Twelvepole River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "1011108",
+    "basin_operating_area_id": "120",
+    "latitude": 38.304,
+    "longitude": -82.41639
+  }, {
+    "district_office_id": "SAJ",
+    "district_name": "Jacksonville District",
+    "basin_name": "Area 1",
+    "basin_division_code": "SAD",
+    "basin_location_id": "135038",
+    "basin_operating_area_id": "278",
+    "latitude": 26.676666,
+    "longitude": -80.379166
+  }, {
+    "district_office_id": "SAJ",
+    "district_name": "Jacksonville District",
+    "basin_name": "Area 2",
+    "basin_division_code": "SAD",
+    "basin_location_id": "1150038",
+    "basin_operating_area_id": "277",
+    "latitude": 26.37145,
+    "longitude": -80.35254
+  }, {
+    "district_office_id": "SAJ",
+    "district_name": "Jacksonville District",
+    "basin_name": "Area 3",
+    "basin_division_code": "SAD",
+    "basin_location_id": "10038",
+    "basin_operating_area_id": "276",
+    "latitude": 25.76188,
+    "longitude": -80.82114
+  }, {
+    "district_office_id": "SAJ",
+    "district_name": "Jacksonville District",
+    "basin_name": "Caloosahatchee River",
+    "basin_division_code": "SAD",
+    "basin_location_id": "627038",
+    "basin_operating_area_id": "279",
+    "latitude": 26.698055,
+    "longitude": -80.80417
+  }, {
+    "district_office_id": "SAJ",
+    "district_name": "Jacksonville District",
+    "basin_name": "Kissimmee River",
+    "basin_division_code": "SAD",
+    "basin_location_id": "43038",
+    "basin_operating_area_id": "274",
+    "latitude": 28.285,
+    "longitude": -81.18889
+  }, {
+    "district_office_id": "NWK",
+    "district_name": "Kansas City District",
+    "basin_name": "Chariton River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "5484030",
+    "basin_operating_area_id": "113",
+    "latitude": 40.95189,
+    "longitude": -93.259636
+  }, {
+    "district_office_id": "NWK",
+    "district_name": "Kansas City District",
+    "basin_name": "Kansas River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "4984030",
+    "basin_operating_area_id": "112",
+    "latitude": 38.983,
+    "longitude": -94.9647
+  }, {
+    "district_office_id": "NWK",
+    "district_name": "Kansas City District",
+    "basin_name": "Little Blue River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "4970030",
+    "basin_operating_area_id": "114",
+    "latitude": 39.100555,
+    "longitude": -94.30028
+  }, {
+    "district_office_id": "NWK",
+    "district_name": "Kansas City District",
+    "basin_name": "Little Chariton River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "5454030",
+    "basin_operating_area_id": "111",
+    "latitude": 39.897305,
+    "longitude": -92.49306
+  }, {
+    "district_office_id": "NWK",
+    "district_name": "Kansas City District",
+    "basin_name": "Little Platte River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "15251030",
+    "basin_operating_area_id": "115",
+    "latitude": 39.39941,
+    "longitude": -94.55673
+  }, {
+    "district_office_id": "NWK",
+    "district_name": "Kansas City District",
+    "basin_name": "Osage River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1507030",
+    "basin_operating_area_id": "110",
+    "latitude": 38.05586,
+    "longitude": -94.14542
+  }, {
+    "district_office_id": "NWK",
+    "district_name": "Kansas City District",
+    "basin_name": "Republican River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "5472030",
+    "basin_operating_area_id": "108",
+    "latitude": 39.89917,
+    "longitude": -98.25
+  }, {
+    "district_office_id": "NWK",
+    "district_name": "Kansas City District",
+    "basin_name": "Smokey River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "5480030",
+    "basin_operating_area_id": "109",
+    "latitude": 38.788162,
+    "longitude": -99.72374
+  }, {
+    "district_office_id": "SWL",
+    "district_name": "Little Rock District",
+    "basin_name": "Arkansas River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "1489150",
+    "basin_operating_area_id": "194",
+    "latitude": 34.956665,
+    "longitude": -92.985
+  }, {
+    "district_office_id": "SWL",
+    "district_name": "Little Rock District",
+    "basin_name": "Little River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "1726150",
+    "basin_operating_area_id": "192",
+    "latitude": 34.045,
+    "longitude": -94.2125
+  }, {
+    "district_office_id": "SWL",
+    "district_name": "Little Rock District",
+    "basin_name": "White River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "1479150",
+    "basin_operating_area_id": "193",
+    "latitude": 37.375694,
+    "longitude": -91.5528
+  }, {
+    "district_office_id": "SPL",
+    "district_name": "Los Angeles District",
+    "basin_name": "Bill Williams River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "157145",
+    "basin_operating_area_id": "225",
+    "latitude": 34.23167,
+    "longitude": -113.6017
+  }, {
+    "district_office_id": "SPL",
+    "district_name": "Los Angeles District",
+    "basin_name": "Cuyama River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "992145",
+    "basin_operating_area_id": "222",
+    "latitude": 34.984165,
+    "longitude": -120.32278
+  }, {
+    "district_office_id": "SPL",
+    "district_name": "Los Angeles District",
+    "basin_name": "Gila River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "176145",
+    "basin_operating_area_id": "224",
+    "latitude": 32.844166,
+    "longitude": -110.63
+  }, {
+    "district_office_id": "SPL",
+    "district_name": "Los Angeles District",
+    "basin_name": "LACDA River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "151145",
+    "basin_operating_area_id": "227",
+    "latitude": 34.44639,
+    "longitude": -118.19667
+  }, {
+    "district_office_id": "SPL",
+    "district_name": "Los Angeles District",
+    "basin_name": "Lower Colorado River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "242145",
+    "basin_operating_area_id": "220",
+    "latitude": 34.55528,
+    "longitude": -111.18389
+  }, {
+    "district_office_id": "SPL",
+    "district_name": "Los Angeles District",
+    "basin_name": "Meadow Valley River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "279145",
+    "basin_operating_area_id": "221",
+    "latitude": 37.558334,
+    "longitude": -114.56306
+  }, {
+    "district_office_id": "SPL",
+    "district_name": "Los Angeles District",
+    "basin_name": "Mojave River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "402145",
+    "basin_operating_area_id": "223",
+    "latitude": 34.343056,
+    "longitude": -117.22639
+  }, {
+    "district_office_id": "SPL",
+    "district_name": "Los Angeles District",
+    "basin_name": "Santa Ana River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "142145",
+    "basin_operating_area_id": "226",
+    "latitude": 33.75111,
+    "longitude": -117.90833
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Great Miami River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "215109",
+    "basin_operating_area_id": "146",
+    "latitude": 39.94855,
+    "longitude": -83.746574
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Green River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "138109",
+    "basin_operating_area_id": "150",
+    "latitude": 37.485603,
+    "longitude": -87.13638
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Kentucky River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "100109",
+    "basin_operating_area_id": "148",
+    "latitude": 37.864803,
+    "longitude": -83.93353
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Licking RIver River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "102109",
+    "basin_operating_area_id": "149",
+    "latitude": 37.730648,
+    "longitude": -83.057945
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Little Miami River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "241109",
+    "basin_operating_area_id": "147",
+    "latitude": 39.137005,
+    "longitude": -84.23799
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Little Wabash River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "172109",
+    "basin_operating_area_id": "142",
+    "latitude": 38.363335,
+    "longitude": -88.587776
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Middle Wabash River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "127109",
+    "basin_operating_area_id": "144",
+    "latitude": 39.535877,
+    "longitude": -86.97613
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Mill Creek",
+    "basin_division_code": "LRD",
+    "basin_location_id": "101109",
+    "basin_operating_area_id": "139",
+    "latitude": 39.220615,
+    "longitude": -84.446884
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Ohio River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "118109",
+    "basin_operating_area_id": "140",
+    "latitude": 40.10087,
+    "longitude": -87.597244
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Salt River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "163109",
+    "basin_operating_area_id": "141",
+    "latitude": 38.003567,
+    "longitude": -85.30652
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Upper Wabash River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "149109",
+    "basin_operating_area_id": "143",
+    "latitude": 40.61726,
+    "longitude": -86.76084
+  }, {
+    "district_office_id": "LRL",
+    "district_name": "Louisville District",
+    "basin_name": "Whitewater River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "103109",
+    "basin_operating_area_id": "145",
+    "latitude": 40.00421,
+    "longitude": -85.11552
+  }, {
+    "district_office_id": "MVM",
+    "district_name": "Memphis District",
+    "basin_name": "Hatchie River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "1984014",
+    "basin_operating_area_id": "158",
+    "latitude": 35.0661,
+    "longitude": -88.6589
+  }, {
+    "district_office_id": "MVM",
+    "district_name": "Memphis District",
+    "basin_name": "Loosahatchie River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "1974014",
+    "basin_operating_area_id": "156",
+    "latitude": 35.334473,
+    "longitude": -89.91742
+  }, {
+    "district_office_id": "MVM",
+    "district_name": "Memphis District",
+    "basin_name": "Mississippi River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "2039014",
+    "basin_operating_area_id": "151",
+    "latitude": 36.949,
+    "longitude": -89.09583
+  }, {
+    "district_office_id": "MVM",
+    "district_name": "Memphis District",
+    "basin_name": "Nonconnah Creek",
+    "basin_division_code": "MVD",
+    "basin_location_id": "2068014",
+    "basin_operating_area_id": "155",
+    "latitude": 35.0722,
+    "longitude": -89.9908
+  }, {
+    "district_office_id": "MVM",
+    "district_name": "Memphis District",
+    "basin_name": "Obion-Forked Deer River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "1997014",
+    "basin_operating_area_id": "153",
+    "latitude": 35.960667,
+    "longitude": -89.14089
+  }, {
+    "district_office_id": "MVM",
+    "district_name": "Memphis District",
+    "basin_name": "St Francis Basin",
+    "basin_division_code": "MVD",
+    "basin_location_id": "1972014",
+    "basin_operating_area_id": "161",
+    "latitude": 34.960556,
+    "longitude": -90.583336
+  }, {
+    "district_office_id": "MVM",
+    "district_name": "Memphis District",
+    "basin_name": "White River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "2126014",
+    "basin_operating_area_id": "159",
+    "latitude": 34.979137,
+    "longitude": -91.491
+  }, {
+    "district_office_id": "MVM",
+    "district_name": "Memphis District",
+    "basin_name": "White River Tributary",
+    "basin_division_code": "MVD",
+    "basin_location_id": "1976014",
+    "basin_operating_area_id": "160",
+    "latitude": 35.251667,
+    "longitude": -91.111115
+  }, {
+    "district_office_id": "MVM",
+    "district_name": "Memphis District",
+    "basin_name": "Wolf River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "2122014",
+    "basin_operating_area_id": "157",
+    "latitude": 35.201668,
+    "longitude": -89.9225
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "Big Horn River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1510030",
+    "basin_operating_area_id": "359",
+    "latitude": 45.800167,
+    "longitude": -108.46806
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "Chariton River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "5029030",
+    "basin_operating_area_id": "345",
+    "latitude": 39.53994,
+    "longitude": -92.79075
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "Gavins to Sioux City",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1497030",
+    "basin_operating_area_id": "367",
+    "latitude": 42.97,
+    "longitude": -96
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "James River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2406030",
+    "basin_operating_area_id": "360",
+    "latitude": 45.519222,
+    "longitude": -98.57716
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "Missouri River - Fort Peck to Garrison",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1516030",
+    "basin_operating_area_id": "362",
+    "latitude": 48.123707,
+    "longitude": -104.47466
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "Missouri River - Fort Randall to Gavins Point",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1503030",
+    "basin_operating_area_id": "366",
+    "latitude": 42.850296,
+    "longitude": -97.89127
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "Missouri River - Garrison to Oahe",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1511030",
+    "basin_operating_area_id": "364",
+    "latitude": 46.80758,
+    "longitude": -100.82085
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "Missouri River - Oahe to Fort Randall",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1517030",
+    "basin_operating_area_id": "365",
+    "latitude": 44.327408,
+    "longitude": -100.258484
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "Osage River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "5548030",
+    "basin_operating_area_id": "342",
+    "latitude": 38.65388,
+    "longitude": -94.90265
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "Sioux City to Mouth",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1501030",
+    "basin_operating_area_id": "368",
+    "latitude": 40.671005,
+    "longitude": -95.83031
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "South Platte River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2348030",
+    "basin_operating_area_id": "361",
+    "latitude": 39.65377,
+    "longitude": -104.86252
+  }, {
+    "district_office_id": "NWDM",
+    "district_name": "Missouri River Region",
+    "basin_name": "Upper Missouri River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2998030",
+    "basin_operating_area_id": "357",
+    "latitude": 48.00072,
+    "longitude": -106.418
+  }, {
+    "district_office_id": "SAM",
+    "district_name": "Mobile District",
+    "basin_name": "Alabama-Coosa-Tallapoosa Rivers",
+    "basin_division_code": "SAD",
+    "basin_location_id": "13257039",
+    "basin_operating_area_id": "248",
+    "latitude": 34.162777,
+    "longitude": -84.727776
+  }, {
+    "district_office_id": "SAM",
+    "district_name": "Mobile District",
+    "basin_name": "Apalachicola, Chattahoochee \u0026 Flint Rivers",
+    "basin_division_code": "SAD",
+    "basin_location_id": "3808039",
+    "basin_operating_area_id": "249",
+    "latitude": 33.819443,
+    "longitude": -84.407776
+  }, {
+    "district_office_id": "SAM",
+    "district_name": "Mobile District",
+    "basin_name": "Black Warrior \u0026 Tombigbee River",
+    "basin_division_code": "SAD",
+    "basin_location_id": "3937039",
+    "basin_operating_area_id": "246",
+    "latitude": 33.79,
+    "longitude": -88.31528
+  }, {
+    "district_office_id": "SAM",
+    "district_name": "Mobile District",
+    "basin_name": "Pascagoula (Okatibbee) River",
+    "basin_division_code": "SAD",
+    "basin_location_id": "22774039",
+    "basin_operating_area_id": "247",
+    "latitude": 32.32611,
+    "longitude": -88.909164
+  }, {
+    "district_office_id": "LRN",
+    "district_name": "Nashville District",
+    "basin_name": "Cumberland Basin River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "2224010",
+    "basin_operating_area_id": "126",
+    "latitude": 35.808056,
+    "longitude": -85.63361
+  }, {
+    "district_office_id": "NAE",
+    "district_name": "New England District",
+    "basin_name": "Blackstone River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "8114021",
+    "basin_operating_area_id": "289",
+    "latitude": 42.18889,
+    "longitude": -71.76556
+  }, {
+    "district_office_id": "NAE",
+    "district_name": "New England District",
+    "basin_name": "Connecticut River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "8022021",
+    "basin_operating_area_id": "292",
+    "latitude": 42.3803,
+    "longitude": -72.1144
+  }, {
+    "district_office_id": "NAE",
+    "district_name": "New England District",
+    "basin_name": "East Branch (Coastal) River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "8054021",
+    "basin_operating_area_id": "287",
+    "latitude": 41.8364,
+    "longitude": -73.1206
+  }, {
+    "district_office_id": "NAE",
+    "district_name": "New England District",
+    "basin_name": "Housatonic River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "8023021",
+    "basin_operating_area_id": "290",
+    "latitude": 41.4419,
+    "longitude": -73.0631
+  }, {
+    "district_office_id": "NAE",
+    "district_name": "New England District",
+    "basin_name": "Merrimack River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "8031021",
+    "basin_operating_area_id": "293",
+    "latitude": 43.5667,
+    "longitude": -71.7483
+  }, {
+    "district_office_id": "NAE",
+    "district_name": "New England District",
+    "basin_name": "Providence River (Coastal)",
+    "basin_division_code": "NAD",
+    "basin_location_id": "8069021",
+    "basin_operating_area_id": "288",
+    "latitude": 41.800835,
+    "longitude": -71.400276
+  }, {
+    "district_office_id": "NAE",
+    "district_name": "New England District",
+    "basin_name": "Thames River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "8032021",
+    "basin_operating_area_id": "291",
+    "latitude": 42.1158,
+    "longitude": -71.9083
+  }, {
+    "district_office_id": "MVN",
+    "district_name": "New Orleans District",
+    "basin_name": "Lower Mississippi River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "15",
+    "basin_operating_area_id": "309",
+    "latitude": 31.07361,
+    "longitude": -91.58195
+  }, {
+    "district_office_id": "NAO",
+    "district_name": "Norfolk District",
+    "basin_name": "Great Dismal Swamp",
+    "basin_division_code": "NAD",
+    "basin_location_id": "231023",
+    "basin_operating_area_id": "163",
+    "latitude": 36.594864,
+    "longitude": -76.43743
+  }, {
+    "district_office_id": "NAO",
+    "district_name": "Norfolk District",
+    "basin_name": "JacksonJames River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "23",
+    "basin_operating_area_id": "162",
+    "latitude": 37.670834,
+    "longitude": -78.08611
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Belle Fourche River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2362030",
+    "basin_operating_area_id": "167",
+    "latitude": 44.69021,
+    "longitude": -103.7371
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Big Horn River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2346030",
+    "basin_operating_area_id": "175",
+    "latitude": 44.838108,
+    "longitude": -108.43474
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Fall River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2378030",
+    "basin_operating_area_id": "170",
+    "latitude": 43.430546,
+    "longitude": -103.47629
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Gavins to Sioux City",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1494030",
+    "basin_operating_area_id": "305",
+    "latitude": 42.5764,
+    "longitude": -96.311554
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Grand River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2432030",
+    "basin_operating_area_id": "169",
+    "latitude": 45.982292,
+    "longitude": -103.24711
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Heart River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2862030",
+    "basin_operating_area_id": "168",
+    "latitude": 46.86972,
+    "longitude": -102.82694
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "James River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1498030",
+    "basin_operating_area_id": "176",
+    "latitude": 43.18505,
+    "longitude": -97.63566
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Marias River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2530030",
+    "basin_operating_area_id": "172",
+    "latitude": 48.30596,
+    "longitude": -111.08053
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Milk River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "5091030",
+    "basin_operating_area_id": "164",
+    "latitude": 48.40247,
+    "longitude": -108.29361
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Missouri River - Fort Randall to Gavins Point",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "5400030",
+    "basin_operating_area_id": "304",
+    "latitude": 42.74851,
+    "longitude": -98.05822
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Missouri River - Garrison to Oahe",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1515030",
+    "basin_operating_area_id": "364",
+    "latitude": 46.376087,
+    "longitude": -100.934456
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Missouri River - Oahe to Fort Randall",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "5364030",
+    "basin_operating_area_id": "303",
+    "latitude": 44.326412,
+    "longitude": -100.38432
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "North Platte River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2374030",
+    "basin_operating_area_id": "174",
+    "latitude": 42.240993,
+    "longitude": -104.62798
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Papio Creek",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2940030",
+    "basin_operating_area_id": "178",
+    "latitude": 41.31075,
+    "longitude": -96.04749
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Rapid River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2350030",
+    "basin_operating_area_id": "171",
+    "latitude": 43.94195,
+    "longitude": -102.854416
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Salt Creek",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1160030",
+    "basin_operating_area_id": "166",
+    "latitude": 40.970566,
+    "longitude": -96.85272
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Sioux City to Mouth",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "1080030",
+    "basin_operating_area_id": "306",
+    "latitude": 41.345993,
+    "longitude": -95.07687
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "South Platte River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2340030",
+    "basin_operating_area_id": "177",
+    "latitude": 39.650833,
+    "longitude": -104.853615
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Spring River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "14401030",
+    "basin_operating_area_id": "301",
+    "latitude": 45.911884,
+    "longitude": -100.2958
+  }, {
+    "district_office_id": "NWO",
+    "district_name": "Omaha District",
+    "basin_name": "Upper Missouri River",
+    "basin_division_code": "NWD-MR",
+    "basin_location_id": "2364030",
+    "basin_operating_area_id": "173",
+    "latitude": 47.501595,
+    "longitude": -111.93208
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Cedar River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "54365029",
+    "basin_operating_area_id": "326",
+    "latitude": 47.418888,
+    "longitude": -121.78028
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Chehalis River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "52200029",
+    "basin_operating_area_id": "328",
+    "latitude": 46.634724,
+    "longitude": -123.295555
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Columbia River Portland",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "11705126",
+    "basin_operating_area_id": "339",
+    "latitude": 45.71431,
+    "longitude": -121.503235
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Columbia River Seattle",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "11425126",
+    "basin_operating_area_id": "325",
+    "latitude": 46.666668,
+    "longitude": -121
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Green River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "52583029",
+    "basin_operating_area_id": "331",
+    "latitude": 47.43028,
+    "longitude": -122.24194
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Lower Snake River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "54676029",
+    "basin_operating_area_id": "317",
+    "latitude": 45.488335,
+    "longitude": -117.40278
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Middle Snake River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "54121029",
+    "basin_operating_area_id": "323",
+    "latitude": 41.683334,
+    "longitude": -115.86667
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "NF Clearwater River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "1261994026",
+    "basin_operating_area_id": "316",
+    "latitude": 46.2,
+    "longitude": -116
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Pend Oreille River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "47330029",
+    "basin_operating_area_id": "327",
+    "latitude": 47.95676,
+    "longitude": -117.02359
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Puyallup River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "54970029",
+    "basin_operating_area_id": "330",
+    "latitude": 47.15361,
+    "longitude": -121.63611
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Rogue River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "1262045026",
+    "basin_operating_area_id": "338",
+    "latitude": 42.245834,
+    "longitude": -122.78
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Upper Snake River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "47326029",
+    "basin_operating_area_id": "322",
+    "latitude": 44.018333,
+    "longitude": -112.566666
+  }, {
+    "district_office_id": "NWDP",
+    "district_name": "Pacific Northwest Region",
+    "basin_name": "Willamette River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "54319029",
+    "basin_operating_area_id": "336",
+    "latitude": 44.12389,
+    "longitude": -122.62639
+  }, {
+    "district_office_id": "NAP",
+    "district_name": "Philadelphia District",
+    "basin_name": "Lackawaxen River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "760024",
+    "basin_operating_area_id": "245",
+    "latitude": 41.612312,
+    "longitude": -75.2649
+  }, {
+    "district_office_id": "NAP",
+    "district_name": "Philadelphia District",
+    "basin_name": "Lehigh River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "62024",
+    "basin_operating_area_id": "244",
+    "latitude": 40.84778,
+    "longitude": -75.63825
+  }, {
+    "district_office_id": "NAP",
+    "district_name": "Philadelphia District",
+    "basin_name": "Schuylkill River",
+    "basin_division_code": "NAD",
+    "basin_location_id": "783024",
+    "basin_operating_area_id": "243",
+    "latitude": 40.413425,
+    "longitude": -76.171616
+  }, {
+    "district_office_id": "LRP",
+    "district_name": "Pittsburgh District",
+    "basin_name": "Allegheny River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "16433111",
+    "basin_operating_area_id": "133",
+    "latitude": 40.65472,
+    "longitude": -79.34889
+  }, {
+    "district_office_id": "LRP",
+    "district_name": "Pittsburgh District",
+    "basin_name": "Beaver River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "16456111",
+    "basin_operating_area_id": "132",
+    "latitude": 41.4433,
+    "longitude": -80.5883
+  }, {
+    "district_office_id": "LRP",
+    "district_name": "Pittsburgh District",
+    "basin_name": "Monongahela River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "16434111",
+    "basin_operating_area_id": "131",
+    "latitude": 38.784443,
+    "longitude": -80.22083
+  }, {
+    "district_office_id": "LRP",
+    "district_name": "Pittsburgh District",
+    "basin_name": "Upper Ohio River",
+    "basin_division_code": "LRD",
+    "basin_location_id": "16656111",
+    "basin_operating_area_id": "130",
+    "latitude": 39.667114,
+    "longitude": -80.86346
+  }, {
+    "district_office_id": "NWP",
+    "district_name": "Portland District",
+    "basin_name": "Columbia River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "53495029",
+    "basin_operating_area_id": "214",
+    "latitude": 46.03261,
+    "longitude": -122.312874
+  }, {
+    "district_office_id": "NWP",
+    "district_name": "Portland District",
+    "basin_name": "Cowlitz River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "49559029",
+    "basin_operating_area_id": "207",
+    "latitude": 46.535107,
+    "longitude": -122.424835
+  }, {
+    "district_office_id": "NWP",
+    "district_name": "Portland District",
+    "basin_name": "Crooked River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "48114029",
+    "basin_operating_area_id": "210",
+    "latitude": 44.29861,
+    "longitude": -120.725
+  }, {
+    "district_office_id": "NWP",
+    "district_name": "Portland District",
+    "basin_name": "Rogue River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "48186029",
+    "basin_operating_area_id": "213",
+    "latitude": 42.056793,
+    "longitude": -123.10949
+  }, {
+    "district_office_id": "NWP",
+    "district_name": "Portland District",
+    "basin_name": "Tualatin River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "53453029",
+    "basin_operating_area_id": "209",
+    "latitude": 45.473446,
+    "longitude": -123.19872
+  }, {
+    "district_office_id": "NWP",
+    "district_name": "Portland District",
+    "basin_name": "Umpqua River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "55838029",
+    "basin_operating_area_id": "208",
+    "latitude": 42.848732,
+    "longitude": -123.17895
+  }, {
+    "district_office_id": "NWP",
+    "district_name": "Portland District",
+    "basin_name": "Willamette River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "47588029",
+    "basin_operating_area_id": "211",
+    "latitude": 44.750916,
+    "longitude": -122.283
+  }, {
+    "district_office_id": "NWP",
+    "district_name": "Portland District",
+    "basin_name": "Willow Creek",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "47608029",
+    "basin_operating_area_id": "212",
+    "latitude": 45.347073,
+    "longitude": -119.54475
+  }, {
+    "district_office_id": "MVR",
+    "district_name": "Rock Island District",
+    "basin_name": "Des Moines River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "40017",
+    "basin_operating_area_id": "135",
+    "latitude": 41.70361,
+    "longitude": -93.68917
+  }, {
+    "district_office_id": "MVR",
+    "district_name": "Rock Island District",
+    "basin_name": "Farm River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "196017",
+    "basin_operating_area_id": "137",
+    "latitude": 41.32358,
+    "longitude": -89.11079
+  }, {
+    "district_office_id": "MVR",
+    "district_name": "Rock Island District",
+    "basin_name": "Illinois River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "181017",
+    "basin_operating_area_id": "138",
+    "latitude": 41.5686,
+    "longitude": -88.07722
+  }, {
+    "district_office_id": "MVR",
+    "district_name": "Rock Island District",
+    "basin_name": "Iowa River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "17",
+    "basin_operating_area_id": "136",
+    "latitude": 41.606388,
+    "longitude": -91.615555
+  }, {
+    "district_office_id": "MVR",
+    "district_name": "Rock Island District",
+    "basin_name": "Mississippi River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "20017",
+    "basin_operating_area_id": "134",
+    "latitude": 41.39091,
+    "longitude": -91.05515
+  }, {
+    "district_office_id": "SPK",
+    "district_name": "Sacramento District",
+    "basin_name": "Parley's Canyon Creek",
+    "basin_division_code": "SPD",
+    "basin_location_id": "3968257044",
+    "basin_operating_area_id": "103",
+    "latitude": 40.77,
+    "longitude": -111.7033
+  }, {
+    "district_office_id": "SPK",
+    "district_name": "Sacramento District",
+    "basin_name": "Provo River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "3968258044",
+    "basin_operating_area_id": "102",
+    "latitude": 40.5978,
+    "longitude": -111.4246
+  }, {
+    "district_office_id": "SPK",
+    "district_name": "Sacramento District",
+    "basin_name": "Sacramento River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "4922044",
+    "basin_operating_area_id": "106",
+    "latitude": 38.7,
+    "longitude": -121.15
+  }, {
+    "district_office_id": "SPK",
+    "district_name": "Sacramento District",
+    "basin_name": "San Joaquin River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "7286044",
+    "basin_operating_area_id": "105",
+    "latitude": 37.702778,
+    "longitude": -120.424164
+  }, {
+    "district_office_id": "SPK",
+    "district_name": "Sacramento District",
+    "basin_name": "Truckee River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "13746044",
+    "basin_operating_area_id": "107",
+    "latitude": 39.383,
+    "longitude": -120.1
+  }, {
+    "district_office_id": "SPK",
+    "district_name": "Sacramento District",
+    "basin_name": "Tulare Lakebed",
+    "basin_division_code": "SPD",
+    "basin_location_id": "6416044",
+    "basin_operating_area_id": "104",
+    "latitude": 36.851055,
+    "longitude": -119.31393
+  }, {
+    "district_office_id": "SPK",
+    "district_name": "Sacramento District",
+    "basin_name": "Upper Colorado River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "3964452044",
+    "basin_operating_area_id": "100",
+    "latitude": 38.94278,
+    "longitude": -107.35167
+  }, {
+    "district_office_id": "SPK",
+    "district_name": "Sacramento District",
+    "basin_name": "Weber River",
+    "basin_division_code": "SPD",
+    "basin_location_id": "3968252044",
+    "basin_operating_area_id": "101",
+    "latitude": 41.2546,
+    "longitude": -111.8422
+  }, {
+    "district_office_id": "SAS",
+    "district_name": "Savannah District",
+    "basin_name": "Savannah River Basin",
+    "basin_division_code": "SAD",
+    "basin_location_id": "40",
+    "basin_operating_area_id": "191",
+    "latitude": 33.66125,
+    "longitude": -82.19986
+  }, {
+    "district_office_id": "NWS",
+    "district_name": "Seattle District",
+    "basin_name": "Cedar River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "22128028",
+    "basin_operating_area_id": "197",
+    "latitude": 47.665424,
+    "longitude": -122.39578
+  }, {
+    "district_office_id": "NWS",
+    "district_name": "Seattle District",
+    "basin_name": "Chehalis River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "23677028",
+    "basin_operating_area_id": "199",
+    "latitude": 47.22,
+    "longitude": -123.38
+  }, {
+    "district_office_id": "NWS",
+    "district_name": "Seattle District",
+    "basin_name": "Columbia River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "21967028",
+    "basin_operating_area_id": "196",
+    "latitude": 47.834457,
+    "longitude": -120.01201
+  }, {
+    "district_office_id": "NWS",
+    "district_name": "Seattle District",
+    "basin_name": "Green River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "24159028",
+    "basin_operating_area_id": "202",
+    "latitude": 47.3125,
+    "longitude": -122.16417
+  }, {
+    "district_office_id": "NWS",
+    "district_name": "Seattle District",
+    "basin_name": "Kootenai River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "22897028",
+    "basin_operating_area_id": "195",
+    "latitude": 48.893612,
+    "longitude": -115.086945
+  }, {
+    "district_office_id": "NWS",
+    "district_name": "Seattle District",
+    "basin_name": "Pend Oreille River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "21877028",
+    "basin_operating_area_id": "198",
+    "latitude": 48.34111,
+    "longitude": -114.013336
+  }, {
+    "district_office_id": "NWS",
+    "district_name": "Seattle District",
+    "basin_name": "Puyallup River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "27360028",
+    "basin_operating_area_id": "201",
+    "latitude": 47.27139,
+    "longitude": -122.21889
+  }, {
+    "district_office_id": "NWS",
+    "district_name": "Seattle District",
+    "basin_name": "Skagit River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "24196028",
+    "basin_operating_area_id": "200",
+    "latitude": 48.52623,
+    "longitude": -121.415405
+  }, {
+    "district_office_id": "MVS",
+    "district_name": "St. Louis District",
+    "basin_name": "Big Muddy River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "767018",
+    "basin_operating_area_id": "256",
+    "latitude": 37.899982,
+    "longitude": -89.017395
+  }, {
+    "district_office_id": "MVS",
+    "district_name": "St. Louis District",
+    "basin_name": "Illinois River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "311018",
+    "basin_operating_area_id": "251",
+    "latitude": 39.826824,
+    "longitude": -90.56578
+  }, {
+    "district_office_id": "MVS",
+    "district_name": "St. Louis District",
+    "basin_name": "Kaskaskia River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "285018",
+    "basin_operating_area_id": "258",
+    "latitude": 38.716667,
+    "longitude": -89.82917
+  }, {
+    "district_office_id": "MVS",
+    "district_name": "St. Louis District",
+    "basin_name": "Meramec River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "409018",
+    "basin_operating_area_id": "254",
+    "latitude": 38.54653,
+    "longitude": -90.48476
+  }, {
+    "district_office_id": "MVS",
+    "district_name": "St. Louis District",
+    "basin_name": "Mississippi River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "192018",
+    "basin_operating_area_id": "250",
+    "latitude": 38.532024,
+    "longitude": -90.257706
+  }, {
+    "district_office_id": "MVS",
+    "district_name": "St. Louis District",
+    "basin_name": "Salt River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "338018",
+    "basin_operating_area_id": "257",
+    "latitude": 39.43184,
+    "longitude": -91.6766
+  }, {
+    "district_office_id": "MVS",
+    "district_name": "St. Louis District",
+    "basin_name": "St. Francis River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "451018",
+    "basin_operating_area_id": "255",
+    "latitude": 37.596092,
+    "longitude": -90.49782
+  }, {
+    "district_office_id": "MVP",
+    "district_name": "St. Paul District",
+    "basin_name": "Eau Galla River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "3855016",
+    "basin_operating_area_id": "259",
+    "latitude": 44.855927,
+    "longitude": -92.23947
+  }, {
+    "district_office_id": "MVP",
+    "district_name": "St. Paul District",
+    "basin_name": "Minnesota River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "331016",
+    "basin_operating_area_id": "264",
+    "latitude": 44.1694,
+    "longitude": -94.0042
+  }, {
+    "district_office_id": "MVP",
+    "district_name": "St. Paul District",
+    "basin_name": "Mississippi Headwaters",
+    "basin_division_code": "MVD",
+    "basin_location_id": "469016",
+    "basin_operating_area_id": "263",
+    "latitude": 47.3,
+    "longitude": -93.9
+  }, {
+    "district_office_id": "MVP",
+    "district_name": "St. Paul District",
+    "basin_name": "Mississippi River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "50016",
+    "basin_operating_area_id": "260",
+    "latitude": 44.6278,
+    "longitude": -91.9694
+  }, {
+    "district_office_id": "MVP",
+    "district_name": "St. Paul District",
+    "basin_name": "Park River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "572016",
+    "basin_operating_area_id": "262",
+    "latitude": 48.4233,
+    "longitude": -97.4083
+  }, {
+    "district_office_id": "MVP",
+    "district_name": "St. Paul District",
+    "basin_name": "Red Lake River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "588016",
+    "basin_operating_area_id": "261",
+    "latitude": 48.04861,
+    "longitude": -95.808334
+  }, {
+    "district_office_id": "MVP",
+    "district_name": "St. Paul District",
+    "basin_name": "Red River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "33016",
+    "basin_operating_area_id": "265",
+    "latitude": 46.0956,
+    "longitude": -96.4111
+  }, {
+    "district_office_id": "MVP",
+    "district_name": "St. Paul District",
+    "basin_name": "Sheyenne River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "73016",
+    "basin_operating_area_id": "266",
+    "latitude": 47.4336,
+    "longitude": -98.0286
+  }, {
+    "district_office_id": "MVP",
+    "district_name": "St. Paul District",
+    "basin_name": "Souris River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "28448016",
+    "basin_operating_area_id": "267",
+    "latitude": 48.996407,
+    "longitude": -100.95849
+  }, {
+    "district_office_id": "SWT",
+    "district_name": "Tulsa District",
+    "basin_name": "Arkansas River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "7051",
+    "basin_operating_area_id": "241",
+    "latitude": 35.484444,
+    "longitude": -94.39278
+  }, {
+    "district_office_id": "SWT",
+    "district_name": "Tulsa District",
+    "basin_name": "Canadian River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "1502051",
+    "basin_operating_area_id": "236",
+    "latitude": 34.977867,
+    "longitude": -96.243614
+  }, {
+    "district_office_id": "SWT",
+    "district_name": "Tulsa District",
+    "basin_name": "Kiamichi River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "1868051",
+    "basin_operating_area_id": "234",
+    "latitude": 34.011665,
+    "longitude": -95.38028
+  }, {
+    "district_office_id": "SWT",
+    "district_name": "Tulsa District",
+    "basin_name": "Little River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "2128051",
+    "basin_operating_area_id": "239",
+    "latitude": 34.111946,
+    "longitude": -95.079445
+  }, {
+    "district_office_id": "SWT",
+    "district_name": "Tulsa District",
+    "basin_name": "Neosho River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "1648051",
+    "basin_operating_area_id": "238",
+    "latitude": 38.397514,
+    "longitude": -96.35611
+  }, {
+    "district_office_id": "SWT",
+    "district_name": "Tulsa District",
+    "basin_name": "Red River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "1550051",
+    "basin_operating_area_id": "240",
+    "latitude": 34.315098,
+    "longitude": -95.87526
+  }, {
+    "district_office_id": "SWT",
+    "district_name": "Tulsa District",
+    "basin_name": "Verdigris River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "1595051",
+    "basin_operating_area_id": "237",
+    "latitude": 37.27,
+    "longitude": -95.47
+  }, {
+    "district_office_id": "SWT",
+    "district_name": "Tulsa District",
+    "basin_name": "Washita River",
+    "basin_division_code": "SWD",
+    "basin_location_id": "1251051",
+    "basin_operating_area_id": "235",
+    "latitude": 34.8,
+    "longitude": -98
+  }, {
+    "district_office_id": "MVK",
+    "district_name": "Vicksburg District",
+    "basin_name": "Black Creek",
+    "basin_division_code": "MVD",
+    "basin_location_id": "291013",
+    "basin_operating_area_id": "215",
+    "latitude": 32.83389,
+    "longitude": -90.440315
+  }, {
+    "district_office_id": "MVK",
+    "district_name": "Vicksburg District",
+    "basin_name": "Ouachita/Black River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "52013",
+    "basin_operating_area_id": "217",
+    "latitude": 34.568184,
+    "longitude": -92.6108
+  }, {
+    "district_office_id": "MVK",
+    "district_name": "Vicksburg District",
+    "basin_name": "Red River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "79013",
+    "basin_operating_area_id": "218",
+    "latitude": 31.520992,
+    "longitude": -92.72862
+  }, {
+    "district_office_id": "MVK",
+    "district_name": "Vicksburg District",
+    "basin_name": "Yazoo River",
+    "basin_division_code": "MVD",
+    "basin_location_id": "12013",
+    "basin_operating_area_id": "219",
+    "latitude": 33.78798,
+    "longitude": -89.80996
+  }, {
+    "district_office_id": "NWW",
+    "district_name": "Walla Walla District",
+    "basin_name": "Boise River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "47400029",
+    "basin_operating_area_id": "185",
+    "latitude": 43.660557,
+    "longitude": -116.27917
+  }, {
+    "district_office_id": "NWW",
+    "district_name": "Walla Walla District",
+    "basin_name": "Clearwater River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "48041029",
+    "basin_operating_area_id": "182",
+    "latitude": 46.840557,
+    "longitude": -115.62111
+  }, {
+    "district_office_id": "NWW",
+    "district_name": "Walla Walla District",
+    "basin_name": "Columbia River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "48493029",
+    "basin_operating_area_id": "180",
+    "latitude": 46.216522,
+    "longitude": -119.10918
+  }, {
+    "district_office_id": "NWW",
+    "district_name": "Walla Walla District",
+    "basin_name": "Little Wood River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "48966029",
+    "basin_operating_area_id": "187",
+    "latitude": 43.425278,
+    "longitude": -114.02722
+  }, {
+    "district_office_id": "NWW",
+    "district_name": "Walla Walla District",
+    "basin_name": "Lower Snake River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "47760029",
+    "basin_operating_area_id": "183",
+    "latitude": 45.89639,
+    "longitude": -116.60917
+  }, {
+    "district_office_id": "NWW",
+    "district_name": "Walla Walla District",
+    "basin_name": "Malheur River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "47393029",
+    "basin_operating_area_id": "184",
+    "latitude": 43.9075,
+    "longitude": -118.153336
+  }, {
+    "district_office_id": "NWW",
+    "district_name": "Walla Walla District",
+    "basin_name": "Middle Snake River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "47325029",
+    "basin_operating_area_id": "189",
+    "latitude": 44.291943,
+    "longitude": -115.641945
+  }, {
+    "district_office_id": "NWW",
+    "district_name": "Walla Walla District",
+    "basin_name": "Mill Creek",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "48725029",
+    "basin_operating_area_id": "181",
+    "latitude": 46.085835,
+    "longitude": -118.22722
+  }, {
+    "district_office_id": "NWW",
+    "district_name": "Walla Walla District",
+    "basin_name": "Powder River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "47324029",
+    "basin_operating_area_id": "179",
+    "latitude": 44.671665,
+    "longitude": -118
+  }, {
+    "district_office_id": "NWW",
+    "district_name": "Walla Walla District",
+    "basin_name": "Upper Snake River",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "47322029",
+    "basin_operating_area_id": "188",
+    "latitude": 43.12528,
+    "longitude": -112.51889
+  }, {
+    "district_office_id": "NWW",
+    "district_name": "Walla Walla District",
+    "basin_name": "Willow Creek",
+    "basin_division_code": "NWD-CR",
+    "basin_location_id": "48798029",
+    "basin_operating_area_id": "186",
+    "latitude": 43.58,
+    "longitude": -111.91
+  }, {
+    "district_office_id": "SAW",
+    "district_name": "Wilmington District",
+    "basin_name": "Cape Fear River",
+    "basin_division_code": "SAD",
+    "basin_location_id": "3041",
+    "basin_operating_area_id": "269",
+    "latitude": 35.7264,
+    "longitude": -79.6556
+  }, {
+    "district_office_id": "SAW",
+    "district_name": "Wilmington District",
+    "basin_name": "Neuse River",
+    "basin_division_code": "SAD",
+    "basin_location_id": "18041",
+    "basin_operating_area_id": "272",
+    "latitude": 35.6472,
+    "longitude": -78.4053
+  }, {
+    "district_office_id": "SAW",
+    "district_name": "Wilmington District",
+    "basin_name": "Roanoke River",
+    "basin_division_code": "SAD",
+    "basin_location_id": "41",
+    "basin_operating_area_id": "270",
+    "latitude": 36.7765,
+    "longitude": -78.9158
+  }, {
+    "district_office_id": "SAW",
+    "district_name": "Wilmington District",
+    "basin_name": "Smith River",
+    "basin_division_code": "SAD",
+    "basin_location_id": "6041",
+    "basin_operating_area_id": "268",
+    "latitude": 36.4125,
+    "longitude": -79.8261
+  }, {
+    "district_office_id": "SAW",
+    "district_name": "Wilmington District",
+    "basin_name": "Yadkin River",
+    "basin_division_code": "SAD",
+    "basin_location_id": "43041",
+    "basin_operating_area_id": "271",
+    "latitude": 36.0714,
+    "longitude": -81.4031
   }
 ]

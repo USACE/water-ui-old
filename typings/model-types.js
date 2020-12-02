@@ -53,11 +53,14 @@
 
 /**
  * @typedef a2w.models.DistrictBasin
- * @property {string} district_office_id
+ * @property {string} district_office_id Can be matched to LocationSummary.office_id
  * @property {string} district_name
  * @property {string} basin_name
- * @property {string} basin_location_code
+ * @property {string} basin_division_code
  * @property {string} basin_location_id
+ * @property {string} basin_operating_area_id Can be matched to LocationSummary.parent_id
+ * @property {number} latitude
+ * @property {number} longitude
  */
 
 /**

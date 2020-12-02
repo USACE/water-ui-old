@@ -47,20 +47,22 @@ export default createRestBundle( {
       }
     ),
 
-    doDistrictsAndBasinsFormatData: (data) => {
+    doDistrictsAndBasinsFormatData: ( /** @type a2w.models.DistrictBasin[] */ data) => {
       const districts = {};
-      data.forEach(({ district_office_id, district_name, basin_name, basin_location_code, basin_location_id }) => {
+      data.forEach(({
+        district_office_id, district_name, basin_name, basin_location_id, basin_division_code,
+        basin_operating_area_id, latitude, longitude
+      }) => {
         if (!districts[district_office_id]) {
           districts[district_office_id] = {
-            district_office_id,
-            district_name,
+            district_office_id, district_name, basin_name, basin_location_id, basin_division_code,
+            basin_operating_area_id, latitude, longitude,
             basins: [],
           };
         }
         districts[district_office_id].basins.push({
-          basin_name,
-          basin_location_code,
-          basin_location_id,
+          district_office_id, district_name, basin_name, basin_location_id, basin_division_code,
+          basin_operating_area_id, latitude, longitude
         });
       });
       return {
@@ -93,8 +95,9 @@ export default createRestBundle( {
         if (!data || Array.isArray(data) || !selectedDistrict) {
           return [];
         }
+        /** @type a2w.models.DistrictBasin[] */
         const basins = data[selectedDistrict].basins;
-        basins.sort((a, b) => a.district_name > b.district_name ? 1 : -1);
+        basins.sort((a, b) => a.basin_name > b.basin_name ? 1 : -1);
         return basins;
       }
     ),
