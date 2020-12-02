@@ -2,67 +2,47 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Loader from "../../../../../../app-common/loader/Loader";
-import A2WPlot from "../../../../../../app-common/plotly/A2Wplot";
-import TimeSeriesControl from "./TimeSeriesControl";
-import TimeSeriesTable from "./TimeSeriesTable";
+import TimeSeriesDateRange from "./TimeSeriesDateRange";
+import TimeSeriesPlot from "./TimeSeriesPlot";
+import TimeSeriesPlotLegend from "./TimeSeriesPlotLegend";
 
 const TimeSeriesSection = ({
   locationTimeSeriesPlotlyData,
   locationTimeSeriesIsLoading,
 }) => {
-  const [plotIndex, setPlotIndex] = useState(0);
+  // stores the selected plot's name
+  const [plotName, setPlotName] = useState("");
 
-  // reset the plotIndex when the plotly data changes
   useEffect(() => {
-    setPlotIndex(0);
-  }, [locationTimeSeriesPlotlyData, setPlotIndex]);
-
-  const data = locationTimeSeriesPlotlyData.map(plotlyData => ({
-    ...plotlyData,
-    type: "scatter",
-    mode: "lines",
-  }));
-
-  if (data.length === 0 || !data[plotIndex]) {
-    return null;
-  }
-
-  const layout = {
-    autosize: true,
-    margin: { t: 70, b: 50, l: 70, r: 70 },
-    title: data[plotIndex].name,
-    yaxis: {
-      title: data[plotIndex].unit,
-    },
-  };
-
-  const config = {
-    scrollZoom: true,
-  };
+    // if the plotly data changes and the selected location does not exist in the new
+    // plotly data, then reset the selected location
+    if (!locationTimeSeriesPlotlyData[plotName] && Object.keys(locationTimeSeriesPlotlyData).length > 0) {
+      const firstPlot = Object.keys(locationTimeSeriesPlotlyData)[0];
+      setPlotName(firstPlot);
+    }
+  }, [locationTimeSeriesPlotlyData, plotName, setPlotName]);
 
   return (
     <div className="time-series-section">
       { locationTimeSeriesIsLoading && <Loader /> }
       <div className="time-series-plot">
-        <A2WPlot
-          data={[ data[plotIndex] ]}
-          layout={layout}
-          config={config}
-          useResizeHandler={ true }
+        <TimeSeriesPlot
+          locationTimeSeriesPlotlyData={locationTimeSeriesPlotlyData}
+          plotName={plotName}
         />
-        <TimeSeriesControl />
+        <TimeSeriesDateRange />
       </div>
-      <TimeSeriesTable
-        data={data}
-        plotIndex={plotIndex}
-        setPlotIndex={setPlotIndex}
+      <TimeSeriesPlotLegend
+        locationTimeSeriesPlotlyData={locationTimeSeriesPlotlyData}
+        plotName={plotName}
+        setPlotName={setPlotName}
       />
     </div>
   );
 };
 
 TimeSeriesSection.propTypes = {
-  locationTimeSeriesPlotlyData: PropTypes.array.isRequired,
+  locationTimeSeriesPlotlyData: PropTypes.object.isRequired,
   locationTimeSeriesIsLoading: PropTypes.bool.isRequired,
 };
 

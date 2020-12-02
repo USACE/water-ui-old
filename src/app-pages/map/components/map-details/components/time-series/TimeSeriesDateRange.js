@@ -4,7 +4,7 @@ import { connect } from "redux-bundler-react";
 import { radarTimeControls } from "../../../../../../app-bundles/radar-time-series-bundle";
 import { dateToString } from "../../../../../../utils";
 
-const TimeSeriesControl = ({
+const TimeSeriesDateRange = ({
   ltsTimeControl,
   ltsCustomStartDate,
   ltsCustomEndDate,
@@ -86,7 +86,7 @@ const TimeSeriesControl = ({
   )
 };
 
-TimeSeriesControl.propTypes = {
+TimeSeriesDateRange.propTypes = {
   ltsTimeControl: PropTypes.number.isRequired,
   ltsCustomStartDate: PropTypes.string,
   ltsCustomEndDate: PropTypes.string,
@@ -100,5 +100,5 @@ export default connect(
   "selectLtsCustomEndDate",
   "doLtsSetTimeControl",
   "doLtsSetCustomDate",
-  TimeSeriesControl,
+  TimeSeriesDateRange,
 );
