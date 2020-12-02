@@ -46,7 +46,7 @@ const LocationTree = ({
         locationId: e.id,
         lat: e.latitude,
         lon: e.longitude,
-        zoom: e.zoom_depth ? Math.round( e.zoom_depth * 1.5 ) : defaultMapParams.locationZoom,
+        zoom: e.zoom_depth ? Math.round( e.zoom_depth * 1.5 ) : defaultMapParams.zoom,
         display: displayTypes.opened,
       };
       doUpdateQuery(newQuery, mapUrlOptions);

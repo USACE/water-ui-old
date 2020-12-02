@@ -47,7 +47,6 @@ export const defaultMapParams = {
   lat: 38.895,
   lon: -95,
   zoom: 5,
-  locationZoom: 12,
   locationType: locationTypes.ALL,
   display: displayTypes.opened,
 };
