@@ -7,6 +7,7 @@ import TimeSeriesControl from "./TimeSeriesControl";
 import TimeSeriesTable from "./TimeSeriesTable";
 
 const TimeSeriesSection = ({
+  queryObject,
   locationTimeSeriesPlotlyData,
   locationTimeSeriesIsLoading,
 }) => {
@@ -34,14 +35,17 @@ const TimeSeriesSection = ({
     yaxis: {
       title: data[plotIndex].unit,
     },
+    height: queryObject.display === "fs" ? 450 : 300
   };
 
   const config = {
     scrollZoom: true,
   };
 
+  const sectionCSSClasses = `time-series-section ${ queryObject.display }`
+
   return (
-    <div className="time-series-section">
+    <div className={ sectionCSSClasses }>
       { locationTimeSeriesIsLoading && <Loader /> }
       <div className="time-series-plot">
         <A2WPlot
@@ -67,6 +71,7 @@ TimeSeriesSection.propTypes = {
 };
 
 export default connect(
+  "selectQueryObject",
   "selectLocationTimeSeriesPlotlyData",
   "selectLocationTimeSeriesIsLoading",
   TimeSeriesSection

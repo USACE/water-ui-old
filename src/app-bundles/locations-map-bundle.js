@@ -60,6 +60,21 @@ export default {
 
   selectLocationsMapMapState: state => state.locationsMap.mapState,
 
+  /**
+   * Get Map query params but convert numeric params (lat/lon/zoom) from strings to numbers for later use
+   */
+  selectLocationMapQueryObject: createSelector(
+    "selectQueryObject",
+    queryObject => {
+      queryObject = { ...queryObject };
+      // Convert lat/lon/zoom from URL string to number
+      if( queryObject.lat ) queryObject.lat = parseFloat( `${ queryObject.lat }` );
+      if( queryObject.lon ) queryObject.lon = parseFloat( `${ queryObject.lon }` );
+      if( queryObject.zoom ) queryObject.zoom = parseFloat( `${ queryObject.zoom }` );
+      return queryObject;
+    },
+  ),
+
   doLocationsMapDataLoaded: () => ({
     type: actions.LOCATIONS_MAP_DATA_LOADED,
     payload: {

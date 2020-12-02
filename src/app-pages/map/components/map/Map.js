@@ -19,17 +19,19 @@ import "./map.scss";
 const mapKey = "locationsMap";
 const overlayId = "map-overlay";
 
-const Map = ({
-  queryObject,
-  /** @type a2w.models.LocationSummary[] */
-  locationSummaries,
-  locationsMapIsDataLoaded,
-  locationsMapIsLoaded,
-  doUpdateQuery,
-  doMapsInitialize,
-  doMapsShutdown,
-  doLocationsMapLoaded,
-}) => {
+const Map = ( props ) => {
+  const {
+    locationMapQueryObject: queryObject,
+    /** @type a2w.models.LocationSummary[] */
+    locationSummaries,
+    locationsMapIsDataLoaded,
+    locationsMapIsLoaded,
+    doUpdateQuery,
+    doMapsInitialize,
+    doMapsShutdown,
+    doLocationsMapLoaded,
+  } = props;
+
   const [map, setMap] = useState(null);
 
   // dom refs
@@ -43,9 +45,9 @@ const Map = ({
   const clickKey = useRef();
   const moveendKey = useRef();
 
-  const lat = parseFloat(queryObject.lat) || defaultMapParams.lat;
-  const lon = parseFloat(queryObject.lon) || defaultMapParams.lon;
-  const zoom = parseFloat(queryObject.zoom) || defaultMapParams.zoom;
+  const lat = queryObject.lat || defaultMapParams.lat;
+  const lon = queryObject.lon || defaultMapParams.lon;
+  const zoom = queryObject.zoom || defaultMapParams.zoom;
   const locationType = queryObject.locationType || defaultMapParams.locationType;
   const display = queryObject.display || defaultMapParams.display;
 
@@ -225,11 +227,11 @@ const Map = ({
 };
 
 Map.propTypes = {
-  queryObject: PropTypes.shape({
+  locationMapQueryObject: PropTypes.shape({
     locationId: PropTypes.string,
-    lat: PropTypes.string,
-    lon: PropTypes.string,
-    zoom: PropTypes.string,
+    lat: PropTypes.number,
+    lon: PropTypes.number,
+    zoom: PropTypes.number,
     display: PropTypes.string,
   }).isRequired,
   locationSummaries: PropTypes.array,
@@ -242,7 +244,7 @@ Map.propTypes = {
 };
 
 export default connect(
-  "selectQueryObject",
+  "selectLocationMapQueryObject",
   "selectLocationSummaries",
   "selectLocationsMapIsDataLoaded",
   "selectLocationsMapIsLoaded",

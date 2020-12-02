@@ -6,7 +6,7 @@ import MapDetailsContainer from "./components/map-details/MapDetailsContainer";
 import Map from "./components/map/Map";
 
 const MapPage = ({
-  queryObject,
+  locationMapQueryObject: queryObject,
   doLocationDetailFetch,
 }) => {
   const locationId = queryObject.locationId || "";
@@ -26,14 +26,14 @@ const MapPage = ({
 };
 
 MapPage.propTypes = {
-  queryObject: PropTypes.shape({
+  locationMapQueryObject: PropTypes.shape({
     locationId: PropTypes.string,
   }).isRequired,
   doLocationDetailFetch: PropTypes.func.isRequired,
 };
 
 export default connect(
-  "selectQueryObject",
+  "selectLocationMapQueryObject",
   "doLocationDetailFetch",
   MapPage
 );

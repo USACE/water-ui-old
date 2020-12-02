@@ -8,6 +8,14 @@
   flex-grow: 1;
 }
 
+.time-series-section.opened .time-series-plot {
+  max-width: 100%;
+}
+
+.time-series-section.fs .time-series-plot {
+  max-width: calc(100% - 650px);
+}
+
 .js-plotly-plot {
   width: 100%;
   min-width: 100%;
@@ -40,7 +48,6 @@
 }
 
 .time-series-table {
-  width: 600px !important;
   >tbody {
     >tr:hover {
       background-color: rgba(0, 0, 255, 0.1);
@@ -48,8 +55,18 @@
     }
     td {
       vertical-align: middle;
+      word-break: break-all;
     }
   }
+}
+
+.time-series-section.opened .time-series-table {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.time-series-section.fs .time-series-table {
+  width: 600px !important;
 }
 
 .time-series-selected-row {
