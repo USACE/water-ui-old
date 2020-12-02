@@ -21,7 +21,7 @@ const overlayId = "map-overlay";
 
 const Map = ( props ) => {
   const {
-    locationMapQueryObject: queryObject,
+    queryObject,
     /** @type a2w.models.LocationSummary[] */
     locationSummaries,
     locationsMapIsDataLoaded,
@@ -45,9 +45,9 @@ const Map = ( props ) => {
   const clickKey = useRef();
   const moveendKey = useRef();
 
-  const lat = queryObject.lat || defaultMapParams.lat;
-  const lon = queryObject.lon || defaultMapParams.lon;
-  const zoom = queryObject.zoom || defaultMapParams.zoom;
+  const lat = parseFloat(queryObject.lat) || defaultMapParams.lat;
+  const lon = parseFloat(queryObject.lon) || defaultMapParams.lon;
+  const zoom = parseFloat(queryObject.zoom) || defaultMapParams.zoom;
   const locationType = queryObject.locationType || defaultMapParams.locationType;
   const display = queryObject.display || defaultMapParams.display;
 
@@ -227,11 +227,11 @@ const Map = ( props ) => {
 };
 
 Map.propTypes = {
-  locationMapQueryObject: PropTypes.shape({
+  queryObject: PropTypes.shape({
     locationId: PropTypes.string,
-    lat: PropTypes.number,
-    lon: PropTypes.number,
-    zoom: PropTypes.number,
+    lat: PropTypes.string,
+    lon: PropTypes.string,
+    zoom: PropTypes.string,
     display: PropTypes.string,
   }).isRequired,
   locationSummaries: PropTypes.array,
@@ -244,7 +244,7 @@ Map.propTypes = {
 };
 
 export default connect(
-  "selectLocationMapQueryObject",
+  "selectQueryObject",
   "selectLocationSummaries",
   "selectLocationsMapIsDataLoaded",
   "selectLocationsMapIsLoaded",

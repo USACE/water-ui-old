@@ -85,9 +85,9 @@ const MapDetailsHeader = forwardRef((props, ref) => {
 MapDetailsHeader.propTypes = /** @type {any} */ ({
   queryObject: PropTypes.shape({
     locationId: PropTypes.string.isRequired,
-    lon: PropTypes.number,
-    lat: PropTypes.number,
-    zoom: PropTypes.number,
+    lon: PropTypes.string,
+    lat: PropTypes.string,
+    zoom: PropTypes.string,
     display: PropTypes.string,
   }).isRequired,
   locationDetailData: PropTypes.object,

@@ -10,7 +10,7 @@ import "./mapDetails.scss";
 // renders a collapsible side panel containing the selected location's data
 const MapDetailsContainer = ( props ) => {
   const {
-    locationMapQueryObject: queryObject,
+    queryObject,
     locationSummariesData,
     locationDetailIsLoading,
     /** @type a2w.models.LocationDetail */
@@ -55,7 +55,7 @@ const MapDetailsContainer = ( props ) => {
 };
 
 MapDetailsContainer.propTypes = {
-  locationMapQueryObject: PropTypes.object.isRequired,
+  queryObject: PropTypes.object.isRequired,
   // locationSummariesData is initially an array before it gets reformatted into an object where the key is the location id
   locationSummariesData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   locationDetailIsLoading: PropTypes.bool.isRequired,
@@ -64,7 +64,7 @@ MapDetailsContainer.propTypes = {
 };
 
 export default connect(
-  "selectLocationMapQueryObject",
+  "selectQueryObject",
   "selectLocationSummariesData",
   "selectLocationDetailIsLoading",
   "selectLocationDetailData",
