@@ -15,9 +15,9 @@ const BasinsDropdown = ( props ) => {
   
   const onChange = (e) => {
     doSetSelectedBasin(e.target.value);
-    const selectedBasin = basins.find( item => item.basin_location_id === e.target.value );
-    if( selectedBasin ) {
-      const url = `${ RoutePaths.Map }?lon=${ selectedBasin.longitude }&lat=${ selectedBasin.latitude }&zoom=8`;
+    const basin = basins.find( item => item.basin_location_id === e.target.value );
+    if( basin ) {
+      const url = `${ RoutePaths.Map }?lon=${ basin.longitude }&lat=${ basin.latitude }&zoom=8`;
       doUpdateUrl( url );
     }
   };
