@@ -1,36 +1,51 @@
-import React, { useEffect,useState } from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "redux-bundler-react";
 import Table from "../../../../../app-common/table/Table";
+import { formatUnderscore } from "../../../../../utils/"
 
-const damProfileHeaderArr = ["name", "value"];
-let damProfileRowsArr;
+// array of all the dam profile keys
+const damProfileKeys = [
+  "top_of_dam",
+  "top_of_surcharge",
+  "top_of_flood",
+  "spillway_crest",
+  "bottom_of_flood",
+  "current_elevation",
+  "bottom_of_conservation",
+  "stream_bed",
+  "current_inflow",
+  "current_surcharge",
+];
 
 const DamProfile = ({ locationDetailData }) => {
-
-  const [damProfileState, setDamProfileState] = useState( [] );
-
-  useEffect (() => {
-    if( locationDetailData.dam_profile && Array.isArray( locationDetailData.dam_profile.history ) ) {
-      const damProfileJsonObj = locationDetailData.dam_profile.history[0];
-      damProfileRowsArr = Object.entries(damProfileJsonObj);
-      setDamProfileState(damProfileRowsArr);
+  const unit = locationDetailData.unit_id ? `(${locationDetailData.unit_id })` : "";
+  const header = ["Name", `Value ${unit}`];
+  const body = [];
+  damProfileKeys.forEach((key) => {
+    if (locationDetailData[key]) {
+      const name = formatUnderscore(key);
+      const value = locationDetailData[key];
+      body.push({
+        id: key,
+        row: [name, value],
+      });
     }
-  }, [locationDetailData]);
+  });
 
+  if (body.length === 0) {
+    return <p>No dam profile data.</p>
+  }
   return (
-    <div className="dam-profile-wrapper">
-      <h5>Dam Profile Data</h5>
-      { damProfileState
-        ? <Table rowsArr={damProfileState} headerRowArr={damProfileHeaderArr} />
-        : null
-      }
-    </div>
+    <Table
+      header={header}
+      body={body}
+    />
   );
 };
 
 DamProfile.propTypes = {
-  locationDetailData: PropTypes.object,
+  locationDetailData: PropTypes.object.isRequired,
 };
 
 export default connect(
