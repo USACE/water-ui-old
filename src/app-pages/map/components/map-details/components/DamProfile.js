@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "redux-bundler-react";
 import Table from "../../../../../app-common/table/Table";
-import { formatUnderscore } from "../../../../../utils/"
+import { formatUnderscore } from "../../../../../utils/";
 
 // array of all the dam profile keys
-const damProfileKeys = [
+export const damProfileKeys = [
   "top_of_dam",
   "top_of_surcharge",
   "top_of_flood",

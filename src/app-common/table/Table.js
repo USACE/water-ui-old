@@ -33,7 +33,7 @@ Table.propTypes = {
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       row: PropTypes.arrayOf(
-        PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]).isRequired
+        PropTypes.oneOfType([ PropTypes.string, PropTypes.number ])
       ),
     }),
   ),
