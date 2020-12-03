@@ -48,6 +48,8 @@
 }
 
 .time-series-table {
+  width: 600px;
+  max-width: 600px;
   >tbody {
     >tr:hover {
       background-color: rgba(0, 0, 255, 0.1);
