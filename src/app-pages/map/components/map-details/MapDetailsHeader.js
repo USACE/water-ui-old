@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import LocationStreamControls from "./components/location-stream-controls/LocationStreamControls";
 import { defaultMapParams, displayTypes, mapUrlOptions } from "../../map-utils";
 
+/** @type any */
 const MapDetailsHeader = forwardRef((props, ref) => {
   const {
     queryObject,

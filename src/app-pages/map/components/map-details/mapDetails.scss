@@ -97,6 +97,13 @@
   position: sticky;
   top: 0;
   z-index: 11;
+  display: flex;
+  align-items: center;
+}
+
+.map-details-header.fs .location-stream-container {
+  margin-left: auto;
+  margin-right: 80px;
 }
 
 .map-details-subheading {

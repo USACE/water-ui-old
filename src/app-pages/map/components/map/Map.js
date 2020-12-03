@@ -19,17 +19,19 @@ import "./map.scss";
 const mapKey = "locationsMap";
 const overlayId = "map-overlay";
 
-const Map = ({
-  queryObject,
-  /** @type a2w.models.LocationSummary[] */
-  locationSummaries,
-  locationsMapIsDataLoaded,
-  locationsMapIsLoaded,
-  doUpdateQuery,
-  doMapsInitialize,
-  doMapsShutdown,
-  doLocationsMapLoaded,
-}) => {
+const Map = ( props ) => {
+  const {
+    queryObject,
+    /** @type a2w.models.LocationSummary[] */
+    locationSummaries,
+    locationsMapIsDataLoaded,
+    locationsMapIsLoaded,
+    doUpdateQuery,
+    doMapsInitialize,
+    doMapsShutdown,
+    doLocationsMapLoaded,
+  } = props;
+
   const [map, setMap] = useState(null);
 
   // dom refs
