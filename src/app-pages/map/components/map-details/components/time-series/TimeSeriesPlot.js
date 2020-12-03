@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import A2WPlot from "../../../../../../app-common/plotly/A2Wplot";
 
-const TimeSeriesPlot = ({ locationTimeSeriesPlotlyData, plotName }) => {
+const TimeSeriesPlot = ({ locationTimeSeriesPlotlyData, plotName, plotHeight }) => {
   if (!locationTimeSeriesPlotlyData || Object.keys(locationTimeSeriesPlotlyData).length === 0) {
     return (
       <>
@@ -21,6 +21,7 @@ const TimeSeriesPlot = ({ locationTimeSeriesPlotlyData, plotName }) => {
     yaxis: {
       title: locationTimeSeriesPlotlyData[plotName].unit,
     },
+    height: plotHeight
   };
   const config = {
     scrollZoom: true,
@@ -38,6 +39,7 @@ const TimeSeriesPlot = ({ locationTimeSeriesPlotlyData, plotName }) => {
 TimeSeriesPlot.propTypes = {
   locationTimeSeriesPlotlyData: PropTypes.object,
   plotName: PropTypes.string.isRequired,
+  plotHeight: PropTypes.number.isRequired,
 };
 
 export default TimeSeriesPlot;

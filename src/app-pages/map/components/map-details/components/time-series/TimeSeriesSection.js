@@ -7,6 +7,7 @@ import TimeSeriesPlot from "./TimeSeriesPlot";
 import TimeSeriesPlotLegend from "./TimeSeriesPlotLegend";
 
 const TimeSeriesSection = ({
+  queryObject,
   locationTimeSeriesPlotlyData,
   locationTimeSeriesIsLoading,
 }) => {
@@ -22,13 +23,16 @@ const TimeSeriesSection = ({
     }
   }, [locationTimeSeriesPlotlyData, plotName, setPlotName]);
 
+  const sectionCSSClasses = `time-series-section ${ queryObject.display }`
+
   return (
-    <div className="time-series-section">
+    <div className={ sectionCSSClasses }>
       { locationTimeSeriesIsLoading && <Loader /> }
       <div className="time-series-plot">
         <TimeSeriesPlot
           locationTimeSeriesPlotlyData={locationTimeSeriesPlotlyData}
           plotName={plotName}
+          plotHeight={( queryObject.display === "fs" ? 450 : 300 )}
         />
         <TimeSeriesDateRange />
       </div>
@@ -47,6 +51,7 @@ TimeSeriesSection.propTypes = {
 };
 
 export default connect(
+  "selectQueryObject",
   "selectLocationTimeSeriesPlotlyData",
   "selectLocationTimeSeriesIsLoading",
   TimeSeriesSection
