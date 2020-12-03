@@ -6,14 +6,13 @@
 
 .time-series-plot {
   flex-grow: 1;
-}
-
-.time-series-section.opened .time-series-plot {
+  width: 100%;
   max-width: 100%;
 }
 
 .time-series-section.fs .time-series-plot {
-  max-width: calc(100% - 650px);
+  width: calc( 100% - 33vw - 20px );
+  max-width: calc( 100% - 33vw - 20px );
 }
 
 .js-plotly-plot {
@@ -48,8 +47,7 @@
 }
 
 .time-series-table {
-  width: 600px;
-  max-width: 600px;
+  width: 100%;
   >tbody {
     >tr:hover {
       background-color: rgba(0, 0, 255, 0.1);
@@ -62,13 +60,9 @@
   }
 }
 
-.time-series-section.opened .time-series-table {
-  width: 100% !important;
-  max-width: 100%;
-}
-
 .time-series-section.fs .time-series-table {
-  width: 600px !important;
+  width: 33vw;
+  max-width: 33vw;
 }
 
 .time-series-selected-row {
