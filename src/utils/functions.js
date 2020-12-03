@@ -34,6 +34,11 @@ export const isValidObjWithValues = (obj) => {
   }
 };
 
+/**
+ * Converts an array of objects into an object where the key is the given uid
+ * @param {array} array array of objects
+ * @param {string} uid object key
+ */
 export const arrayToObj = (array, uid) => {
   const obj = {};
   array.forEach((item) => {
@@ -44,7 +49,7 @@ export const arrayToObj = (array, uid) => {
 
 /**
  * Returns the number of milliseconds of the given time interval
- * @param {*} interval string representation of the time interval
+ * @param {string} interval string representation of the time interval
  */
 export const getIntervalTime = (interval) => {
   switch (interval) {
