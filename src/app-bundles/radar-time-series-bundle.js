@@ -115,7 +115,7 @@ export default createRestBundle( {
       "selectLocationTimeSeriesData",
       (locationTimeSeriesData) => {
         if (!locationTimeSeriesData || !locationTimeSeriesData["time-series"] || !locationTimeSeriesData["time-series"]["time-series"]) {
-          return [];
+          return {};
         }
 
         const plotlyArray = [];

@@ -6,7 +6,7 @@ import TimeSeriesDateRange from "./TimeSeriesDateRange";
 import TimeSeriesPlot from "./TimeSeriesPlot";
 import TimeSeriesPlotLegend from "./TimeSeriesPlotLegend";
 
-const TimeSeriesSection = ({
+export const TimeSeriesSection = ({
   queryObject,
   locationTimeSeriesPlotlyData,
   locationTimeSeriesIsLoading,
@@ -46,6 +46,7 @@ const TimeSeriesSection = ({
 };
 
 TimeSeriesSection.propTypes = {
+  queryObject: PropTypes.object.isRequired,
   locationTimeSeriesPlotlyData: PropTypes.object.isRequired,
   locationTimeSeriesIsLoading: PropTypes.bool.isRequired,
 };

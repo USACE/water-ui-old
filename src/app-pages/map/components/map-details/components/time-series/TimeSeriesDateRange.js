@@ -4,7 +4,7 @@ import { connect } from "redux-bundler-react";
 import { radarTimeControls } from "../../../../../../app-bundles/radar-time-series-bundle";
 import { dateToString } from "../../../../../../utils";
 
-const TimeSeriesDateRange = ({
+export const TimeSeriesDateRange = ({
   ltsTimeControl,
   ltsCustomStartDate,
   ltsCustomEndDate,
@@ -12,18 +12,14 @@ const TimeSeriesDateRange = ({
   doLtsSetCustomDate,
 }) => {
   const handleDateRangeOnChange = (e) => {
-    e.stopPropagation();
     doLtsSetTimeControl(parseInt(e.target.value));
   }
 
   const handleDateOnChange = (e) => {
-    e.stopPropagation();
     const name = e.target.name;
     const date = e.target.value;
     doLtsSetCustomDate(name, date);
   };
-
-  const handleOnClick = e => e.stopPropagation();
 
   const today = dateToString(new Date());
   return (
@@ -36,7 +32,6 @@ const TimeSeriesDateRange = ({
           id="timeControl"
           value={ltsTimeControl}
           onChange={handleDateRangeOnChange}
-          onClick={handleOnClick}
         >
           { radarTimeControls.map(({ value, label }) => (
             <option
@@ -62,7 +57,6 @@ const TimeSeriesDateRange = ({
               value={ltsCustomStartDate}
               max={ltsCustomEndDate || today}
               onChange={handleDateOnChange}
-              onClick={handleOnClick}
             />
           </div>
           <div className="time-series-input">
@@ -77,7 +71,6 @@ const TimeSeriesDateRange = ({
               max={today}
               min={ltsCustomStartDate}
               onChange={handleDateOnChange}
-              onClick={handleOnClick}
             />
           </div>
         </>
