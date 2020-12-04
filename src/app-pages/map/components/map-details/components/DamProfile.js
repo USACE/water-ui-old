@@ -19,8 +19,8 @@ export const damProfileKeys = [
 ];
 
 const DamProfile = ({ locationDetailData }) => {
-  const unit = locationDetailData.unit_id ? `(${locationDetailData.unit_id })` : "";
-  const header = ["Name", `Value ${unit}`];
+  const unit = locationDetailData.unit_id ? ` (${locationDetailData.unit_id })` : "";
+  const header = ["Name", `Value${unit}`];
   const body = [];
   damProfileKeys.forEach((key) => {
     if (locationDetailData[key]) {
