@@ -31,6 +31,8 @@ export const locationTypes = {
   WQ: "WQ",
   BASIN: "BASIN",
   OPERATING_BASIN: "OPERATING_BASIN",
+  DAMS: "DAMS",
+  LAKES: "LAKES",
 };
 
 export const displayTypes = {

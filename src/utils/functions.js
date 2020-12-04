@@ -73,3 +73,22 @@ export const getIntervalTime = (interval) => {
  * @param {Date} date the date to convert
  */
 export const dateToString = date => date && date.toISOString().substring(0, 10);
+
+/**
+ * Replaces _ with a space and capitalizes the first letter of the string. If capAll is true
+ * then the function will capitalize all the words in the string.
+ *
+ * @param {string} str the string to format
+ * @param {boolean} capAll true if you want to capitalize all the words in the string
+ */
+export const formatUnderscore = (str, capAll = false) => {
+  if (!str) {
+    return "";
+  }
+  const newStr = str.replace(/_/g, " ");
+  if (capAll) {
+    // capitalize any letter after a space
+    return newStr.replace(/\b\w/g, l => l.toUpperCase())
+  }
+  return newStr.charAt(0).toUpperCase() + newStr.slice(1);
+}

@@ -9,6 +9,7 @@ export {
   arrayToObj,
   getIntervalTime,
   dateToString,
+  formatUnderscore,
 } from "./functions";
 
 export {

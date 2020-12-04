@@ -1,4 +1,7 @@
-import { isValidArrWithValues } from "../functions";
+import {
+  isValidArrWithValues,
+  formatUnderscore,
+} from "../functions";
 
 describe( "isValidArrWithValues", () => {
 
@@ -20,3 +23,25 @@ describe( "isValidArrWithValues", () => {
   } );
 
 } );
+
+describe("formatUnderscore()", () => {
+  it("should return empty string if str is null", () => {
+    const result = formatUnderscore(null);
+    expect(result).toBe("");
+  });
+
+  it("should remove underscore and capitalize first letter of first word", () => {
+    const result = formatUnderscore("hello_testudo");
+    expect(result).toBe("Hello testudo");
+  });
+
+  it("should remove underscore and capitalize first letter of all words", () => {
+    const result = formatUnderscore("hello_testudo", true);
+    expect(result).toBe("Hello Testudo");
+  });
+
+  it("should capitalize first letter of string if there are no underscores", () => {
+    const result = formatUnderscore("helloTestudo");
+    expect(result).toBe("HelloTestudo");
+  });
+});

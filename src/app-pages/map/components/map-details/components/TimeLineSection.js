@@ -31,7 +31,6 @@ const TimeLineSection = () => {
 
   return (
     <div>
-      <h5>TimeLine</h5>
       { timelineData && <Timeline timelineData={timelineData} align={"vertical"} maxHeight={"400px"} compact={true} />}
     </div>
   );

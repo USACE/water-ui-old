@@ -199,6 +199,12 @@ const Map = ( props ) => {
         case locationTypes.STREAM_LOCATION:
           filteredLocations = locationSummaries.filter(location => location.sub_location_type === locationType);
           break;
+        case locationTypes.DAMS:
+          filteredLocations = locationSummaries.filter(location => location.dam_indicator === "T");
+          break;
+        case locationTypes.LAKES:
+          filteredLocations = locationSummaries.filter(location => location.lake_indicator === "T" && location.dam_indicator === "F");
+          break;
         default:
           filteredLocations = locationSummaries.filter(location => location.location_type === locationType);
       }

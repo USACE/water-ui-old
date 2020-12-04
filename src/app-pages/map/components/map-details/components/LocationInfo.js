@@ -1,30 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Table from "../../../../../app-common/table/Table";
-
-const metaDataHeaderArr = ["name", "value"];
-let metaDataRowsArr;
+import { damProfileKeys } from "./DamProfile";
+import { formatUnderscore } from "../../../../../utils/";
 
 const LocationInfo = ({ locationDetailData }) => {
+  const header = ["Name", "Value"];
+  const body = [];
+  Object.keys(locationDetailData).forEach((key) => {
+    // add the data to the body if it's not dam profile data
+    if (locationDetailData[key] && damProfileKeys.indexOf(key) < 0) {
+      const name = formatUnderscore(key);
+      const value = locationDetailData[key];
+      body.push({
+        id: key,
+        row: [name, value],
+      });
+    }
+  });
 
-  const [metaDataState, setmetaDataState] = useState( null );
-
-  useEffect (() => {
-    const metaDataJsonObj = { ...locationDetailData };
-    delete metaDataJsonObj.dam_profile;
-    metaDataRowsArr = Object.entries(metaDataJsonObj);
-    setmetaDataState(metaDataRowsArr);
-  }, [locationDetailData]);
-
+  if (body.length === 0) {
+    return <p>No location information data.</p>
+  }
   return (
-    <div className="location-info-wrapper">
-      <h5>Metadata</h5>
-      { metaDataState
-        ? <Table rowsArr={metaDataState} headerRowArr={metaDataHeaderArr} />
-        : null
-      }
-    </div>
+    <Table
+      header={header}
+      body={body}
+    />
   );
 };
 
