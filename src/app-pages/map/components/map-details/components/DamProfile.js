@@ -5,6 +5,7 @@ import Table from "../../../../../app-common/table/Table";
 import { formatUnderscore } from "../../../../../utils/";
 
 // array of all the dam profile keys
+/** @type { ( keyof a2w.models.LocationDetail )[] } */
 export const damProfileKeys = [
   "top_of_dam",
   "top_of_surcharge",
