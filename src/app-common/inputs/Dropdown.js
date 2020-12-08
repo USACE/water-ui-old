@@ -21,10 +21,6 @@ const Dropdown = ({
   onChange,
   onReset
 }) => {
-  const reset = () => {
-    onReset();
-  }
-
   let selectStyle = {};
   if( onReset && value ) selectStyle = { paddingRight: "1.5rem" };
 
@@ -45,7 +41,7 @@ const Dropdown = ({
       ) ) }
     </select>
     { onReset && value ?
-      <button type="button" className="close" style={clearButtonCss} aria-label="Close" onClick={reset} title="Reset">
+      <button type="button" className="close" style={clearButtonCss} aria-label="Close" onClick={onReset} title="Reset">
         <span aria-hidden="true">&times;</span>
       </button>
       : "" }
