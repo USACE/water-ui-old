@@ -56,7 +56,7 @@ const MapDetailsContainer = ( props ) => {
 
 MapDetailsContainer.propTypes = {
   queryObject: PropTypes.object.isRequired,
-  // locationSummariesData is initially an array before it gets reformated into an object where the key is the location id
+  // locationSummariesData is initially an array before it gets reformatted into an object where the key is the location id
   locationSummariesData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   locationDetailIsLoading: PropTypes.bool.isRequired,
   locationDetailData: PropTypes.object,

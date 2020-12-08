@@ -1,7 +1,7 @@
 import { createSelector } from "redux-bundler";
 import createRestBundle from "./create-rest-bundle";
 import { getRestUrl } from "./bundle-utils";
-import { getIntervalTime, TIME, dateToString } from "../utils";
+import { getIntervalTime, TIME, dateToString, arrayToObj } from "../utils";
 
 export const radarTimeControls = [
   { value: TIME.DAY, label: "Past 24 hours" },
@@ -115,20 +115,21 @@ export default createRestBundle( {
       "selectLocationTimeSeriesData",
       (locationTimeSeriesData) => {
         if (!locationTimeSeriesData || !locationTimeSeriesData["time-series"] || !locationTimeSeriesData["time-series"]["time-series"]) {
-          return [];
+          return {};
         }
 
-        const plotlyData = [];
+        const plotlyArray = [];
         const locationTimeSeries = locationTimeSeriesData["time-series"]["time-series"];
         locationTimeSeries.forEach((timeSeries) => {
           if (timeSeries["regular-interval-values"]) {
-            getRegularIntervalValuesData(plotlyData, timeSeries);
+            getRegularIntervalValuesData(plotlyArray, timeSeries);
           } else if (timeSeries["irregular-interval-values"]) {
-            getIrregularIntervalValuesData(plotlyData, timeSeries);
+            getIrregularIntervalValuesData(plotlyArray, timeSeries);
           }
         });
-        plotlyData.sort((a, b) => a.sortIndex - b.sortIndex);
-        return plotlyData;
+        plotlyArray.sort((a, b) => a.sortIndex - b.sortIndex);
+        const plotlyObj = arrayToObj(plotlyArray, "name");
+        return plotlyObj;
       }
     ),
   }

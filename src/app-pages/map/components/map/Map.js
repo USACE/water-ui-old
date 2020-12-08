@@ -19,17 +19,19 @@ import "./map.scss";
 const mapKey = "locationsMap";
 const overlayId = "map-overlay";
 
-const Map = ({
-  queryObject,
-  /** @type a2w.models.LocationSummary[] */
-  locationSummaries,
-  locationsMapIsDataLoaded,
-  locationsMapIsLoaded,
-  doUpdateQuery,
-  doMapsInitialize,
-  doMapsShutdown,
-  doLocationsMapLoaded,
-}) => {
+const Map = ( props ) => {
+  const {
+    queryObject,
+    /** @type a2w.models.LocationSummary[] */
+    locationSummaries,
+    locationsMapIsDataLoaded,
+    locationsMapIsLoaded,
+    doUpdateQuery,
+    doMapsInitialize,
+    doMapsShutdown,
+    doLocationsMapLoaded,
+  } = props;
+
   const [map, setMap] = useState(null);
 
   // dom refs
@@ -215,6 +217,12 @@ const Map = ({
           break;
         case locationTypes.STREAM_LOCATION:
           filteredLocations = filteredLocations.filter(location => location.sub_location_type === locationType);
+          break;
+        case locationTypes.DAMS:
+          filteredLocations = locationSummaries.filter(location => location.dam_indicator === "T");
+          break;
+        case locationTypes.LAKES:
+          filteredLocations = locationSummaries.filter(location => location.lake_indicator === "T" && location.dam_indicator === "F");
           break;
         default:
           filteredLocations = filteredLocations.filter(location => location.location_type === locationType);

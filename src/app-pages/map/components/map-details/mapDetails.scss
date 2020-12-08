@@ -84,6 +84,7 @@
   width: 100%;
   padding: 1em;
   background-color: $base-lighter-gray;
+  box-shadow: 0 3px 4px -4px rgba(0,0,0,0.1);
   // make the minimum height the size of the map-details-toggle-btn + the top and bottom padding
   min-height: calc(#{$map-details-toggle-btn-width} + 2*1em);
   >h4 {
@@ -96,6 +97,13 @@
   position: sticky;
   top: 0;
   z-index: 11;
+  display: flex;
+  align-items: center;
+}
+
+.map-details-header.fs .location-stream-container {
+  margin-left: auto;
+  margin-right: 80px;
 }
 
 .map-details-subheading {

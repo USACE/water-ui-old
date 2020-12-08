@@ -4,7 +4,7 @@ import { connect } from "redux-bundler-react";
 import { radarTimeControls } from "../../../../../../app-bundles/radar-time-series-bundle";
 import { dateToString } from "../../../../../../utils";
 
-const TimeSeriesControl = ({
+export const TimeSeriesDateRange = ({
   ltsTimeControl,
   ltsCustomStartDate,
   ltsCustomEndDate,
@@ -12,18 +12,14 @@ const TimeSeriesControl = ({
   doLtsSetCustomDate,
 }) => {
   const handleDateRangeOnChange = (e) => {
-    e.stopPropagation();
     doLtsSetTimeControl(parseInt(e.target.value));
   }
 
   const handleDateOnChange = (e) => {
-    e.stopPropagation();
     const name = e.target.name;
     const date = e.target.value;
     doLtsSetCustomDate(name, date);
   };
-
-  const handleOnClick = e => e.stopPropagation();
 
   const today = dateToString(new Date());
   return (
@@ -36,7 +32,6 @@ const TimeSeriesControl = ({
           id="timeControl"
           value={ltsTimeControl}
           onChange={handleDateRangeOnChange}
-          onClick={handleOnClick}
         >
           { radarTimeControls.map(({ value, label }) => (
             <option
@@ -62,7 +57,6 @@ const TimeSeriesControl = ({
               value={ltsCustomStartDate}
               max={ltsCustomEndDate || today}
               onChange={handleDateOnChange}
-              onClick={handleOnClick}
             />
           </div>
           <div className="time-series-input">
@@ -77,7 +71,6 @@ const TimeSeriesControl = ({
               max={today}
               min={ltsCustomStartDate}
               onChange={handleDateOnChange}
-              onClick={handleOnClick}
             />
           </div>
         </>
@@ -86,7 +79,7 @@ const TimeSeriesControl = ({
   )
 };
 
-TimeSeriesControl.propTypes = {
+TimeSeriesDateRange.propTypes = {
   ltsTimeControl: PropTypes.number.isRequired,
   ltsCustomStartDate: PropTypes.string,
   ltsCustomEndDate: PropTypes.string,
@@ -100,5 +93,5 @@ export default connect(
   "selectLtsCustomEndDate",
   "doLtsSetTimeControl",
   "doLtsSetCustomDate",
-  TimeSeriesControl,
+  TimeSeriesDateRange,
 );

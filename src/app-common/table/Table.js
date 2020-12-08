@@ -1,35 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-// CSS
 import "./table.scss";
 
-const Table = (props) => {
-  const { headerRowArr, rowsArr } = props;
-
+const Table = ({ header, body }) => {
   return (
     <div className="table-container">
       <table>
-        {headerRowArr && (
+        { header && header.length > 0 && (
           <thead>
-            <tr className="table-header-row">
-              {headerRowArr &&
-                headerRowArr.map((item, i) => {
-                  return <th key={`header-${i}`}>{item}</th>;
-                })}
+            <tr>
+              { header.map(item => <th key={item}>{item}</th>) }
             </tr>
           </thead>
         )}
-        {rowsArr && (
+        { body && body.length > 0 && (
           <tbody>
-            {rowsArr &&
-              rowsArr.map((row, i) => (
-                <tr key={`row-${i}`} className="table-body-row">
-                  {row.map((item, i) => {
-                    return <td key={`td-${i}`}>{item}</td>;
-                  })}
-                </tr>
-              ))}
+            { body.map(({ id, row }) => (
+              <tr key={id}>
+                { row.map(item => <td key={item}>{item}</td>) }
+              </tr>
+            ))}
           </tbody>
         )}
       </table>
@@ -38,8 +28,15 @@ const Table = (props) => {
 };
 
 Table.propTypes = {
-  rowsArr: PropTypes.array,
-  headerRowArr: PropTypes.array,
+  header: PropTypes.arrayOf(PropTypes.string.isRequired),
+  body: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      row: PropTypes.arrayOf(
+        PropTypes.oneOfType([ PropTypes.string, PropTypes.number ])
+      ),
+    }),
+  ),
 };
 
 export default Table;
