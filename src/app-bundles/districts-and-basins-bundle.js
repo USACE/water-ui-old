@@ -62,7 +62,7 @@ export default createRestBundle( {
             basins: [],
           };
         }
-        // create a new basin object and add it to the basins array for it's correspondin district
+        // create a new basin object and add it to the basins array for its corresponding district
         districts[district_id].basins.push(Object.assign({ ...basinInfo, district_id: district_id, district_name: district_name }));
       });
       return {
@@ -98,7 +98,7 @@ export default createRestBundle( {
         let basins = [];
 
         if( selectedDistrict ) basins = data[selectedDistrict].basins;
-        else Object.values( data ).forEach( item => basins.push( ...item.basins ) );
+        else Object.values( data ).forEach( item => basins.push( ...item.basins ) ); // Allows user to pick from full list without choosing a district first
 
         basins.sort((a, b) => a.basin_name > b.basin_name ? 1 : -1);
         return basins;
