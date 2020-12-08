@@ -45,7 +45,7 @@ const LocationTypeFilter = ({ queryObject, doUpdateQuery }) => {
         { id: locationTypes.LAKES, value: "Lakes" },
       ]}
       onChange={onChange}
-      onReset={ ( queryObject.locationType !== locationTypes.ALL ? onReset : null ) }
+      onReset={ ( queryObject.locationType && queryObject.locationType !== locationTypes.ALL && onReset ) }
     />
   );
 };
