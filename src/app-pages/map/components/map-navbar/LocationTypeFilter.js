@@ -14,6 +14,14 @@ const LocationTypeFilter = ({ queryObject, doUpdateQuery }) => {
     doUpdateQuery(newQuery, mapUrlOptions);
   };
 
+  const onReset = () => {
+    const newQuery = {
+      ...queryObject,
+      locationType: locationTypes.ALL
+    };
+    doUpdateQuery(newQuery, mapUrlOptions);
+  };
+
   return (
     <Dropdown
       id="location-type-dropdown"
@@ -37,6 +45,7 @@ const LocationTypeFilter = ({ queryObject, doUpdateQuery }) => {
         { id: locationTypes.LAKES, value: "Lakes" },
       ]}
       onChange={onChange}
+      onReset={ ( queryObject.locationType !== locationTypes.ALL ? onReset : null ) }
     />
   );
 };
