@@ -7,14 +7,22 @@ const DistrictsDropdown = ({
   districts,
   selectedDistrict,
   doSetSelectedDistrict,
+  doUpdateDistrictBasinMapQuery,
+  preventUrlUpdate
 }) => {
   
   const onChange = (e) => {
     doSetSelectedDistrict(e.target.value);
+    doUpdateDistrictBasinMapQuery( preventUrlUpdate );
   };
 
+  const onReset = () => {
+    doSetSelectedDistrict( "" );
+    doUpdateDistrictBasinMapQuery( preventUrlUpdate );
+  }
+
   const options = districts && districts.map(val => ({
-    id: val.district_office_id,
+    id: val.district_id,
     value: val.district_name,
   }));
 
@@ -26,22 +34,25 @@ const DistrictsDropdown = ({
       value={selectedDistrict}
       options={options}
       onChange={onChange}
+      onReset={onReset}
     />
   );
 };
 
 DistrictsDropdown.propTypes = {
   selectDistricts: PropTypes.arrayOf(PropTypes.shape({
-    district_office_id: PropTypes.string.isRequired,
+    district_id: PropTypes.string.isRequired,
     district_name: PropTypes.string.isRequired,
   })),
   selectedDistrict: PropTypes.string,
   doSetSelectedDistrict: PropTypes.func.isRequired,
+  preventUrlUpdate: PropTypes.bool
 };
 
 export default connect(
   "selectDistricts",
   "selectSelectedDistrict",
   "doSetSelectedDistrict",
+  "doUpdateDistrictBasinMapQuery",
   DistrictsDropdown,
 );

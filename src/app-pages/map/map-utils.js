@@ -44,6 +44,8 @@ export const displayTypes = {
  */
 export const defaultMapParams = {
   locationId: "",
+  basinId: "",
+  districtId: "",
   lat: 38.895,
   lon: -95,
   zoom: 5,

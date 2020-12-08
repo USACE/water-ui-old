@@ -57,8 +57,8 @@
  * @property {string} district_name
  * @property {string} basin_name
  * @property {string} basin_division_code
- * @property {string} basin_location_id
- * @property {string} basin_operating_area_id Can be matched to LocationSummary.parent_id (and organization_l.id?)
+ * @property {string} district_id Can be matched to LocationSummary.id
+ * @property {string} basin_id Can be matched to LocationSummary.parent_id (and organization_l.id?)
  * @property {number} latitude
  * @property {number} longitude
  */

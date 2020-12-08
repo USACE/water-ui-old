@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import debounce from "lodash/debounce";
 import LocationSearch from "../../../home/components/LocationSearch";
-import Dropdown from "../../../../app-common/inputs/Dropdown";
 import LocationTree from "./LocationTree";
 import LocationTypeFilter from "./LocationTypeFilter";
 import "./mapNavbar.scss";
+import DistrictsDropdown from "../../../home/components/DistrictsDropdown";
+import BasinsDropdown from "../../../home/components/BasinsDropdown";
 
 const MapNavbar = ({ queryObject, doSetLocationSearchCriteriaUpdated }) => {
   const debounceFetch = debounce(doSetLocationSearchCriteriaUpdated, 500);
@@ -20,28 +21,10 @@ const MapNavbar = ({ queryObject, doSetLocationSearchCriteriaUpdated }) => {
             />
           </div>
           <div className="col-md-2">
-            <Dropdown
-              label="Districts Dropdown"
-              id="districts-dropdown"
-              placeholder="Select District..."
-              options={[
-                { id: "1", value: "1" },
-                { id: "2", value: "2" },
-                { id: "3", value: "3" },
-              ]}
-            />
+            <DistrictsDropdown />
           </div>
           <div className="col-md-2">
-            <Dropdown
-              id="basins-dropdown"
-              label="Basin Dropdown"
-              placeholder="Select Basin..."
-              options={[
-                { id: "1", value: "1" },
-                { id: "2", value: "2" },
-                { id: "3", value: "3" },
-              ]}
-            />
+            <BasinsDropdown />
           </div>
           <div className="col-md-2">
             <LocationTypeFilter />
