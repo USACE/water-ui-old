@@ -9,19 +9,15 @@ const BasinsDropdown = ( props ) => {
     basins,
     selectedBasin,
     selectedDistrict,
-    doSetSelectedBasin,
     doUpdateDistrictBasinMapQuery
   } = props;
   
   const onChange = (e) => {
-    let basinId = e.target.value;
-    doSetSelectedBasin(e.target.value);
-    if( basinId ) doUpdateDistrictBasinMapQuery();
+    doUpdateDistrictBasinMapQuery( { basinId: e.target.value, districtId: selectedDistrict } );
   };
 
   const onReset = () => {
-    doSetSelectedBasin( "" );
-    doUpdateDistrictBasinMapQuery();
+    doUpdateDistrictBasinMapQuery( { basinId: "", districtId: selectedDistrict } );
   }
 
   const options = basins && basins.map(val => ({
@@ -49,7 +45,8 @@ BasinsDropdown.propTypes = {
     basin_name: PropTypes.string.isRequired,
     basin_id: PropTypes.string.isRequired,
   })),
-  doSetSelectedBasin: PropTypes.func.isRequired,
+  selectedBasin: PropTypes.string,
+  selectedDistrict: PropTypes.string,
   doUpdateDistrictBasinMapQuery: PropTypes.func.isRequired,
 };
 
@@ -57,7 +54,6 @@ export default connect(
   "selectBasins",
   "selectSelectedBasin",
   "selectSelectedDistrict",
-  "doSetSelectedBasin",
   "doUpdateDistrictBasinMapQuery",
   BasinsDropdown,
 );

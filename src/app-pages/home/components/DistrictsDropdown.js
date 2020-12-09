@@ -6,19 +6,16 @@ import Dropdown from "../../../app-common/inputs/Dropdown";
 const DistrictsDropdown = ({
   districts,
   selectedDistrict,
-  doSetSelectedDistrict,
   doUpdateDistrictBasinMapQuery,
   preventUrlUpdate
 }) => {
   
   const onChange = (e) => {
-    doSetSelectedDistrict(e.target.value);
-    doUpdateDistrictBasinMapQuery( preventUrlUpdate );
+    doUpdateDistrictBasinMapQuery( { preventUrlUpdate, districtId: e.target.value, basinId: "" } );
   };
 
   const onReset = () => {
-    doSetSelectedDistrict( "" );
-    doUpdateDistrictBasinMapQuery( preventUrlUpdate );
+    doUpdateDistrictBasinMapQuery( { preventUrlUpdate, districtId: "", basinId: "" } );
   }
 
   const options = districts && districts.map(val => ({
@@ -45,14 +42,13 @@ DistrictsDropdown.propTypes = {
     district_name: PropTypes.string.isRequired,
   })),
   selectedDistrict: PropTypes.string,
-  doSetSelectedDistrict: PropTypes.func.isRequired,
+  doUpdateDistrictBasinMapQuery: PropTypes.func.isRequired,
   preventUrlUpdate: PropTypes.bool
 };
 
 export default connect(
   "selectDistricts",
   "selectSelectedDistrict",
-  "doSetSelectedDistrict",
   "doUpdateDistrictBasinMapQuery",
   DistrictsDropdown,
 );
