@@ -92,3 +92,12 @@ export const formatUnderscore = (str, capAll = false) => {
   }
   return newStr.charAt(0).toUpperCase() + newStr.slice(1);
 }
+
+/**
+ * Retruns true if the value is not undefined or null.
+ * @param val
+ * @returns {boolean}
+ */
+export const isPresent = ( val ) => {
+  return val !== undefined && val !== null;
+}

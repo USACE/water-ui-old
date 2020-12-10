@@ -91,9 +91,13 @@ function listToTree( sourceList ) {
       list[ locationIdToListIndex[ currentNode.parent_id ] ].nodes.push( currentNode );
 
       // Add a tree path prop to the original list for easy lookup for locations to tree position
-      sourceList[ i ].tree_path = buildTreePath( currentNode );
+      const treePath = buildTreePath( currentNode );
+      currentNode.path = treePath.split( "/" ); // Add path array to node to easily look up whether it is a child of a specific ID.
+      sourceList[ i ].tree_path = treePath;
     }
     else {
+      currentNode.path = [ `${ currentNode.id }` ];
+      sourceList[ i ].tree_path = `${ currentNode.id }`;
       tree.push( currentNode );
     }
   }

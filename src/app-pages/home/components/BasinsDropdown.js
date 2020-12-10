@@ -2,31 +2,40 @@ import React from "react";
 import PropTypes from "prop-types"
 import { connect } from "redux-bundler-react";
 import Dropdown from "../../../app-common/inputs/Dropdown";
-import { RoutePaths } from "../../../app-bundles/route-paths";
 
-const BasinsDropdown = ({
-  basins,
-  doSetSelectedBasin,
-  doUpdateUrl,
-}) => {
+const BasinsDropdown = ( props ) => {
+  const {
+    /** @type a2w.models.DistrictBasin[] */
+    basins,
+    selectedBasin,
+    selectedDistrict,
+    doUpdateDistrictBasinMapQuery
+  } = props;
   
   const onChange = (e) => {
-    doSetSelectedBasin(e.target.value);
-    doUpdateUrl(RoutePaths.Map);
+    doUpdateDistrictBasinMapQuery( { basinId: e.target.value, districtId: selectedDistrict } );
   };
 
+  const onReset = () => {
+    doUpdateDistrictBasinMapQuery( { basinId: "", districtId: selectedDistrict } );
+  }
+
   const options = basins && basins.map(val => ({
-    id: val.basin_location_id,
-    value: val.basin_name,
+    id: val.basin_id,
+    value: `${ val.basin_name } (${ val.district_office_id })`,
+    title: `${ val.basin_name } (${ val.district_name })`
   }));
+  if( selectedDistrict && options.length > 0 ) options.unshift( { id: "all", value: "Any Basin in District" } );
 
   return (
     <Dropdown
       id="basins-dropdown"
       label="Basin Dropdown"
       placeholder="Select Basin..."
+      value={selectedBasin}
       options={options}
       onChange={onChange}
+      onReset={onReset}
     />
   );
 };
@@ -34,16 +43,17 @@ const BasinsDropdown = ({
 BasinsDropdown.propTypes = {
   basins: PropTypes.arrayOf(PropTypes.shape({
     basin_name: PropTypes.string.isRequired,
-    basin_location_id: PropTypes.string.isRequired,
-    basin_location_code: PropTypes.string.isRequired,
+    basin_id: PropTypes.string.isRequired,
   })),
-  doSetSelectedBasin: PropTypes.func.isRequired,
-  doUpdateUrl: PropTypes.func.isRequired,
+  selectedBasin: PropTypes.string,
+  selectedDistrict: PropTypes.string,
+  doUpdateDistrictBasinMapQuery: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectBasins",
-  "doSetSelectedBasin",
-  "doUpdateUrl",
+  "selectSelectedBasin",
+  "selectSelectedDistrict",
+  "doUpdateDistrictBasinMapQuery",
   BasinsDropdown,
 );

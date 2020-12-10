@@ -50,6 +50,8 @@ const Map = ( props ) => {
   const zoom = parseFloat(queryObject.zoom) || defaultMapParams.zoom;
   const locationType = queryObject.locationType || defaultMapParams.locationType;
   const display = queryObject.display || defaultMapParams.display;
+  const districtId = queryObject.districtId || defaultMapParams.districtId;
+  const basinId = queryObject.basinId || defaultMapParams.basinId;
 
   // componentDidMount
   useEffect(() => {
@@ -185,28 +187,45 @@ const Map = ( props ) => {
 
   // add the map layers depending on the location type
   useEffect(() => {
-    if (locationsMapIsLoaded && locationType) {
+    if (locationsMapIsLoaded && ( locationType || districtId || basinId ) ) {
       // remove the previous map layers
       map.getLayers().getArray()
         .filter((layer) => layer.get("name"))
         .forEach((layer) => map.removeLayer(layer));
 
-      let filteredLocations;
+      let filteredLocations = locationSummaries;
+
+      // Filter down to district if we can
+      if( districtId !== "" ) {
+        filteredLocations = filteredLocations.filter(location => {
+          if( !location.tree_path ) return true;
+          return location.tree_path.split( "/" ).includes( districtId )
+        } );
+      }
+
+      // Filter down to basin if we can
+      if( basinId !== "" && basinId !== "all" ) {
+        filteredLocations = filteredLocations.filter(location => {
+          if( !location.tree_path ) return true;
+          return location.tree_path.split( "/" ).includes( basinId )
+        } );
+      }
+
+      // Filter by location type
       switch (locationType) {
         case locationTypes.ALL:
-          filteredLocations = locationSummaries;
           break;
         case locationTypes.STREAM_LOCATION:
-          filteredLocations = locationSummaries.filter(location => location.sub_location_type === locationType);
+          filteredLocations = filteredLocations.filter(location => location.sub_location_type === locationType);
           break;
         case locationTypes.DAMS:
-          filteredLocations = locationSummaries.filter(location => location.dam_indicator === "T");
+          filteredLocations = filteredLocations.filter(location => location.dam_indicator === "T");
           break;
         case locationTypes.LAKES:
-          filteredLocations = locationSummaries.filter(location => location.lake_indicator === "T" && location.dam_indicator === "F");
+          filteredLocations = filteredLocations.filter(location => location.lake_indicator === "T" && location.dam_indicator === "F");
           break;
         default:
-          filteredLocations = locationSummaries.filter(location => location.location_type === locationType);
+          filteredLocations = filteredLocations.filter(location => location.location_type === locationType);
       }
 
       // add new map layers
@@ -214,7 +233,7 @@ const Map = ( props ) => {
       map.addLayer(clusters);
       map.addLayer(unclusteredLayer);
     }
-  }, [locationsMapIsLoaded, map, locationType, locationSummaries]);
+  }, [locationsMapIsLoaded, map, locationType, basinId, districtId, locationSummaries]);
 
   const popup = (
     <div ref={popupContainer} className="ol-popup">
