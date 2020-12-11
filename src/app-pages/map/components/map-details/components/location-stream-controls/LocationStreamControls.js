@@ -41,6 +41,7 @@ const LocationStreamControls = ({
 
   const display = displayTypes[queryObject.display] ? queryObject.display : defaultMapParams.display;
   const currentIndex = streamLocationsData.findIndex(item => item.location_code === locationDetailData.location_code);
+  const currentVal = streamLocationsData[ currentIndex ] || {};
 
   let justifyContent = "justify-content-between";
   if (currentIndex === 0) {
@@ -65,6 +66,7 @@ const LocationStreamControls = ({
         className="location-stream-selector"
         onChange={changeLocation}
         value={currentIndex}
+        title={ `Stream Location: ${currentVal.public_name} (${currentVal.station} ${currentVal.station_unit})` }
       >
         { streamLocationsData.map((item, i) => (
           <option
