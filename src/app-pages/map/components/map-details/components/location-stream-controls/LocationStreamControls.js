@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
-import { mapUrlOptions } from "../../../../map-utils";
+import { defaultMapParams, displayTypes, mapUrlOptions } from "../../../../map-utils";
 import "./locationStreamControls.scss";
 
 const LocationStreamControls = ({
@@ -39,6 +39,7 @@ const LocationStreamControls = ({
     return null;
   }
 
+  const display = displayTypes[queryObject.display] ? queryObject.display : defaultMapParams.display;
   const currentIndex = streamLocationsData.findIndex(item => item.location_code === locationDetailData.location_code);
 
   let justifyContent = "justify-content-between";
@@ -48,7 +49,7 @@ const LocationStreamControls = ({
     justifyContent = "justify-content-start";
   }
   return (
-    <div className={`location-stream-container ${justifyContent}`}>
+    <div className={`location-stream-container ${justifyContent} ${display}`}>
       { currentIndex > 0 && (
         <button
           type="button"
@@ -70,7 +71,7 @@ const LocationStreamControls = ({
             key={item.location_code}
             value={i}
           >
-            {item.public_name}
+            {item.public_name} ({item.station} {item.station_unit})
           </option>
         ))}
       </select>

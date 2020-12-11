@@ -3,114 +3,77 @@
     "public_name": "Opekiska L/D",
     "location_code": "16855111",
     "location_id": "Opekiska",
-    "station": 994
-  }, {
-    "office_id": "LRP",
-    "public_name": "Opekiska L/D Lock",
-    "location_code": "214073111",
-    "location_id": "Opekiska-Lock",
-    "station": 993
+    "station": 994,
+    "station_unit": "mi"
   }, {
     "office_id": "LRP",
     "public_name": "Hildebrand L/D",
     "location_code": "16832111",
     "location_id": "Hildebrand",
-    "station": 978
-  }, {
-    "office_id": "LRP",
-    "public_name": "Hildebrand L/D Lock",
-    "location_code": "214074111",
-    "location_id": "Hildebrand-Lock",
-    "station": 977
+    "station": 978,
+    "station_unit": "mi"
   }, {
     "office_id": "LRP",
     "public_name": "Morgantown L/D",
     "location_code": "17040111",
     "location_id": "Morgantown",
-    "station": 966
-  }, {
-    "office_id": "LRP",
-    "public_name": "Morgantown L/D Lock",
-    "location_code": "214075111",
-    "location_id": "Morgantown-Lock",
-    "station": 965
+    "station": 966,
+    "station_unit": "mi"
   }, {
     "office_id": "LRP",
     "public_name": "Point Marion L/D",
     "location_code": "16747111",
     "location_id": "PointMarion",
-    "station": 946
+    "station": 946,
+    "station_unit": "mi"
   }, {
     "office_id": "LRP",
-    "public_name": "Point Marion L/D Lock",
-    "location_code": "214076111",
-    "location_id": "PointMarion-Lock",
-    "station": 945
-  }, {
-    "office_id": "LRP",
-    "public_name": "Indian Rock Dam",
+    "public_name": "Indian Rock Dam  blah blah blah blah",
     "location_code": "1123020",
     "location_id": "Indian Rock",
-    "station": 818
+    "station": 922,
+    "station_unit": "mi"
+  }, {
+    "office_id": "LRP",
+    "public_name": "L/D-7, Greensboro",
+    "location_code": "32667111",
+    "location_id": "Greensboro",
+    "station": 818,
+    "station_unit": "mi"
   }, {
     "office_id": "LRP",
     "public_name": "Grays Landing L/D",
     "location_code": "17288111",
     "location_id": "GraysLanding",
-    "station": 806
-  }, {
-    "office_id": "LRP",
-    "public_name": "Grays Landing L/D Lock",
-    "location_code": "214077111",
-    "location_id": "GraysLanding-Lock",
-    "station": 805
+    "station": 806,
+    "station_unit": "mi"
   }, {
     "office_id": "LRP",
     "public_name": "Maxwell L/D",
     "location_code": "16467111",
     "location_id": "Maxwell",
-    "station": 782
-  }, {
-    "office_id": "LRP",
-    "public_name": "Maxwell L/D Lock",
-    "location_code": "214078111",
-    "location_id": "Maxwell-Lock",
-    "station": 781
+    "station": 782,
+    "station_unit": "mi"
   }, {
     "office_id": "LRP",
     "public_name": "L/D-4, Charleroi",
     "location_code": "16602111",
     "location_id": "Charleroi",
-    "station": 762
-  }, {
-    "office_id": "LRP",
-    "public_name": "L/D-4, Charleroi Lock",
-    "location_code": "214079111",
-    "location_id": "Charleroi-Lock",
-    "station": 761
+    "station": 762,
+    "station_unit": "mi"
   }, {
     "office_id": "LRP",
     "public_name": "L/D-3, Elizabeth",
     "location_code": "16940111",
     "location_id": "Elizabeth",
-    "station": 750
-  }, {
-    "office_id": "LRP",
-    "public_name": "L/D-3, Elizabeth Lock",
-    "location_code": "214080111",
-    "location_id": "Elizabeth-Lock",
-    "station": 749
+    "station": 750,
+    "station_unit": "mi"
   }, {
     "office_id": "LRP",
     "public_name": "Braddock L/D",
     "location_code": "16570111",
     "location_id": "Braddock",
-    "station": 586
-  }, {
-    "office_id": "LRP",
-    "public_name": "Braddock L/D Lock",
-    "location_code": "214081111",
-    "location_id": "Braddock-Lock",
-    "station": 585
+    "station": 586,
+    "station_unit": "mi"
   }
 ]

@@ -167,4 +167,5 @@
  * @property {string} location_code
  * @property {string} location_id
  * @property {number} station
+ * @property {string} station_unit
 */
