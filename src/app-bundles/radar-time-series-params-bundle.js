@@ -1,6 +1,8 @@
-import createRestBundle from "./create-rest-bundle";
-import { getRestUrl, arrayToObj } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
+import createRestBundle from "./create-rest-bundle";
+import { getRestUrl } from "./bundle-utils";
+import { RoutePaths } from "./route-paths";
+import { arrayToObj } from "../utils";
 
 export default createRestBundle({
   name: "locationParams",
@@ -12,9 +14,7 @@ export default createRestBundle({
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: ["LOCATIONDETAIL_FETCH_FINISHED"],
   forceFetchActions: [],
-  urlParamSelectors: ["selectLocationParams"],
   addons: {
     selectLocationParams: createSelector(
       "selectLocationParamsData",
@@ -22,6 +22,18 @@ export default createRestBundle({
         if (!locationParamsData) return null;
           return arrayToObj(locationParamsData.parameters.parameters, "name");
       }
+    ),
+    // since the location params are the same regardless of the selected location, only fetch the location 
+    // params data if the user is on the map page and the location params have not alreaddy been loaded 
+    reactShouldFetchLocationParams: createSelector(
+      "selectPathname",
+      "selectLocationParamsData",
+      "selectLocationParamsIsLoading",
+      (pathname, data, isLoading) => {
+        if (pathname === RoutePaths.Map && !data && !isLoading) {
+          return { actionCreator: "doLocationParamsFetch" };
+        }
+      },
     ),
   },
 });

@@ -1,7 +1,6 @@
 import { Control } from "ol/control";
 import { XYZ } from "ol/source";
 import { Tile } from "ol/layer";
-
 import "./basemap-picker.scss";
 
 const basemaps = [

@@ -10,7 +10,7 @@ import LocationSearch from "./components/LocationSearch";
 import DistrictsDropdown from "./components/DistrictsDropdown";
 import BasinsDropdown from "./components/BasinsDropdown";
 import "./homePage.scss";
-import background from "../../img/yellowstone-national-park.jpg";
+import background from "../../img/mountain-river.jpg";
 
 const containerTextSection = {
   textAlign: "center",
@@ -57,7 +57,7 @@ const HomePage = ({ doSetLocationSearchCriteriaUpdated }) => {
           <p className="mt-3">Or search by district and basin</p>
           <div className="district-basin-dd row">
             <div className="col-md-6">
-              <DistrictsDropdown />
+              <DistrictsDropdown preventUrlUpdate={true} />
             </div>
             <div className="col-md-6">
               <BasinsDropdown />

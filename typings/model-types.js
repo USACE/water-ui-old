@@ -1,3 +1,7 @@
+/**
+ * @typedef {any} ResizeObserver
+ */
+
 /** @namespace a2w.models */
 
 /**
@@ -49,11 +53,14 @@
 
 /**
  * @typedef a2w.models.DistrictBasin
- * @property {string} district_office_id
+ * @property {string} district_office_id Can be matched to LocationSummary.office_id
  * @property {string} district_name
  * @property {string} basin_name
- * @property {string} basin_location_code
- * @property {string} basin_location_id
+ * @property {string} basin_division_code
+ * @property {string} district_id Can be matched to LocationSummary.id
+ * @property {string} basin_id Can be matched to LocationSummary.parent_id (and organization_l.id?)
+ * @property {number} latitude
+ * @property {number} longitude
  */
 
 /**
@@ -160,4 +167,5 @@
  * @property {string} location_code
  * @property {string} location_id
  * @property {number} station
+ * @property {string} station_unit
 */

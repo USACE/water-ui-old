@@ -4,19 +4,35 @@ const getValidatedData = (data) => (validateData(data) ? data : []);
 
 const filter = ({ typeFilter, data }) => {
   const leafNodes = [];
-  const typeKey = typeFilter === "STREAM_LOCATION" ? "sub_location_type" : "location_type";
+
+  const isMatch = ( /** @type {a2w.models.LocationSummary} */ node ) => {
+    switch( typeFilter ) {
+      case "STREAM_LOCATION":
+        return node.sub_location_type === typeFilter;
+      case "DAMS":
+        return node.dam_indicator === "T"
+      case "LAKES":
+        return node.dam_indicator !== "T" && node.lake_indicator === "T"
+      default:
+        return node.location_type === typeFilter;
+    }
+  }
 
   const getLeafNodes = ( leafNodes, obj ) => {
     if ( !obj.is_leaf ) {
       obj.nodes.forEach(function (child) {
         getLeafNodes(leafNodes, child);
       });
-    } else if ( obj[typeKey] === typeFilter ) {
+    } else if ( isMatch( obj ) ) {
       leafNodes.push( obj );
     }
     return leafNodes;
   };
-  return getLeafNodes( leafNodes, data[0] );
+
+  if (data && data[0]) {
+    return getLeafNodes( leafNodes, data[0] );
+  }
+  return [];
 };
 
 export const walk = ({ data, typeFilter, ...props }) => {
@@ -75,14 +91,14 @@ const generateBranch = ({
 
   const data = getValidatedData(nodes);
   const nextLevelItems = isOpen
-    ? walk({
+    ? walk( /** @type {any} */ ({
         data,
         locale,
         matchSearch,
         ...props,
         parent: key,
         level: level + 1,
-      })
+      }))
     : [];
 
   return isVisible ? [currentItem, ...nextLevelItems] : nextLevelItems;

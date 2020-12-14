@@ -1,6 +1,7 @@
 import { createSelector } from "redux-bundler";
 import createRestBundle from "./create-rest-bundle";
-import { getRestUrl, getIntervalTime, TIME, dateToString } from "./bundle-utils";
+import { getRestUrl } from "./bundle-utils";
+import { getIntervalTime, TIME, dateToString, arrayToObj } from "../utils";
 
 export const radarTimeControls = [
   { value: TIME.DAY, label: "Past 24 hours" },
@@ -114,19 +115,21 @@ export default createRestBundle( {
       "selectLocationTimeSeriesData",
       (locationTimeSeriesData) => {
         if (!locationTimeSeriesData || !locationTimeSeriesData["time-series"] || !locationTimeSeriesData["time-series"]["time-series"]) {
-          return [];
+          return {};
         }
 
-        const plotlyData = [];
+        const plotlyArray = [];
         const locationTimeSeries = locationTimeSeriesData["time-series"]["time-series"];
         locationTimeSeries.forEach((timeSeries) => {
           if (timeSeries["regular-interval-values"]) {
-            getRegularIntervalValuesData(plotlyData, timeSeries);
+            getRegularIntervalValuesData(plotlyArray, timeSeries);
           } else if (timeSeries["irregular-interval-values"]) {
-            getIrregularIntervalValuesData(plotlyData, timeSeries);
+            getIrregularIntervalValuesData(plotlyArray, timeSeries);
           }
         });
-        return plotlyData;
+        plotlyArray.sort((a, b) => a.sortIndex - b.sortIndex);
+        const plotlyObj = arrayToObj(plotlyArray, "name");
+        return plotlyObj;
       }
     ),
   }
@@ -151,6 +154,21 @@ const validateStartEndDates = (startDate, endDate) => {
   return false;
 }
 
+const getSortIndex = (name) => {
+  const lowerCaseName = name.toLowerCase();
+  if ( lowerCaseName.includes( "elev" ) ) {
+    return 0;
+  } else if ( lowerCaseName.includes( "flow" ) ) {
+    return 1;
+  } else if ( lowerCaseName.includes( "stage" ) ) {
+    return 2;
+  } else if ( lowerCaseName.includes( "temp" ) ) {
+    return 3;
+  } else {
+    return Infinity;
+  }
+};
+
 // helper function that appends the regular-interval-values data to the plotlyData array
 const getRegularIntervalValuesData = (plotlyData, timeSeries) => {
   const segments = timeSeries["regular-interval-values"].segments;
@@ -172,8 +190,11 @@ const getRegularIntervalValuesData = (plotlyData, timeSeries) => {
       });
     });
 
+    const name = getPlotName(timeSeries);
+    const sortIndex = getSortIndex(name);
     plotlyData.push({
-      name: getPlotName(timeSeries),
+      name,
+      sortIndex,
       x: xData,
       y: yData,
       unit: timeSeries["regular-interval-values"].unit,
@@ -193,8 +214,11 @@ const getIrregularIntervalValuesData = (plotlyData, timeSeries) => {
       yData.push(y);
     });
 
+    const name = getPlotName(timeSeries);
+    const sortIndex = getSortIndex(name);
     plotlyData.push({
-      name: getPlotName(timeSeries),
+      name,
+      sortIndex,
       x: xData,
       y: yData,
       unit: timeSeries["irregular-interval-values"].unit,

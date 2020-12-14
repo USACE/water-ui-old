@@ -1,6 +1,5 @@
 import { createRouteBundle } from "redux-bundler";
 import Home from "../app-pages/home/HomePage";
-import Location from "../app-pages/location/LocationPage";
 import MapPage from "../app-pages/map/MapPage";
 import Help from "../app-pages/help/HelpPage";
 import Reports from "../app-pages/reports/ReportsPage";
@@ -19,7 +18,6 @@ export default createRouteBundle({
   "/": Home,
   [RoutePaths.Home]: Home,
   [RoutePaths.Help]: Help,
-  [RoutePaths.Locations]: Location,
   [RoutePaths.Map]: MapPage,
   [RoutePaths.ReportsHome]: Reports,
   [RoutePaths.CorpOfficeList]: CorpOfficeReports,

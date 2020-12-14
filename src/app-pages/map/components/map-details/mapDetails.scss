@@ -1,0 +1,167 @@
+@import "../../../../style/sass/abstracts/mixins";
+@import "../../../../style/sass/abstracts/variables";
+
+.map-details-container {
+  position: absolute;
+  height: $map-height;
+  z-index: 100;
+  background: $white;
+  transition: 0.7s;
+  box-shadow: 5px 0 5px -5px rgba(0,0,0,0.7);
+  width: $map-details-width;
+
+  @media (max-width: $map-details-width + $map-details-toggle-btn-width) {
+		width: 100%;
+	}
+}
+
+.map-details-container.closed {
+  transform: translateX(-$map-details-width);
+  @media (max-width: $map-details-width + $map-details-toggle-btn-width) {
+    transform: translateX(-100%);
+	}
+}
+
+.map-details-container.opened {
+  transform: translateX(0);
+  @media (max-width: $map-details-width + $map-details-toggle-btn-width) {
+    .map-details-toggle-btn.toggle-expand {
+      display: none;
+    }
+	}
+}
+
+.map-details-container.fs {
+  position: relative;
+  height: auto;
+  width: 100%;
+  min-height: 60vh;
+  .map-details-toggle-btn.toggle-expand {
+    display: none;
+  }
+}
+
+.map-details-toggle-btn {
+  background: $white;
+  height: $map-details-toggle-btn-width;
+  width: $map-details-toggle-btn-width;
+  border: 0;
+  padding: 0;
+
+  &:hover, &:focus, &:active {
+    background: $base-lightest-gray;
+  }
+
+  &:after {
+    content: "";
+    display: inline-block;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+  }
+}
+
+.map-details-toggle-btn.toggle-close {
+  position: absolute;
+  right: 0;
+  border-right: 1px solid $base-light-gray;
+  z-index: 12;
+  &:after {
+    border-right: 6px solid $base-gray;
+  }
+}
+
+.map-details-toggle-btn.toggle-expand {
+  position: absolute;
+  left: 100%;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+  z-index: -1;
+  &:after {
+    border-left: 6px solid $base-gray;
+  }
+}
+
+.map-details-header {
+  width: 100%;
+  padding: 1em;
+  background-color: $base-lighter-gray;
+  box-shadow: 0 3px 4px -4px rgba(0,0,0,0.1);
+  // make the minimum height the size of the map-details-toggle-btn + the top and bottom padding
+  min-height: calc(#{$map-details-toggle-btn-width} + 2*1em);
+  >h4 {
+    padding-right: $map-details-toggle-btn-width;
+  }
+}
+
+.map-details-header.fs {
+  position: -webkit-sticky; 
+  position: sticky;
+  top: 0;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+}
+
+.map-details-header.fs .location-stream-container {
+  margin-left: auto;
+  margin-right: 80px;
+}
+
+.map-details-subheading {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pipe {
+  &::after {
+    content: '|';
+    padding: 0 5px;
+  }
+}
+
+.map-details-content {
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+  @include mq($breakpoint: "phone", $direction: "down") {
+    flex-wrap: wrap;
+  }
+
+  .map-details-nav {
+    position: relative;
+    flex-shrink: 8;
+    width: 100%;
+    .fixed-sticky-nav {
+      position: -webkit-sticky;
+      position: sticky;
+      z-index: 10;
+      @include mq($breakpoint: "phone", $direction: "down") {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+    .navbar-ul {
+      list-style: none;
+      padding-left: 0;
+      .nav-item {
+        button {
+          text-align: left;
+          padding-left: .25rem;
+          color: $black;
+        }
+      }
+      .nav-link-btn {
+        @include btn-to-link;
+        padding: 0.25rem 3rem;
+      }
+    }
+  }
+
+  .accordion-container {
+    width: 100%;
+  }
+}
+
+.map-details-content.fs {
+  min-height: 60vh;
+}

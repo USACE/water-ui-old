@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isValidArrWithValues } from '../functions';
+import { isValidArrWithValues } from '../utils';
 
 const imgStyle = {
 	width: '100%',

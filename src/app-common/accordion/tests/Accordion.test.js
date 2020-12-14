@@ -5,19 +5,16 @@ import Accordion from "../Accordion";
 describe("<Accordion />", () => {
   const renderOptions = { disableLifecycleMethods: true };
 
-  const formatId = (title) => {
-    return title && title.toLowerCase().replace(" ", "_");
-  };
-
   const baseProps = {
-    formatId: formatId,
     data: [ {
+      id: "time-series",
       title: "Time Series",
       content:
         "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",
       iconClass: "mdi mdi-map-marker"
     },
     {
+      id: "sedimentation",
       title: "Sedimentation",
       content:
         "Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do ddd.",

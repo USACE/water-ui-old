@@ -84,7 +84,7 @@ export default {
   reactLocationsMapShouldAddData: createSelector(
     "selectLocationsMapIsInitialized",
     "selectLocationsMapIsDataLoaded",
-    "selectLocationSummaries",
+    "selectLocationTree", // In order to filter the map based on tree location, must wait for tree before creating map.
     (isInitialized, isDataLoaded, locationSummaries) => {
       if (isInitialized && !isDataLoaded && locationSummaries && locationSummaries.length > 0) {
         return { actionCreator: "doLocationsMapDataLoaded" };

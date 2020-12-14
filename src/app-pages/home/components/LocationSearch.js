@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
-import Autocomplete from "../../../app-common/inputs/autocomplete/Autocomplete";
 import { RoutePaths } from "../../../app-bundles/route-paths";
+import Autocomplete from "../../../app-common/inputs/autocomplete/Autocomplete";
+import { getMapUrl, displayTypes } from "../../map/map-utils";
 
 const LocationSearch = ({
+  pathname,
+  queryObject,
   locationSearchText,
   locationSearchData,
   doSetLocationSearchText,
   debounceFetch,
   doUpdateUrl,
 }) => {
+
+  useEffect(() => {
+    if (pathname === RoutePaths.Home) {
+      doSetLocationSearchText("");
+    }
+  }, [pathname, doSetLocationSearchText]);
 
   const inputOnChange = (e) => {
     doSetLocationSearchText(e.target.value);
@@ -19,24 +28,35 @@ const LocationSearch = ({
 
   let items = [];
   if( locationSearchText ) {
-    items = locationSearchData.map( ( { description, location_id, nearest_city, county_name } ) => {
+    items = locationSearchData.map( ( { description, nearest_city, county_name }, index ) => {
       let additionalText = [];
-      if( nearest_city ) additionalText.push( `near ${ nearest_city }` )
-      if( county_name ) additionalText.push( `${ county_name } county` )
+      if( nearest_city ) additionalText.push( `near ${ nearest_city }` );
+      if( county_name ) additionalText.push( `${ county_name } county` );
 
-      let dispVal = <>
-        <span style={{ marginRight: "5px" }}>{description}</span>
-        <span style={{ fontSize: ".8rem" }}>{additionalText.length ? `(${ additionalText.join( ', ' ) })` : "" }</span>
-      </>
+      const dispVal = (
+        <>
+          <span style={{ marginRight: "5px" }}>{description}</span>
+          <span style={{ fontSize: ".8rem" }}>{additionalText.length ? `(${ additionalText.join( ', ' ) })` : "" }</span>
+        </>
+      );
 
-      return ( { value: location_id, display: dispVal } )
+      return ( { value: index, display: dispVal } );
     } )
   }
 
   const itemOnClick = (e) => {
-    const locationCode = e.currentTarget.value || e.target.value;
-    doSetLocationSearchText("");
-    doUpdateUrl(RoutePaths.Locations.replace(":locationId", locationCode));
+    const index = e.target.value || e.currentTarget.value;
+    const location = locationSearchData[index];
+    const mapQuery = {
+      ...queryObject,
+      locationId: location.location_id,
+      lat: location.latitude,
+      lon: location.longitude,
+      zoom: location.zoom_depth,
+      display: displayTypes.opened,
+    };
+    const mapUrl = getMapUrl(mapQuery);
+    doUpdateUrl(mapUrl);
   }
 
   return (
@@ -56,6 +76,8 @@ const LocationSearch = ({
 };
 
 LocationSearch.propTypes = {
+  pathname: PropTypes.string.isRequired,
+  queryObject: PropTypes.object.isRequired,
   locationSearchText: PropTypes.string.isRequired,
   locationSearchData: PropTypes.arrayOf(PropTypes.shape({
     description: PropTypes.string.isRequired,
@@ -67,6 +89,8 @@ LocationSearch.propTypes = {
 };
 
 export default connect(
+  "selectPathname",
+  "selectQueryObject",
   "selectLocationSearchText",
   "selectLocationSearchData",
   "doSetLocationSearchText",
