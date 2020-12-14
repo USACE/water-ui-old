@@ -1,0 +1,182 @@
+[{
+    "specified_level_id": "Streambed",
+    "current_value": 2030,
+    "value_unit": "ft",
+    "parameter_id": "Elev",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Elev.Inst.0.Streambed",
+    "specified_level_code": 26,
+    "sort_order": 0
+  }, {
+    "specified_level_id": "Top of Conservation",
+    "current_value": 2234,
+    "value_unit": "ft",
+    "parameter_id": "Elev",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Elev.Inst.0.Top of Conservation",
+    "specified_level_code": 4,
+    "sort_order": 36
+  }, {
+    "specified_level_id": "Top of Flood",
+    "current_value": 2250,
+    "value_unit": "ft",
+    "parameter_id": "Elev",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Elev.Inst.0.Top of Flood",
+    "specified_level_code": 7,
+    "sort_order": 44
+  }, {
+    "specified_level_id": "Bottom of Exclusive Flood Control",
+    "current_value": 2246,
+    "value_unit": "ft",
+    "parameter_id": "Elev",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Elev.Inst.0.Bottom of Exclusive Flood Control",
+    "specified_level_code": 15,
+    "sort_order": 52
+  }, {
+    "specified_level_id": "Top of Exclusive Flood Control",
+    "current_value": 2250,
+    "value_unit": "ft",
+    "parameter_id": "Elev",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Elev.Inst.0.Top of Exclusive Flood Control",
+    "specified_level_code": 16,
+    "sort_order": 54
+  }, {
+    "specified_level_id": "Top of Dam",
+    "current_value": 2280.5,
+    "value_unit": "ft",
+    "parameter_id": "Elev",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Elev.Inst.0.Top of Dam",
+    "specified_level_code": 5,
+    "sort_order": 58
+  }, {
+    "specified_level_id": "Top of Sediment",
+    "current_value": 2160,
+    "value_unit": "ft",
+    "parameter_id": "Elev",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Elev.Inst.0.Top of Sediment",
+    "specified_level_code": 63237030,
+    "sort_order": 999
+  }, {
+    "specified_level_id": "Top of Multipurpose",
+    "current_value": 2246,
+    "value_unit": "ft",
+    "parameter_id": "Elev",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Elev.Inst.0.Top of Multipurpose",
+    "specified_level_code": 63143030,
+    "sort_order": 999
+  }, {
+    "specified_level_id": "Bottom of Multipurpose",
+    "current_value": 2234,
+    "value_unit": "ft",
+    "parameter_id": "Elev",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Elev.Inst.0.Bottom of Multipurpose",
+    "specified_level_code": 71124030,
+    "sort_order": 999
+  }, {
+    "specified_level_id": "Top of Conservation",
+    "current_value": 14788340,
+    "value_unit": "ac-ft",
+    "parameter_id": "Stor",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Stor.Inst.0.Top of Conservation",
+    "specified_level_code": 4,
+    "sort_order": 36
+  }, {
+    "specified_level_id": "Top of Flood",
+    "current_value": 18462840,
+    "value_unit": "ac-ft",
+    "parameter_id": "Stor",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Stor.Inst.0.Top of Flood",
+    "specified_level_code": 7,
+    "sort_order": 44
+  }, {
+    "specified_level_id": "Bottom of Exclusive Flood Control",
+    "current_value": 17492000,
+    "value_unit": "ac-ft",
+    "parameter_id": "Stor",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Stor.Inst.0.Bottom of Exclusive Flood Control",
+    "specified_level_code": 15,
+    "sort_order": 52
+  }, {
+    "specified_level_id": "Top of Exclusive Flood Control",
+    "current_value": 18463000,
+    "value_unit": "ac-ft",
+    "parameter_id": "Stor",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Stor.Inst.0.Top of Exclusive Flood Control",
+    "specified_level_code": 16,
+    "sort_order": 54
+  }, {
+    "specified_level_id": "Top of Sediment",
+    "current_value": 4088000,
+    "value_unit": "ac-ft",
+    "parameter_id": "Stor",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Stor.Inst.0.Top of Sediment",
+    "specified_level_code": 63237030,
+    "sort_order": 999
+  }, {
+    "specified_level_id": "Bottom of Multipurpose",
+    "current_value": 14788000,
+    "value_unit": "ac-ft",
+    "parameter_id": "Stor",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Stor.Inst.0.Bottom of Multipurpose",
+    "specified_level_code": 71124030,
+    "sort_order": 999
+  }, {
+    "specified_level_id": "Top of Multipurpose",
+    "current_value": 17492000,
+    "value_unit": "ac-ft",
+    "parameter_id": "Stor",
+    "parameter_type_id": "Inst",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Stor.Inst.0.Top of Multipurpose",
+    "specified_level_code": 63143030,
+    "sort_order": 999
+  }, {
+    "specified_level_id": "Secchi Depth",
+    "current_value": 156,
+    "value_unit": "in",
+    "parameter_id": "Depth",
+    "parameter_type_id": "Const",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Depth.Const.0.Secchi Depth",
+    "specified_level_code": 3067981230,
+    "sort_order": 999
+  }, {
+    "specified_level_id": "Max Temperature Prof Depth",
+    "current_value": 2755.91,
+    "value_unit": "in",
+    "parameter_id": "Depth",
+    "parameter_type_id": "Const",
+    "level_as_of": "2020-12-14T15:11:35Z",
+    "location_level_id": "FTPK.Depth.Const.0.Max Temperature Prof Depth",
+    "specified_level_code": 3653946230,
+    "sort_order": 999
+  }
+]
