@@ -180,3 +180,12 @@
  * @property {Date} level_as_of
  * @property {string} location_level_id String that could be used for RADAR time series query.
 */
+
+/**
+ * @typedef a2w.models.LocationChild
+ * @property {string} location_code
+ * @property {string} location_id
+ * @property {number} label
+ * @property {string} location_kind_id
+ * @property {string} location_type
+ */

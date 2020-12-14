@@ -1,0 +1,20 @@
+[{
+    "location_code": "14797020",
+    "location_id": "Indian Rock-Conduit",
+    "label": "Indian Rock Dam Conduit",
+    "location_kind_id": "SITE",
+    "location_type": "Conduit"
+  }, {
+    "location_code": "14785020",
+    "location_id": "Indian Rock-FloodGates",
+    "label": "Indian Rock Dam Flood Gates",
+    "location_kind_id": "SITE",
+    "location_type": "Flood Gate"
+  }, {
+    "location_code": "14793020",
+    "location_id": "Indian Rock-Spillway",
+    "label": "Indian Rock Dam Spillway",
+    "location_kind_id": "SITE",
+    "location_type": "Spillway"
+  }
+]
