@@ -138,7 +138,7 @@ export const getMapLayers = (locationSummaries) => {
     const iconStyle = new Style({
       image: new Icon({
         src: iconLibrary(item.location_type,item),
-        anchor: [0.5, 0.7],
+        anchor: [0.5, 0.8],
         crossOrigin: "anonymous",
       }),
     });
