@@ -169,3 +169,14 @@
  * @property {number} station
  * @property {string} station_unit
 */
+
+/**
+ * @typedef a2w.models.LocationLevel
+ * @property {string} specified_level_id Name of the level being measured
+ * @property {number} current_value
+ * @property {string} value_unit Units for the current value
+ * @property {string} parameter_id Elev, Stor, etc.
+ * @property {string} parameter_type_id Inst, Avg, Min, Max, etc.
+ * @property {Date} level_as_of
+ * @property {string} location_level_id String that could be used for RADAR time series query.
+*/
