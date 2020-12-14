@@ -1,0 +1,24 @@
+<svg width="42" height="81" viewBox="0 0 182 221" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with UXWing SVG Editor - https://uxwing.com/svg-icon-editor/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="83" width="44" y="-1" x="-1"/>
+  <g display="none" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%" id="svg_2"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_1" d="m91.18598,3.60331c-48.13924,0 -87.16665,27.85117 -87.16665,62.20484c0,34.36195 87.16665,150.29517 87.16665,150.29517s87.16662,-115.93322 87.16662,-150.29517c0,-34.35367 -39.01578,-62.20484 -87.16662,-62.20484zm0,91.93046c-23.00037,0 -41.65404,-13.30356 -41.65404,-29.72562s18.65367,-29.72561 41.65404,-29.72561s41.65404,13.31181 41.65404,29.72561s-18.65367,29.72562 -41.65404,29.72562z" stroke-width="1.5" fill="#00bfbf" stroke="#00bfbf"/>
+  <style type="text/css">
+   <![CDATA[
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#A60D0D;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#EA4335;}
+]]>
+  </style>
+  <ellipse ry="41.833221" rx="54.833205" id="svg_20" cy="69.666796" cx="88.667004" stroke-width="1.5" fill="#ffffff" stroke="#ffffff"/>
+  <style transform="matrix(0.6376895432345577,0,0,0.6376895432345577,0,0) " type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style>
+  <text font-weight="bold" stroke="#00bfbf" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_10" y="77.5" x="41" stroke-width="0" fill="#000000">District</text>
+ </g>
+</svg>
