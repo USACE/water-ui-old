@@ -23,6 +23,7 @@ import wq from "../../img/water.svg";
 import hq from "../../img/building.svg";
 import operatingBasin from "../../img/water-wave.svg";
 import division from "../../img/water-drop.svg";
+import location from "../../img/location.svg";
 
 export const locationTypes = {
   ALL: "ALL",
@@ -115,7 +116,7 @@ export const getMapOverlay = (id, popupContainer) => new Overlay({
 const iconLibrary = (type,item) => {
   //temp imgs from https://uxwing.com/
   const iconObjects = {
-    LOCATION: "https://openlayers.org/en/latest/examples/data/icon.png",
+    LOCATION: location,
     BASIN: basin,
     DISTRICT: district,
     WQ: wq,
@@ -123,7 +124,6 @@ const iconLibrary = (type,item) => {
     OPERATING_BASIN: operatingBasin,
     DIVISION: division,
   };
-  console.log("type: ",item,"    ",type,iconObjects[type])
   return iconObjects[type] || iconObjects.LOCATION;
 };
 
@@ -138,7 +138,7 @@ export const getMapLayers = (locationSummaries) => {
     const iconStyle = new Style({
       image: new Icon({
         src: iconLibrary(item.location_type,item),
-        anchor: [0.5, 0.96],
+        anchor: [0.5, 0.7],
         crossOrigin: "anonymous",
       }),
     });
