@@ -17,6 +17,13 @@ import { Cluster, Vector as VectorSource } from "ol/source";
 import { fromLonLat } from "ol/proj";
 import BasemapPicker from "../../ol-controls/basemap-picker";
 import { RoutePaths } from "../../app-bundles/route-paths";
+import basin from "../../img/mountain.svg";
+import district from "../../img/districts.svg";
+import wq from "../../img/water.svg";
+import hq from "../../img/building.svg";
+import operatingBasin from "../../img/water-wave.svg";
+import division from "../../img/water-drop.svg";
+import location from "../../img/location.svg";
 
 export const locationTypes = {
   ALL: "ALL",
@@ -106,15 +113,19 @@ export const getMapOverlay = (id, popupContainer) => new Overlay({
   offset: [0, -10],
 });
 
-const createStyle = (src, img) => new Style({
-  image: new Icon({
-    anchor: [0.5, 0.96],
-    crossOrigin: "anonymous",
-    src: src,
-    img,
-    imgSize: img && [img.width, img.height],
-  }),
-});
+const iconLibrary = (type,item) => {
+  //temp imgs from https://uxwing.com/
+  const iconObjects = {
+    LOCATION: location,
+    BASIN: basin,
+    DISTRICT: district,
+    WQ: wq,
+    HQ: hq,
+    OPERATING_BASIN: operatingBasin,
+    DIVISION: division,
+  };
+  return iconObjects[type] || iconObjects.LOCATION;
+};
 
 /**
  * Helper function that returns the map vector layers
@@ -123,15 +134,19 @@ const createStyle = (src, img) => new Style({
  */
 export const getMapLayers = (locationSummaries) => {
   const icons = locationSummaries.map((item, index) => {
-    const icon = new Feature( new Point(fromLonLat([item.longitude, item.latitude])) );
+    const icon = new Feature(new Point(fromLonLat([item.longitude, item.latitude])));
+    const iconStyle = new Style({
+      image: new Icon({
+        src: iconLibrary(item.location_type,item),
+        anchor: [0.5, 0.8],
+        crossOrigin: "anonymous",
+      }),
+    });
     icon.setProperties({
       model: { ...item },
     });
     icon.setId(index);
-    icon.set(
-      "style",
-      createStyle("https://openlayers.org/en/latest/examples/data/icon.png", undefined),
-    );
+    icon.setStyle(iconStyle);
     return icon;
   });
 
