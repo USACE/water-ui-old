@@ -113,7 +113,7 @@ export const getMapOverlay = (id, popupContainer) => new Overlay({
   offset: [0, -10],
 });
 
-const iconLibrary = (type,item) => {
+const iconLibrary = ( type ) => {
   //temp imgs from https://uxwing.com/
   const iconObjects = {
     LOCATION: location,
