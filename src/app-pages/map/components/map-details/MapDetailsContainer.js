@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { connect } from "redux-bundler-react";
 import PropTypes from "prop-types";
 import Loader from "../../../../app-common/loader/Loader";
@@ -16,14 +16,22 @@ const MapDetailsContainer = ( props ) => {
     /** @type a2w.models.LocationDetail */
     locationDetailData,
     doUpdateQuery,
+    doLocationDetailFetch,
+    doLocationLevelFetch,
   } = props;
 
   const containerRef = useRef(null);
   const headerRef = useRef(null);
   const display = displayTypes[queryObject.display] ? queryObject.display : defaultMapParams.display;
+  const locationId = queryObject.locationId || "";
+  useEffect(() => {
+    doLocationDetailFetch();
+    doLocationLevelFetch();
+  }, [locationId, doLocationDetailFetch, doLocationLevelFetch])
+
 
   // do not display map details if locationId does not exist and the user is not in full screen mode
-  if (!queryObject.locationId && display !== displayTypes.fs) {
+  if (!locationId && display !== displayTypes.fs) {
     return null;
   }
 
@@ -61,6 +69,8 @@ MapDetailsContainer.propTypes = {
   locationDetailIsLoading: PropTypes.bool.isRequired,
   locationDetailData: PropTypes.object,
   doUpdateQuery: PropTypes.func.isRequired,
+  doLocationDetailFetch: PropTypes.func.isRequired,
+  doLocationLevelFetch: PropTypes.func.isRequired,
 };
 
 export default connect(
@@ -69,5 +79,7 @@ export default connect(
   "selectLocationDetailIsLoading",
   "selectLocationDetailData",
   "doUpdateQuery",
+  "doLocationDetailFetch",
+  "doLocationLevelFetch",
   MapDetailsContainer
 );
