@@ -145,7 +145,7 @@ const Autocomplete = (props) => {
         {...input}
         {...rest}
         id={id}
-        type="text"
+        type="text" autoComplete="off"
         onClick={handleInputOnClick}
         onKeyDown={handleInputOnKeyDown}
         aria-haspopup="true"
