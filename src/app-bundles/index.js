@@ -7,10 +7,16 @@ import createAuthBundle from "@corpsmap/create-auth-bundle";
 import createJwtApiBundle from "@corpsmap/create-jwt-api-bundle";
 import routeBundle from "./routes-bundle";
 import mapsBundle from './maps-bundle';
-import locationsMapBundle from "./locations-map-bundle";
-import locationSummariesBundle from "./location-summaries-bundle";
-import locationSearchBundle from "./location-search-bundle";
 import districtsAndBasinsBundle from "./districts-and-basins-bundle";
+import locationSummariesBundle from "./location-summaries-bundle";
+import locationDetailBundle from "./location-detail-bundle";
+import locationLevelBundle from "./location-level-bundle";
+import locationTreeBundle from "./location-tree-bundle";
+import locationSearchBundle from "./location-search-bundle";
+import locationsMapBundle from "./locations-map-bundle";
+import streamLocationsBundle from "./stream-location-bundle";
+import radarTimeSeriesBundle from "./radar-time-series-bundle";
+import radarTimeSeriesParamsBundle from "./radar-time-series-params-bundle";
 import corporateOfficeBundle from "./corporate-office-bundle";
 import corporateOfficeReportBundle from "./corporate-office-report-bundle";
 import corporateOfficeSpecialReportBundle from "./corporate-office-special-report-bundle";
@@ -18,14 +24,13 @@ import corporateOfficeLocationReportBundle from "./corporate-office-location-rep
 import projectReportBundle from "./project-reports-bundle";
 import watershedReportBundle from "./watershed-reports-bundle";
 import districtReportBundle from "./district-reports-bundle";
-import locationDetailBundle from "./location-detail-bundle";
-import locationTreeBundle from "./location-tree-bundle";
-import radarTimeSeriesBundle from "./radar-time-series-bundle";
-import radarTimeSeriesParamsBundle from "./radar-time-series-params-bundle";
-import streamLocationsBundle from "./stream-location-bundle";
 import cache from "./../cache.js";
 
 export default composeBundles(
+  createCacheBundle({
+    cacheFn: cache.set,
+  }),
+  createUrlBundle(),
   createAuthBundle({
     appId: "ff3437e4-f2fc-432f-8175-7dd70f9bda44",
     redirectOnLogout: "/",
@@ -38,15 +43,18 @@ export default composeBundles(
       method: "GET",
     },
   }),
-  createCacheBundle({
-    cacheFn: cache.set,
-  }),
-  createUrlBundle(),
-  mapsBundle,
-  locationSummariesBundle,
   routeBundle,
-  locationsMapBundle,
+  mapsBundle,
   districtsAndBasinsBundle,
+  locationSummariesBundle,
+  locationDetailBundle,
+  locationLevelBundle,
+  locationTreeBundle,
+  locationSearchBundle,
+  locationsMapBundle,
+  streamLocationsBundle,
+  radarTimeSeriesBundle,
+  radarTimeSeriesParamsBundle,
   corporateOfficeBundle,
   corporateOfficeReportBundle,
   corporateOfficeSpecialReportBundle,
@@ -54,10 +62,4 @@ export default composeBundles(
   projectReportBundle,
   watershedReportBundle,
   districtReportBundle,
-  locationDetailBundle,
-  locationTreeBundle,
-  locationSearchBundle,
-  radarTimeSeriesBundle,
-  radarTimeSeriesParamsBundle,
-  streamLocationsBundle
 );

@@ -8,11 +8,13 @@ import Map from "./components/map/Map";
 const MapPage = ({
   queryObject,
   doLocationDetailFetch,
+  doLocationLevelFetch,
 }) => {
   const locationId = queryObject.locationId || "";
   useEffect(() => {
     doLocationDetailFetch();
-  }, [locationId, doLocationDetailFetch])
+    doLocationLevelFetch();
+  }, [locationId, doLocationDetailFetch, doLocationLevelFetch])
 
   return (
     <>
@@ -35,5 +37,6 @@ MapPage.propTypes = {
 export default connect(
   "selectQueryObject",
   "doLocationDetailFetch",
+  "doLocationLevelFetch",
   MapPage
 );
