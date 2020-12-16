@@ -6,7 +6,7 @@ const clearButtonCss = {
   float: "right",
   fontSize: "1.4em",
   marginRight: "1.5rem",
-  marginTop: "-2rem",
+  marginTop: "-1.4em",
   cursor: "pointer",
   color: "#333333"
 }
