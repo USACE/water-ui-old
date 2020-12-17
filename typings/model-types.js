@@ -210,3 +210,27 @@
  * @property {string} owner_name
  */
  
+/**
+ * @typedef a2w.models.SampleCount
+ * @property {Date} sample_date
+ * @property {number} num_samples
+ */
+ 
+/**
+ * @typedef a2w.models.SampleResult
+ * @property {string} sample_number
+ * @property {number} sample_depth
+ * @property {string} depth_unit_of_measure
+ * @property {number} value
+ * @property {string} units
+ * @property {string} lab_id
+ * @property {Date} date_entered
+ * @property {string} sample_name
+ * @property {Date} sample_time
+ * @property {number} collect_method
+ * @property {string} collect_pnt
+ * @property {string} source_code
+ * @property {string} huc
+ * @property {string} source_description
+ * @property {string} collection_method_name
+ */
