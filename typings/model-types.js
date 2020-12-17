@@ -158,7 +158,7 @@
  * @property {number} top_of_deadpool
  * @property {number} top_of_flood
  * @property {number} top_of_surcharge
-*/
+ */
 
 /**
  * @typedef a2w.models.StreamLocation
@@ -168,7 +168,7 @@
  * @property {string} location_id
  * @property {number} station
  * @property {string} station_unit
-*/
+ */
 
 /**
  * @typedef a2w.models.LocationLevel
@@ -179,7 +179,7 @@
  * @property {string} parameter_type_id Inst, Avg, Min, Max, etc.
  * @property {Date} level_as_of
  * @property {string} location_level_id String that could be used for RADAR time series query.
-*/
+ */
 
 /**
  * @typedef a2w.models.LocationChild
@@ -189,3 +189,24 @@
  * @property {string} location_kind_id
  * @property {string} location_type
  */
+
+/**
+ * @typedef a2w.models.LocationNid
+ * @property {string} nid_id
+ * @property {number} record_id
+ * @property {string} dam_name
+ * @property {string} other_dam_name
+ * @property {string} dam_former_name
+ * @property {string} dam_designer
+ * @property {string} dam_type
+ * @property {string} core
+ * @property {string} foundation
+ * @property {string} year_completed
+ * @property {number} dam_length
+ * @property {number} dam_height
+ * @property {number} structural_height
+ * @property {number} hydraulic_height
+ * @property {number} nid_height
+ * @property {string} owner_name
+ */
+ 
