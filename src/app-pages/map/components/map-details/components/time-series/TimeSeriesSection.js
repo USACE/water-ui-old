@@ -26,21 +26,23 @@ export const TimeSeriesSection = ({
   const sectionCSSClasses = `time-series-section ${ queryObject.display }`
 
   return (
-    <div className={ sectionCSSClasses }>
+    <div className="time-series-container">
       { locationTimeSeriesIsLoading && <Loader /> }
-      <div className="time-series-plot">
-        <TimeSeriesPlot
+      <div className={ sectionCSSClasses }>
+        <div className="time-series-plot">
+          <TimeSeriesPlot
+            locationTimeSeriesPlotlyData={locationTimeSeriesPlotlyData}
+            plotName={plotName}
+            plotHeight={( queryObject.display === "fs" ? 450 : 300 )}
+          />
+          <TimeSeriesDateRange />
+        </div>
+        <TimeSeriesPlotLegend
           locationTimeSeriesPlotlyData={locationTimeSeriesPlotlyData}
           plotName={plotName}
-          plotHeight={( queryObject.display === "fs" ? 450 : 300 )}
+          setPlotName={setPlotName}
         />
-        <TimeSeriesDateRange />
       </div>
-      <TimeSeriesPlotLegend
-        locationTimeSeriesPlotlyData={locationTimeSeriesPlotlyData}
-        plotName={plotName}
-        setPlotName={setPlotName}
-      />
     </div>
   );
 };
