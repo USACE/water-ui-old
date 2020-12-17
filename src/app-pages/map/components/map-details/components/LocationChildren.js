@@ -1,20 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
+import Table from "../../../../../app-common/table/Table";
 
 const LocationChildren = ({ locationChildrenData }) => {
+  const header = ["Name", "Location Type"];
+  const body = locationChildrenData.map((childData) => {
+    const name = childData.label;
+    const locationType = childData.location_type;
+    return ({
+      id: childData.location_code,
+      row: [name, locationType],
+    })
+  });
+
+  if (body.length === 0) {
+    return <p>No location children data.</p>
+  }
   return (
-    <ul>
-      { locationChildrenData.map((childData) => {
-          const key = childData.location_code;
-          const locationType = childData.location_type;
-          const label = childData.label;
-          // add the location type in paranthesis if the location type is not already in the label
-          const display = locationType && !label.includes(locationType) ? `${label} (${locationType})` : label;
-          return <li key={key}>{display}</li>;
-        })
-      }
-    </ul>
+    <Table
+      header={header}
+      body={body}
+    />
   );
 };
 
