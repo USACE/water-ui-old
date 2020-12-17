@@ -17,6 +17,12 @@ const TimeSeriesPlotLegend = ({
     ...locationTimeSeriesPlotlyData[key],
   }));
 
+  const handleOnKeyDown = (e, plotName) => {
+    if (e.key === "Enter") {
+      setPlotName(plotName);
+    }
+  };
+
   return (
     <table className="table time-series-table">
       <thead>
@@ -30,7 +36,9 @@ const TimeSeriesPlotLegend = ({
           <tr
             key={plot.name}
             className={plot.name === plotName ? "time-series-selected-row" : ""}
+            tabIndex="0"
             onClick={() => setPlotName(plot.name)}
+            onKeyDown={e => handleOnKeyDown(e, plot.name)}
           >
             <td>{ plot.name }</td>
             <td><Sparkline data={plot} /></td>
