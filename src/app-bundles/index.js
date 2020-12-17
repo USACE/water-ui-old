@@ -11,6 +11,7 @@ import districtsAndBasinsBundle from "./districts-and-basins-bundle";
 import locationSummariesBundle from "./location-summaries-bundle";
 import locationDetailBundle from "./location-detail-bundle";
 import locationLevelBundle from "./location-level-bundle";
+import locationChildrenBundle from "./location-children-bundle";
 import locationTreeBundle from "./location-tree-bundle";
 import locationSearchBundle from "./location-search-bundle";
 import locationsMapBundle from "./locations-map-bundle";
@@ -49,6 +50,7 @@ export default composeBundles(
   locationSummariesBundle,
   locationDetailBundle,
   locationLevelBundle,
+  locationChildrenBundle,
   locationTreeBundle,
   locationSearchBundle,
   locationsMapBundle,
