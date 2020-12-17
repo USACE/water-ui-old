@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import * as d3 from "d3";
 
 // Location Level Data
-const mode = "dam";
-const hasLock = false;
+const mode = "lock"; //could be lock or dam or lockTurbine or turbine
+const hasLock = true;
 const hasTurbine = false;
 const damTop = 1000;
 const damBottom = 500;
@@ -41,11 +41,11 @@ const damScale = d3
   .domain([damTop, damBottom])
   .range([130, 560]);
 
-// const gradientScale = d3
-//   .scaleOrdinal()
-//   .domain(0, 20, 40, 60, 80, 100)
-//   .range([damScale(gradientTop), damScale(gradientBottom)]);
-// const gradientAxis = d3.axisRight(gradientScale);
+const gradientScale = d3
+  .scaleOrdinal()
+  .domain([0, 20, 40, 60, 80, 100])
+  .range([damScale(gradientTop), damScale(gradientBottom)]);
+const gradientAxis = d3.axisRight(gradientScale);
 
 const curvedLine = d3
   .line()
@@ -77,6 +77,11 @@ const createArrow = (svg, x, y, rotation) => {
     .attr("fill", "#000000")
     .attr("transform", `translate(${x},${y}) rotate(${rotation})`);
 };
+
+// create boxes
+const createBox = (width, height) => {
+  return straightLine([[0,0], [width, 0], [width, height], [0, height]]);
+ };
 
 //create lock
 const createLock = svg => {
@@ -135,8 +140,8 @@ const createLock = svg => {
     )
     .attr("fill", "#EEEEEE");
   //create gradient for water underneath the lock. See http://jsfiddle.net/ZCwrx/
-  var lockGradient = svg
-    .select("defs")
+  const lockGradient = svg
+    .append("defs")
     .append("linearGradient")
     .attr("id", "LockGradient")
     .attr("x1", "0%")
@@ -158,6 +163,7 @@ const createLock = svg => {
     .append("path")
     .attr("d", straightLine([[300, 560], [1020, 560], [1020, 610], [300, 610]]))
     .attr("fill", "url(#LockGradient)");
+
   //create arrows in the water
   createArrow(svg, 310, 570, 0);
   createArrow(svg, 520, 605, -90);
@@ -228,84 +234,84 @@ const createLock = svg => {
 
 const drawBoat = svg => {
   //draw boat
-  // svg
-  //   .append("g")
-  //   .attr("class", "boat")
-  //   .append("path")
-  //   .attr(
-  //     "d",
-  //     straightLine([
-  //       [540, 345],
-  //       [530, 340],
-  //       [500, 340],
-  //       [525, 370],
-  //       [645, 370],
-  //       [655, 340],
-  //       [640, 340],
-  //       [635, 345],
-  //       [630, 345],
-  //       [630, 335],
-  //       [627, 335],
-  //       [627, 330],
-  //       [622, 330],
-  //       [622, 320],
-  //       [612, 320],
-  //       [612, 330],
-  //       [602, 330],
-  //       [602, 335],
-  //       [598, 335],
-  //       [598, 345]
-  //     ])
-  //   )
-  //   .attr("fill", "#58595D");
-  // //create windows on boat
-  // for (var i = 0; i < 4; i++) {
-  //   let translateStr = `translate(${601 + 7 * i}, 339)`;
-  //   svg
-  //     .select("g.boat")
-  //     .append("path")
-  //     .attr("d", createBox(5, 3))
-  //     .attr("transform", translateStr)
-  //     .attr("fill", "#fff");
-  // }
-  // svg
-  //   .select("g.boat")
-  //   .append("path")
-  //   .attr("d", createBox(6, 3))
-  //   .attr("transform", "translate(605, 332)")
-  //   .attr("fill", "#fff");
-  // //create containers on boat
-  // for (i = 0; i < 3; i++) {
-  //   let translateStr = `translate(${540 + 18 * i},332)`;
-  //   //create box for container
-  //   svg
-  //     .select("g.boat")
-  //     .append("path")
-  //     .attr("d", createBox(15, 12))
-  //     .attr("fill", "#58595D")
-  //     .attr("transform", translateStr);
-  //   //split boxes (container) into ninths
-  //   for (var j = 0; j < 2; j++) {
-  //     var translateStr2 =
-  //       "translate(" + (540 + 18 * i) + "," + (336 + j * 4) + ")";
-  //     var translateStr3 = "translate(" + (545 + 18 * i + 5 * j) + ",332)";
-  //     svg
-  //       .select("g.boat")
-  //       .append("path")
-  //       .attr("d", straightLine([[0, 0], [15, 0]]))
-  //       .attr("stroke", "#EEEEEE")
-  //       .attr("stroke-width", 1)
-  //       .attr("transform", translateStr2);
-  //     svg
-  //       .select("g.boat")
-  //       .append("path")
-  //       .attr("d", straightLine([[0, 0], [0, 12]]))
-  //       .attr("stroke", "#EEEEEE")
-  //       .attr("stroke-width", 1)
-  //       .attr("transform", translateStr3);
-  //   }
-  // }
-  // svg.select("g.boat").attr("transform", "translate(130, 0)");
+  svg
+    .append("g")
+    .attr("class", "boat")
+    .append("path")
+    .attr(
+      "d",
+      straightLine([
+        [540, 345],
+        [530, 340],
+        [500, 340],
+        [525, 370],
+        [645, 370],
+        [655, 340],
+        [640, 340],
+        [635, 345],
+        [630, 345],
+        [630, 335],
+        [627, 335],
+        [627, 330],
+        [622, 330],
+        [622, 320],
+        [612, 320],
+        [612, 330],
+        [602, 330],
+        [602, 335],
+        [598, 335],
+        [598, 345]
+      ])
+    )
+    .attr("fill", "#58595D");
+  //create windows on boat
+  for (var i = 0; i < 4; i++) {
+    let translateStr = `translate(${601 + 7 * i}, 339)`;
+    svg
+      .select("g.boat")
+      .append("path")
+      .attr("d", createBox(5, 3))
+      .attr("transform", translateStr)
+      .attr("fill", "#fff");
+  }
+  svg
+    .select("g.boat")
+    .append("path")
+    .attr("d", createBox(6, 3))
+    .attr("transform", "translate(605, 332)")
+    .attr("fill", "#fff");
+  //create containers on boat
+  for (i = 0; i < 3; i++) {
+    let translateStr = `translate(${540 + 18 * i},332)`;
+    //create box for container
+    svg
+      .select("g.boat")
+      .append("path")
+      .attr("d", createBox(15, 12))
+      .attr("fill", "#58595D")
+      .attr("transform", translateStr);
+    //split boxes (container) into ninths
+    for (var j = 0; j < 2; j++) {
+      var translateStr2 =
+        "translate(" + (540 + 18 * i) + "," + (336 + j * 4) + ")";
+      var translateStr3 = "translate(" + (545 + 18 * i + 5 * j) + ",332)";
+      svg
+        .select("g.boat")
+        .append("path")
+        .attr("d", straightLine([[0, 0], [15, 0]]))
+        .attr("stroke", "#EEEEEE")
+        .attr("stroke-width", 1)
+        .attr("transform", translateStr2);
+      svg
+        .select("g.boat")
+        .append("path")
+        .attr("d", straightLine([[0, 0], [0, 12]]))
+        .attr("stroke", "#EEEEEE")
+        .attr("stroke-width", 1)
+        .attr("transform", translateStr3);
+    }
+  }
+  svg.select("g.boat").attr("transform", "translate(130, 0)");
 };
 
 const noLockTurbine = svg => {
@@ -763,7 +769,7 @@ const createMiddleGradient = svg => {
   if (!isNaN(topY) && !isNaN(bottomY)) {
     d3.select("#MiddleGradient").remove();
     d3.select("g.middleGradient").remove();
-
+    //add gradientScale and gradientAxis here
     //create the actual gradient with green: 60%, yellow: 60-75%, and red: 85-100%
     var middleGradient = svg
       .select("defs")
@@ -1159,7 +1165,7 @@ const renderDamProfileChart = () => {
   drawTicks(dpc);
   createOutflowIcon(dpc, mode);
   createSurchargeIcon(dpc, mode);
-  // createMiddleGradient(dpc, mode);
+  createMiddleGradient(dpc, mode);
   drawDashedLines(dpc, horizontalLabels);
   setText(dpc, mode);
 };
