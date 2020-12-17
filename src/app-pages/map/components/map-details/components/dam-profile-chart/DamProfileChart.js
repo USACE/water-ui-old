@@ -338,7 +338,7 @@ const noLockTurbine = svg => {
     .attr("fill", "#B3B3B3")
     .attr("stroke-linejoin", "bevel");
   var lockGradient = svg
-    .select("defs")
+    .append("defs")
     .append("linearGradient")
     .attr("id", "LockGradient")
     .attr("x1", "0%")
