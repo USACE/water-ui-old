@@ -29,7 +29,7 @@ const LocationInfo = ({ locationDetailData, locationLevelData }) => {
         id: locationLevel.location_level_id,
         row: [name, value],
       })
-    })
+    });
   }
 
   if (body.length === 0) {
