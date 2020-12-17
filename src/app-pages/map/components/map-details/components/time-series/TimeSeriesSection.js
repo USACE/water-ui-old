@@ -24,10 +24,10 @@ export const TimeSeriesSection = ({
   }, [locationTimeSeriesPlotlyData, plotName, setPlotName]);
 
   const sectionCSSClasses = `time-series-section ${ queryObject.display }`
-
+  const loaderStyle = { zIndex: 10 };
   return (
     <div className="time-series-container">
-      { locationTimeSeriesIsLoading && <Loader /> }
+      { locationTimeSeriesIsLoading && <Loader style={loaderStyle} /> }
       <div className={ sectionCSSClasses }>
         <div className="time-series-plot">
           <TimeSeriesPlot
