@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "redux-bundler-react";
 import Table from "../../../../../app-common/table/Table";
 import { formatUnderscore } from "../../../../../utils/";
-import ChartDamProfile  from "./dam-profile-chart/DamProfileChart";
+import DamProfileChart  from "./dam-profile-chart/DamProfileChart";
 
 // array of all the dam profile keys
 /** @type { ( keyof a2w.models.LocationDetail )[] } */
@@ -72,7 +72,7 @@ const DamProfile = ({ locationDetailData }) => {
   }
   return (
     <>
-    <ChartDamProfile data={ data } />
+    <DamProfileChart data={ data } />
     <Table
       header={ header }
       body={ body }

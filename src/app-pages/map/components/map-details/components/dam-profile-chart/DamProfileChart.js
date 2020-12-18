@@ -1201,7 +1201,7 @@ const renderDamProfileChart = (data) => {
   setText(dpc, mode, inflow, outflow, sur, tailWater, text, date);
 };
 
-const ChartDamProfile = ({ data }) => {
+const DamProfileChart = ({ data }) => {
   // After SVG is available in the DOM
   useEffect(() => {
     renderDamProfileChart( data );
@@ -1218,8 +1218,8 @@ const ChartDamProfile = ({ data }) => {
   );
 }
 
-ChartDamProfile.propTypes = {
+DamProfileChart.propTypes = {
   data: PropTypes.object.isRequired
 };
 
-export default ChartDamProfile
+export default DamProfileChart;
