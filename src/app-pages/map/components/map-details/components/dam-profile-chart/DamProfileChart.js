@@ -1,28 +1,6 @@
 import React, { useEffect } from "react";
-
+import PropTypes from 'prop-types';
 import * as d3 from "d3";
-
-// Location Level Data
-const mode = "turbine"; //could be lock or dam or lockTurbine or turbine
-const hasLock = false;
-const hasTurbine = true;
-const damTop = 1000;
-const damBottom = 500;
-//comment out horizontal labels
-const horizontalLabels = [
-  { name: "Top of Flood", value: 950, showLine: true, side: "left" },
-  { name: "Top of Conservation", value: 790, showLine: true, side: "left" }
-];
-
-// Current Data
-const currentLevel = 800;
-const tailWater = 600;
-const inflow = 100;
-const outflow = 200;
-const sur = 10;
-
-const text = "Sample Dam";
-const date = 1571174251; // 15 Oct 2019, 16:17:31
 
 // Configuration Parameters
 const gradientLabel = [0, 20, 40, 60, 80, 100];
@@ -31,22 +9,6 @@ const gradientBottom = null;
 const colorArr = ["red", "yellow", "yellow", "green"];
 const colorLevels = [0.0, 0.2, 0.3, 0.4];
 const numFormat = d3.format(".2f");
-
-const tickScale = d3
-  .scaleLinear()
-  .domain([0, 17])
-  .range([damTop, damBottom]);
-
-const damScale = d3
-  .scaleLinear()
-  .domain([damTop, damBottom])
-  .range([130, 560]);
-
-const gradientScale = d3
-  .scaleOrdinal()
-  .domain([0, 20, 40, 60, 80, 100])
-  .range([damScale(gradientTop), damScale(gradientBottom)]);
-const gradientAxis = d3.axisRight(gradientScale);
 
 const curvedLine = d3
   .line()
@@ -266,7 +228,8 @@ const drawBoat = svg => {
     )
     .attr("fill", "#58595D");
   //create windows on boat
-  for (var i = 0; i < 4; i++) {
+  let i;
+  for (i = 0; i < 4; i++) {
     let translateStr = `translate(${601 + 7 * i}, 339)`;
     svg
       .select("g.boat")
@@ -292,10 +255,10 @@ const drawBoat = svg => {
       .attr("fill", "#58595D")
       .attr("transform", translateStr);
     //split boxes (container) into ninths
-    for (var j = 0; j < 2; j++) {
-      var translateStr2 =
+    for (let j = 0; j < 2; j++) {
+      const translateStr2 =
         "translate(" + (540 + 18 * i) + "," + (336 + j * 4) + ")";
-      var translateStr3 = "translate(" + (545 + 18 * i + 5 * j) + ",332)";
+      const translateStr3 = "translate(" + (545 + 18 * i + 5 * j) + ",332)";
       svg
         .select("g.boat")
         .append("path")
@@ -337,7 +300,7 @@ const noLockTurbine = svg => {
     .attr("stroke-width", 2)
     .attr("fill", "#B3B3B3")
     .attr("stroke-linejoin", "bevel");
-  var lockGradient = svg
+  const lockGradient = svg
     .append("defs")
     .append("linearGradient")
     .attr("id", "LockGradient")
@@ -635,18 +598,19 @@ const createLegend = svg => {
     .text("Outflow");
 };
 
-const drawDashedLines = (svg, data) => {
+const drawDashedLines = (svg, data, damTop, damBottom, damScale) => {
   //create dashed line
-  var x = { left: 160, right: 410 },
-    angledLength = 270,
+  const x = { left: 160, right: 410 },
+    // angledLength unused?
+    // angledLength = 270,
     length = 290,
     radius = 4;
-  var priorVal = -1,
+  let priorVal = -1,
     priorMod = 0,
     priorSide = "left";
 
-  var baseModifier = Math.abs(Math.round((damTop - damBottom) * 0.09));
-  var moveByModifier = Math.max(
+  const baseModifier = Math.abs(Math.round((damTop - damBottom) * 0.09));
+  const moveByModifier = Math.max(
     10,
     Math.abs(Math.round((damTop - damBottom) * 0.09))
   );
@@ -654,14 +618,14 @@ const drawDashedLines = (svg, data) => {
   svg.selectAll("g.dashedLines").remove();
 
   // reverse order sort
-  var lineData = data.sort((a, b) =>
+  const lineData = data.sort((a, b) =>
     a.value > b.value ? -1 : a.value < b.value ? 1 : 0
   );
 
   //Check if the text and lines are too close, and then re-position
   lineData.forEach(function(d, i) {
     if (
-      priorVal == -1 ||
+      priorVal === -1 ||
       (priorVal - d.value > baseModifier || priorSide !== d.side)
     ) {
       priorVal = d.value;
@@ -684,7 +648,7 @@ const drawDashedLines = (svg, data) => {
     priorSide = d.side;
   });
 
-  var lines = svg
+  const lines = svg
     .selectAll("g.dashedLines")
     .data(lineData, d => `${d.name}-${d.value}`)
     .enter()
@@ -694,7 +658,7 @@ const drawDashedLines = (svg, data) => {
   lines
     .append("path")
     .attr("d", d => {
-      if (d.lineType == "straight") {
+      if (d.lineType === "straight") {
         return d.showLine ? createLine(length) : createLine(20);
       } else {
         return d.showLine
@@ -797,7 +761,7 @@ const drawMountain = svg => {
     .attr("fill", "#58595D");
 };
 
-const createMiddleGradient = svg => {
+const createMiddleGradient = (svg, damScale) => {
   const topY = damScale(gradientTop);
   const bottomY = damScale(gradientBottom);
   const height = bottomY - topY;
@@ -807,7 +771,7 @@ const createMiddleGradient = svg => {
     d3.select("g.middleGradient").remove();
     //add gradientScale and gradientAxis here
     //create the actual gradient with green: 60%, yellow: 60-75%, and red: 85-100%
-    var middleGradient = svg
+    const middleGradient = svg
       .select("defs")
       .append("linearGradient")
       .attr("id", "MiddleGradient")
@@ -982,7 +946,7 @@ const createSurchargeIcon = svg => {
     .text("SUR");
 };
 
-const setText = (svg, mode) => {
+const setText = (svg, mode, inflow, outflow, sur, tailWater, text, date) => {
   const outflowText = {
     dam: { x: 610, y: 325 },
     lock: { x: 1010, y: 325 },
@@ -1067,11 +1031,11 @@ const setText = (svg, mode) => {
     );
 };
 
-const drawTicks = svg => {
+const drawTicks = (svg, tickScale )=> {
   svg.append("g").attr("class", "ticks");
 
-  var length, strokeWidth;
-  for (var i = 0; i < 18; i++) {
+  let length, strokeWidth;
+  for (let i = 0; i < 18; i++) {
     if (i % 2 === 0) {
       strokeWidth = 4;
       length = 15;
@@ -1101,7 +1065,7 @@ const drawTicks = svg => {
   }
 };
 
-const drawWaterLevel = (svg, value) => {
+const drawWaterLevel = (svg, value, damScale) => {
   svg.append("g").attr("class", "water-level");
 
   svg
@@ -1130,8 +1094,39 @@ const drawWaterLevel = (svg, value) => {
     .text(`${value}'`);
 };
 
-const renderDamProfileChart = () => {
+const renderDamProfileChart = (data) => {
   const dpc = d3.select("#dpc-1");
+  const {
+    mode = "lockTurbine", //could be lock or dam or lockTurbine or turbine. Based off hasLock and hasLock
+    hasLock = true,
+    hasTurbine = true,
+    damTop = 1000,
+    damBottom = 500,
+    currentLevel = 800,
+    tailWater = 600,
+    inflow = 100,
+    outflow = 200,
+    sur = 10,
+    text = "Dam",
+    date = 1571174251, // 15 Oct 2019, 16:17:31
+  } = data;
+  // based off of data, will push labels into horizontalLables
+  //'Top of Dam', 'Bottom of Conservation', 'Pumping Not Feasible', 'Streambed', 'Spillway Crest', 'Top of Surcharge', and 'Design Capacity'.
+  const { horizontalLabels  = [
+    { name: "Top of Dam", value: damTop, showLine: true, side: "left"}
+  ]} = data;
+
+  const tickScale = d3.scaleLinear().domain([0, 17]).range([damTop, damBottom]);
+
+  const damScale = d3.scaleLinear().domain([damTop, damBottom]).range([130, 560]);
+
+  // unused for now - belongs in createMiddleGradient func?
+  // const gradientScale = d3
+  //   .scaleOrdinal()
+  //   .domain([0, 20, 40, 60, 80, 100])
+  //   .range([damScale(gradientTop), damScale(gradientBottom)]);
+
+  // const gradientAxis = d3.axisRight(gradientScale);
 
   //create line on the left
   dpc
@@ -1147,7 +1142,7 @@ const renderDamProfileChart = () => {
         [243, 150],
         [243, 560],
         [243, 560],
-        [243, 560]
+        [243, 560],
       ])
     )
     .attr("stroke", "#B3B3B3")
@@ -1171,7 +1166,7 @@ const renderDamProfileChart = () => {
         [490, 210],
         [560, 440],
         [610, 440],
-        [610, 561]
+        [610, 561],
       ])
     )
     .attr("stroke", "#B3B3B3")
@@ -1179,7 +1174,7 @@ const renderDamProfileChart = () => {
     .attr("fill", "#B3B3B3")
     .attr("stroke-linejoin", "bevel");
 
-  drawWaterLevel(dpc, currentLevel);
+  drawWaterLevel(dpc, currentLevel, damScale);
   createLegend(dpc);
   createInflowIcon(dpc);
   drawMountain(dpc);
@@ -1198,17 +1193,19 @@ const renderDamProfileChart = () => {
     createTurbine(dpc);
   }
 
-  drawTicks(dpc);
+  drawTicks(dpc, tickScale);
   createOutflowIcon(dpc, mode);
   createSurchargeIcon(dpc, mode);
-  createMiddleGradient(dpc, mode);
-  drawDashedLines(dpc, horizontalLabels);
-  setText(dpc, mode);
+  createMiddleGradient(dpc, damScale);
+  drawDashedLines(dpc, horizontalLabels, damTop, damBottom, damScale);
+  setText(dpc, mode, inflow, outflow, sur, tailWater, text, date);
 };
 
-export default function ChartDamProfile() {
+const ChartDamProfile = ({ data }) => {
   // After SVG is available in the DOM
-  useEffect(renderDamProfileChart, []);
+  useEffect(() => {
+    renderDamProfileChart( data );
+  }, [ data ]);
 
   return (
     <div className="col">
@@ -1220,3 +1217,9 @@ export default function ChartDamProfile() {
     </div>
   );
 }
+
+ChartDamProfile.propTypes = {
+  data: PropTypes.object.isRequired
+};
+
+export default ChartDamProfile

@@ -20,6 +20,38 @@ export const damProfileKeys = [
   "current_surcharge",
 ];
 
+// /** @type a2w.models.DamProfileHistoryEntry[] */
+// const damD3ChartKeys = [
+//   "date",
+//   "in_flow",
+//   "top_of_dam",
+//   "top_of_flood",
+//   "bottom_of_flood",
+//   "stream_bed",
+//   "out_flow",
+// ];
+// Using dummy default data for now. Will put additonal logic in for mode and horizontalLabels. 
+const data = {
+  //mode could be lock or dam or lockTurbine or turbine. Create func to calc
+  mode: undefined, 
+  hasLock: undefined,
+  hasTurbine: undefined,
+  damTop: undefined,
+  damBottom: undefined,
+  horizontalLabels: [
+    { name: "Top of Dam", value: 1000, showLine: true, side: "left"},
+    { name: "Top of Flood", value: 950, showLine: true, side: "left"},
+    { name: "Top of Conservation", value: 790, showLine: true, side: "left" },
+  ],
+  currentLevel: undefined,
+  tailWater: undefined,
+  inflow: undefined,
+  outflow: undefined,
+  sur: undefined,
+  text: undefined,
+  date: undefined,
+};
+
 const DamProfile = ({ locationDetailData }) => {
   const unit = locationDetailData.unit_id ? ` (${locationDetailData.unit_id })` : "";
   const header = ["Name", `Value${unit}`];
@@ -40,10 +72,10 @@ const DamProfile = ({ locationDetailData }) => {
   }
   return (
     <>
-    {ChartDamProfile()}
+    <ChartDamProfile data={ data } />
     <Table
-      header={header}
-      body={body}
+      header={ header }
+      body={ body }
     />
     </>
   );
@@ -51,6 +83,7 @@ const DamProfile = ({ locationDetailData }) => {
 
 DamProfile.propTypes = {
   locationDetailData: PropTypes.object.isRequired,
+  data: PropTypes.object
 };
 
 export default connect(
