@@ -1097,18 +1097,18 @@ const drawWaterLevel = (svg, value, damScale) => {
 const renderDamProfileChart = (data) => {
   const dpc = d3.select("#dpc-1");
   const {
-    mode = "lockTurbine", //could be lock or dam or lockTurbine or turbine. Based off hasLock and hasLock
-    hasLock = true,
-    hasTurbine = true,
-    damTop = 1000,
-    damBottom = 500,
-    currentLevel = 800,
-    tailWater = 600,
-    inflow = 100,
-    outflow = 200,
-    sur = 10,
+    mode = "dam", //could be lock or dam or lockTurbine or turbine. Based off hasLock and hasLock
+    hasLock = false,
+    hasTurbine = false,
+    damTop,
+    damBottom,
+    currentLevel,
+    tailWater,
+    inflow,
+    outflow,
+    sur,
     text = "Dam",
-    date = 1571174251, // 15 Oct 2019, 16:17:31
+    date = ""
   } = data;
   // based off of data, will push labels into horizontalLables
   //'Top of Dam', 'Bottom of Conservation', 'Pumping Not Feasible', 'Streambed', 'Spillway Crest', 'Top of Surcharge', and 'Design Capacity'.

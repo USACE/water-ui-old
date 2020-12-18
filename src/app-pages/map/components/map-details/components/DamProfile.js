@@ -32,24 +32,23 @@ export const damProfileKeys = [
 // ];
 // Using dummy default data for now. Will put additonal logic in for mode and horizontalLabels. 
 const data = {
-  //mode could be lock or dam or lockTurbine or turbine. Create func to calc
-  mode: undefined, 
-  hasLock: undefined,
-  hasTurbine: undefined,
-  damTop: undefined,
-  damBottom: undefined,
+  mode: "lockTurbine", // mode could be lock or dam or lockTurbine or turbine. Create func to calc
+  hasLock: true,
+  hasTurbine: true,
+  damTop: 1000,
+  damBottom: 500,
   horizontalLabels: [
     { name: "Top of Dam", value: 1000, showLine: true, side: "left"},
     { name: "Top of Flood", value: 950, showLine: true, side: "left"},
     { name: "Top of Conservation", value: 790, showLine: true, side: "left" },
   ],
-  currentLevel: undefined,
-  tailWater: undefined,
-  inflow: undefined,
-  outflow: undefined,
-  sur: undefined,
-  text: undefined,
-  date: undefined,
+  currentLevel: 800,
+  tailWater: 600,
+  inflow: 100,
+  outflow: 200,
+  sur: 10,
+  text: "Dam",
+  date: 1571174251, // 15 Oct 2019, 16:17:31
 };
 
 const DamProfile = ({ locationDetailData }) => {
