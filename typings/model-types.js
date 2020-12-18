@@ -158,7 +158,7 @@
  * @property {number} top_of_deadpool
  * @property {number} top_of_flood
  * @property {number} top_of_surcharge
-*/
+ */
 
 /**
  * @typedef a2w.models.StreamLocation
@@ -168,7 +168,7 @@
  * @property {string} location_id
  * @property {number} station
  * @property {string} station_unit
-*/
+ */
 
 /**
  * @typedef a2w.models.LocationLevel
@@ -179,7 +179,7 @@
  * @property {string} parameter_type_id Inst, Avg, Min, Max, etc.
  * @property {Date} level_as_of
  * @property {string} location_level_id String that could be used for RADAR time series query.
-*/
+ */
 
 /**
  * @typedef a2w.models.LocationChild
@@ -188,4 +188,49 @@
  * @property {number} label
  * @property {string} location_kind_id
  * @property {string} location_type
+ */
+
+/**
+ * @typedef a2w.models.LocationNid
+ * @property {string} nid_id
+ * @property {number} record_id
+ * @property {string} dam_name
+ * @property {string} other_dam_name
+ * @property {string} dam_former_name
+ * @property {string} dam_designer
+ * @property {string} dam_type
+ * @property {string} core
+ * @property {string} foundation
+ * @property {string} year_completed
+ * @property {number} dam_length
+ * @property {number} dam_height
+ * @property {number} structural_height
+ * @property {number} hydraulic_height
+ * @property {number} nid_height
+ * @property {string} owner_name
+ */
+ 
+/**
+ * @typedef a2w.models.SampleCount
+ * @property {Date} sample_date
+ * @property {number} num_samples
+ */
+ 
+/**
+ * @typedef a2w.models.SampleResult
+ * @property {string} sample_number
+ * @property {number} sample_depth
+ * @property {string} depth_unit_of_measure
+ * @property {number} value
+ * @property {string} units
+ * @property {string} lab_id
+ * @property {Date} date_entered
+ * @property {string} sample_name
+ * @property {Date} sample_time
+ * @property {number} collect_method
+ * @property {string} collect_pnt
+ * @property {string} source_code
+ * @property {string} huc
+ * @property {string} source_description
+ * @property {string} collection_method_name
  */

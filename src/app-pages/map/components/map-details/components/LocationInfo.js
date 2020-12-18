@@ -5,7 +5,7 @@ import Table from "../../../../../app-common/table/Table";
 import { damProfileKeys } from "./DamProfile";
 import { formatUnderscore } from "../../../../../utils/";
 
-const LocationInfo = ({ locationDetailData }) => {
+const LocationInfo = ({ locationDetailData, locationLevelData }) => {
   const header = ["Name", "Value"];
   const body = [];
   Object.keys(locationDetailData).forEach((key) => {
@@ -20,6 +20,18 @@ const LocationInfo = ({ locationDetailData }) => {
     }
   });
 
+  // add the location level to the table body
+  if (locationLevelData) {
+    locationLevelData.forEach(locationLevel => {
+      const name = locationLevel.specified_level_id;
+      const value = `${locationLevel.current_value} ${locationLevel.value_unit}`;
+      body.push({
+        id: locationLevel.location_level_id,
+        row: [name, value],
+      })
+    });
+  }
+
   if (body.length === 0) {
     return <p>No location information data.</p>
   }
@@ -33,6 +45,15 @@ const LocationInfo = ({ locationDetailData }) => {
 
 LocationInfo.propTypes = {
   locationDetailData: PropTypes.object,
+  locationLevelData: PropTypes.arrayOf(PropTypes.shape({
+    location_level_id: PropTypes.string,
+    specified_level_id: PropTypes.string,
+    current_value: PropTypes.number,
+    value_unit: PropTypes.string,
+  })),
 };
 
-export default connect("selectLocationDetailData", LocationInfo);
+export default connect(
+  "selectLocationDetailData",
+  "selectLocationLevelData",
+LocationInfo);

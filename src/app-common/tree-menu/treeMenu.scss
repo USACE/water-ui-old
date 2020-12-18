@@ -21,14 +21,15 @@
   position: absolute;
   overflow: auto;
   max-height: 75vh;
+  padding-bottom: 0.25rem;
+  border-radius: 0px 0px 5px 5px;
 }
 
 .rstm-tree-item {
-  padding: 0.75rem 1rem;
+  padding: 0.25rem 1rem;
   cursor: pointer;
   color: $base-dark-gray;
   background: none;
-  height: $default-input-height;
   box-shadow: none;
   z-index: unset;
   position: relative;
@@ -60,5 +61,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 600px;
+    vertical-align: middle;
   }
 }

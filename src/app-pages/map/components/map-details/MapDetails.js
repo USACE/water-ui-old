@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Accordion from "../../../../app-common/accordion/Accordion";
-import { buildLocationDetailSections } from "./data";
 import { displayTypes, defaultMapParams } from "../../map-utils";
 import { useDimensions } from "../../../../utils";
+import MapAccordion from "./components/MapAccordion";
 
 const MapDetails = ({
   queryObject,
@@ -44,57 +43,12 @@ const MapDetails = ({
     content = "There is no data for this location.";
   }
   else {
-    const detailSections = buildLocationDetailSections(locationDetailData);
-    const navbarPadding = 32;
-    const ulStyle = {
-      top: headerHeight + navbarPadding,
-    };
-  
-    // scroll to the top of the selected accordion section
-    const handleNavlink = (e) => {
-      const index = e.target.value;
-      const accordionBtnId = detailSections[index].id;
-      const accordionBtn = document.getElementById(accordionBtnId);
-      const mainHeader = document.getElementById("main-nav");
-      const top = accordionBtn.offsetTop + mainHeader.clientHeight - headerHeight - navbarPadding;
-      window.scroll({
-        top,
-        behavior: "smooth",
-      });
-    };
-
     content = (
-      <>
-        { display === displayTypes.fs && (
-          <div className="map-details-nav">
-            <ul
-              className="navbar-ul fixed-sticky-nav"
-              style={ulStyle}
-            >
-              { detailSections.map( ({ title }, index) => (
-                  <li
-                    key={title}
-                    className="nav-item"
-                  >
-                    <button
-                      className="nav-link-btn"
-                      value={index}
-                      onClick={handleNavlink}
-                    >
-                      {title}
-                    </button>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        )}
-        <div className="accordion-container">
-          <Accordion
-            data={detailSections}
-          />
-        </div>
-      </>
+      <MapAccordion
+        headerHeight={headerHeight}
+        display={display}
+        locationDetailData={locationDetailData}
+      />
     );
   }
   return (

@@ -17,44 +17,44 @@ const Loader = ({ type, style }) => {
     case loaderTypes.DISSOLVE_CUBE:
       animation = (
         <div className="dissolve-cube-grid">
-          <div className="dissolve-cube dissolve-cube1" style={style}></div>
-          <div className="dissolve-cube dissolve-cube2" style={style}></div>
-          <div className="dissolve-cube dissolve-cube3" style={style}></div>
-          <div className="dissolve-cube dissolve-cube4" style={style}></div>
-          <div className="dissolve-cube dissolve-cube5" style={style}></div>
-          <div className="dissolve-cube dissolve-cube6" style={style}></div>
-          <div className="dissolve-cube dissolve-cube7" style={style}></div>
-          <div className="dissolve-cube dissolve-cube8" style={style}></div>
-          <div className="dissolve-cube dissolve-cube9" style={style}></div>
+          <div className="dissolve-cube dissolve-cube1"></div>
+          <div className="dissolve-cube dissolve-cube2"></div>
+          <div className="dissolve-cube dissolve-cube3"></div>
+          <div className="dissolve-cube dissolve-cube4"></div>
+          <div className="dissolve-cube dissolve-cube5"></div>
+          <div className="dissolve-cube dissolve-cube6"></div>
+          <div className="dissolve-cube dissolve-cube7"></div>
+          <div className="dissolve-cube dissolve-cube8"></div>
+          <div className="dissolve-cube dissolve-cube9"></div>
         </div>
       );
       break;
     case loaderTypes.SPIN_CUBES:
       animation = (
         <div className="spin-cubes">
-          <div className="cube1" style={style}></div>
-          <div className="cube2" style={style}></div>
+          <div className="cube1"></div>
+          <div className="cube2"></div>
         </div>
       );
       break;
     case loaderTypes.MARCHING_BARS:
       animation = (
         <div className="marching-bars">
-          <div className="rect1" style={style}></div>
-          <div className="rect2" style={style}></div>
-          <div className="rect3" style={style}></div>
-          <div className="rect4" style={style}></div>
-          <div className="rect5" style={style}></div>
+          <div className="rect1"></div>
+          <div className="rect2"></div>
+          <div className="rect3"></div>
+          <div className="rect4"></div>
+          <div className="rect5"></div>
         </div>
       );
       break;
     case loaderTypes.FOLDING_CUBE:
       animation = (
         <div className="sk-folding-cube">
-          <div className="sk-cube1 sk-cube" style={style}></div>
-          <div className="sk-cube2 sk-cube" style={style}></div>
-          <div className="sk-cube4 sk-cube" style={style}></div>
-          <div className="sk-cube3 sk-cube" style={style}></div>
+          <div className="sk-cube1 sk-cube"></div>
+          <div className="sk-cube2 sk-cube"></div>
+          <div className="sk-cube4 sk-cube"></div>
+          <div className="sk-cube3 sk-cube"></div>
         </div>
       );
       break;
@@ -63,7 +63,7 @@ const Loader = ({ type, style }) => {
       animation = <div className="spinner-border" />;
   }
   return (
-    <div className="loader-overlay" role="status">
+    <div className="loader-overlay" role="status" style={style}>
       {animation}
       <span className="sr-only">Loading...</span>
     </div>
