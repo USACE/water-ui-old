@@ -426,7 +426,9 @@ const createTurbine = svg => {
 const createInflowIcon = svg => {
   svg
     .append("g")
-    .attr("class", "inflowIcon")
+    .attr("class", "inflowIcon");
+  svg
+    .select("g.inflowIcon")
     .append("circle")
     .attr("r", 25)
     .attr("cx", 320)
@@ -459,7 +461,7 @@ const createInflowIcon = svg => {
     .attr("text-anchor", "middle")
     .attr("dx", 320)
     .attr("dy", 67)
-    .attr("fill", "#fff")
+    .attr("fill", "#FFF")
     .attr("font-family", "sans-serif")
     .text("IN");
 };
@@ -468,7 +470,9 @@ const createLegend = svg => {
   //create legend header
   svg
     .append("g")
-    .attr("class", "legend")
+    .attr("class", "legend");
+  svg
+    .select("g.legend")
     .append("text")
     .attr("dx", 1020)
     .attr("dy", 60)
@@ -671,7 +675,7 @@ const drawDashedLines = (svg, data, damTop, damBottom, damScale) => {
     .attr("transform", d => `translate(${x[d.side]}, ${damScale(d.value)})`)
     .attr("stroke", "#FF0000")
     .attr("fill", "none")
-    .style("stroke-dasharray", ("3", "3"));
+    .style("stroke-dasharray", "3, 3");
 
   //create red dot at the end of the dashed line
   lines
@@ -887,7 +891,9 @@ const createOutflowIcon = (svg, mode) => {
   //create outflow icon
   svg
     .append("g")
-    .attr("class", "outflowIcon")
+    .attr("class", "outflowIcon");
+  svg
+    .select("g.outflowIcon")
     .append("circle")
     .attr("r", 25)
     .attr("cx", outflowCircles[mode].x)
@@ -910,10 +916,12 @@ const createOutflowIcon = (svg, mode) => {
 };
 
 const createSurchargeIcon = svg => {
-  //create inflow icon
+  //create surcharge icon
   svg
     .append("g")
-    .attr("class", "surchargeIcon")
+    .attr("class", "surchargeIcon");
+  svg
+    .select("g.surchargeIcon")
     .append("circle")
     .attr("r", 25)
     .attr("cx", 570)
@@ -946,7 +954,7 @@ const createSurchargeIcon = svg => {
     .text("SUR");
 };
 
-const setText = (svg, mode, inflow, outflow, sur, tailWater, text, date) => {
+const setText = (svg, mode, inflow, outflow, surcharge, tailWater, text, date) => {
   const outflowText = {
     dam: { x: 610, y: 325 },
     lock: { x: 1010, y: 325 },
@@ -968,7 +976,7 @@ const setText = (svg, mode, inflow, outflow, sur, tailWater, text, date) => {
     .attr("font-family", "sans-serif")
     .attr("font-size", "1em")
     .text(function() {
-      return !isNaN(inflow) ? inflow + " cfs" : "";
+      return !isNaN(inflow) ? ( inflow || 0 ) + " cfs" : "";
     });
   // outflow
   svg
@@ -982,7 +990,7 @@ const setText = (svg, mode, inflow, outflow, sur, tailWater, text, date) => {
     .attr("font-family", "sans-serif")
     .attr("font-size", "1em")
     .text(function() {
-      return !isNaN(outflow) ? outflow + " cfs" : "";
+      return !isNaN(outflow) ? ( outflow || 0 ) + " cfs" : "";
     });
   // surcharge
   svg
@@ -996,7 +1004,7 @@ const setText = (svg, mode, inflow, outflow, sur, tailWater, text, date) => {
     .attr("font-family", "sans-serif")
     .attr("font-size", "1em")
     .text(function() {
-      return !isNaN(sur) ? sur + " cfs" : "";
+      return !isNaN(surcharge) ? ( surcharge || 0 ) + " cfs" : "";
     });
   // tailwater
   svg
@@ -1011,7 +1019,7 @@ const setText = (svg, mode, inflow, outflow, sur, tailWater, text, date) => {
     .attr("font-family", "sans-serif")
     .attr("font-size", "18px")
     .text(function() {
-      return !isNaN(tailWater) ? tailWater + "'" : "";
+      return !isNaN(tailWater) ? ( tailWater || 0 ) + "'" : "";
     });
   // current text
   svg
@@ -1026,7 +1034,7 @@ const setText = (svg, mode, inflow, outflow, sur, tailWater, text, date) => {
     .attr("font-size", "1em")
     .text(
       `${text} ${d3.timeFormat("%e-%b-%Y %H:%M:%S")(
-        new Date(parseInt(date + "000"))
+        new Date(date)
       )}`
     );
 };
@@ -1097,24 +1105,31 @@ const drawWaterLevel = (svg, value, damScale) => {
 const renderDamProfileChart = (data) => {
   const dpc = d3.select("#dpc-1");
   const {
-    mode = "dam", //could be lock or dam or lockTurbine or turbine. Based off hasLock and hasLock
-    hasLock = false,
-    hasTurbine = false,
+    mode,
+    hasLock,
+    hasTurbine,
     damTop,
     damBottom,
+    horizontalLabels,
     currentLevel,
     tailWater,
     inflow,
     outflow,
-    sur,
-    text = "Dam",
-    date = ""
+    surcharge,
+    text,
+    date,
+    /* Unused for now but were present in old Dam Profile code so we may need them
+    ruleCurve,
+    precip,
+    designCapacity,
+    gradientTop,
+    gradientBottom,
+    gradientLabel,
+    colorArr,
+    colorLevels,
+    levelType
+    */
   } = data;
-  // based off of data, will push labels into horizontalLables
-  //'Top of Dam', 'Bottom of Conservation', 'Pumping Not Feasible', 'Streambed', 'Spillway Crest', 'Top of Surcharge', and 'Design Capacity'.
-  const { horizontalLabels  = [
-    { name: "Top of Dam", value: damTop, showLine: true, side: "left"}
-  ]} = data;
 
   const tickScale = d3.scaleLinear().domain([0, 17]).range([damTop, damBottom]);
 
@@ -1131,7 +1146,9 @@ const renderDamProfileChart = (data) => {
   //create line on the left
   dpc
     .append("g")
-    .attr("class", "leftLine")
+    .attr("class", "leftLine");
+  dpc
+    .select("g.leftLine")
     .append("path")
     .attr(
       "d",
@@ -1195,10 +1212,10 @@ const renderDamProfileChart = (data) => {
 
   drawTicks(dpc, tickScale);
   createOutflowIcon(dpc, mode);
-  createSurchargeIcon(dpc, mode);
+  createSurchargeIcon(dpc);
   createMiddleGradient(dpc, damScale);
   drawDashedLines(dpc, horizontalLabels, damTop, damBottom, damScale);
-  setText(dpc, mode, inflow, outflow, sur, tailWater, text, date);
+  setText(dpc, mode, inflow, outflow, surcharge, tailWater, text, date);
 };
 
 const DamProfileChart = ({ data }) => {

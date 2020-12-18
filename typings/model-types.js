@@ -123,10 +123,10 @@
  * @property {string} drought_storage_date
  * @property {number} current_surcharge
  * @property {string} surchange_date
- * @property {number} current_top_of_wall_elevation
- * @property {number} top_of_wall_elevation_date
- * @property {number} current_top_of_wall_stage
- * @property {number} top_of_wall_stage_date
+ * @property {number} current_tail_water_elevation
+ * @property {number} tail_water_elevation_date
+ * @property {number} current_tail_water_stage
+ * @property {number} tail_water_stage_date
  * @property {number} current_rule_curve
  * @property {string} rule_curve_date
  * @property {number} current_power_generation
