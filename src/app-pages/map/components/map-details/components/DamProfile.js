@@ -21,18 +21,6 @@ export const damProfileKeys = [
   "current_surcharge",
 ];
 
-// /** @type a2w.models.DamProfileHistoryEntry[] */
-// const damD3ChartKeys = [
-//   "date",
-//   "in_flow",
-//   "top_of_dam",
-//   "top_of_flood",
-//   "bottom_of_flood",
-//   "stream_bed",
-//   "out_flow",
-// ];
-// Using dummy default data for now. Will put additional logic in for mode and horizontalLabels.
-
 const DamProfile = ( props ) => {
   const {
     /** @type a2w.models.LocationDetail */

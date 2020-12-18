@@ -426,9 +426,7 @@ const createTurbine = svg => {
 const createInflowIcon = svg => {
   svg
     .append("g")
-    .attr("class", "inflowIcon");
-  svg
-    .select("g.inflowIcon")
+    .attr("class", "inflowIcon")
     .append("circle")
     .attr("r", 25)
     .attr("cx", 320)
@@ -470,9 +468,7 @@ const createLegend = svg => {
   //create legend header
   svg
     .append("g")
-    .attr("class", "legend");
-  svg
-    .select("g.legend")
+    .attr("class", "legend")
     .append("text")
     .attr("dx", 1020)
     .attr("dy", 60)
@@ -891,9 +887,7 @@ const createOutflowIcon = (svg, mode) => {
   //create outflow icon
   svg
     .append("g")
-    .attr("class", "outflowIcon");
-  svg
-    .select("g.outflowIcon")
+    .attr("class", "outflowIcon")
     .append("circle")
     .attr("r", 25)
     .attr("cx", outflowCircles[mode].x)
@@ -919,9 +913,7 @@ const createSurchargeIcon = svg => {
   //create surcharge icon
   svg
     .append("g")
-    .attr("class", "surchargeIcon");
-  svg
-    .select("g.surchargeIcon")
+    .attr("class", "surchargeIcon")
     .append("circle")
     .attr("r", 25)
     .attr("cx", 570)
@@ -1222,7 +1214,7 @@ const DamProfileChart = ({ data }) => {
   // After SVG is available in the DOM
   useEffect(() => {
     renderDamProfileChart( data );
-  }, [ data ]);
+  }, []);
 
   return (
     <div className="col">
