@@ -1095,6 +1095,8 @@ const drawWaterLevel = (svg, value, damScale) => {
 };
 
 const renderDamProfileChart = (data) => {
+  //destory old svg
+  d3.selectAll("svg > *").remove();
   const dpc = d3.select("#dpc-1");
   const {
     mode,
@@ -1214,7 +1216,7 @@ const DamProfileChart = ({ data }) => {
   // After SVG is available in the DOM
   useEffect(() => {
     renderDamProfileChart( data );
-  }, []);
+  }, [ data ]);
 
   return (
     <div className="col">
