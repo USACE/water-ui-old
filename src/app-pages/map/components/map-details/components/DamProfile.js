@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from 'prop-types';
 import { connect } from "redux-bundler-react";
 import Table from "../../../../../app-common/table/Table";
@@ -21,27 +21,8 @@ export const damProfileKeys = [
   "current_surcharge",
 ];
 
-const DamProfile = ( props ) => {
-  const {
-    /** @type a2w.models.LocationDetail */
-    locationDetailData
-  } = props;
-
-  // TODO: Remove table view when we switch to D3 graphic
-  const unit = locationDetailData.unit_id ? ` (${locationDetailData.unit_id })` : "";
-  const header = ["Name", `Value${unit}`];
-  const body = [];
-  damProfileKeys.forEach((key) => {
-    if (locationDetailData[key]) {
-      const name = formatUnderscore(key);
-      const value = locationDetailData[key];
-      body.push({
-        id: key,
-        row: [name, value],
-      });
-    }
-  });
-
+// helper function which computes the data for the DamProfileChart
+const getDamProfileData = (locationDetailData) => {
   const data = {
     //mode could be lock or dam or lockTurbine or turbine. Create func to calc
     mode: "dam", //could be dam, lock, turbine, or lockTurbine. Based off hasLock and hasLock
@@ -72,7 +53,7 @@ const DamProfile = ( props ) => {
     if( isPresent( value ) ) {
       data.horizontalLabels.push( { name: name, value: value, showLine: showLine, side: side } )
     }
-  }
+  };
 
   // Left labels
   addLabel( "Top of Dam", locationDetailData.top_of_dam, true, "left" );
@@ -90,16 +71,42 @@ const DamProfile = ( props ) => {
   addLabel( "Top of Surcharge", locationDetailData.top_of_surcharge, true, "left" );
   addLabel( "Design Capacity", locationDetailData.design_capacity, true, "left" );
 
+  return data;
+};
+
+const DamProfile = ( props ) => {
+  const {
+    /** @type a2w.models.LocationDetail */
+    locationDetailData
+  } = props;
+
+  // TODO: Remove table view when we switch to D3 graphic
+  const unit = locationDetailData.unit_id ? ` (${locationDetailData.unit_id })` : "";
+  const header = ["Name", `Value${unit}`];
+  const body = [];
+  damProfileKeys.forEach((key) => {
+    if (locationDetailData[key]) {
+      const name = formatUnderscore(key);
+      const value = locationDetailData[key];
+      body.push({
+        id: key,
+        row: [name, value],
+      });
+    }
+  });
+
+  const memoizedData = useMemo(() => getDamProfileData(locationDetailData), [ locationDetailData ]);
+
   if (body.length === 0) {
     return <p>No dam profile data.</p>
   }
   return (
     <>
-    <DamProfileChart data={ data } />
-    <Table
-      header={ header }
-      body={ body }
-    />
+      <DamProfileChart data={ memoizedData } />
+      <Table
+        header={ header }
+        body={ body }
+      />
     </>
   );
 };
