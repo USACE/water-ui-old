@@ -1095,6 +1095,8 @@ const drawWaterLevel = (svg, value, damScale) => {
 };
 
 const renderDamProfileChart = (data) => {
+  //destroy old svg
+  d3.selectAll("svg > *").remove();
   const dpc = d3.select("#dpc-1");
   const {
     mode,
