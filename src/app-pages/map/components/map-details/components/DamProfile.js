@@ -42,11 +42,11 @@ const getDamProfileData = (locationDetailData) => {
     precip: locationDetailData.current_precipitation,
     designCapacity: locationDetailData.design_capacity,
     levelType: locationDetailData.level_type,
-    gradientTop: undefined,
-    gradientBottom: undefined,
+    gradientTop: locationDetailData.top_of_flood,
+    gradientBottom: locationDetailData.bottom_of_flood,
     gradientLabel: [0,20,40,60,80,100],
-    colorArr: undefined,
-    colorLevels: undefined,
+    colorArr: ["red", "yellow", "yellow", "green"],
+    colorLevels: [0.0, 0.2, 0.3, 0.4],
   };
 
   const addLabel = ( name, value, showLine, side ) => {

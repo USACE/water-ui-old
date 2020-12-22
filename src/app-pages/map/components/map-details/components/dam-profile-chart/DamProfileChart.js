@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import * as d3 from "d3";
 
 // Configuration Parameters
-const gradientLabel = [0, 20, 40, 60, 80, 100];
-const gradientTop = null;
-const gradientBottom = null;
-const colorArr = ["red", "yellow", "yellow", "green"];
-const colorLevels = [0.0, 0.2, 0.3, 0.4];
 const numFormat = d3.format(".2f");
 
 const curvedLine = d3
@@ -761,7 +756,7 @@ const drawMountain = svg => {
     .attr("fill", "#58595D");
 };
 
-const createMiddleGradient = (svg, damScale) => {
+const createMiddleGradient = ({svg, damScale, gradientScale, gradientTop, gradientBottom, colorLevels, colorArr, gradientLabel}) => {
   const topY = damScale(gradientTop);
   const bottomY = damScale(gradientBottom);
   const height = bottomY - topY;
@@ -769,10 +764,15 @@ const createMiddleGradient = (svg, damScale) => {
   if (!isNaN(topY) && !isNaN(bottomY)) {
     d3.select("#MiddleGradient").remove();
     d3.select("g.middleGradient").remove();
-    //add gradientScale and gradientAxis here
+
+    //gradientScale and gradientAxis here, not 100% on what they do. When I take this out, the svg still looks correct.
+
+    //gradientAxis
+    d3.axisRight(gradientScale);
+  
     //create the actual gradient with green: 60%, yellow: 60-75%, and red: 85-100%
     const middleGradient = svg
-      .select("defs")
+      .append("defs")
       .append("linearGradient")
       .attr("id", "MiddleGradient")
       .attr("x1", "0%")
@@ -783,7 +783,7 @@ const createMiddleGradient = (svg, damScale) => {
     colorLevels.forEach((d, i) => {
       middleGradient
         .append("stop")
-        .attr("offset", d * 100 + "%")
+        .attr("offset", (d * 100 )+ "%")
         .attr("stop-color", colorArr[i]);
     });
 
@@ -823,7 +823,7 @@ const createMiddleGradient = (svg, damScale) => {
         .attr("y", topY + 5)
         .attr("font-family", "sans-serif")
         .attr("font-size", "12px")
-        .text(gradientLabel[0] + "%");
+        .text(gradientLabel[gradientLabel.length - 1] + "%");
 
       svg
         .select("g.middleGradient")
@@ -832,7 +832,7 @@ const createMiddleGradient = (svg, damScale) => {
         .attr("y", topY + 5 + (gradientLabel.length - 1) * (height / 5))
         .attr("font-family", "sans-serif")
         .attr("font-size", "12px")
-        .text(gradientLabel[gradientLabel.length - 1] + "%");
+        .text(gradientLabel[0] + "%");
     }
   }
 };
@@ -1112,15 +1112,15 @@ const renderDamProfileChart = (data) => {
     surcharge,
     text,
     date,
-    /* Unused for now but were present in old Dam Profile code so we may need them
-    ruleCurve,
-    precip,
-    designCapacity,
     gradientTop,
     gradientBottom,
     gradientLabel,
     colorArr,
     colorLevels,
+    /* Unused for now but were present in old Dam Profile code so we may need them
+    ruleCurve,
+    precip,
+    designCapacity,
     levelType
     */
   } = data;
@@ -1129,13 +1129,10 @@ const renderDamProfileChart = (data) => {
 
   const damScale = d3.scaleLinear().domain([damTop, damBottom]).range([130, 560]);
 
-  // unused for now - belongs in createMiddleGradient func?
-  // const gradientScale = d3
-  //   .scaleOrdinal()
-  //   .domain([0, 20, 40, 60, 80, 100])
-  //   .range([damScale(gradientTop), damScale(gradientBottom)]);
-
-  // const gradientAxis = d3.axisRight(gradientScale);
+  const gradientScale = d3
+    .scaleOrdinal()
+    .domain([0, 20, 40, 60, 80, 100])
+    .range([damScale(gradientBottom), damScale(gradientTop)]);
 
   //create line on the left
   dpc
@@ -1207,7 +1204,7 @@ const renderDamProfileChart = (data) => {
   drawTicks(dpc, tickScale);
   createOutflowIcon(dpc, mode);
   createSurchargeIcon(dpc);
-  createMiddleGradient(dpc, damScale);
+  createMiddleGradient({svg:dpc, damScale, gradientScale, gradientTop, gradientBottom, colorLevels, colorArr, gradientLabel});
   drawDashedLines(dpc, horizontalLabels, damTop, damBottom, damScale);
   setText(dpc, mode, inflow, outflow, surcharge, tailWater, text, date);
 };
