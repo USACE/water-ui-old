@@ -1,5 +1,5 @@
-import createRestBundle from "./create-rest-bundle";
-import { getRestUrl } from "./bundle-utils";
+import createRestBundle from "../create-rest-bundle";
+import { getRestUrl } from "../bundle-utils";
 
 export default createRestBundle({
   name: "corporateOfficeReports",

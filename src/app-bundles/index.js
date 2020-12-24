@@ -18,13 +18,13 @@ import cwmsDetailBundle from "./location-bundles/cwms/cwms-detail-bundle";
 import cwmsStreamsBundle from "./location-bundles/cwms/cwms-streams-bundle";
 import cwmsLevelBundle from "./location-bundles/cwms/cwms-level-bundle";
 import cwmsChildrenBundle from "./location-bundles/cwms/cwms-children-bundle";
-import corporateOfficeBundle from "./corporate-office-bundle";
-import corporateOfficeReportBundle from "./corporate-office-report-bundle";
-import corporateOfficeSpecialReportBundle from "./corporate-office-special-report-bundle";
-import corporateOfficeLocationReportBundle from "./corporate-office-location-report-bundle";
-import projectReportBundle from "./project-reports-bundle";
-import watershedReportBundle from "./watershed-reports-bundle";
-import districtReportBundle from "./district-reports-bundle";
+import corporateOfficeBundle from "./report-bundles/corporate-office-bundle";
+import corporateOfficeReportBundle from "./report-bundles/corporate-office-report-bundle";
+import corporateOfficeSpecialReportBundle from "./report-bundles/corporate-office-special-report-bundle";
+import corporateOfficeLocationReportBundle from "./report-bundles/corporate-office-location-report-bundle";
+import projectReportBundle from "./report-bundles/project-reports-bundle";
+import watershedReportBundle from "./report-bundles/watershed-reports-bundle";
+import districtReportBundle from "./report-bundles/district-reports-bundle";
 import cache from "./../cache.js";
 
 export default composeBundles(
