@@ -3,7 +3,7 @@ import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
 
 export default createRestBundle({
-  name: "streamLocations",
+  name: "cwmsStreams",
   prefetch: false,
   staleAfter: 0,
   persist: false,
@@ -12,12 +12,12 @@ export default createRestBundle({
   postTemplate: null,
   deleteTemplate: null,
   forceFetchActions: [],
-  urlParamSelectors: [ "selectStreamLocationsUrlParams" ],
+  urlParamSelectors: [ "selectCwmsStreamsUrlParams" ],
   defaultState: {
     data: [],
   },
   addons: {
-    selectStreamLocationsUrlParams: createSelector(
+    selectCwmsStreamsUrlParams: createSelector(
       "selectCwmsDetailData",
       cwmsDetail => cwmsDetail && cwmsDetail.stream_location_code
         ? { stream_location_code: cwmsDetail.stream_location_code }

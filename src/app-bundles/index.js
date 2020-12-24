@@ -10,12 +10,12 @@ import mapsBundle from './maps-bundle';
 import districtsAndBasinsBundle from "./districts-and-basins-bundle";
 import locationSummariesBundle from "./location-summaries-bundle";
 import cwmsDetailBundle from "./cwms-detail-bundle";
+import cwmsStreamsBundle from "./cwms-streams-bundle";
 import locationLevelBundle from "./location-level-bundle";
 import locationChildrenBundle from "./location-children-bundle";
 import locationTreeBundle from "./location-tree-bundle";
 import locationSearchBundle from "./location-search-bundle";
 import locationsMapBundle from "./locations-map-bundle";
-import streamLocationsBundle from "./stream-location-bundle";
 import radarTimeSeriesBundle from "./radar-time-series-bundle";
 import radarTimeSeriesParamsBundle from "./radar-time-series-params-bundle";
 import corporateOfficeBundle from "./corporate-office-bundle";
@@ -49,12 +49,12 @@ export default composeBundles(
   districtsAndBasinsBundle,
   locationSummariesBundle,
   cwmsDetailBundle,
+  cwmsStreamsBundle,
   locationLevelBundle,
   locationChildrenBundle,
   locationTreeBundle,
   locationSearchBundle,
   locationsMapBundle,
-  streamLocationsBundle,
   radarTimeSeriesBundle,
   radarTimeSeriesParamsBundle,
   corporateOfficeBundle,
