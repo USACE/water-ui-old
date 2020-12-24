@@ -6,8 +6,8 @@ import "./locationStreamControls.scss";
 
 const LocationStreamControls = ({
   queryObject,
-  /** @type a2w.models.LocationDetail */
-  locationDetailData,
+  /** @type a2w.models.CwmsDetail */
+  cwmsDetailData,
   locationSummariesData,
   doUpdateQuery,
   /** @type a2w.models.StreamLocation[] */
@@ -16,7 +16,7 @@ const LocationStreamControls = ({
 }) => {
 
   // fetch new stream locations data whenever the streamLocationsCode changes
-  const streamLocationsCode = locationDetailData.stream_location_code;
+  const streamLocationsCode = cwmsDetailData.stream_location_code;
   useEffect(() => {
     doStreamLocationsFetch();
   }, [streamLocationsCode, doStreamLocationsFetch]);
@@ -35,12 +35,12 @@ const LocationStreamControls = ({
     doUpdateQuery(newQuery, mapUrlOptions);
   };
 
-  if (!streamLocationsData || streamLocationsData.length <= 1 || !locationDetailData.location_code) {
+  if (!streamLocationsData || streamLocationsData.length <= 1 || !cwmsDetailData.location_code) {
     return null;
   }
 
   const display = displayTypes[queryObject.display] ? queryObject.display : defaultMapParams.display;
-  const currentIndex = streamLocationsData.findIndex(item => item.location_code === locationDetailData.location_code);
+  const currentIndex = streamLocationsData.findIndex(item => item.location_code === cwmsDetailData.location_code);
   const currentVal = streamLocationsData[ currentIndex ] || {};
 
   let justifyContent = "justify-content-between";
@@ -93,7 +93,7 @@ const LocationStreamControls = ({
 
 LocationStreamControls.propTypes = {
   queryObject: PropTypes.object.isRequired,
-  locationDetailData: PropTypes.object.isRequired,
+  cwmsDetailData: PropTypes.object.isRequired,
   locationSummariesData: PropTypes.object.isRequired,
   doUpdateQuery: PropTypes.func.isRequired,
   streamLocationsData: PropTypes.array,

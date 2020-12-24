@@ -7,7 +7,7 @@ import MapAccordion from "./components/MapAccordion";
 const MapDetails = ({
   queryObject,
   locationSummariesData,
-  locationDetailData,
+  cwmsDetailData,
   locationSummariesHasLoaded,
   containerRef,
   headerRef,
@@ -38,8 +38,8 @@ const MapDetails = ({
   else if (!locationSummariesData[queryObject.locationId]) {
     content = <p>The location <strong>{queryObject.locationId}</strong> does not exist.</p>;
   }
-  // check if locationDetailData is empty
-  else if (!locationDetailData || Object.keys(locationDetailData).length === 0) {
+  // check if cwmsDetailData is empty
+  else if (!cwmsDetailData || Object.keys(cwmsDetailData).length === 0) {
     content = "There is no data for this location.";
   }
   else {
@@ -47,7 +47,7 @@ const MapDetails = ({
       <MapAccordion
         headerHeight={headerHeight}
         display={display}
-        locationDetailData={locationDetailData}
+        cwmsDetailData={cwmsDetailData}
       />
     );
   }
@@ -66,7 +66,7 @@ MapDetails.propTypes = {
     locationId: PropTypes.string.isRequired,
   }).isRequired,
   locationSummariesData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  locationDetailData: PropTypes.object,
+  cwmsDetailData: PropTypes.object,
   locationSummariesHasLoaded: PropTypes.bool,
   containerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   headerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),

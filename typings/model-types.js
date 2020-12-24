@@ -80,7 +80,7 @@
  */
 
 /**
- * @typedef a2w.models.LocationDetail
+ * @typedef a2w.models.CwmsDetail
  * @property {string} office_id
  * @property {string} office_name
  * @property {string} public_name

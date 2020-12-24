@@ -18,9 +18,9 @@ export default createRestBundle({
   },
   addons: {
     selectStreamLocationsUrlParams: createSelector(
-      "selectLocationDetailData",
-      locationDetail => locationDetail && locationDetail.stream_location_code
-        ? { stream_location_code: locationDetail.stream_location_code }
+      "selectCwmsDetailData",
+      cwmsDetail => cwmsDetail && cwmsDetail.stream_location_code
+        ? { stream_location_code: cwmsDetail.stream_location_code }
         : {},
     ),
   },

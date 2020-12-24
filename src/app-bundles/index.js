@@ -9,7 +9,7 @@ import routeBundle from "./routes-bundle";
 import mapsBundle from './maps-bundle';
 import districtsAndBasinsBundle from "./districts-and-basins-bundle";
 import locationSummariesBundle from "./location-summaries-bundle";
-import locationDetailBundle from "./location-detail-bundle";
+import cwmsDetailBundle from "./cwms-detail-bundle";
 import locationLevelBundle from "./location-level-bundle";
 import locationChildrenBundle from "./location-children-bundle";
 import locationTreeBundle from "./location-tree-bundle";
@@ -48,7 +48,7 @@ export default composeBundles(
   mapsBundle,
   districtsAndBasinsBundle,
   locationSummariesBundle,
-  locationDetailBundle,
+  cwmsDetailBundle,
   locationLevelBundle,
   locationChildrenBundle,
   locationTreeBundle,

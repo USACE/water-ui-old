@@ -46,7 +46,7 @@ describe("<TimeSeriesSection />", () => {
       {
         name: "mock",
         selectAuthRoles: () => [],
-        selectLocationDetailData: () => {},
+        selectCwmsDetailData: () => {},
       }
     )();
 

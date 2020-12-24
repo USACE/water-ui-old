@@ -5,14 +5,14 @@ import Table from "../../../../../app-common/table/Table";
 import { damProfileKeys } from "./DamProfile";
 import { formatUnderscore } from "../../../../../utils/";
 
-const LocationInfo = ({ locationDetailData, locationLevelData }) => {
+const LocationInfo = ({ cwmsDetailData, locationLevelData }) => {
   const header = ["Name", "Value"];
   const body = [];
-  Object.keys(locationDetailData).forEach((key) => {
+  Object.keys(cwmsDetailData).forEach((key) => {
     // add the data to the body if it's not dam profile data
-    if (locationDetailData[key] && damProfileKeys.indexOf(key) < 0) {
+    if (cwmsDetailData[key] && damProfileKeys.indexOf(key) < 0) {
       const name = formatUnderscore(key);
-      const value = locationDetailData[key];
+      const value = cwmsDetailData[key];
       body.push({
         id: key,
         row: [name, value],
@@ -44,7 +44,7 @@ const LocationInfo = ({ locationDetailData, locationLevelData }) => {
 };
 
 LocationInfo.propTypes = {
-  locationDetailData: PropTypes.object,
+  cwmsDetailData: PropTypes.object,
   locationLevelData: PropTypes.arrayOf(PropTypes.shape({
     location_level_id: PropTypes.string,
     specified_level_id: PropTypes.string,
@@ -54,6 +54,6 @@ LocationInfo.propTypes = {
 };
 
 export default connect(
-  "selectLocationDetailData",
+  "selectCwmsDetailData",
   "selectLocationLevelData",
 LocationInfo);

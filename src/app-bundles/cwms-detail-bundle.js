@@ -3,14 +3,14 @@ import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
 
 export default createRestBundle( {
-  name: "locationDetail",
+  name: "cwmsDetail",
   getTemplate: getRestUrl( "/water/locations/details/:location_code", "/location-detail.json?/:location_code" ),
-  urlParamSelectors: [ "selectLocationDetailGetTemplateParam" ],
+  urlParamSelectors: [ "selectCwmsDetailGetTemplateParam" ],
   defaultState: {
     data: {},
   },
   addons: {
-    selectLocationDetailGetTemplateParam: createSelector(
+    selectCwmsDetailGetTemplateParam: createSelector(
       "selectQueryObject",
       ({ locationId }) => locationId ? { location_code: locationId } : {},
     ),

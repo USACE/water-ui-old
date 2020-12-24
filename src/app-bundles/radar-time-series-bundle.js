@@ -26,7 +26,7 @@ export default createRestBundle( {
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: [ "LOCATIONDETAIL_FETCH_FINISHED", LOCATIONTIMESERIES_FETCH_NEW_DATA ],
+  fetchActions: [ "CWMSDETAIL_FETCH_FINISHED", LOCATIONTIMESERIES_FETCH_NEW_DATA ],
   forceFetchActions: [],
   urlParamSelectors: [ "selectLocationTimeSeriesUrlParams" ],
   defaultState: {
@@ -84,16 +84,16 @@ export default createRestBundle( {
     },
 
     selectLocationTimeSeriesUrlParams: createSelector(
-      "selectLocationDetailData",
+      "selectCwmsDetailData",
       "selectLtsTimeControl",
       "selectLtsCustomStartDate",
       "selectLtsCustomEndDate",
-      ( locationDetailData, timeControl, customStartDate, customEndDate ) => {
-        if( !locationDetailData ) return {};
+      ( cwmsDetailData, timeControl, customStartDate, customEndDate ) => {
+        if( !cwmsDetailData ) return {};
 
         const urlParams = {
-          location_id: locationDetailData.location_id,
-          office_id: locationDetailData.office_id
+          location_id: cwmsDetailData.location_id,
+          office_id: cwmsDetailData.office_id
         };
 
         if (timeControl > 0) {

@@ -7,13 +7,13 @@ import { defaultMapParams, displayTypes, mapUrlOptions } from "../../map-utils";
 const MapDetailsHeader = forwardRef((props, ref) => {
   const {
     queryObject,
-    locationDetailData,
+    cwmsDetailData,
     locationSummariesData,
     doUpdateQuery,
     locationSummariesHasLoaded,
   } = /** @type {any} */ ( props );
 
-  const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${locationDetailData.nearest_city}&state=${locationDetailData.state}`;
+  const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${cwmsDetailData.nearest_city}&state=${cwmsDetailData.state}`;
   const locationId = queryObject.locationId;
   const display = displayTypes[queryObject.display] ? queryObject.display : defaultMapParams.display;
 
@@ -57,9 +57,9 @@ const MapDetailsHeader = forwardRef((props, ref) => {
       { locationSummariesHasLoaded && locationSummariesData[locationId] &&
         <h4>{ locationSummariesData[locationId].public_name }</h4>
       }
-      { locationDetailData && Object.keys(locationDetailData).length > 0 && 
+      { cwmsDetailData && Object.keys(cwmsDetailData).length > 0 && 
         <div>
-          {locationDetailData.office_name}
+          {cwmsDetailData.office_name}
           <span className="pipe" />
           <a
             href={weatherUrl}
@@ -73,7 +73,7 @@ const MapDetailsHeader = forwardRef((props, ref) => {
       { locationSummariesHasLoaded && 
         <LocationStreamControls
           queryObject={queryObject}
-          locationDetailData={locationDetailData}
+          cwmsDetailData={cwmsDetailData}
           locationSummariesData={locationSummariesData}
           doUpdateQuery={doUpdateQuery}
         />
@@ -90,7 +90,7 @@ MapDetailsHeader.propTypes = /** @type {any} */ ({
     zoom: PropTypes.string,
     display: PropTypes.string,
   }).isRequired,
-  locationDetailData: PropTypes.object,
+  cwmsDetailData: PropTypes.object,
   locationSummariesData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   doUpdateQuery: PropTypes.func.isRequired,
   locationSummariesHasLoaded: PropTypes.bool,

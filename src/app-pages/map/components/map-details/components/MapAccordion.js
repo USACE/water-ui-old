@@ -12,12 +12,12 @@ import TimeLineSection from "./TimeLineSection";
 const MapAccordion = ({
   headerHeight,
   display,
-  locationDetailData,
+  cwmsDetailData,
   locationChildrenData,
 }) => {
   // create the accordion data
   const accordionData = [];
-  if (locationDetailData.dam_indicator === "T") {
+  if (cwmsDetailData.dam_indicator === "T") {
     accordionData.push({
       id: "dam-profile",
       title: "Dam Profile",
