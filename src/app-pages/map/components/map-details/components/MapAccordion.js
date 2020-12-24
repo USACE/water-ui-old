@@ -13,7 +13,7 @@ const MapAccordion = ({
   headerHeight,
   display,
   cwmsDetailData,
-  locationChildrenData,
+  cwmsChildrenData,
 }) => {
   // create the accordion data
   const accordionData = [];
@@ -31,7 +31,7 @@ const MapAccordion = ({
     content: <LocationInfo />,
     iconClass: "mdi mdi-map-marker",
   });
-  if (locationChildrenData && locationChildrenData.length > 0) {
+  if (cwmsChildrenData && cwmsChildrenData.length > 0) {
     accordionData.push({
       id: "location-children",
       title: "Location Children",
@@ -104,10 +104,10 @@ const MapAccordion = ({
 };
 
 MapAccordion.propTypes = {
-  locationChildrenData: PropTypes.array,
+  cwmsChildrenData: PropTypes.array,
 };
 
 export default connect(
-  "selectLocationChildrenData",
+  "selectCwmsChildrenData",
   MapAccordion,
 );

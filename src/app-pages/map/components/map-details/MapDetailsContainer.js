@@ -18,7 +18,7 @@ const MapDetailsContainer = ( props ) => {
     doUpdateQuery,
     doCwmsDetailFetch,
     doCwmsLevelFetch,
-    doLocationChildrenFetch,
+    doCwmsChildrenFetch,
   } = props;
 
   const containerRef = useRef(null);
@@ -34,9 +34,9 @@ const MapDetailsContainer = ( props ) => {
     doCwmsDetailFetch();
     if (locationId) {
       doCwmsLevelFetch();
-      doLocationChildrenFetch();
+      doCwmsChildrenFetch();
     }
-  }, [locationId, doCwmsDetailFetch, doCwmsLevelFetch, doLocationChildrenFetch])
+  }, [locationId, doCwmsDetailFetch, doCwmsLevelFetch, doCwmsChildrenFetch])
 
 
   // do not display map details if locationId does not exist and the user is not in full screen mode
@@ -80,7 +80,7 @@ MapDetailsContainer.propTypes = {
   doUpdateQuery: PropTypes.func.isRequired,
   doCwmsDetailFetch: PropTypes.func.isRequired,
   doCwmsLevelFetch: PropTypes.func.isRequired,
-  doLocationChildrenFetch: PropTypes.func.isRequired,
+  doCwmsChildrenFetch: PropTypes.func.isRequired,
 };
 
 export default connect(
@@ -91,6 +91,6 @@ export default connect(
   "doUpdateQuery",
   "doCwmsDetailFetch",
   "doCwmsLevelFetch",
-  "doLocationChildrenFetch",
+  "doCwmsChildrenFetch",
   MapDetailsContainer
 );
