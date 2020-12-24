@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Table from "../../../../../app-common/table/Table";
-import { damProfileKeys } from "./DamProfile";
+import { damProfileKeys } from "./dam-profile/dam-profile-utils";
 import { formatUnderscore } from "../../../../../utils/";
 
 const LocationInfo = ({

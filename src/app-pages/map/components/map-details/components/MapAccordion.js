@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Accordion from "../../../../../app-common/accordion/Accordion";
 import { displayTypes } from "../../../map-utils";
-import DamProfile from "./DamProfile";
+import DamProfile from "./dam-profile/DamProfile";
 import LocationInfo from "./LocationInfo";
 import LocationChildren from "./LocationChildren";
 import TimeSeriesSection from "./time-series/TimeSeriesSection";
