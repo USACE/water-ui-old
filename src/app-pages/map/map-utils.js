@@ -52,7 +52,7 @@ export const displayTypes = {
  * JSON representation of the default map query parameters
  */
 export const defaultMapParams = {
-  locationId: "",
+  id: "",
   basinId: "",
   districtId: "",
   lat: 38.895,

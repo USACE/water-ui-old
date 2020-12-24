@@ -23,11 +23,11 @@ const LocationStreamControls = ({
 
   const changeLocation = (e) => {
     const location = cwmsStreamsData[e.target.value];
-    const locationId = location.location_code;
-    const locationData = locationSummariesData[locationId];
+    const id = location.location_code;
+    const locationData = locationSummariesData[id];
     const newQuery = {
       ...queryObject,
-      locationId,
+      id,
       lon: locationData.longitude,
       lat: locationData.latitude,
       zoom: locationData.zoom_depth,

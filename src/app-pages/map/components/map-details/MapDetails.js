@@ -25,18 +25,18 @@ const MapDetails = ({
 
   let content = null;
 
-  // display error message if locationId does not exist and user is in full screen mode; this scenario is
-  // only possible if the user manually deletes the locationId param from the url, but it's good to have a check regardless
-  if (!queryObject.locationId && display === displayTypes.fs) {
+  // display error message if id does not exist and user is in full screen mode; this scenario is
+  // only possible if the user manually deletes the id param from the url, but it's good to have a check regardless
+  if (!queryObject.id && display === displayTypes.fs) {
     content = "No location is selected.";
   }
   // do not display any information if the location summaries have not been loaded
   else if (!locationSummariesHasLoaded) {
     content = "";
   }
-  // check in case user puts invalid value for the locationId in the url
-  else if (!locationSummariesData[queryObject.locationId]) {
-    content = <p>The location <strong>{queryObject.locationId}</strong> does not exist.</p>;
+  // check in case user puts invalid value for the id in the url
+  else if (!locationSummariesData[queryObject.id]) {
+    content = <p>The location <strong>{queryObject.id}</strong> does not exist.</p>;
   }
   // check if cwmsDetailData is empty
   else if (!cwmsDetailData || Object.keys(cwmsDetailData).length === 0) {
@@ -63,7 +63,7 @@ const MapDetails = ({
 
 MapDetails.propTypes = {
   queryObject: PropTypes.shape({
-    locationId: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   }).isRequired,
   locationSummariesData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   cwmsDetailData: PropTypes.object,

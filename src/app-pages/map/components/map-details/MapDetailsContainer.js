@@ -24,23 +24,23 @@ const MapDetailsContainer = ( props ) => {
   const containerRef = useRef(null);
   const headerRef = useRef(null);
   const display = displayTypes[queryObject.display] ? queryObject.display : defaultMapParams.display;
-  const locationId = queryObject.locationId || "";
+  const id = queryObject.id || "";
 
   useEffect(() => {
-    // We want to always call doCwmsDetailFetch, even if the locationId is null, so that the
-    // previous location detail data will be cleared if the locationId becomes null. However the
-    // other api calls do not need to be called if locationId is null, since their data will not be
-    // displayed if locationId is null, so we do not need to worry about clearing their data.
+    // We want to always call doCwmsDetailFetch, even if the id is null, so that the
+    // previous location detail data will be cleared if the id becomes null. However the
+    // other api calls do not need to be called if id is null, since their data will not be
+    // displayed if id is null, so we do not need to worry about clearing their data.
     doCwmsDetailFetch();
-    if (locationId) {
+    if (id) {
       doCwmsLevelFetch();
       doCwmsChildrenFetch();
     }
-  }, [locationId, doCwmsDetailFetch, doCwmsLevelFetch, doCwmsChildrenFetch])
+  }, [id, doCwmsDetailFetch, doCwmsLevelFetch, doCwmsChildrenFetch])
 
 
-  // do not display map details if locationId does not exist and the user is not in full screen mode
-  if (!locationId && display !== displayTypes.fs) {
+  // do not display map details if id does not exist and the user is not in full screen mode
+  if (!id && display !== displayTypes.fs) {
     return null;
   }
 

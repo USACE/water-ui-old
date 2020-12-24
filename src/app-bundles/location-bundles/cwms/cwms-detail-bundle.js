@@ -12,7 +12,7 @@ export default createRestBundle( {
   addons: {
     selectCwmsDetailGetTemplateParam: createSelector(
       "selectQueryObject",
-      ({ locationId }) => locationId ? { location_code: locationId } : {},
+      ({ id }) => id ? { location_code: id } : {},
     ),
   }
 } );
