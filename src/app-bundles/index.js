@@ -5,19 +5,19 @@ import {
 } from "redux-bundler";
 import createAuthBundle from "@corpsmap/create-auth-bundle";
 import createJwtApiBundle from "@corpsmap/create-jwt-api-bundle";
-import routeBundle from "./routes-bundle";
+import routesBundle from "./routes-bundle";
 import mapsBundle from './maps-bundle';
-import districtsAndBasinsBundle from "./districts-and-basins-bundle";
-import locationSummariesBundle from "./location-summaries-bundle";
-import cwmsDetailBundle from "./cwms-detail-bundle";
-import cwmsStreamsBundle from "./cwms-streams-bundle";
-import cwmsLevelBundle from "./cwms-level-bundle";
-import cwmsChildrenBundle from "./cwms-children-bundle";
-import locationTreeBundle from "./location-tree-bundle";
-import locationSearchBundle from "./location-search-bundle";
-import locationsMapBundle from "./locations-map-bundle";
-import radarTimeSeriesBundle from "./radar-time-series-bundle";
-import radarTimeSeriesParamsBundle from "./radar-time-series-params-bundle";
+import districtsAndBasinsBundle from "./location-bundles/districts-and-basins-bundle";
+import locationSearchBundle from "./location-bundles/location-search-bundle";
+import locationSummariesBundle from "./location-bundles/location-summaries-bundle";
+import locationTreeBundle from "./location-bundles/location-tree-bundle";
+import locationsMapBundle from "./location-bundles/locations-map-bundle";
+import radarTimeSeriesBundle from "./location-bundles/radar-time-series-bundle";
+import radarTimeSeriesParamsBundle from "./location-bundles/radar-time-series-params-bundle";
+import cwmsDetailBundle from "./location-bundles/cwms/cwms-detail-bundle";
+import cwmsStreamsBundle from "./location-bundles/cwms/cwms-streams-bundle";
+import cwmsLevelBundle from "./location-bundles/cwms/cwms-level-bundle";
+import cwmsChildrenBundle from "./location-bundles/cwms/cwms-children-bundle";
 import corporateOfficeBundle from "./corporate-office-bundle";
 import corporateOfficeReportBundle from "./corporate-office-report-bundle";
 import corporateOfficeSpecialReportBundle from "./corporate-office-special-report-bundle";
@@ -44,19 +44,19 @@ export default composeBundles(
       method: "GET",
     },
   }),
-  routeBundle,
+  routesBundle,
   mapsBundle,
   districtsAndBasinsBundle,
+  locationSearchBundle,
   locationSummariesBundle,
+  locationsMapBundle,
+  locationTreeBundle,
+  radarTimeSeriesBundle,
+  radarTimeSeriesParamsBundle,
   cwmsDetailBundle,
   cwmsStreamsBundle,
   cwmsLevelBundle,
   cwmsChildrenBundle,
-  locationTreeBundle,
-  locationSearchBundle,
-  locationsMapBundle,
-  radarTimeSeriesBundle,
-  radarTimeSeriesParamsBundle,
   corporateOfficeBundle,
   corporateOfficeReportBundle,
   corporateOfficeSpecialReportBundle,

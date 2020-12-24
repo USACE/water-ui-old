@@ -1,5 +1,5 @@
 import { createSelector } from "redux-bundler";
-import { mapsBundleActions } from "./maps-bundle";
+import { mapsBundleActions } from "../maps-bundle";
 
 const actions = {
   LOCATIONS_MAP_DATA_LOADED: "LOCATIONS_MAP_DATA_LOADED",

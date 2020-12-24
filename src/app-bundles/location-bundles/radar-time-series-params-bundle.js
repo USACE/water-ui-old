@@ -1,8 +1,8 @@
 import { createSelector } from "redux-bundler";
-import createRestBundle from "./create-rest-bundle";
-import { getRestUrl } from "./bundle-utils";
-import { RoutePaths } from "./route-paths";
-import { arrayToObj } from "../utils";
+import createRestBundle from "../create-rest-bundle";
+import { getRestUrl } from "../bundle-utils";
+import { RoutePaths } from "../route-paths";
+import { arrayToObj } from "../../utils";
 
 export default createRestBundle({
   name: "locationParams",

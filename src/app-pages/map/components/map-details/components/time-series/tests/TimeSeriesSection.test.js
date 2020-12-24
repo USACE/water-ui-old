@@ -3,7 +3,7 @@ import { shallow, mount } from "enzyme";
 import { act } from "react-dom/test-utils";
 import { Provider } from "redux-bundler-react";
 import { composeBundles, createRouteBundle } from "redux-bundler";
-import radarTimeSeriesBundle from "../../../../../../../app-bundles/radar-time-series-bundle";
+import radarTimeSeriesBundle from "../../../../../../../app-bundles/location-bundles/radar-time-series-bundle";
 import { TimeSeriesSection } from "../TimeSeriesSection";
 import { mockLocationTimeSeriesPlotlyData } from "./mocks";
 

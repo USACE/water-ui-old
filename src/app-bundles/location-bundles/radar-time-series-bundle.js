@@ -1,7 +1,7 @@
 import { createSelector } from "redux-bundler";
-import createRestBundle from "./create-rest-bundle";
-import { getRestUrl } from "./bundle-utils";
-import { getIntervalTime, TIME, dateToString, arrayToObj } from "../utils";
+import createRestBundle from "../create-rest-bundle";
+import { getRestUrl } from "../bundle-utils";
+import { getIntervalTime, TIME, dateToString, arrayToObj } from "../../utils";
 
 export const radarTimeControls = [
   { value: TIME.DAY, label: "Past 24 hours" },
