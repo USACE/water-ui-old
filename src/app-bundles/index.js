@@ -11,7 +11,7 @@ import districtsAndBasinsBundle from "./districts-and-basins-bundle";
 import locationSummariesBundle from "./location-summaries-bundle";
 import cwmsDetailBundle from "./cwms-detail-bundle";
 import cwmsStreamsBundle from "./cwms-streams-bundle";
-import locationLevelBundle from "./location-level-bundle";
+import cwmsLevelBundle from "./cwms-level-bundle";
 import locationChildrenBundle from "./location-children-bundle";
 import locationTreeBundle from "./location-tree-bundle";
 import locationSearchBundle from "./location-search-bundle";
@@ -50,7 +50,7 @@ export default composeBundles(
   locationSummariesBundle,
   cwmsDetailBundle,
   cwmsStreamsBundle,
-  locationLevelBundle,
+  cwmsLevelBundle,
   locationChildrenBundle,
   locationTreeBundle,
   locationSearchBundle,

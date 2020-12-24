@@ -171,7 +171,7 @@
  */
 
 /**
- * @typedef a2w.models.LocationLevel
+ * @typedef a2w.models.CwmsLevel
  * @property {string} specified_level_id Name of the level being measured
  * @property {number} current_value
  * @property {string} value_unit Units for the current value

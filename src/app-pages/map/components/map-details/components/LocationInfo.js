@@ -5,7 +5,11 @@ import Table from "../../../../../app-common/table/Table";
 import { damProfileKeys } from "./DamProfile";
 import { formatUnderscore } from "../../../../../utils/";
 
-const LocationInfo = ({ cwmsDetailData, locationLevelData }) => {
+const LocationInfo = ({
+  cwmsDetailData,
+  /** @type a2w.models.CwmsLevel */
+  cwmsLevelData,
+}) => {
   const header = ["Name", "Value"];
   const body = [];
   Object.keys(cwmsDetailData).forEach((key) => {
@@ -20,13 +24,13 @@ const LocationInfo = ({ cwmsDetailData, locationLevelData }) => {
     }
   });
 
-  // add the location level to the table body
-  if (locationLevelData) {
-    locationLevelData.forEach(locationLevel => {
-      const name = locationLevel.specified_level_id;
-      const value = `${locationLevel.current_value} ${locationLevel.value_unit}`;
+  // add the cwms location level to the table body
+  if (cwmsLevelData) {
+    cwmsLevelData.forEach(cwmsLevel => {
+      const name = cwmsLevel.specified_level_id;
+      const value = `${cwmsLevel.current_value} ${cwmsLevel.value_unit}`;
       body.push({
-        id: locationLevel.location_level_id,
+        id: cwmsLevel.location_level_id,
         row: [name, value],
       })
     });
@@ -45,7 +49,7 @@ const LocationInfo = ({ cwmsDetailData, locationLevelData }) => {
 
 LocationInfo.propTypes = {
   cwmsDetailData: PropTypes.object,
-  locationLevelData: PropTypes.arrayOf(PropTypes.shape({
+  cwmsLevelData: PropTypes.arrayOf(PropTypes.shape({
     location_level_id: PropTypes.string,
     specified_level_id: PropTypes.string,
     current_value: PropTypes.number,
@@ -55,5 +59,5 @@ LocationInfo.propTypes = {
 
 export default connect(
   "selectCwmsDetailData",
-  "selectLocationLevelData",
+  "selectCwmsLevelData",
 LocationInfo);
