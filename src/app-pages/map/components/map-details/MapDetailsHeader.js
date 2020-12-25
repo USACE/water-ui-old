@@ -1,7 +1,12 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import LocationStreamControls from "./components/location-stream-controls/LocationStreamControls";
-import { defaultMapParams, displayTypes, mapUrlOptions } from "../../map-utils";
+import {
+  sourceTypes,
+  defaultMapParams,
+  displayTypes,
+  mapUrlOptions,
+} from "../../map-utils";
 
 /** @type any */
 const MapDetailsHeader = forwardRef((props, ref) => {
@@ -15,6 +20,7 @@ const MapDetailsHeader = forwardRef((props, ref) => {
 
   const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${cwmsDetailData.nearest_city}&state=${cwmsDetailData.state}`;
   const id = queryObject.id;
+  const source = queryObject.source;
   const display = displayTypes[queryObject.display] ? queryObject.display : defaultMapParams.display;
 
   const closeBtnOnClick = () => {
@@ -57,7 +63,7 @@ const MapDetailsHeader = forwardRef((props, ref) => {
       { locationSummariesHasLoaded && locationSummariesData[id] &&
         <h4>{ locationSummariesData[id].public_name }</h4>
       }
-      { cwmsDetailData && Object.keys(cwmsDetailData).length > 0 && 
+      { source === sourceTypes.CWMS && cwmsDetailData && Object.keys(cwmsDetailData).length > 0 && 
         <div>
           {cwmsDetailData.office_name}
           <span className="pipe" />
@@ -70,7 +76,7 @@ const MapDetailsHeader = forwardRef((props, ref) => {
           </a>
         </div>
       }
-      { locationSummariesHasLoaded && 
+      { source === sourceTypes.CWMS && locationSummariesHasLoaded &&
         <LocationStreamControls
           queryObject={queryObject}
           cwmsDetailData={cwmsDetailData}

@@ -10,6 +10,7 @@ export const TimeSeriesSection = ({
   queryObject,
   locationTimeSeriesPlotlyData,
   locationTimeSeriesIsLoading,
+  doResetTimeSeriesData,
 }) => {
   // stores the selected plot's name
   const [plotName, setPlotName] = useState("");
@@ -22,6 +23,10 @@ export const TimeSeriesSection = ({
       setPlotName(firstPlot);
     }
   }, [locationTimeSeriesPlotlyData, plotName, setPlotName]);
+
+  // reset the time series data in the bundle when the component is unmounting
+  // this is needed to fix a bug with the plotly graph when going from a cwms source -> wq source  -> cwms source
+  useEffect(() => () => doResetTimeSeriesData(), [doResetTimeSeriesData]);
 
   const sectionCSSClasses = `time-series-section ${ queryObject.display }`
   const loaderStyle = { zIndex: 10 };
@@ -51,11 +56,13 @@ TimeSeriesSection.propTypes = {
   queryObject: PropTypes.object.isRequired,
   locationTimeSeriesPlotlyData: PropTypes.object.isRequired,
   locationTimeSeriesIsLoading: PropTypes.bool.isRequired,
+  doResetTimeSeriesData: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectQueryObject",
   "selectLocationTimeSeriesPlotlyData",
   "selectLocationTimeSeriesIsLoading",
+  "doResetTimeSeriesData",
   TimeSeriesSection
 );

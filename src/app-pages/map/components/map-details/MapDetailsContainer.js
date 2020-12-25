@@ -16,31 +16,22 @@ const MapDetailsContainer = ( props ) => {
     /** @type a2w.models.CwmsDetail */
     cwmsDetailData,
     doUpdateQuery,
-    doCwmsDetailFetch,
-    doCwmsLevelFetch,
-    doCwmsChildrenFetch,
+    doFetchMapDetailsData,
   } = props;
 
   const containerRef = useRef(null);
   const headerRef = useRef(null);
   const display = displayTypes[queryObject.display] ? queryObject.display : defaultMapParams.display;
   const id = queryObject.id || "";
+  const source = queryObject.source || "";
 
   useEffect(() => {
-    // We want to always call doCwmsDetailFetch, even if the id is null, so that the
-    // previous location detail data will be cleared if the id becomes null. However the
-    // other api calls do not need to be called if id is null, since their data will not be
-    // displayed if id is null, so we do not need to worry about clearing their data.
-    doCwmsDetailFetch();
-    if (id) {
-      doCwmsLevelFetch();
-      doCwmsChildrenFetch();
-    }
-  }, [id, doCwmsDetailFetch, doCwmsLevelFetch, doCwmsChildrenFetch])
+    doFetchMapDetailsData(id, source);
+  }, [id, source, doFetchMapDetailsData]);
 
 
-  // do not display map details if id does not exist and the user is not in full screen mode
-  if (!id && display !== displayTypes.fs) {
+  // do not display map details if id or source does not exist and the user is not in full screen mode
+  if ((!id || !source) && display !== displayTypes.fs) {
     return null;
   }
 
@@ -61,7 +52,6 @@ const MapDetailsContainer = ( props ) => {
       />
       <MapDetails
         queryObject={queryObject}
-        cwmsDetailData={cwmsDetailData}
         locationSummariesData={locationSummariesData}
         locationSummariesHasLoaded={locationSummariesHasLoaded}
         containerRef={containerRef}
@@ -73,14 +63,12 @@ const MapDetailsContainer = ( props ) => {
 
 MapDetailsContainer.propTypes = {
   queryObject: PropTypes.object.isRequired,
-  // locationSummariesData is initially an array before it gets reformatted into an object where the key is the location id
+  // locationSummariesData is initially an array before it gets reformatted into an object where the key is the id
   locationSummariesData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   cwmsDetailIsLoading: PropTypes.bool.isRequired,
   cwmsDetailData: PropTypes.object,
   doUpdateQuery: PropTypes.func.isRequired,
-  doCwmsDetailFetch: PropTypes.func.isRequired,
-  doCwmsLevelFetch: PropTypes.func.isRequired,
-  doCwmsChildrenFetch: PropTypes.func.isRequired,
+  doFetchMapDetailsData: PropTypes.func.isRequired,
 };
 
 export default connect(
@@ -89,8 +77,6 @@ export default connect(
   "selectCwmsDetailIsLoading",
   "selectCwmsDetailData",
   "doUpdateQuery",
-  "doCwmsDetailFetch",
-  "doCwmsLevelFetch",
-  "doCwmsChildrenFetch",
+  "doFetchMapDetailsData",
   MapDetailsContainer
 );

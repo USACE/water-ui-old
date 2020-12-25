@@ -50,6 +50,7 @@ const LocationSearch = ({
     const mapQuery = {
       ...queryObject,
       id: location.location_id,
+      source: location.source,
       lat: location.latitude,
       lon: location.longitude,
       zoom: location.zoom_depth,

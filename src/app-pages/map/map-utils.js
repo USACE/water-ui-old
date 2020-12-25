@@ -25,6 +25,11 @@ import operatingBasin from "../../img/water-wave.svg";
 import division from "../../img/water-drop.svg";
 import location from "../../img/location.svg";
 
+export const sourceTypes = {
+  CWMS: "CWMS",
+  WQ: "WQ",
+};
+
 export const locationTypes = {
   ALL: "ALL",
   LOCATION: "LOCATION",
@@ -53,6 +58,7 @@ export const displayTypes = {
  */
 export const defaultMapParams = {
   id: "",
+  source: "",
   basinId: "",
   districtId: "",
   lat: 38.895,

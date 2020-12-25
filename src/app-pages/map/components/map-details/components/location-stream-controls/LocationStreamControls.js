@@ -28,6 +28,7 @@ const LocationStreamControls = ({
     const newQuery = {
       ...queryObject,
       id,
+      source: locationData.source,
       lon: locationData.longitude,
       lat: locationData.latitude,
       zoom: locationData.zoom_depth,

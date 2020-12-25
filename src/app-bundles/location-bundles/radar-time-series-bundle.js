@@ -132,6 +132,13 @@ export default createRestBundle( {
         return plotlyObj;
       }
     ),
+
+    doResetTimeSeriesData: () => ({
+      type: "LOCATIONTIMESERIES_UPDATED_ITEM",
+      payload: {
+        data: null,
+      },
+    }),
   }
 } );
 

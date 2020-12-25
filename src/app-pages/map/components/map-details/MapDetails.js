@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { displayTypes, defaultMapParams } from "../../map-utils";
+import { sourceTypes, displayTypes, defaultMapParams } from "../../map-utils";
 import { useDimensions } from "../../../../utils";
-import MapAccordion from "./components/MapAccordion";
+import MapAccordion from "./components/map-accordion/MapAccordion";
 
 const MapDetails = ({
   queryObject,
   locationSummariesData,
-  cwmsDetailData,
   locationSummariesHasLoaded,
   containerRef,
   headerRef,
@@ -30,6 +29,10 @@ const MapDetails = ({
   if (!queryObject.id && display === displayTypes.fs) {
     content = "No location is selected.";
   }
+  // display error message if location source is not valid
+  else if ((!queryObject.source || !sourceTypes[queryObject.source]) && display === displayTypes.fs) {
+    content = "Invalid location source."
+  }
   // do not display any information if the location summaries have not been loaded
   else if (!locationSummariesHasLoaded) {
     content = "";
@@ -38,16 +41,12 @@ const MapDetails = ({
   else if (!locationSummariesData[queryObject.id]) {
     content = <p>The location <strong>{queryObject.id}</strong> does not exist.</p>;
   }
-  // check if cwmsDetailData is empty
-  else if (!cwmsDetailData || Object.keys(cwmsDetailData).length === 0) {
-    content = "There is no data for this location.";
-  }
   else {
     content = (
       <MapAccordion
+        queryObject={queryObject}
         headerHeight={headerHeight}
         display={display}
-        cwmsDetailData={cwmsDetailData}
       />
     );
   }
@@ -63,10 +62,10 @@ const MapDetails = ({
 
 MapDetails.propTypes = {
   queryObject: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    source: PropTypes.string,
   }).isRequired,
   locationSummariesData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  cwmsDetailData: PropTypes.object,
   locationSummariesHasLoaded: PropTypes.bool,
   containerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   headerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),

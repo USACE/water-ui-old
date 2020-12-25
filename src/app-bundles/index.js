@@ -12,6 +12,7 @@ import locationSearchBundle from "./location-bundles/location-search-bundle";
 import locationSummariesBundle from "./location-bundles/location-summaries-bundle";
 import locationTreeBundle from "./location-bundles/location-tree-bundle";
 import locationsMapBundle from "./location-bundles/locations-map-bundle";
+import mapDetailsBundle from "./location-bundles/map-details-bundle";
 import radarTimeSeriesBundle from "./location-bundles/radar-time-series-bundle";
 import radarTimeSeriesParamsBundle from "./location-bundles/radar-time-series-params-bundle";
 import cwmsDetailBundle from "./location-bundles/cwms/cwms-detail-bundle";
@@ -51,6 +52,7 @@ export default composeBundles(
   locationSummariesBundle,
   locationsMapBundle,
   locationTreeBundle,
+  mapDetailsBundle,
   radarTimeSeriesBundle,
   radarTimeSeriesParamsBundle,
   cwmsDetailBundle,

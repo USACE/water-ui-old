@@ -110,6 +110,7 @@ const Map = ( props ) => {
             const newQuery = {
               ...queryObject,
               id: properties.model.id,
+              source: properties.model.source,
               lon: properties.model.longitude,
               lat: properties.model.latitude,
               zoom: properties.model.zoom_depth,
