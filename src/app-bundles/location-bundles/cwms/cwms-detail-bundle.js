@@ -4,7 +4,7 @@ import { getRestUrl } from "../../bundle-utils";
 
 export default createRestBundle( {
   name: "cwmsDetail",
-  getTemplate: getRestUrl( "/water/locations/details/:location_code", "/location-detail.json?/:location_code" ),
+  getTemplate: getRestUrl( "/water/cwms/:location_code/detail", "/location-detail.json?/:location_code" ),
   urlParamSelectors: [ "selectCwmsDetailGetTemplateParam" ],
   defaultState: {
     data: {},

@@ -7,7 +7,7 @@ export default createRestBundle({
   prefetch: false,
   staleAfter: 0,
   persist: false,
-  getTemplate: getRestUrl("/water/locations/stream-locations/:stream_location_code", "/stream-locations.json?/:stream_location_code"),
+  getTemplate: getRestUrl("/water/cwms/:stream_location_code/stream-locations", "/stream-locations.json?/:stream_location_code"),
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
