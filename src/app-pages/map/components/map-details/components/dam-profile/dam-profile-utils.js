@@ -822,7 +822,7 @@ const createMiddleGradient = ({svg, damScale, gradientScale, gradientTop, gradie
         .attr("y", topY + 5)
         .attr("font-family", "sans-serif")
         .attr("font-size", "12px")
-        .text(gradientLabel[gradientLabel.length - 1] + "%");
+        .text(gradientLabel[0] + "%");
 
       svg
         .select("g.middleGradient")
@@ -831,7 +831,7 @@ const createMiddleGradient = ({svg, damScale, gradientScale, gradientTop, gradie
         .attr("y", topY + 5 + (gradientLabel.length - 1) * (height / 5))
         .attr("font-family", "sans-serif")
         .attr("font-size", "12px")
-        .text(gradientLabel[0] + "%");
+        .text(gradientLabel[gradientLabel.length - 1] + "%");
     }
   }
 };
@@ -1246,7 +1246,7 @@ export const getDamProfileData = (cwmsDetailData) => {
     levelType: cwmsDetailData.level_type,
     gradientTop: cwmsDetailData.top_of_flood,
     gradientBottom: cwmsDetailData.bottom_of_flood,
-    gradientLabel: [0,20,40,60,80,100],
+    gradientLabel: [100,80,60,40,20,0],
     colorArr: ["red", "yellow", "yellow", "green"],
     colorLevels: [0.0, 0.2, 0.3, 0.4],
   };
