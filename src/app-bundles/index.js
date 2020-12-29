@@ -5,26 +5,27 @@ import {
 } from "redux-bundler";
 import createAuthBundle from "@corpsmap/create-auth-bundle";
 import createJwtApiBundle from "@corpsmap/create-jwt-api-bundle";
-import routeBundle from "./routes-bundle";
+import routesBundle from "./routes-bundle";
 import mapsBundle from './maps-bundle';
-import districtsAndBasinsBundle from "./districts-and-basins-bundle";
-import locationSummariesBundle from "./location-summaries-bundle";
-import locationDetailBundle from "./location-detail-bundle";
-import locationLevelBundle from "./location-level-bundle";
-import locationChildrenBundle from "./location-children-bundle";
-import locationTreeBundle from "./location-tree-bundle";
-import locationSearchBundle from "./location-search-bundle";
-import locationsMapBundle from "./locations-map-bundle";
-import streamLocationsBundle from "./stream-location-bundle";
-import radarTimeSeriesBundle from "./radar-time-series-bundle";
-import radarTimeSeriesParamsBundle from "./radar-time-series-params-bundle";
-import corporateOfficeBundle from "./corporate-office-bundle";
-import corporateOfficeReportBundle from "./corporate-office-report-bundle";
-import corporateOfficeSpecialReportBundle from "./corporate-office-special-report-bundle";
-import corporateOfficeLocationReportBundle from "./corporate-office-location-report-bundle";
-import projectReportBundle from "./project-reports-bundle";
-import watershedReportBundle from "./watershed-reports-bundle";
-import districtReportBundle from "./district-reports-bundle";
+import districtsAndBasinsBundle from "./location-bundles/districts-and-basins-bundle";
+import locationSearchBundle from "./location-bundles/location-search-bundle";
+import locationSummariesBundle from "./location-bundles/location-summaries-bundle";
+import locationTreeBundle from "./location-bundles/location-tree-bundle";
+import locationsMapBundle from "./location-bundles/locations-map-bundle";
+import mapDetailsBundle from "./location-bundles/map-details-bundle";
+import radarTimeSeriesBundle from "./location-bundles/radar-time-series-bundle";
+import radarTimeSeriesParamsBundle from "./location-bundles/radar-time-series-params-bundle";
+import cwmsDetailBundle from "./location-bundles/cwms/cwms-detail-bundle";
+import cwmsStreamsBundle from "./location-bundles/cwms/cwms-streams-bundle";
+import cwmsLevelBundle from "./location-bundles/cwms/cwms-level-bundle";
+import cwmsChildrenBundle from "./location-bundles/cwms/cwms-children-bundle";
+import corporateOfficeBundle from "./report-bundles/corporate-office-bundle";
+import corporateOfficeReportBundle from "./report-bundles/corporate-office-report-bundle";
+import corporateOfficeSpecialReportBundle from "./report-bundles/corporate-office-special-report-bundle";
+import corporateOfficeLocationReportBundle from "./report-bundles/corporate-office-location-report-bundle";
+import projectReportBundle from "./report-bundles/project-reports-bundle";
+import watershedReportBundle from "./report-bundles/watershed-reports-bundle";
+import districtReportBundle from "./report-bundles/district-reports-bundle";
 import cache from "./../cache.js";
 
 export default composeBundles(
@@ -44,19 +45,20 @@ export default composeBundles(
       method: "GET",
     },
   }),
-  routeBundle,
+  routesBundle,
   mapsBundle,
   districtsAndBasinsBundle,
-  locationSummariesBundle,
-  locationDetailBundle,
-  locationLevelBundle,
-  locationChildrenBundle,
-  locationTreeBundle,
   locationSearchBundle,
+  locationSummariesBundle,
   locationsMapBundle,
-  streamLocationsBundle,
+  locationTreeBundle,
+  mapDetailsBundle,
   radarTimeSeriesBundle,
   radarTimeSeriesParamsBundle,
+  cwmsDetailBundle,
+  cwmsStreamsBundle,
+  cwmsLevelBundle,
+  cwmsChildrenBundle,
   corporateOfficeBundle,
   corporateOfficeReportBundle,
   corporateOfficeSpecialReportBundle,

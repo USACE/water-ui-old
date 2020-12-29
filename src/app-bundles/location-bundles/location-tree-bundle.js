@@ -1,5 +1,5 @@
 import { createSelector } from "redux-bundler";
-import { RoutePaths } from "./route-paths";
+import { RoutePaths } from "../route-paths";
 
 const LocationTreeActions = {
   LOCATION_TREE_CREATE_REQUESTED: `LOCATION_TREE_CREATE_REQUESTED`,

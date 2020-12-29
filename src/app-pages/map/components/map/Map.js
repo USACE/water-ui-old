@@ -109,7 +109,8 @@ const Map = ( props ) => {
           popupContent.current.onclick = () => {
             const newQuery = {
               ...queryObject,
-              locationId: properties.model.id,
+              id: properties.model.id,
+              source: properties.model.source,
               lon: properties.model.longitude,
               lat: properties.model.latitude,
               zoom: properties.model.zoom_depth,
@@ -253,7 +254,7 @@ const Map = ( props ) => {
 
 Map.propTypes = {
   queryObject: PropTypes.shape({
-    locationId: PropTypes.string,
+    id: PropTypes.string,
     lat: PropTypes.string,
     lon: PropTypes.string,
     zoom: PropTypes.string,

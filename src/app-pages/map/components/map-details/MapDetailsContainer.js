@@ -12,35 +12,26 @@ const MapDetailsContainer = ( props ) => {
   const {
     queryObject,
     locationSummariesData,
-    locationDetailIsLoading,
-    /** @type a2w.models.LocationDetail */
-    locationDetailData,
+    cwmsDetailIsLoading,
+    /** @type a2w.models.CwmsDetail */
+    cwmsDetailData,
     doUpdateQuery,
-    doLocationDetailFetch,
-    doLocationLevelFetch,
-    doLocationChildrenFetch,
+    doFetchMapDetailsData,
   } = props;
 
   const containerRef = useRef(null);
   const headerRef = useRef(null);
   const display = displayTypes[queryObject.display] ? queryObject.display : defaultMapParams.display;
-  const locationId = queryObject.locationId || "";
+  const id = queryObject.id || "";
+  const source = queryObject.source || "";
 
   useEffect(() => {
-    // We want to always call doLocationDetailFetch, even if the locationId is null, so that the
-    // previous location detail data will be cleared if the locationId becomes null. However the
-    // other api calls do not need to be called if locationId is null, since their data will not be
-    // displayed if locationId is null, so we do not need to worry about clearing their data.
-    doLocationDetailFetch();
-    if (locationId) {
-      doLocationLevelFetch();
-      doLocationChildrenFetch();
-    }
-  }, [locationId, doLocationDetailFetch, doLocationLevelFetch, doLocationChildrenFetch])
+    doFetchMapDetailsData(id, source);
+  }, [id, source, doFetchMapDetailsData]);
 
 
-  // do not display map details if locationId does not exist and the user is not in full screen mode
-  if (!locationId && display !== displayTypes.fs) {
+  // do not display map details if id or source does not exist and the user is not in full screen mode
+  if ((!id || !source) && display !== displayTypes.fs) {
     return null;
   }
 
@@ -50,10 +41,10 @@ const MapDetailsContainer = ( props ) => {
       ref={containerRef}
       className={`map-details-container ${display}`}
     >
-      { (locationDetailIsLoading || !locationSummariesHasLoaded) && <Loader /> }
+      { (cwmsDetailIsLoading || !locationSummariesHasLoaded) && <Loader /> }
       <MapDetailsHeader
         queryObject={queryObject}
-        locationDetailData={locationDetailData}
+        cwmsDetailData={cwmsDetailData}
         locationSummariesData={locationSummariesData}
         doUpdateQuery={doUpdateQuery}
         locationSummariesHasLoaded={locationSummariesHasLoaded}
@@ -61,7 +52,6 @@ const MapDetailsContainer = ( props ) => {
       />
       <MapDetails
         queryObject={queryObject}
-        locationDetailData={locationDetailData}
         locationSummariesData={locationSummariesData}
         locationSummariesHasLoaded={locationSummariesHasLoaded}
         containerRef={containerRef}
@@ -73,24 +63,20 @@ const MapDetailsContainer = ( props ) => {
 
 MapDetailsContainer.propTypes = {
   queryObject: PropTypes.object.isRequired,
-  // locationSummariesData is initially an array before it gets reformatted into an object where the key is the location id
+  // locationSummariesData is initially an array before it gets reformatted into an object where the key is the id
   locationSummariesData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  locationDetailIsLoading: PropTypes.bool.isRequired,
-  locationDetailData: PropTypes.object,
+  cwmsDetailIsLoading: PropTypes.bool.isRequired,
+  cwmsDetailData: PropTypes.object,
   doUpdateQuery: PropTypes.func.isRequired,
-  doLocationDetailFetch: PropTypes.func.isRequired,
-  doLocationLevelFetch: PropTypes.func.isRequired,
-  doLocationChildrenFetch: PropTypes.func.isRequired,
+  doFetchMapDetailsData: PropTypes.func.isRequired,
 };
 
 export default connect(
   "selectQueryObject",
   "selectLocationSummariesData",
-  "selectLocationDetailIsLoading",
-  "selectLocationDetailData",
+  "selectCwmsDetailIsLoading",
+  "selectCwmsDetailData",
   "doUpdateQuery",
-  "doLocationDetailFetch",
-  "doLocationLevelFetch",
-  "doLocationChildrenFetch",
+  "doFetchMapDetailsData",
   MapDetailsContainer
 );

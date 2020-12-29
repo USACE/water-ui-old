@@ -1,8 +1,8 @@
-import createRestBundle from "./create-rest-bundle";
-import { getRestUrl } from "./bundle-utils";
+import createRestBundle from "../create-rest-bundle";
+import { getRestUrl } from "../bundle-utils";
 
 export default createRestBundle({
-  name: "corporateOfficeSpecialReports",
+  name: "corporateOfficeLocationReports",
   uid: "title",
   prefetch: false,
   staleAfter: 0,
@@ -10,7 +10,7 @@ export default createRestBundle({
   routeParam: "corpOfficeId",
   getTemplate: getRestUrl(
     "/water/locations/offices/:corpOfficeId/reports",
-    "/corporate-office-special-reports.json?/:corpOfficeId",
+    "/corporate-office-location-reports.json?/:corpOfficeId",
     true ),
   putTemplate: null,
   postTemplate: null,

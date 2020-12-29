@@ -76,12 +76,11 @@ export const ItemComponent = ( props ) => {
 
 export const defaultChildren = ({items, typeFilter}) => {
   return (
-    <>
-      <ul className="rstm-tree-item-group">
-        {typeFilter && items.length === 0 ?  <ItemComponent key={ 0 }></ItemComponent> : items.map(({ key, ...props }) => (
-          <ItemComponent key={key} {...props}></ItemComponent>
-        ))}
-      </ul>
-    </>
+    <ul className="rstm-tree-item-group">
+      { typeFilter && items.length === 0
+          ? <ItemComponent />
+          : items.map(({ key, ...props }) => <ItemComponent key={key} {...props} />)
+      }
+    </ul>
   );
 };

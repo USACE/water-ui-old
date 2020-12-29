@@ -1,8 +1,8 @@
 import { createSelector } from "redux-bundler";
-import createRestBundle from "./create-rest-bundle";
-import { getRestUrl, isMockMode } from "./bundle-utils";
-import { arrayToObj } from "../utils";
-import { RoutePaths } from "./route-paths";
+import createRestBundle from "../create-rest-bundle";
+import { getRestUrl, isMockMode } from "../bundle-utils";
+import { arrayToObj } from "../../utils";
+import { RoutePaths } from "../route-paths";
 
 export default createRestBundle( {
   name: "locationSummaries",

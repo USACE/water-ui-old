@@ -80,7 +80,7 @@
  */
 
 /**
- * @typedef a2w.models.LocationDetail
+ * @typedef a2w.models.CwmsDetail
  * @property {string} office_id
  * @property {string} office_name
  * @property {string} public_name
@@ -171,7 +171,7 @@
  */
 
 /**
- * @typedef a2w.models.LocationLevel
+ * @typedef a2w.models.CwmsLevel
  * @property {string} specified_level_id Name of the level being measured
  * @property {number} current_value
  * @property {string} value_unit Units for the current value

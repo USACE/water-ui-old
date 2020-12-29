@@ -1,7 +1,7 @@
 import { createSelector } from "redux-bundler";
-import createRestBundle from "./create-rest-bundle";
-import { getRestUrl } from "./bundle-utils";
-import { getIntervalTime, TIME, dateToString, arrayToObj } from "../utils";
+import createRestBundle from "../create-rest-bundle";
+import { getRestUrl } from "../bundle-utils";
+import { getIntervalTime, TIME, dateToString, arrayToObj } from "../../utils";
 
 export const radarTimeControls = [
   { value: TIME.DAY, label: "Past 24 hours" },
@@ -26,7 +26,7 @@ export default createRestBundle( {
   putTemplate: null,
   postTemplate: null,
   deleteTemplate: null,
-  fetchActions: [ "LOCATIONDETAIL_FETCH_FINISHED", LOCATIONTIMESERIES_FETCH_NEW_DATA ],
+  fetchActions: [ "CWMSDETAIL_FETCH_FINISHED", LOCATIONTIMESERIES_FETCH_NEW_DATA ],
   forceFetchActions: [],
   urlParamSelectors: [ "selectLocationTimeSeriesUrlParams" ],
   defaultState: {
@@ -84,16 +84,16 @@ export default createRestBundle( {
     },
 
     selectLocationTimeSeriesUrlParams: createSelector(
-      "selectLocationDetailData",
+      "selectCwmsDetailData",
       "selectLtsTimeControl",
       "selectLtsCustomStartDate",
       "selectLtsCustomEndDate",
-      ( locationDetailData, timeControl, customStartDate, customEndDate ) => {
-        if( !locationDetailData ) return {};
+      ( cwmsDetailData, timeControl, customStartDate, customEndDate ) => {
+        if( !cwmsDetailData ) return {};
 
         const urlParams = {
-          location_id: locationDetailData.location_id,
-          office_id: locationDetailData.office_id
+          location_id: cwmsDetailData.location_id,
+          office_id: cwmsDetailData.office_id
         };
 
         if (timeControl > 0) {
@@ -132,6 +132,13 @@ export default createRestBundle( {
         return plotlyObj;
       }
     ),
+
+    doResetTimeSeriesData: () => ({
+      type: "LOCATIONTIMESERIES_UPDATED_ITEM",
+      payload: {
+        data: null,
+      },
+    }),
   }
 } );
 

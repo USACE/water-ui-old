@@ -1,8 +1,8 @@
-import createRestBundle from "./create-rest-bundle";
-import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
-import { RoutePaths } from "./route-paths";
-import { isPresent } from "../utils/functions";
+import createRestBundle from "../create-rest-bundle";
+import { getRestUrl } from "../bundle-utils";
+import { RoutePaths } from "../route-paths";
+import { isPresent } from "../../utils/functions";
 
 const DISTRICTS_AND_BASINS_SET_DISTRICT_ID = "DISTRICTS_AND_BASINS_SET_DISTRICT_ID";
 const DISTRICTS_AND_BASINS_SET_BASIN_ID = "DISTRICTS_AND_BASINS_SET_BASIN_ID";

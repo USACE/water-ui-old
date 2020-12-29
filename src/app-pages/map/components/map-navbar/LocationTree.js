@@ -43,7 +43,8 @@ const LocationTree = ({
     if (!e.hasNodes) {
       const newQuery = {
         ...queryObject,
-        locationId: e.id,
+        id: e.id,
+        source: e.source,
         lat: e.latitude,
         lon: e.longitude,
         zoom: e.zoom_depth ? Math.round( e.zoom_depth * 1.5 ) : defaultMapParams.zoom,

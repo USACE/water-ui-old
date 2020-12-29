@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { displayTypes, defaultMapParams } from "../../map-utils";
+import { sourceTypes, displayTypes, defaultMapParams } from "../../map-utils";
 import { useDimensions } from "../../../../utils";
-import MapAccordion from "./components/MapAccordion";
+import MapAccordion from "./components/map-accordion/MapAccordion";
 
 const MapDetails = ({
   queryObject,
   locationSummariesData,
-  locationDetailData,
   locationSummariesHasLoaded,
   containerRef,
   headerRef,
@@ -25,29 +24,29 @@ const MapDetails = ({
 
   let content = null;
 
-  // display error message if locationId does not exist and user is in full screen mode; this scenario is
-  // only possible if the user manually deletes the locationId param from the url, but it's good to have a check regardless
-  if (!queryObject.locationId && display === displayTypes.fs) {
+  // display error message if id does not exist and user is in full screen mode; this scenario is
+  // only possible if the user manually deletes the id param from the url, but it's good to have a check regardless
+  if (!queryObject.id && display === displayTypes.fs) {
     content = "No location is selected.";
+  }
+  // display error message if location source is not valid
+  else if ((!queryObject.source || !sourceTypes[queryObject.source]) && display === displayTypes.fs) {
+    content = "Invalid location source."
   }
   // do not display any information if the location summaries have not been loaded
   else if (!locationSummariesHasLoaded) {
     content = "";
   }
-  // check in case user puts invalid value for the locationId in the url
-  else if (!locationSummariesData[queryObject.locationId]) {
-    content = <p>The location <strong>{queryObject.locationId}</strong> does not exist.</p>;
-  }
-  // check if locationDetailData is empty
-  else if (!locationDetailData || Object.keys(locationDetailData).length === 0) {
-    content = "There is no data for this location.";
+  // check in case user puts invalid value for the id in the url
+  else if (!locationSummariesData[queryObject.id]) {
+    content = <p>The location <strong>{queryObject.id}</strong> does not exist.</p>;
   }
   else {
     content = (
       <MapAccordion
+        queryObject={queryObject}
         headerHeight={headerHeight}
         display={display}
-        locationDetailData={locationDetailData}
       />
     );
   }
@@ -63,10 +62,10 @@ const MapDetails = ({
 
 MapDetails.propTypes = {
   queryObject: PropTypes.shape({
-    locationId: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    source: PropTypes.string,
   }).isRequired,
   locationSummariesData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  locationDetailData: PropTypes.object,
   locationSummariesHasLoaded: PropTypes.bool,
   containerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   headerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),

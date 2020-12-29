@@ -1,6 +1,6 @@
-import createRestBundle from "./create-rest-bundle";
-import { getRestUrl } from "./bundle-utils";
 import { createSelector } from "redux-bundler";
+import createRestBundle from "../create-rest-bundle";
+import { getRestUrl } from "../bundle-utils";
 
 const LocationSearchActions = {
   SET_LOCATION_SEARCH_TEXT: `SET_LOCATION_SEARCH_TEXT`,

@@ -1,20 +1,26 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import LocationStreamControls from "./components/location-stream-controls/LocationStreamControls";
-import { defaultMapParams, displayTypes, mapUrlOptions } from "../../map-utils";
+import {
+  sourceTypes,
+  defaultMapParams,
+  displayTypes,
+  mapUrlOptions,
+} from "../../map-utils";
 
 /** @type any */
 const MapDetailsHeader = forwardRef((props, ref) => {
   const {
     queryObject,
-    locationDetailData,
+    cwmsDetailData,
     locationSummariesData,
     doUpdateQuery,
     locationSummariesHasLoaded,
   } = /** @type {any} */ ( props );
 
-  const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${locationDetailData.nearest_city}&state=${locationDetailData.state}`;
-  const locationId = queryObject.locationId;
+  const weatherUrl = `https://forecast.weather.gov/MapClick.php?CityName=${cwmsDetailData.nearest_city}&state=${cwmsDetailData.state}`;
+  const id = queryObject.id;
+  const source = queryObject.source;
   const display = displayTypes[queryObject.display] ? queryObject.display : defaultMapParams.display;
 
   const closeBtnOnClick = () => {
@@ -54,12 +60,12 @@ const MapDetailsHeader = forwardRef((props, ref) => {
         title="Expand Location Details"
         onClick={expandBtnOnClick}
       />
-      { locationSummariesHasLoaded && locationSummariesData[locationId] &&
-        <h4>{ locationSummariesData[locationId].public_name }</h4>
+      { locationSummariesHasLoaded && locationSummariesData[id] &&
+        <h4>{ locationSummariesData[id].public_name }</h4>
       }
-      { locationDetailData && Object.keys(locationDetailData).length > 0 && 
+      { source === sourceTypes.CWMS && cwmsDetailData && Object.keys(cwmsDetailData).length > 0 && 
         <div>
-          {locationDetailData.office_name}
+          {cwmsDetailData.office_name}
           <span className="pipe" />
           <a
             href={weatherUrl}
@@ -70,10 +76,10 @@ const MapDetailsHeader = forwardRef((props, ref) => {
           </a>
         </div>
       }
-      { locationSummariesHasLoaded && 
+      { source === sourceTypes.CWMS && locationSummariesHasLoaded &&
         <LocationStreamControls
           queryObject={queryObject}
-          locationDetailData={locationDetailData}
+          cwmsDetailData={cwmsDetailData}
           locationSummariesData={locationSummariesData}
           doUpdateQuery={doUpdateQuery}
         />
@@ -84,13 +90,13 @@ const MapDetailsHeader = forwardRef((props, ref) => {
 
 MapDetailsHeader.propTypes = /** @type {any} */ ({
   queryObject: PropTypes.shape({
-    locationId: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     lon: PropTypes.string,
     lat: PropTypes.string,
     zoom: PropTypes.string,
     display: PropTypes.string,
   }).isRequired,
-  locationDetailData: PropTypes.object,
+  cwmsDetailData: PropTypes.object,
   locationSummariesData: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   doUpdateQuery: PropTypes.func.isRequired,
   locationSummariesHasLoaded: PropTypes.bool,

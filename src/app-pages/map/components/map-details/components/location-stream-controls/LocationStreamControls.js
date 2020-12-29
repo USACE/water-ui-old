@@ -6,28 +6,29 @@ import "./locationStreamControls.scss";
 
 const LocationStreamControls = ({
   queryObject,
-  /** @type a2w.models.LocationDetail */
-  locationDetailData,
+  /** @type a2w.models.CwmsDetail */
+  cwmsDetailData,
   locationSummariesData,
   doUpdateQuery,
   /** @type a2w.models.StreamLocation[] */
-  streamLocationsData,
-  doStreamLocationsFetch,
+  cwmsStreamsData,
+  doCwmsStreamsFetch,
 }) => {
 
-  // fetch new stream locations data whenever the streamLocationsCode changes
-  const streamLocationsCode = locationDetailData.stream_location_code;
+  // fetch new stream locations data whenever the stream_location_code changes
+  const streamLocationCode = cwmsDetailData.stream_location_code;
   useEffect(() => {
-    doStreamLocationsFetch();
-  }, [streamLocationsCode, doStreamLocationsFetch]);
+    doCwmsStreamsFetch();
+  }, [streamLocationCode, doCwmsStreamsFetch]);
 
   const changeLocation = (e) => {
-    const location = streamLocationsData[e.target.value];
-    const locationId = location.location_code;
-    const locationData = locationSummariesData[locationId];
+    const location = cwmsStreamsData[e.target.value];
+    const id = location.location_code;
+    const locationData = locationSummariesData[id];
     const newQuery = {
       ...queryObject,
-      locationId,
+      id,
+      source: locationData.source,
       lon: locationData.longitude,
       lat: locationData.latitude,
       zoom: locationData.zoom_depth,
@@ -35,18 +36,18 @@ const LocationStreamControls = ({
     doUpdateQuery(newQuery, mapUrlOptions);
   };
 
-  if (!streamLocationsData || streamLocationsData.length <= 1 || !locationDetailData.location_code) {
+  if (!cwmsStreamsData || cwmsStreamsData.length <= 1 || !cwmsDetailData.location_code) {
     return null;
   }
 
   const display = displayTypes[queryObject.display] ? queryObject.display : defaultMapParams.display;
-  const currentIndex = streamLocationsData.findIndex(item => item.location_code === locationDetailData.location_code);
-  const currentVal = streamLocationsData[ currentIndex ] || {};
+  const currentIndex = cwmsStreamsData.findIndex(item => item.location_code === cwmsDetailData.location_code);
+  const currentVal = cwmsStreamsData[ currentIndex ] || {};
 
   let justifyContent = "justify-content-between";
   if (currentIndex === 0) {
     justifyContent = "justify-content-end";
-  } else if (currentIndex === streamLocationsData.length - 1) {
+  } else if (currentIndex === cwmsStreamsData.length - 1) {
     justifyContent = "justify-content-start";
   }
   return (
@@ -68,7 +69,7 @@ const LocationStreamControls = ({
         value={currentIndex}
         title={ `Stream Location: ${currentVal.public_name} (${currentVal.station} ${currentVal.station_unit})` }
       >
-        { streamLocationsData.map((item, i) => (
+        { cwmsStreamsData.map((item, i) => (
           <option
             key={item.location_code}
             value={i}
@@ -77,7 +78,7 @@ const LocationStreamControls = ({
           </option>
         ))}
       </select>
-      { currentIndex < streamLocationsData.length - 1 && (
+      { currentIndex < cwmsStreamsData.length - 1 && (
         <button
           type="button"
           className="location-stream-btn downstream"
@@ -93,15 +94,15 @@ const LocationStreamControls = ({
 
 LocationStreamControls.propTypes = {
   queryObject: PropTypes.object.isRequired,
-  locationDetailData: PropTypes.object.isRequired,
+  cwmsDetailData: PropTypes.object.isRequired,
   locationSummariesData: PropTypes.object.isRequired,
   doUpdateQuery: PropTypes.func.isRequired,
-  streamLocationsData: PropTypes.array,
-  doStreamLocationsFetch: PropTypes.func.isRequired,
+  cwmsStreamsData: PropTypes.array,
+  doCwmsStreamsFetch: PropTypes.func.isRequired,
 };
 
 export default connect(
-  "selectStreamLocationsData",
-  "doStreamLocationsFetch",
+  "selectCwmsStreamsData",
+  "doCwmsStreamsFetch",
   LocationStreamControls
 );

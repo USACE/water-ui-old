@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import PropTypes from 'prop-types';
 import * as d3 from "d3";
+import { isPresent } from "../../../../../../utils/functions";
 
 // Configuration Parameters
 const numFormat = d3.format(".2f");
@@ -823,7 +822,7 @@ const createMiddleGradient = ({svg, damScale, gradientScale, gradientTop, gradie
         .attr("y", topY + 5)
         .attr("font-family", "sans-serif")
         .attr("font-size", "12px")
-        .text(gradientLabel[gradientLabel.length - 1] + "%");
+        .text(gradientLabel[0] + "%");
 
       svg
         .select("g.middleGradient")
@@ -832,7 +831,7 @@ const createMiddleGradient = ({svg, damScale, gradientScale, gradientTop, gradie
         .attr("y", topY + 5 + (gradientLabel.length - 1) * (height / 5))
         .attr("font-family", "sans-serif")
         .attr("font-size", "12px")
-        .text(gradientLabel[0] + "%");
+        .text(gradientLabel[gradientLabel.length - 1] + "%");
     }
   }
 };
@@ -1094,7 +1093,7 @@ const drawWaterLevel = (svg, value, damScale) => {
     .text(`${value}'`);
 };
 
-const renderDamProfileChart = (data) => {
+export const renderDamProfileChart = (data) => {
   //destroy old svg
   d3.selectAll("svg > *").remove();
   const dpc = d3.select("#dpc-1");
@@ -1209,25 +1208,70 @@ const renderDamProfileChart = (data) => {
   setText(dpc, mode, inflow, outflow, surcharge, tailWater, text, date);
 };
 
-const DamProfileChart = ({ data }) => {
-  // After SVG is available in the DOM
-  useEffect(() => {
-    renderDamProfileChart( data );
-  }, [ data ]);
+// array of all the dam profile keys
+/** @type { ( keyof a2w.models.CwmsDetail )[] } */
+export const damProfileKeys = [
+  "top_of_dam",
+  "top_of_surcharge",
+  "top_of_flood",
+  "spillway_crest",
+  "bottom_of_flood",
+  "current_elevation",
+  "bottom_of_conservation",
+  "stream_bed",
+  "current_inflow",
+  "current_surcharge",
+];
 
-  return (
-    <div className="col">
-      <svg
-        id="dpc-1"
-        viewBox="0 0 1240 650"
-        preserveAspectRatio="xMinYMin meet"
-      ></svg>
-    </div>
-  );
-}
+// helper function which computes the data which will be used to generate the dam svg
+export const getDamProfileData = (cwmsDetailData) => {
+  const data = {
+    //mode could be lock or dam or lockTurbine or turbine. Create func to calc
+    mode: "dam", //could be dam, lock, turbine, or lockTurbine. Based off hasLock and hasLock
+    hasLock: false,
+    hasTurbine: false,
+    damTop: cwmsDetailData.top_of_dam,
+    damBottom: cwmsDetailData.stream_bed,
+    horizontalLabels: [],
+    currentLevel: cwmsDetailData.current_elevation,
+    tailWater: cwmsDetailData.current_tail_water_elevation,
+    inflow: cwmsDetailData.current_inflow,
+    outflow: cwmsDetailData.current_flow,
+    surcharge: cwmsDetailData.current_surcharge,
+    text: cwmsDetailData.public_name,
+    date: cwmsDetailData.elevation_date,
+    ruleCurve: cwmsDetailData.current_rule_curve,
+    precip: cwmsDetailData.current_precipitation,
+    designCapacity: cwmsDetailData.design_capacity,
+    levelType: cwmsDetailData.level_type,
+    gradientTop: cwmsDetailData.top_of_flood,
+    gradientBottom: cwmsDetailData.bottom_of_flood,
+    gradientLabel: [100,80,60,40,20,0],
+    colorArr: ["red", "yellow", "yellow", "green"],
+    colorLevels: [0.0, 0.2, 0.3, 0.4],
+  };
 
-DamProfileChart.propTypes = {
-  data: PropTypes.object.isRequired
+  const addLabel = ( name, value, showLine, side ) => {
+    if( isPresent( value ) ) {
+      data.horizontalLabels.push( { name: name, value: value, showLine: showLine, side: side } )
+    }
+  };
+
+  // Left labels
+  addLabel( "Top of Dam", cwmsDetailData.top_of_dam, true, "left" );
+  addLabel( "Top of Flood", cwmsDetailData.top_of_flood, true, "left" );
+  addLabel( "Bottom of Flood", cwmsDetailData.bottom_of_flood, true, "left" );
+  addLabel( "Streambed", cwmsDetailData.stream_bed, true, "left" );
+
+  if( isPresent( cwmsDetailData.bottom_of_normal ) ) {
+    addLabel( "Bottom of Conservation", cwmsDetailData.bottom_of_normal, true, "left" );
+  }
+  else addLabel( "Bottom of Conservation", cwmsDetailData.bottom_of_conservation, true, "left" );
+
+  // Right labels
+  addLabel( "Spillway Crest", cwmsDetailData.spillway_crest, true, "right" );
+  addLabel( "Top of Surcharge", cwmsDetailData.top_of_surcharge, true, "left" );
+  addLabel( "Design Capacity", cwmsDetailData.design_capacity, true, "left" );
+
+  return data;
 };
-
-export default DamProfileChart;

@@ -1,55 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
-import Accordion from "../../../../../app-common/accordion/Accordion";
-import { displayTypes } from "../../../map-utils";
-import DamProfile from "./DamProfile";
-import LocationInfo from "./LocationInfo";
-import LocationChildren from "./LocationChildren";
-import TimeSeriesSection from "./time-series/TimeSeriesSection";
-import TimeLineSection from "./TimeLineSection";
+import Accordion from "../../../../../../app-common/accordion/Accordion";
+import { sourceTypes, displayTypes } from "../../../../map-utils";
+import {
+  getCwmsAccordionData,
+  getWqAccordionData,
+} from "./map-accordion-utils";
 
 const MapAccordion = ({
+  queryObject,
   headerHeight,
   display,
-  locationDetailData,
-  locationChildrenData,
+  cwmsDetailData,
+  cwmsChildrenData,
 }) => {
-  // create the accordion data
-  const accordionData = [];
-  if (locationDetailData.dam_indicator === "T") {
-    accordionData.push({
-      id: "dam-profile",
-      title: "Dam Profile",
-      content: <DamProfile />,
-      iconClass: "mdi mdi-water-pump",
-    });
+  // set the accordion data according to the source type
+  let accordionData = [];
+  switch (queryObject.source) {
+    case sourceTypes.CWMS:
+      accordionData = getCwmsAccordionData(cwmsDetailData, cwmsChildrenData);
+      break;
+    case sourceTypes.WQ:
+      accordionData = getWqAccordionData();
+      break;
+    default:
+      accordionData = [];
   }
-  accordionData.push({
-    id: "location-information",
-    title: "Location Information",
-    content: <LocationInfo />,
-    iconClass: "mdi mdi-map-marker",
-  });
-  if (locationChildrenData && locationChildrenData.length > 0) {
-    accordionData.push({
-      id: "location-children",
-      title: "Location Children",
-      content: <LocationChildren />,
-      iconClass: "mdi mdi-map-marker-radius",
-    });
-  }
-  accordionData.push({
-    id: "time-series",
-    title: "Time Series",
-    content: <TimeSeriesSection/>,
-    iconClass: "mdi mdi-chart-line",
-  }, {
-    id: "time-line",
-    title: "Time Line",
-    content: <TimeLineSection/>,
-    iconClass: "mdi mdi-chart-timeline",
-  });
 
   const navbarPadding = 32;
   const ulStyle = {
@@ -68,6 +45,10 @@ const MapAccordion = ({
       behavior: "smooth",
     });
   };
+
+  if (accordionData.length === 0) {
+    return "No data for this location.";
+  }
   return (
     <>
       { display === displayTypes.fs && (
@@ -104,10 +85,15 @@ const MapAccordion = ({
 };
 
 MapAccordion.propTypes = {
-  locationChildrenData: PropTypes.array,
+  queryObject: PropTypes.shape({
+    source: PropTypes.string.isRequired,
+  }).isRequired,
+  cwmsDetailData: PropTypes.object,
+  cwmsChildrenData: PropTypes.array,
 };
 
 export default connect(
-  "selectLocationChildrenData",
+  "selectCwmsDetailData",
+  "selectCwmsChildrenData",
   MapAccordion,
 );

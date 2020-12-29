@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "redux-bundler-react";
 import Table from "../../../../../app-common/table/Table";
 
-const LocationChildren = ({ locationChildrenData }) => {
+const LocationChildren = ({ cwmsChildrenData }) => {
   const header = ["Name", "Location Type"];
-  const body = locationChildrenData.map((childData) => {
+  const body = cwmsChildrenData.map((childData) => {
     const name = childData.label;
     const locationType = childData.location_type;
     return ({
@@ -26,7 +26,7 @@ const LocationChildren = ({ locationChildrenData }) => {
 };
 
 LocationChildren.propTypes = {
-  locationChildrenData: PropTypes.arrayOf(PropTypes.shape({
+  cwmsChildrenData: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,
     location_code: PropTypes.string,
     location_id: PropTypes.string,
@@ -36,6 +36,6 @@ LocationChildren.propTypes = {
 };
 
 export default connect(
-  "selectLocationChildrenData",
+  "selectCwmsChildrenData",
   LocationChildren
 );
