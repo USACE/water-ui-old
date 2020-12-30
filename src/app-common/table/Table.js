@@ -15,9 +15,9 @@ const Table = ({ header, body }) => {
         )}
         { body && body.length > 0 && (
           <tbody>
-            { body.map(({ id, row }) => (
-              <tr key={id}>
-                { row.map(item => <td key={item}>{item}</td>) }
+            { body.map(({ rowId, row }) => (
+              <tr key={rowId}>
+                { row.map(({ id, item }) => <td key={id}>{item}</td>) }
               </tr>
             ))}
           </tbody>
@@ -31,9 +31,12 @@ Table.propTypes = {
   header: PropTypes.arrayOf(PropTypes.string.isRequired),
   body: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      rowId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       row: PropTypes.arrayOf(
-        PropTypes.oneOfType([ PropTypes.string, PropTypes.number ])
+        PropTypes.shape({
+          id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+          item: PropTypes.node,
+        })
       ),
     }),
   ),

@@ -35,10 +35,26 @@ const NidSection = ({
     label = label.replace(/Id/, "ID");
     const value = cwmsNidData[key];
     body.push({
-      id: key,
-      row: [label, value],
+      rowId: key,
+      row: [
+        { id: "label", item: label },
+        { id: "value", item: value },
+      ],
     });
   });
+
+  // display link to the NID site
+  // TODO: Currently this link doesn't work since we don't have the correct record id. Also
+  // when you click on the link it doesn't take you to the full url, the nid site redirects
+  // you to https://nid.sec.usace.army.mil/ords/f?p=105:1:::::: for some reason.
+  const nidUrl = `https://nid.sec.usace.army.mil/ords/f?p=105:113:9558438802427::NO:113,2:P113_RECORDID:${cwmsNidData.record_id}`;
+  body.push({
+    rowId: "nid-link",
+    row: [
+      { id: "label", item: "NID Link" },
+      { id: "value", item: <a href={nidUrl} target="_blank" rel="noopener noreferrer">{cwmsNidData.owner_name}</a> },
+    ]
+  })
   return (
     <Table
       header={header}

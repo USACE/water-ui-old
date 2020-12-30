@@ -18,8 +18,11 @@ const LocationInfo = ({
       const name = formatUnderscore(key);
       const value = cwmsDetailData[key];
       body.push({
-        id: key,
-        row: [name, value],
+        rowId: key,
+        row: [
+          { id: "name", item: name },
+          { id: "value", item: value },
+        ],
       });
     }
   });
@@ -30,9 +33,12 @@ const LocationInfo = ({
       const name = cwmsLevel.specified_level_id;
       const value = `${cwmsLevel.current_value} ${cwmsLevel.value_unit}`;
       body.push({
-        id: cwmsLevel.location_level_id,
-        row: [name, value],
-      })
+        rowId: cwmsLevel.location_level_id,
+        row: [
+          { id: "name", item: name },
+          { id: "value", item: value },
+        ],
+      });
     });
   }
 

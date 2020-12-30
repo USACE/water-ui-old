@@ -9,8 +9,11 @@ const LocationChildren = ({ cwmsChildrenData }) => {
     const name = childData.label;
     const locationType = childData.location_type;
     return ({
-      id: childData.location_code,
-      row: [name, locationType],
+      rowId: childData.location_code,
+      row: [
+        { id: "name", item: name },
+        { id: "value", item: locationType }
+      ],
     })
   });
 
