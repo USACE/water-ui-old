@@ -10,16 +10,20 @@ import {
 
 const MapAccordion = ({
   queryObject,
+  locationSummariesData,
   headerHeight,
   display,
-  cwmsDetailData,
   cwmsChildrenData,
 }) => {
+  const id = queryObject.id;
+  const source = queryObject.source;
+  const locationSummaryData = locationSummariesData[id];
+
   // set the accordion data according to the source type
   let accordionData = [];
-  switch (queryObject.source) {
+  switch (source) {
     case sourceTypes.CWMS:
-      accordionData = getCwmsAccordionData(cwmsDetailData, cwmsChildrenData);
+      accordionData = getCwmsAccordionData(locationSummaryData, cwmsChildrenData);
       break;
     case sourceTypes.WQ:
       accordionData = getWqAccordionData();
@@ -88,12 +92,13 @@ MapAccordion.propTypes = {
   queryObject: PropTypes.shape({
     source: PropTypes.string.isRequired,
   }).isRequired,
-  cwmsDetailData: PropTypes.object,
+  locationSummariesData: PropTypes.object.isRequired,
+  headerHeight: PropTypes.number.isRequired,
+  display: PropTypes.string.isRequired,
   cwmsChildrenData: PropTypes.array,
 };
 
 export default connect(
-  "selectCwmsDetailData",
   "selectCwmsChildrenData",
   MapAccordion,
 );

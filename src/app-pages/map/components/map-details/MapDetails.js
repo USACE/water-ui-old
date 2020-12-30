@@ -45,6 +45,7 @@ const MapDetails = ({
     content = (
       <MapAccordion
         queryObject={queryObject}
+        locationSummariesData={locationSummariesData}
         headerHeight={headerHeight}
         display={display}
       />
