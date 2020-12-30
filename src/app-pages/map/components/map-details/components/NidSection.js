@@ -17,7 +17,11 @@ const NidSection = ({
   }, [id, doCwmsNidFetch]);
 
   if (cwmsNidIsLoading) {
-    return <div style={{ position: "relative" }}><Loader /></div>;
+    return (
+      <div style={{ position: "relative" }}>
+        <Loader style={{ zIndex: "10" }} />
+      </div>
+    );
   }
   if (!cwmsNidData || Object.keys(cwmsNidData).length === 0) {
     return <p>No NID data.</p>
