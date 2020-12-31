@@ -4,15 +4,21 @@ import LocationInfo from "../LocationInfo";
 import LocationChildren from "../LocationChildren";
 import TimeSeriesSection from "../time-series/TimeSeriesSection";
 import TimeLineSection from "../TimeLineSection";
+import NidSection from "../NidSection";
 
-export const getCwmsAccordionData = (cwmsDetailData, cwmsChildrenData) => {
+export const getCwmsAccordionData = (locationSummaryData, cwmsChildrenData) => {
   const accordionData = [];
-  if (cwmsDetailData.dam_indicator === "T") {
+  if (locationSummaryData.dam_indicator === "T") {
     accordionData.push({
       id: "dam-profile",
       title: "Dam Profile",
       content: <DamProfile />,
       iconClass: "mdi mdi-water-pump",
+    }, {
+      id: "nid-section",
+      title: "NID",
+      content: <NidSection />,
+      iconClass: "mdi mdi-table"
     });
   }
   accordionData.push({

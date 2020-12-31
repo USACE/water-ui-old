@@ -19,6 +19,7 @@ import cwmsDetailBundle from "./location-bundles/cwms/cwms-detail-bundle";
 import cwmsStreamsBundle from "./location-bundles/cwms/cwms-streams-bundle";
 import cwmsLevelBundle from "./location-bundles/cwms/cwms-level-bundle";
 import cwmsChildrenBundle from "./location-bundles/cwms/cwms-children-bundle";
+import cwmsNidBundle from "./location-bundles/cwms/cwms-nid-bundle";
 import corporateOfficeBundle from "./report-bundles/corporate-office-bundle";
 import corporateOfficeReportBundle from "./report-bundles/corporate-office-report-bundle";
 import corporateOfficeSpecialReportBundle from "./report-bundles/corporate-office-special-report-bundle";
@@ -59,6 +60,7 @@ export default composeBundles(
   cwmsStreamsBundle,
   cwmsLevelBundle,
   cwmsChildrenBundle,
+  cwmsNidBundle,
   corporateOfficeBundle,
   corporateOfficeReportBundle,
   corporateOfficeSpecialReportBundle,

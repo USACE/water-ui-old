@@ -10,8 +10,10 @@ const DamProfile = ( props ) => {
   } = props;
 
   useEffect(() => {
-    const damProfileData = getDamProfileData(cwmsDetailData);
-    renderDamProfileChart(damProfileData);
+    if (cwmsDetailData && Object.keys(cwmsDetailData).length > 0) {
+      const damProfileData = getDamProfileData(cwmsDetailData);
+      renderDamProfileChart(damProfileData);
+    }
   }, [cwmsDetailData]);
 
   if (!cwmsDetailData) {
